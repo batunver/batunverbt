@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>batunverbt | Bilişim Teknolojileri Portalı</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
+
+    <!-- NAVİGASYON / ÜST MENÜ -->
+    <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+            <!-- Logo ve Başlık -->
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 p-2.5 rounded-xl text-white shadow-lg shadow-indigo-500/30">
+                    <i data-lucide="monitor" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight text-white tracking-wide">batunverbt</h1>
+                    <p class="text-xs text-slate-400">Bilişim Teknolojileri Portalı</p>
+                </div>
+            </div>
+
+            <!-- Arama Kutusu -->
+            <div class="relative flex-1 max-w-md min-w-[240px]">
+                <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input 
+                    type="text" 
+                    id="searchInput"
+                    placeholder="Konu, oyun veya materyal ara... (Örn: Scratch, Algoritma)"
+                    class="w-full bg-slate-800 border border-slate-700 text-sm rounded-xl pl-9 pr-4 py-2 text-slate-200 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                >
+            </div>
+        </div>
+    </header>
+
+    <!-- ANA İÇERİK ALANI -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6 space-y-6">
+
+        <!-- KATEGORİ VE SINIF FİLTRELERİ -->
+        <section class="flex flex-wrap items-center justify-between gap-4 bg-slate-800/50 p-3 rounded-2xl border border-slate-800">
+            <!-- Sınıf Butonları -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0" id="gradeFilters">
+                <button onclick="filterGrade('all')" class="grade-btn active bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all">
+                    Tüm Sınıflar
+                </button>
+                <button onclick="filterGrade('5')" class="grade-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all">
+                    5. Sınıf
+                </button>
+                <button onclick="filterGrade('6')" class="grade-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all">
+                    6. Sınıf
+                </button>
+            </div>
+
+            <!-- Materyal Türü Filtreleri -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0" id="typeFilters">
+                <button onclick="filterType('all')" class="type-btn text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-lg hover:bg-emerald-500 transition">
+                    Tüm Materyaller
+                </button>
+                <button onclick="filterType('lab')" class="type-btn text-xs bg-slate-800 text-slate-400 px-3 py-1.5 rounded-lg hover:bg-slate-700 hover:text-slate-200 transition">
+                    💻 Lab Uygulamaları & Görevler
+                </button>
+                <button onclick="filterType('arac')" class="type-btn text-xs bg-slate-800 text-slate-400 px-3 py-1.5 rounded-lg hover:bg-slate-700 hover:text-slate-200 transition">
+                    🖥️ Akıllı Tahta Araçları
+                </button>
+            </div>
+        </section>
+
+        <!-- MATERYAL KARTLARI LİSTESİ (JavaScript burayı dolduracak) -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="cardGrid">
+            <!-- Kartlar JavaScript ile dinamik eklenecek -->
+        </section>
+
+    </main>
+
+    <!-- KOD DOSYALARIMIZ -->
+    <script src="data.js"></script>
+    <script src="main.js"></script>
+    <script>
+        // İkonları aktifleştir
+        lucide.createIcons();
+    </script>
+    <!-- AKILLI TAHTA ARAÇLARI MODAL (PENCERE) -->
+<div id="toolModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 w-full max-w-xl rounded-2xl p-6 shadow-2xl relative">
+        <!-- Kapat Butonu -->
+        <button onclick="closeToolModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800 p-2 rounded-xl">
+            <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Dinamik Araç İçeriği Buraya Gelecek -->
+        <div id="modalContent">
+            <!-- JavaScript burayı dolduracak -->
+        </div>
+    </div>
+</div>
+</body>
+</html>
