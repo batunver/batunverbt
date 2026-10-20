@@ -1,109 +1,162 @@
-<!-- Ana İçerik -->
-<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-12">
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İhsan Aras Ortaokulu BTY Portalı</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome İkonlar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#3b82f6', 600: '#2563eb' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
 
-    <!-- 1. Karşılama ve Duyuru Alanı -->
-    <section class="bg-gradient-to-r from-blue-900/40 via-slate-800/60 to-cyan-900/40 border border-blue-500/20 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="space-y-3 text-center md:text-left">
-                <span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20">
-                    2026 - 2027 Eğitim Öğretim Yılı
-                </span>
-                <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-                    İhsan Aras Ortaokulu BTY Portalı
-                </h1>
-                <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
-                    Bilişim Teknolojileri ve Yazılım dersi yıllık planları, haftalık müfredat içerikleri, kodlama etkinlikleri ve dijital materyal yönetim merkezi.
-                </p>
-            </div>
-            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                <button onclick="sinifModalAc('5')" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-book-open"></i>
-                    <span>5. Sınıf Yıllık Plan (36 Hafta)</span>
-                </button>
-                <button onclick="sinifModalAc('6')" class="px-6 py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-cyan-600/30 flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-book-open"></i>
-                    <span>6. Sınıf Yıllık Plan (36 Hafta)</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- 2. Sınıf Görsel Seçim Kartları -->
-    <section class="grid md:grid-cols-2 gap-8">
-        <!-- 5. Sınıf Kartı -->
-        <div class="bg-slate-800/80 border border-slate-700/70 rounded-3xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 group flex flex-col justify-between shadow-2xl">
-            <div>
-                <div class="relative w-full bg-[#f39c12]/10 flex items-center justify-center p-2 border-b border-slate-700/50">
-                    <img src="images/sinif_5_yeni_nesil_sinif.png" alt="5. Sınıflar" class="w-full h-auto max-h-64 object-contain rounded-2xl group-hover:scale-[1.02] transition-transform duration-300">
-                    <span class="absolute top-4 right-4 bg-blue-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-blue-400/30 shadow-lg">5. Sınıf</span>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-blue-400 transition-colors">5. Sınıf Bilişim Teknolojileri</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Temel bilişim kavramları, dijital vatandaşlık, dosya yönetimi ve Scratch ile görsel kodlama dünyası.</p>
-                </div>
-            </div>
-            <div class="px-6 pb-6">
-                <button onclick="sinifModalAc('5')" class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center space-x-2">
-                    <span>5. Sınıf Tüm İçerikleri Gör</span>
-                    <i class="fa-solid fa-arrow-right text-xs"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- 6. Sınıf Kartı -->
-        <div class="bg-slate-800/80 border border-slate-700/70 rounded-3xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300 group flex flex-col justify-between shadow-2xl">
-            <div>
-                <div class="relative w-full bg-[#e74c3c]/10 flex items-center justify-center p-2 border-b border-slate-700/50">
-                    <img src="images/sinif_6_yeni_nesil_sinif.png" alt="6. Sınıflar" class="w-full h-auto max-h-64 object-contain rounded-2xl group-hover:scale-[1.02] transition-transform duration-300">
-                    <span class="absolute top-4 right-4 bg-cyan-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-cyan-400/30 shadow-lg">6. Sınıf</span>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-cyan-400 transition-colors">6. Sınıf Bilişim Teknolojileri</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Tablolama (Calc/Excel), ses-video kurgu, ağ teknolojileri ve Python ile metin tabanlı kodlama.</p>
-                </div>
-            </div>
-            <div class="px-6 pb-6">
-                <button onclick="sinifModalAc('6')" class="w-full py-3.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-cyan-600/20 flex items-center justify-center space-x-2">
-                    <span>6. Sınıf Tüm İçerikleri Gör</span>
-                    <i class="fa-solid fa-arrow-right text-xs"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. Bu Haftanın Canlı Ders Konusu (Aktif Hafta Spotu) -->
-    <section class="bg-slate-800/60 border border-slate-700/60 rounded-3xl p-6 sm:p-8 shadow-xl">
-        <div class="flex items-center justify-between mb-6">
+    <!-- Üst Menü (Header) -->
+    <header class="bg-slate-800/80 backdrop-blur border-b border-slate-700/60 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-3 h-3 bg-emerald-500 rounded-full animate-ping"></div>
-                <h2 class="text-lg sm:text-xl font-bold text-white tracking-wide">Bu Haftanın Ders Konuları (Aktif Hafta)</h2>
+                <div class="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shadow-inner">
+                    <i class="fa-solid fa-code text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-base font-extrabold tracking-tight text-white block">BATUNVER BT</span>
+                    <span class="text-[11px] text-slate-400 block -mt-1">İhsan Aras Ortaokulu BTY Portalı</span>
+                </div>
             </div>
-            <span class="text-xs text-slate-400 bg-slate-900/60 px-3 py-1.5 rounded-xl border border-slate-700">19 - 23 Ekim 2026 (7. Hafta)</span>
+            <nav class="flex items-center space-x-3">
+                <a href="index.html" class="text-xs font-semibold px-3 py-2 rounded-lg bg-slate-700/50 text-white transition-all">Ana Sayfa</a>
+                <button onclick="sinifModalAc('5')" class="text-xs font-semibold px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-700/40 transition-all">5. Sınıf</button>
+                <button onclick="sinifModalAc('6')" class="text-xs font-semibold px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-700/40 transition-all">6. Sınıf</button>
+            </nav>
         </div>
-        
-        <div id="aktif-hafta-container" class="grid md:grid-cols-2 gap-6">
-            <!-- JavaScript ile doldurulacak -->
+    </header>
+
+    <!-- Ana İçerik -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-12">
+
+        <!-- 1. Karşılama ve Duyuru Alanı -->
+        <section class="bg-gradient-to-r from-blue-900/40 via-slate-800/60 to-cyan-900/40 border border-blue-500/20 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-3 text-center md:text-left">
+                    <span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20">
+                        2026 - 2027 Eğitim Öğretim Yılı
+                    </span>
+                    <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                        İhsan Aras Ortaokulu BTY Portalı
+                    </h1>
+                    <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+                        Bilişim Teknolojileri ve Yazılım dersi yıllık planları, haftalık müfredat içerikleri, kodlama etkinlikleri ve dijital materyal yönetim merkezi.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                    <button onclick="sinifModalAc('5')" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>5. Sınıf Yıllık Plan (36 Hafta)</span>
+                    </button>
+                    <button onclick="sinifModalAc('6')" class="px-6 py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-cyan-600/30 flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>6. Sınıf Yıllık Plan (36 Hafta)</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Sınıf Görsel Seçim Kartları -->
+        <section class="grid md:grid-cols-2 gap-8">
+            <!-- 5. Sınıf Kartı -->
+            <div class="bg-slate-800/80 border border-slate-700/70 rounded-3xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 group flex flex-col justify-between shadow-2xl">
+                <div>
+                    <div class="relative w-full bg-[#f39c12]/10 flex items-center justify-center p-2 border-b border-slate-700/50">
+                        <img src="images/sinif_5_yeni_nesil_sinif.png" alt="5. Sınıflar" class="w-full h-auto max-h-64 object-contain rounded-2xl group-hover:scale-[1.02] transition-transform duration-300">
+                        <span class="absolute top-4 right-4 bg-blue-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-blue-400/30 shadow-lg">5. Sınıf</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-blue-400 transition-colors">5. Sınıf Bilişim Teknolojileri</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Temel bilişim kavramları, dijital vatandaşlık, dosya yönetimi ve Scratch ile görsel kodlama dünyası.</p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <button onclick="sinifModalAc('5')" class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center space-x-2">
+                        <span>5. Sınıf Tüm İçerikleri Gör</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 6. Sınıf Kartı -->
+            <div class="bg-slate-800/80 border border-slate-700/70 rounded-3xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300 group flex flex-col justify-between shadow-2xl">
+                <div>
+                    <div class="relative w-full bg-[#e74c3c]/10 flex items-center justify-center p-2 border-b border-slate-700/50">
+                        <img src="images/sinif_6_yeni_nesil_sinif.png" alt="6. Sınıflar" class="w-full h-auto max-h-64 object-contain rounded-2xl group-hover:scale-[1.02] transition-transform duration-300">
+                        <span class="absolute top-4 right-4 bg-cyan-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-cyan-400/30 shadow-lg">6. Sınıf</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-cyan-400 transition-colors">6. Sınıf Bilişim Teknolojileri</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Tablolama (Calc/Excel), ses-video kurgu, ağ teknolojileri ve Python ile metin tabanlı kodlama.</p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <button onclick="sinifModalAc('6')" class="w-full py-3.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-cyan-600/20 flex items-center justify-center space-x-2">
+                        <span>6. Sınıf Tüm İçerikleri Gör</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Bu Haftanın Canlı Ders Konusu (Aktif Hafta Spotu) -->
+        <section class="bg-slate-800/60 border border-slate-700/60 rounded-3xl p-6 sm:p-8 shadow-xl">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-3 h-3 bg-emerald-500 rounded-full animate-ping"></div>
+                    <h2 class="text-lg sm:text-xl font-bold text-white tracking-wide">Bu Haftanın Ders Konuları (Aktif Hafta)</h2>
+                </div>
+                <span class="text-xs text-slate-400 bg-slate-900/60 px-3 py-1.5 rounded-xl border border-slate-700">19 - 23 Ekim 2026 (7. Hafta)</span>
+            </div>
+            
+            <div id="aktif-hafta-container" class="grid md:grid-cols-2 gap-6">
+                <!-- JavaScript ile doldurulacak -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SINIFLAR İÇİN 36 HAFTA DETAY MODALI (AÇILIR PENCERE) -->
+    <div id="sinifModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
+        <div class="bg-slate-900 border border-slate-700 w-full max-w-4xl max-h-[90vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200">
+            <!-- Modal Üst Başlık -->
+            <div class="px-6 py-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/90 sticky top-0 z-10">
+                <h3 id="modalBaslik" class="text-xl font-bold text-white">Sınıf Planı</h3>
+                <button onclick="modalKapat()" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <!-- Modal İçerik Listesi (Kaydırılabilir) -->
+            <div id="modalIcerikContainer" class="p-6 overflow-y-auto space-y-4 flex-grow">
+                <!-- JavaScript ile 36 hafta kartları buraya basılacak -->
+            </div>
         </div>
-    </section>
-
-</main>
-
-<!-- SINIFLAR İÇİN 36 HAFTA DETAY MODALI (AÇILIR PENCERE) -->
-<div id="sinifModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
-    <div class="bg-slate-900 border border-slate-700 w-full max-w-4xl max-h-[90vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200">
-        
-        <!-- Modal Üst Başlık -->
-        <div class="px-6 py-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/90 sticky top-0 z-10">
-            <h3 id="modalBaslik" class="text-xl font-bold text-white">Sınıf Planı</h3>
-            <button onclick="modalKapat()" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-all">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-        </div>
-
-        <!-- Modal İçerik Listesi (Kaydırılabilir) -->
-        <div id="modalIcerikContainer" class="p-6 overflow-y-auto space-y-4 flex-grow">
-            <!-- JavaScript ile 36 hafta kartları buraya basılacak -->
-        </div>
-
     </div>
-</div>
+
+    <!-- Alt Bilgi (Footer) -->
+    <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-400">
+        <p>&copy; 2026 BATUNVER BT - İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
+    </footer>
+
+    <!-- Scriptler -->
+    <script src="data.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
