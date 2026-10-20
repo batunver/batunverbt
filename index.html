@@ -25,28 +25,30 @@
 
     <!-- Üst Menü (Header) -->
     <!-- Üst Menü (Header) -->
+<!-- Üst Menü (Header) -->
     <header class="bg-slate-800/80 backdrop-blur border-b border-slate-700/60 sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shadow-inner">
-                    <i class="fa-solid fa-code text-lg"></i>
+            
+            <!-- Sol Logo Alanı -->
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <img src="images/logo.png" alt="Batunver BT" class="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                <div class="border-l border-slate-700 pl-3 hidden sm:block">
+                    <span class="text-[11px] font-semibold text-slate-300 block leading-tight">İhsan Aras Ortaokulu</span>
+                    <span class="text-[10px] text-slate-400 block">BTY Portalı</span>
                 </div>
-                <div>
-                    <span class="text-base font-extrabold tracking-tight text-white block">BATUNVER BT</span>
-                    <span class="text-[11px] text-slate-400 block -mt-1">İhsan Aras Ortaokulu BTY Portalı</span>
-                </div>
-            </div>
+            </a>
+
+            <!-- Sağ Menü Bağlantıları -->
             <nav class="flex items-center space-x-2 sm:space-x-3">
                 <a href="index.html" class="text-xs font-semibold px-3 py-2 rounded-lg bg-slate-700/50 text-white transition-all">Ana Sayfa</a>
                 <button onclick="sinifModalAc('5')" class="text-xs font-semibold px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-700/40 transition-all">5. Sınıf</button>
                 <button onclick="sinifModalAc('6')" class="text-xs font-semibold px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-700/40 transition-all">6. Sınıf</button>
-                
-                <!-- Yeni Eklenen Evrak Çantası Sekmesi -->
-                <a href="evrakcantasi.html" class="text-xs font-semibold px-3 py-2 rounded-lg text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 transition-all border border-amber-500/20 flex items-center space-x-1.5">
+                <a href="evrak-cantasi.html" class="text-xs font-semibold px-3 py-2 rounded-lg text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 transition-all border border-amber-500/20 flex items-center space-x-1.5">
                     <i class="fa-solid fa-briefcase"></i>
                     <span>Evrak Çantası</span>
                 </a>
             </nav>
+
         </div>
     </header>
     <!-- Ana İçerik -->
