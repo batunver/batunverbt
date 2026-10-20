@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evrak Çantası - BATUNVER BT</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome İkonlar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#3b82f6', 600: '#2563eb' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
+
+    <!-- Üst Menü (Header) -->
+    <header class="bg-slate-800/80 backdrop-blur border-b border-slate-700/60 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 hover:bg-blue-600/30 transition-all">
+                    <i class="fa-solid fa-arrow-left text-sm"></i>
+                </a>
+                <div>
+                    <span class="text-base font-extrabold tracking-tight text-white block">BATUNVER BT</span>
+                    <span class="text-[11px] text-slate-400 block -mt-1">İhsan Aras Ortaokulu BTY Portalı</span>
+                </div>
+            </div>
+            <nav class="flex items-center space-x-2">
+                <a href="index.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-slate-700/50 hover:bg-slate-700 text-white transition-all">
+                    <i class="fa-solid fa-house mr-1.5"></i>Ana Sayfa
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Ana İçerik Alanı -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-8">
+        
+        <!-- Başlık ve Açıklama Bölümü -->
+        <div class="bg-gradient-to-r from-slate-800/80 via-slate-800/50 to-blue-950/40 border border-slate-700/60 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div class="space-y-2">
+                <div class="flex items-center space-x-2.5">
+                    <span class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center">
+                        <i class="fa-solid fa-briefcase text-lg"></i>
+                    </span>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Evrak Çantası</h1>
+                </div>
+                <p class="text-slate-300 text-sm max-w-2xl leading-relaxed">
+                    Bilişim Teknolojileri ve Yazılım dersi Türkiye Yüzyılı Maarif Modeli için zümreler, yıllık planlar, ders planları ve öğretmen belgeleri.
+                </p>
+            </div>
+            
+            <!-- Kategori Filtre Butonları -->
+            <div class="flex flex-wrap gap-2" id="kategori-filtreler">
+                <button onclick="evraklariFiltrele('Tümü')" class="px-3.5 py-1.5 rounded-xl bg-blue-600 text-white text-xs font-semibold transition-all shadow-md">Tümü</button>
+                <button onclick="evraklariFiltrele('Yıllık Planlar')" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-all border border-slate-700">Yıllık Planlar</button>
+                <button onclick="evraklariFiltrele('Öğretmen Kılavuzları')" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-all border border-slate-700">Kılavuzlar</button>
+            </div>
+        </div>
+
+        <!-- Evrak Kartları Izgarası (Grid) -->
+        <div id="evrak-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- JavaScript ile doldurulacak -->
+        </div>
+
+    </main>
+
+    <!-- Alt Bilgi (Footer) -->
+    <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-400">
+        <p>&copy; 2026 BATUNVER BT - İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
+    </footer>
+
+    <!-- Veri ve Sayfa Mantığı -->
+    <script src="evrak-data.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            evraklariGoster(evrakData);
+        });
+
+        function evraklariGoster(liste) {
+            const container = document.getElementById("evrak-grid");
+            if (!container) return;
+
+            container.innerHTML = "";
+
+            if (liste.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-slate-400">
+                        <i class="fa-solid fa-folder-open text-4xl mb-3"></i>
+                        <p class="text-sm">Bu kategoride henüz evrak bulunmuyor.</p>
+                    </div>`;
+                return;
+            }
+
+            liste.forEach(evrak => {
+                const isYakinda = evrak.durum === "Yakında";
+                
+                const kartHTML = `
+                    <div class="bg-slate-800/80 border border-slate-700/70 rounded-3xl p-6 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-xl group">
+                        <div>
+                            <!-- Üst Kısım: İkon ve Kategori Rozeti -->
+                            <div class="flex justify-between items-center mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-${evrak.renk}-500/10 border border-${evrak.renk}-500/30 text-${evrak.renk}-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid ${evrak.ikon}"></i>
+                                </div>
+                                <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700 text-slate-300">
+                                    ${evrak.kategori}
+                                </span>
+                            </div>
+
+                            <!-- Başlık ve Açıklama -->
+                            <h3 class="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                                ${evrak.baslik}
+                            </h3>
+                            <p class="text-slate-300 text-xs leading-relaxed mb-6">
+                                ${evrak.aciklama}
+                            </p>
+                        </div>
+
+                        <!-- Alt Buton / Durum -->
+                        <div class="pt-4 border-t border-slate-700/50 flex items-center justify-between">
+                            <span class="text-[11px] text-slate-400 font-medium">
+                                ${isYakinda ? '⏳ Yakında Eklenecek' : '✅ İndirilmeye Hazır'}
+                            </span>
+                            
+                            ${isYakinda ? `
+                                <span class="px-3 py-1.5 bg-slate-900/60 text-slate-500 text-xs font-semibold rounded-xl border border-slate-800 cursor-not-allowed">
+                                    Yakında
+                                </span>
+                            ` : `
+                                <a href="${evrak.link}" target="_blank" class="px-4 py-2 bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white text-xs font-bold rounded-xl transition-all border border-blue-500/30 flex items-center space-x-1.5 shadow-sm">
+                                    <span>Belgeyi Aç</span>
+                                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                </a>
+                            `}
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', kartHTML);
+            });
+        }
+
+        // Kategoriye Göre Filtreleme Fonksiyonu
+        function evraklariFiltrele(kategoriAdi) {
+            // Buton aktiflik sınıflarını güncelle
+            const butonlar = document.querySelectorAll('#kategori-filtreler button');
+            butonlar.forEach(btn => {
+                if (btn.innerText.includes(kategoriAdi)) {
+                    btn.className = "px-3.5 py-1.5 rounded-xl bg-blue-600 text-white text-xs font-semibold transition-all shadow-md";
+                } else {
+                    btn.className = "px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-all border border-slate-700";
+                }
+            });
+
+            if (kategoriAdi === 'Tümü') {
+                evraklariGoster(evrakData);
+            } else {
+                const filtrelenmis = evrakData.filter(e => e.kategori === kategoriAdi);
+                evraklariGoster(filtrelenmis);
+            }
+        }
+    </script>
+</body>
+</html>
