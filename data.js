@@ -77,6 +77,7 @@ const dersData = [
         konu: "İletişim Araçları ve E-Posta",
         kazanim: "E-posta servisini ve iletişim araçlarını etik kurallara uygun kullanır.",
         aciklama: "E-posta hesabı yönetimi, konu başlığı, dosya ekleme ve görgü kuralları (Netiket).",
+        etkinlik: "Sınıf içi 'Örnek E-Posta Yazma ve Netiket Kuralları' Uygulama Yarışması",
         link: "#"
     },
     {
