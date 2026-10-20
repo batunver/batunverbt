@@ -1,63 +1,92 @@
-// Sayfa yüklendiğinde tüm yıllık plan içeriklerini bas
+// Sayfa yüklendiğinde tüm ders içeriklerini listele
 document.addEventListener("DOMContentLoaded", () => {
-    tumIcerikleriYukle(dersIcerikleri);
+    if (typeof dersData !== 'undefined') {
+        kartlariGoster(dersData);
+    } else {
+        console.error("data.js yüklenemedi veya dersData tanımlı değil!");
+    }
 });
 
-function tumIcerikleriYukle(veriListesi) {
+// Kartları ekrana basma fonksiyonu
+function kartlariGoster(veriListesi) {
     const container = document.getElementById("kartlar-container");
+    const baslikIcerik = document.getElementById("baslik-icerik");
+    
     if (!container) return;
+
+    container.innerHTML = "";
 
     if (veriListesi.length === 0) {
         container.innerHTML = `
             <div class="col-span-full text-center py-12 text-slate-400">
-                <i class="fa-solid fa-folder-open text-4xl mb-3 block"></i>
-                Bu sınıfa ait ders içeriği bulunamadı.
+                <i class="fa-solid fa-folder-open text-4xl mb-3"></i>
+                <p>Bu filtreye ait henüz içerik bulunmuyor.</p>
             </div>
         `;
         return;
     }
 
-    container.innerHTML = veriListesi.map(item => `
-        <div class="bg-slate-800/80 border border-slate-700/70 rounded-2xl p-5 hover:border-slate-500 transition shadow-lg flex flex-col justify-between">
-            <div>
-                <div class="flex justify-between items-center mb-3">
-                    <span class="text-xs font-semibold px-2.5 py-1 rounded-md ${item.sinif === '5' ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20'}">
-                        ${item.sinif}. Sınıf • ${item.hafta}. Hafta (${item.tarih})
+    veriListesi.forEach(ders => {
+        const sinifRenk = ders.sinif === "5" ? "blue" : "cyan";
+        
+        const kartHTML = `
+            <div class="bg-slate-800/70 border border-slate-700/60 rounded-2xl p-5 hover:border-${sinifRenk}-500/50 transition-all duration-300 flex flex-col justify-between shadow-lg group">
+                <div>
+                    <!-- Üst Bilgi (Sınıf & Hafta) -->
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-${sinifRenk}-500/10 text-${sinifRenk}-400 text-xs font-bold px-3 py-1 rounded-full border border-${sinifRenk}-500/20">
+                            ${ders.sinif}. Sınıf • ${ders.hafta}. Hafta
+                        </span>
+                        <span class="text-xs text-slate-400 flex items-center">
+                            <i class="fa-regular fa-calendar-days mr-1.5 text-${sinifRenk}-400"></i> ${ders.tarih}
+                        </span>
+                    </div>
+
+                    <!-- Ünite ve Konu -->
+                    <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">${ders.unite}</h4>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-${sinifRenk}-400 transition-colors">
+                        ${ders.konu}
+                    </h3>
+
+                    <!-- Açıklama / Kazanım -->
+                    <p class="text-slate-300 text-xs leading-relaxed mb-4">
+                        ${ders.aciklama}
+                    </p>
+                </div>
+
+                <!-- Alt Detay ve Buton -->
+                <div class="pt-4 border-t border-slate-700/50 flex items-center justify-between">
+                    <span class="text-[11px] text-slate-400 italic line-clamp-1 max-w-[70%]">
+                        📌 Kazanım: ${ders.kazanim}
                     </span>
-                    <i class="fa-solid ${item.ikon} text-slate-400 text-lg"></i>
+                    <a href="${ders.link}" target="_blank" class="px-3.5 py-2 bg-${sinifRenk}-600/20 hover:bg-${sinifRenk}-600 text-${sinifRenk}-400 hover:text-white text-xs font-semibold rounded-xl transition-all border border-${sinifRenk}-500/30 flex items-center space-x-1.5">
+                        <span>İçerik</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
                 </div>
-                <h4 class="text-lg font-bold text-white mb-1">${item.baslik}</h4>
-                <p class="text-[11px] text-blue-300 font-medium mb-2">${item.unite}</p>
-                <p class="text-xs text-slate-400 mb-4 line-clamp-2">${item.ozet}</p>
             </div>
-            
-            <div>
-                <div class="flex flex-wrap gap-1.5 mb-4">
-                    ${item.kategoriler.map(kat => `<span class="text-[10px] bg-slate-900/80 text-slate-300 px-2 py-0.5 rounded border border-slate-700">${kat}</span>`).join('')}
-                </div>
-                <a href="${item.link}" class="w-full py-2 bg-slate-700/60 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg transition flex items-center justify-center space-x-1.5">
-                    <span>Ders Notları ve Etkinlikler</span>
-                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </a>
-            </div>
-        </div>
-    `).join('');
+        `;
+        
+        container.insertAdjacentHTML('beforeend', kartHTML);
+    });
 }
 
-function filtreleSinif(sinif) {
-    const baslik = document.getElementById("baslik-icerik");
-    const icerikAlani = document.getElementById("icerik-alani");
-
-    if (sinif === 'hepsi') {
-        if (baslik) baslik.textContent = "Tüm Ders İçerikleri (Yıllık Plan)";
-        tumIcerikleriYukle(dersIcerikleri);
+// Sınıf Filtreleme Fonksiyonu (5, 6 veya hepsi)
+function filtreleSinif(sinifTuru) {
+    const baslikIcerik = document.getElementById("baslik-icerik");
+    
+    if (sinifTuru === 'hepsi') {
+        kartlariGoster(dersData);
+        if (baslikIcerik) baslikIcerik.innerText = "Tüm Ders İçerikleri (Yıllık Plan - 36 Hafta)";
     } else {
-        if (baslik) baslik.textContent = `${sinif}. Sınıf Yıllık Plan Konuları`;
-        const filtrelenmis = dersIcerikleri.filter(item => item.sinif === sinif);
-        tumIcerikleriYukle(filtrelenmis);
+        const filtrelenmis = dersData.filter(d => d.sinif === sinifTuru);
+        kartlariGoster(filtrelenmis);
+        if (baslikIcerik) baslikIcerik.innerText = `${sinifTuru}. Sınıf Bilişim Teknolojileri ve Yazılım (Tüm Yıl)`;
     }
 
-    if (icerikAlani) {
-        icerikAlani.scrollIntoView({ behavior: 'smooth' });
+    // İçerik alanına yumuşak kaydırma
+    const icerikBolumu = document.getElementById("icerik-alani");
+    if (icerikBolumu) {
+        icerikBolumu.scrollIntoView({ behavior: 'smooth' });
     }
 }
