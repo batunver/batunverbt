@@ -99,46 +99,89 @@
         </section>
 
         <!-- Sınıf Seçim Kartları (5 ve 6. Sınıf) -->
+       <!-- Sınıf Seçim Kartları (5 ve 6. Sınıf) -->
         <section class="grid md:grid-cols-2 gap-8">
             
             <!-- 5. Sınıf Kartı -->
-            <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 hover:border-blue-500/50 transition-all group flex flex-col justify-between shadow-xl">
+            <div class="bg-slate-800/80 border border-slate-700/70 rounded-3xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 group flex flex-col justify-between shadow-2xl">
                 <div>
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-14 h-14 bg-blue-600/20 border border-blue-500/30 text-blue-400 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-shapes"></i>
+                    <!-- Kart Üst Görsel Alanı -->
+                    <div class="relative h-48 sm:h-52 overflow-hidden bg-gradient-to-br from-blue-900 via-slate-800 to-indigo-950 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop" 
+                             alt="5. Sınıf Bilişim" 
+                             class="w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-75 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                        
+                        <!-- Görsel Üzerindeki Etiket & İkon -->
+                        <span class="absolute top-4 right-4 bg-blue-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-blue-400/30 shadow-lg">
+                            5. Sınıf
+                        </span>
+                        <div class="absolute bottom-4 left-6 flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-blue-600/80 backdrop-blur text-white rounded-2xl flex items-center justify-center text-xl shadow-lg border border-blue-400/40">
+                                <i class="fa-solid fa-shapes"></i>
+                            </div>
                         </div>
-                        <span class="bg-blue-500/10 text-blue-400 text-xs font-medium px-2.5 py-1 rounded-full border border-blue-500/20">5. Sınıf</span>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">5. Sınıf Ders İçerikleri</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
-                        BT sınıflandırılması, dijital sağlık, dijital vatandaşlık, yapay zekâ, bilgisayar sistemleri ve dosya yönetimi.
-                    </p>
+
+                    <!-- Kart İçerik Alanı -->
+                    <div class="p-6">
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                            5. Sınıf Bilişim Teknolojileri ve Yazılım
+                        </h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Temel bilişim kavramları, dijital vatandaşlık, dosya yönetimi, bilgisayar donanım/yazılım bileşenleri ve Scratch ile görsel kodlama.
+                        </p>
+                    </div>
                 </div>
-                <button onclick="filtreleSinif('5')" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition flex items-center justify-center space-x-2">
-                    <span>5. Sınıf Materyallerine Git</span>
-                    <i class="fa-solid fa-arrow-right text-xs"></i>
-                </button>
+
+                <!-- Buton -->
+                <div class="px-6 pb-6">
+                    <button onclick="filtreleSinif('5')" class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center space-x-2 group-hover:translate-y-[-2px]">
+                        <span>5. Sınıf Materyallerine Git</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- 6. Sınıf Kartı -->
-            <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 hover:border-cyan-500/50 transition-all group flex flex-col justify-between shadow-xl">
+            <div class="bg-slate-800/80 border border-slate-700/70 rounded-3xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300 group flex flex-col justify-between shadow-2xl">
                 <div>
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="w-14 h-14 bg-cyan-600/20 border border-cyan-500/30 text-cyan-400 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-code"></i>
+                    <!-- Kart Üst Görsel Alanı -->
+                    <div class="relative h-48 sm:h-52 overflow-hidden bg-gradient-to-br from-cyan-950 via-slate-800 to-slate-900 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop" 
+                             alt="6. Sınıf Bilişim" 
+                             class="w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-75 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                        
+                        <!-- Görsel Üzerindeki Etiket & İkon -->
+                        <span class="absolute top-4 right-4 bg-cyan-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-cyan-400/30 shadow-lg">
+                            6. Sınıf
+                        </span>
+                        <div class="absolute bottom-4 left-6 flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-cyan-600/80 backdrop-blur text-white rounded-2xl flex items-center justify-center text-xl shadow-lg border border-cyan-400/40">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
                         </div>
-                        <span class="bg-cyan-500/10 text-cyan-400 text-xs font-medium px-2.5 py-1 rounded-full border border-cyan-500/20">6. Sınıf</span>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">6. Sınıf Ders İçerikleri</h3>
-                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
-                        Yenilikçi teknolojiler, tablolama (Calc/Excel), ses ve video düzenleme kurgusu ile bilgisayar ağları.
-                    </p>
+
+                    <!-- Kart İçerik Alanı -->
+                    <div class="p-6">
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-cyan-400 transition-colors">
+                            6. Sınıf Bilişim Teknolojileri ve Yazılım
+                        </h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Yenilikçi teknolojiler, tablolama (Calc/Excel), ses ve video düzenleme kurgusu, ağ teknolojileri ve metin tabanlı kodlama.
+                        </p>
+                    </div>
                 </div>
-                <button onclick="filtreleSinif('6')" class="w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold rounded-xl transition flex items-center justify-center space-x-2">
-                    <span>6. Sınıf Materyallerine Git</span>
-                    <i class="fa-solid fa-arrow-right text-xs"></i>
-                </button>
+
+                <!-- Buton -->
+                <div class="px-6 pb-6">
+                    <button onclick="filtreleSinif('6')" class="w-full py-3.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-cyan-600/20 flex items-center justify-center space-x-2 group-hover:translate-y-[-2px]">
+                        <span>6. Sınıf Materyallerine Git</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
             </div>
 
         </section>
