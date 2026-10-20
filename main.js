@@ -71,8 +71,8 @@ function sinifModalAc(sinifTuru) {
                     <p class="text-slate-300 text-xs leading-relaxed">${ders.aciklama}</p>
                     <p class="text-[11px] text-slate-400 italic">📌 ${ders.kazanim}</p>
                 </div>
-                <a href="${ders.link}" target="_blank" class="w-full sm:w-auto px-4 py-2 bg-${renk}-600/20 hover:bg-${renk}-600 text-${renk}-400 hover:text-white text-xs font-semibold rounded-xl transition-all border border-${renk}-500/30 flex items-center justify-center space-x-1.5 shrink-0">
-                    <span>Materyal</span>
+                <a href="icerik.html?id=${ders.id}" class="w-full sm:w-auto px-4 py-2 bg-${renk}-600/20 hover:bg-${renk}-600 text-${renk}-400 hover:text-white text-xs font-semibold rounded-xl transition-all border border-${renk}-500/30 flex items-center justify-center space-x-1.5 shrink-0">
+                    <span>Materyal / İçerik</span>
                     <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                 </a>
             </div>
