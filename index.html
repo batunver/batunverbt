@@ -1,102 +1,158 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>batunverbt | Bilişim Teknolojileri Portalı</title>
-    <!-- Tailwind CSS -->
+    <title>BATUNVER BT - Bilişim Teknolojileri Portalı</title>
+    <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome İkonları -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
 
-    <!-- NAVİGASYON / ÜST MENÜ -->
-    <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
-            <!-- Logo ve Başlık -->
+    <!-- Üst Menü (Header) -->
+    <header class="bg-slate-800/80 backdrop-blur border-b border-slate-700 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="bg-indigo-600 p-2.5 rounded-xl text-white shadow-lg shadow-indigo-500/30">
-                    <i data-lucide="monitor" class="w-6 h-6"></i>
+                <div class="bg-blue-600 text-white p-2 rounded-lg font-bold text-xl">
+                    <i class="fa-solid fa-laptop-code"></i>
                 </div>
                 <div>
-                    <h1 class="font-bold text-lg leading-tight text-white tracking-wide">batunverbt</h1>
+                    <h1 class="text-lg font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                        BATUNVER BT
+                    </h1>
                     <p class="text-xs text-slate-400">Bilişim Teknolojileri Portalı</p>
                 </div>
             </div>
-
-            <!-- Arama Kutusu -->
-            <div class="relative flex-1 max-w-md min-w-[240px]">
-                <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                <input 
-                    type="text" 
-                    id="searchInput"
-                    placeholder="Konu, oyun veya materyal ara... (Örn: Scratch, Algoritma)"
-                    class="w-full bg-slate-800 border border-slate-700 text-sm rounded-xl pl-9 pr-4 py-2 text-slate-200 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
-                >
-            </div>
+            
+            <!-- Navigasyon Menüsü -->
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#anasayfa" class="text-blue-400 hover:text-blue-300 transition">Ana Sayfa</a>
+                <a href="#sinif-5" class="text-slate-300 hover:text-white transition">5. Sınıf</a>
+                <a href="#sinif-6" class="text-slate-300 hover:text-white transition">6. Sınıf</a>
+                <a href="#evraklar" class="text-slate-300 hover:text-white transition">Evraklar</a>
+                <a href="#araclar" class="text-slate-300 hover:text-white transition">Sınıf Araçları</a>
+            </nav>
         </div>
     </header>
 
-    <!-- ANA İÇERİK ALANI -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6 space-y-6">
-
-        <!-- KATEGORİ VE SINIF FİLTRELERİ -->
-        <section class="flex flex-wrap items-center justify-between gap-4 bg-slate-800/50 p-3 rounded-2xl border border-slate-800">
-            <!-- Sınıf Butonları -->
-            <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0" id="gradeFilters">
-                <button onclick="filterGrade('all')" class="grade-btn active bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all">
-                    Tüm Sınıflar
-                </button>
-                <button onclick="filterGrade('5')" class="grade-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all">
-                    5. Sınıf
-                </button>
-                <button onclick="filterGrade('6')" class="grade-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all">
-                    6. Sınıf
-                </button>
-            </div>
-
-            <!-- Materyal Türü Filtreleri -->
-            <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0" id="typeFilters">
-                <button onclick="filterType('all')" class="type-btn text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-lg hover:bg-emerald-500 transition">
-                    Tüm Materyaller
-                </button>
-                <button onclick="filterType('lab')" class="type-btn text-xs bg-slate-800 text-slate-400 px-3 py-1.5 rounded-lg hover:bg-slate-700 hover:text-slate-200 transition">
-                    💻 Lab Uygulamaları & Görevler
-                </button>
-                <button onclick="filterType('arac')" class="type-btn text-xs bg-slate-800 text-slate-400 px-3 py-1.5 rounded-lg hover:bg-slate-700 hover:text-slate-200 transition">
-                    🖥️ Akıllı Tahta Araçları
-                </button>
-            </div>
+    <!-- Ana İçerik -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-12" id="anasayfa">
+        
+        <!-- Hero (Karşılama) Alanı -->
+        <section class="text-center space-y-4 py-8 bg-gradient-to-b from-slate-800/50 to-transparent rounded-3xl border border-slate-800 p-8">
+            <span class="bg-blue-500/10 text-blue-400 text-xs font-semibold px-3 py-1 rounded-full border border-blue-500/20">
+                🚀 Dijital Eğitim Platformu
+            </span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                Bilişim Teknolojileri ve Yazılım
+            </h2>
+            <p class="text-slate-400 max-w-2xl mx-auto text-base sm:text-lg">
+                5 ve 6. Sınıf ders materyalleri, uygulama rehberleri, kodlama etkinlikleri ve ders araçlarına tek tıkla ulaşın.
+            </p>
         </section>
 
-        <!-- MATERYAL KARTLARI LİSTESİ (JavaScript burayı dolduracak) -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="cardGrid">
-            <!-- Kartlar JavaScript ile dinamik eklenecek -->
+        <!-- Sınıf Seçim Kartları (5 ve 6. Sınıf) -->
+        <section class="grid md:grid-cols-2 gap-8">
+            
+            <!-- 5. Sınıf Kartı -->
+            <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 hover:border-blue-500/50 transition-all group flex flex-col justify-between shadow-xl">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-14 h-14 bg-blue-600/20 border border-blue-500/30 text-blue-400 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-shapes"></i>
+                        </div>
+                        <span class="bg-blue-500/10 text-blue-400 text-xs font-medium px-2.5 py-1 rounded-full">5. Sınıf</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">5. Sınıf Ders İçerikleri</h3>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        Bilişim okuryazarlığı, dijital yurttaşlık, dosya yönetimi, görsel programlama (Scratch) ve temel bilgisayar kullanımı.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-blue-400 mr-2"></i> Bilişim Etiği ve Güvenlik</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-blue-400 mr-2"></i> Dosya ve Klasör Yönetimi</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-blue-400 mr-2"></i> Scratch ile İlk Kodlar</li>
+                    </ul>
+                </div>
+                <button onclick="filtreleSinif('5')" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition flex items-center justify-center space-x-2">
+                    <span>5. Sınıf Materyallerine Git</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+            </div>
+
+            <!-- 6. Sınıf Kartı -->
+            <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 hover:border-cyan-500/50 transition-all group flex flex-col justify-between shadow-xl">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-14 h-14 bg-cyan-600/20 border border-cyan-500/30 text-cyan-400 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <span class="bg-cyan-500/10 text-cyan-400 text-xs font-medium px-2.5 py-1 rounded-full">6. Sınıf</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">6. Sınıf Ders İçerikleri</h3>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        Problem çözme, algoritma tasarımı, Pardus/Linux temelleri, ağ teknolojileri ve metin tabanlı kodlama (Python).
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Problem Çözme ve Algoritmalar</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Pardus İşletim Sistemi</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Python Kodlama Temelleri</li>
+                    </ul>
+                </div>
+                <button onclick="filtreleSinif('6')" class="w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold rounded-xl transition flex items-center justify-center space-x-2">
+                    <span>6. Sınıf Materyallerine Git</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+            </div>
+
+        </section>
+
+        <!-- İçerik Liste Alanı (Dinamiğe Bağlanacak Bölüm) -->
+        <section id="icerik-alani" class="pt-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 id="baslik-icerik" class="text-xl font-bold text-white">Tüm Ders İçerikleri</h3>
+                <div class="flex space-x-2">
+                    <button onclick="filtreleSinif('hepsi')" class="px-3 py-1.5 text-xs bg-slate-800 text-slate-300 rounded-lg hover:bg-slate-700">Hepsini Göster</button>
+                </div>
+            </div>
+
+            <!-- İçerik Kartlarının JS Tarafından Basılacağı Alan -->
+            <div id="kartlar-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Javascript burayı dolduracak -->
+            </div>
         </section>
 
     </main>
 
-    <!-- KOD DOSYALARIMIZ -->
+    <!-- Alt Bilgi (Footer) -->
+    <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 space-y-2">
+            <p>© 2026 BATUNVER BT - Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
+            <p>Laboratuvar ve Etkileşimli Tahta Kullanımı İçin Tasarlanmıştır.</p>
+        </div>
+    </footer>
+
+    <!-- Scriptler -->
     <script src="data.js"></script>
     <script src="main.js"></script>
-    <script>
-        // İkonları aktifleştir
-        lucide.createIcons();
-    </script>
-    <!-- AKILLI TAHTA ARAÇLARI MODAL (PENCERE) -->
-<div id="toolModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-700 w-full max-w-xl rounded-2xl p-6 shadow-2xl relative">
-        <!-- Kapat Butonu -->
-        <button onclick="closeToolModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800 p-2 rounded-xl">
-            <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-
-        <!-- Dinamik Araç İçeriği Buraya Gelecek -->
-        <div id="modalContent">
-            <!-- JavaScript burayı dolduracak -->
-        </div>
-    </div>
-</div>
 </body>
 </html>
