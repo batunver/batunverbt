@@ -33,7 +33,17 @@ function kartOlusturKucuk(ders, renk) {
                 </div>
                 <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">${ders.unite}</h4>
                 <h3 class="text-base font-bold text-white mb-2">${ders.konu}</h3>
-                <p class="text-slate-300 text-xs leading-relaxed">${ders.aciklama}</p>
+                <p class="text-slate-300 text-xs leading-relaxed mb-3">${ders.aciklama}</p>
+                
+                ${ders.etkinlik ? `
+                    <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 flex items-start space-x-2.5">
+                        <i class="fa-solid fa-lightbulb text-amber-400 mt-0.5 shrink-0"></i>
+                        <div>
+                            <span class="text-[11px] font-bold text-amber-400 block uppercase tracking-wider">Haftanın Etkinliği</span>
+                            <p class="text-xs text-slate-200">${ders.etkinlik}</p>
+                        </div>
+                    </div>
+                ` : ''}
             </div>
             <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400 italic">
                 📌 Kazanım: ${ders.kazanim}
