@@ -1,146 +1,205 @@
-// 2026-2027 İhsan Aras Ortaokulu Bilişim Teknolojileri Yıllık Plan Verileri
-const dersIcerikleri = [
-    // ================= 5. SINIF YILLIK PLANI =================
+const dersData = [
+    // ==========================================
+    // 5. SINIF MÜFREDATI (36 HAFTA)
+    // ==========================================
     {
-        "id": "5-1", "sinif": "5", "hafta": 1, "tarih": "14–18 Eylül 2026",
-        "baslik": "Bilişim Teknolojilerinin Sınıflandırılması",
-        "unite": "Bilişim Teknolojilerinin Hayatımızdaki Yeri",
-        "ozet": "BTY.5.1.1. Günlük yaşamda kullanılan bilişim teknolojilerini sınıflandırabilme.",
-        "kategoriler": ["BT Sınıflandırılması", "Temel Kavramlar"], "ikon": "fa-desktop"
+        id: "5-hafta-1",
+        sinif: "5",
+        hafta: 1,
+        tarih: "07 - 11 Eylül 2026",
+        unite: "Bilişim Teknolojileri ve Günlük Hayat",
+        konu: "Bilişim Teknolojileri ve Okuryazarlığı",
+        kazanim: "Bilişim teknolojilerinin temel kavramlarını ve günlük hayattaki önemini açıklar.",
+        aciklama: "BT kavramı, donanım, yazılım, veri, bilgi kavramları ve günlük yaşamda kullanımı.",
+        link: "#"
     },
     {
-        "id": "5-2", "sinif": "5", "hafta": 2, "tarih": "21–25 Eylül 2026",
-        "baslik": "BT Etkileri ve Dijital Sağlık",
-        "unite": "Bilişim Teknolojilerinin Hayatımızdaki Yeri",
-        "ozet": "BTY.5.1.2. Bilişim teknolojilerinin birey ve toplum üzerindeki etkilerini özetleyebilme.",
-        "kategoriler": ["Dijital Sağlık", "Toplumsal Etki"], "ikon": "fa-user-nurse"
+        id: "5-hafta-2",
+        sinif: "5",
+        hafta: 2,
+        tarih: "14 - 18 Eylül 2026",
+        unite: "Bilişim Teknolojileri ve Günlük Hayat",
+        konu: "Bilgisayar Sistemleri",
+        kazanim: "Bilgisayar sisteminin temel bileşenlerini ve işlevlerini tanır.",
+        aciklama: "Giriş ve çıkış birimleri, harici ve dahili donanım elemanları.",
+        link: "#"
     },
     {
-        "id": "5-3", "sinif": "5", "hafta": 3, "tarih": "28 Eylül–2 Ekim 2026",
-        "baslik": "Dijital Vatandaşlık Uygulamaları",
-        "unite": "Bilişim Teknolojilerinin Hayatımızdaki Yeri",
-        "ozet": "BTY.5.1.3. Dijital vatandaşlık uygulamalarını sınıflandırabilme ve dijital ayak izi.",
-        "kategoriler": ["Dijital Vatandaşlık", "e-Devlet"], "ikon": "fa-id-card"
+        id: "5-hafta-3",
+        sinif: "5",
+        hafta: 3,
+        tarih: "21 - 25 Eylül 2026",
+        unite: "Bilişim Teknolojileri ve Günlük Hayat",
+        konu: "İşletim Sistemleri ve Dosya Yönetimi",
+        kazanim: "İşletim sistemlerinin görevlerini ve dosya/klasör yönetimini kavrar.",
+        aciklama: "Pardus Linux, Windows, dosya uzantıları ve klasör hiyerarşisi organizasyonu.",
+        link: "#"
     },
     {
-        "id": "5-4", "sinif": "5", "hafta": 4, "tarih": "5–9 Ekim 2026",
-        "baslik": "Yapay Zekâda Temel Kavram ve Özellikler",
-        "unite": "Bilişim Teknolojilerinin Hayatımızdaki Yeri",
-        "ozet": "BTY.5.1.4. Yapay zekâ ile ilgili temel kavramları ve özellikleri sorgulayabilme.",
-        "kategoriler": ["Yapay Zekâ", "Gelecek Teknolojileri"], "ikon": "fa-brain"
+        id: "5-hafta-4",
+        sinif: "5",
+        hafta: 4,
+        tarih: "28 Eylül - 02 Ekim 2026",
+        unite: "Etik ve Güvenlik",
+        konu: "Dijital Yurttaşlık ve İnternet Etiği",
+        kazanim: "Dijital yurttaşlık boyutlarını ve dijital ortamda etik kuralları uygular.",
+        aciklama: "e-Devlet, EBA, siber zorbalık, dijital ayak izi ve telif hakları.",
+        link: "#"
     },
     {
-        "id": "5-5", "sinif": "5", "hafta": 5, "tarih": "12–16 Ekim 2026",
-        "baslik": "Codeweek 2026 Etkinlikleri",
-        "unite": "Okul Temelli Plan",
-        "ozet": "Yerli ve millî teknolojiler temasıyla okul içi kodlama ve problem çözme etkinlikleri.",
-        "kategoriler": ["Codeweek 2026", "Kodlama"], "ikon": "fa-code"
+        id: "5-hafta-5",
+        sinif: "5",
+        hafta: 5,
+        tarih: "05 - 09 Ekim 2026",
+        unite: "Etik ve Güvenlik",
+        konu: "Siber Güvenlik ve Güvenli İnternet",
+        kazanim: "Kişisel verilerin güvenliğini sağlar ve güçlü şifre oluşturur.",
+        aciklama: "Zararlı yazılımlar (virüs, trojan), kimlik avı, güçlü parola oluşturma teknikleri.",
+        link: "#"
     },
     {
-        "id": "5-6", "sinif": "5", "hafta": 6, "tarih": "19–23 Ekim 2026",
-        "baslik": "Bilgisayar Sistemleri - Donanım",
-        "unite": "Bilişim Teknolojilerinin Hayatımızdaki Yeri",
-        "ozet": "BTY.5.1.5. Bilgisayar sistemlerini çözümleyebilme (Donanım bileşenleri).",
-        "kategoriler": ["Donanım", "Sistem Bileşenleri"], "ikon": "fa-microchip"
+        id: "5-hafta-6",
+        sinif: "5",
+        hafta: 6,
+        tarih: "12 - 16 Ekim 2026",
+        unite: "İletişim, Araştırma ve İş Birliği",
+        konu: "İnternet Arama Motorları ve Bilgi Arama",
+        kazanim: "İnternette doğru ve güvenilir bilgiye ulaşma stratejilerini kullanır.",
+        aciklama: "Arama motorları, anahtar kelime seçimi, arama operatörleri ve bilginin doğruluğu.",
+        link: "#"
     },
     {
-        "id": "5-7", "sinif": "5", "hafta": 7, "tarih": "26–30 Ekim 2026",
-        "baslik": "Bilgisayar Sistemleri - Yazılım",
-        "unite": "Bilişim Teknolojilerinin Hayatımızdaki Yeri",
-        "ozet": "BTY.5.1.5. Bilgisayar sistemlerini çözümleyebilme (Yazılım türleri ve işletim sistemleri).",
-        "kategoriler": ["Yazılım", "İşletim Sistemleri"], "ikon": "fa-compact-disc"
+        id: "5-hafta-7",
+        sinif: "5",
+        hafta: 7,
+        tarih: "19 - 23 Ekim 2026",
+        unite: "İletişim, Araştırma ve İş Birliği",
+        konu: "İletişim Araçları ve E-Posta",
+        kazanim: "E-posta servisini ve iletişim araçlarını etik kurallara uygun kullanır.",
+        aciklama: "E-posta hesabı yönetimi, konu başlığı, dosya ekleme ve görgü kuralları (Netiket).",
+        link: "#"
     },
     {
-        "id": "5-8", "sinif": "5", "hafta": 8, "tarih": "2–6 Kasım 2026",
-        "baslik": "Dosya ve Klasör Yönetimi",
-        "unite": "Bilişim Teknolojilerinin Hayatımızdaki Yeri",
-        "ozet": "BTY.5.1.6. Dosya ve klasör yönetimi ile ilgili temel işlemlerle çalışabilme.",
-        "kategoriler": ["Dosya Yönetimi", "Dosya Uzantıları"], "ikon": "fa-folder-open"
+        id: "5-hafta-8",
+        sinif: "5",
+        hafta: 8,
+        tarih: "26 - 30 Ekim 2026",
+        unite: "Ürün Oluşturma",
+        konu: "Kelime İşlemci Programları - 1",
+        kazanim: "Kelime işlemci programında temel metin düzenleme işlemlerini yapar.",
+        aciklama: "LibreOffice Writer / MS Word kullanımı, metin biçimlendirme, yazı tipi ve hizalama.",
+        link: "#"
     },
     {
-        "id": "5-9", "sinif": "5", "hafta": 9, "tarih": "9–13 Kasım 2026",
-        "baslik": "Görsel Düzenleme Programlarına Giriş",
-        "unite": "Dijital Ürün Tasarım ve Geliştirme",
-        "ozet": "BTY.5.2.1. Görsel düzenleme programlarından yararlanabilme.",
-        "kategoriler": ["Görsel Tasarım", "Grafik"], "ikon": "fa-image"
+        id: "5-hafta-9",
+        sinif: "5",
+        hafta: 9,
+        tarih: "02 - 06 Kasım 2026",
+        unite: "Ürün Oluşturma",
+        konu: "Kelime İşlemci Programları - 2",
+        kazanim: "Görsel, tablo ve sayfa düzeni ögelerini dokümana ekler.",
+        aciklama: "Tablo oluşturma, resim ve şekil ekleme, kenarlıklar ve sayfa yapısı.",
+        link: "#"
     },
     {
-        "id": "5-10", "sinif": "5", "hafta": 10, "tarih": "23–27 Kasım 2026",
-        "baslik": "Görsel Tasarıma Yönelik Kurgu ve Ürün Geliştirme",
-        "unite": "Dijital Ürün Tasarım ve Geliştirme",
-        "ozet": "BTY.5.2.2 - BTY.5.2.3. Görsel dosyası kurgulama ve dijital görsel ürün geliştirme.",
-        "kategoriler": ["Tasarım", "Dijital Ürün"], "ikon": "fa-palette"
-    },
-
-    // ================= 6. SINIF YILLIK PLANI =================
-    {
-        "id": "6-1", "sinif": "6", "hafta": 1, "tarih": "14–18 Eylül 2026",
-        "baslik": "Yenilikçi Bilişim Teknolojileri",
-        "unite": "Bilişim Teknolojilerinin Hayatımızdaki Yeri",
-        "ozet": "BTY.6.1.1. Yenilikçi bilişim teknolojilerini sınıflandırabilme ve günlük hayata etkileri.",
-        "kategoriler": ["Yenilikçi Teknolojiler", "Teknoloji Trendleri"], "ikon": "fa-rocket"
+        id: "5-hafta-10",
+        sinif: "5",
+        hafta: 10,
+        tarih: "09 - 13 Kasım 2026",
+        unite: "1. Dönem Ara Tatili",
+        konu: "Ara Tatil Etkinlikleri ve Tekrar",
+        kazanim: "Öğrenilen konuların genel değerlendirmesi ve serbest uygulama.",
+        aciklama: "1. Dönem Ara Tatili (10 - 14 Kasım 2026)",
+        link: "#"
     },
     {
-        "id": "6-2", "sinif": "6", "hafta": 2, "tarih": "21–25 Eylül 2026",
-        "baslik": "Bilişim Teknolojilerinin Geleceği",
-        "unite": "Bilişim Teknolojilerinin Hayatımızdaki Yeri",
-        "ozet": "BTY.6.1.2. Bilişim teknolojisinin gelecekteki durumlarına yönelik çıkarım yapabilme.",
-        "kategoriler": ["Gelecek Teknolojileri", "Toplumsal Etki"], "ikon": "fa-crystal-ball"
+        id: "5-hafta-11",
+        sinif: "5",
+        hafta: 11,
+        tarih: "16 - 20 Kasım 2026",
+        unite: "Ürün Oluşturma",
+        konu: "Sunum Programları - 1",
+        kazanim: "Etkili bir sunum hazırlamak için temel ilkeleri kavrar.",
+        aciklama: "LibreOffice Impress / PowerPoint arayüzü, slayt düzenleri ve metin ekleme.",
+        link: "#"
     },
     {
-        "id": "6-3", "sinif": "6", "hafta": 3, "tarih": "28 Eylül–2 Ekim 2026",
-        "baslik": "Tablolama Programlarına Giriş (Excel / Calc)",
-        "unite": "Dijital Ürün Tasarım ve Geliştirme",
-        "ozet": "BTY.6.2.1. Tablolama programlarından yararlanabilme ve arayüzü tanıma.",
-        "kategoriler": ["Tablolama", "LibreOffice Calc"], "ikon": "fa-table"
+        id: "5-hafta-12",
+        sinif: "5",
+        hafta: 12,
+        tarih: "23 - 27 Kasım 2026",
+        unite: "Ürün Oluşturma",
+        konu: "Sunum Programları - 2",
+        kazanim: "Sunumlarına animasyon, geçiş ve görsel ögeler ekler.",
+        aciklama: "Slayt geçişleri, nesne animasyonları, görsel ve video ekleme teknikleri.",
+        link: "#"
     },
     {
-        "id": "6-4", "sinif": "6", "hafta": 4, "tarih": "5–9 Ekim 2026",
-        "baslik": "Gerçek Yaşam Problemleri ile Tablolama ve Veri Analizi",
-        "unite": "Dijital Ürün Tasarım ve Geliştirme",
-        "ozet": "BTY.6.2.2 - BTY.6.2.4. Veri toplama, tablo düzenleme, veri analizi ve grafik oluşturma.",
-        "kategoriler": ["Veri Analizi", "Grafikler"], "ikon": "fa-chart-pie"
+        id: "5-hafta-13",
+        sinif: "5",
+        hafta: 13,
+        tarih: "30 Kasım - 04 Aralık 2026",
+        unite: "Problem Çözme ve Programlama",
+        konu: "Problem Çözme Kavramları ve Günlük Hayat",
+        kazanim: "Problem çözme sürecindeki temel adımları açıklar.",
+        aciklama: "Problem nedir, problemi anlama, çözüm yolları geliştirme ve sabit/değişkenler.",
+        link: "#"
     },
     {
-        "id": "6-5", "sinif": "6", "hafta": 5, "tarih": "12–16 Ekim 2026",
-        "baslik": "Codeweek 2026 Etkinlikleri",
-        "unite": "Okul Temelli Plan",
-        "ozet": "Yerli ve millî teknolojiler temasıyla okul içi kodlama ve problem çözme etkinlikleri.",
-        "kategoriler": ["Codeweek 2026", "Kodlama"], "ikon": "fa-code"
+        id: "5-hafta-14",
+        sinif: "5",
+        hafta: 14,
+        tarih: "07 - 11 Aralık 2026",
+        unite: "Problem Çözme ve Programlama",
+        konu: "Algoritma ve Akış Şeması",
+        kazanim: "Basit problemler için algoritma ve akış şeması oluşturur.",
+        aciklama: "Algoritma adımları, başlangıç-bitiş, karar yapıları ve akış şeması sembolleri.",
+        link: "#"
     },
     {
-        "id": "6-6", "sinif": "6", "hafta": 6, "tarih": "19–23 Ekim 2026",
-        "baslik": "Ses Düzenleme Programlarına Giriş ve Kurgu",
-        "unite": "Dijital Ürün Tasarım ve Geliştirme",
-        "ozet": "BTY.6.2.5 - BTY.6.2.6. Ses düzenleme program arayüzü ve ses kurgusu oluşturma.",
-        "kategoriler": ["Ses Düzenleme", "Kurgu"], "ikon": "fa-file-audio"
+        id: "5-hafta-15",
+        sinif: "5",
+        hafta: 15,
+        tarih: "14 - 18 Aralık 2026",
+        unite: "Problem Çözme ve Programlama",
+        konu: "Scratch ile Görsel Kodlamaya Giriş",
+        kazanim: "Görsel programlama ortamının arayüzünü ve bileşenlerini tanır.",
+        aciklama: "Scratch arayüzü, sahne, kukla, kod blokları kategorileri ve ilk hareket kodları.",
+        link: "#"
     },
     {
-        "id": "6-7", "sinif": "6", "hafta": 7, "tarih": "26–30 Ekim 2026",
-        "baslik": "Ses Dosyası Geliştirme Projesi",
-        "unite": "Dijital Ürün Tasarım ve Geliştirme",
-        "ozet": "BTY.6.2.7. Tasarlanan senaryoya uygun ses dosyası oluşturma ve değerlendirme.",
-        "kategoriler": ["Podcasting", "Ses Üretimi"], "ikon": "fa-microphone"
+        id: "5-hafta-16",
+        sinif: "5",
+        hafta: 16,
+        tarih: "21 - 25 Aralık 2026",
+        unite: "Problem Çözme ve Programlama",
+        konu: "Scratch - Hareket ve Görünüm Blokları",
+        kazanim: "Kuklaların hareketlerini ve kostüm değişimlerini kodlar.",
+        aciklama: "Adım git, dön, derece, kostüm değiştir ve konuşma balonları blokları.",
+        link: "#"
     },
     {
-        "id": "6-8", "sinif": "6", "hafta": 8, "tarih": "2–6 Kasım 2026",
-        "baslik": "Video Düzenleme Programları ve Video Kurgusu",
-        "unite": "Dijital Ürün Tasarım ve Geliştirme",
-        "ozet": "BTY.6.2.8 - BTY.6.2.9. Video düzenleme yazılımları, senaryo ve kurgu hazırlama.",
-        "kategoriler": ["Video Düzenleme", "Kurgu"], "ikon": "fa-video"
+        id: "5-hafta-17",
+        sinif: "5",
+        hafta: 17,
+        tarih: "28 Aralık 2026 - 01 Ocak 2027",
+        unite: "Problem Çözme ve Programlama",
+        konu: "Scratch - Ses ve Olay Blokları",
+        kazanim: "Program çalıştırma tetikleyicilerini ve ses ögelerini kullanır.",
+        aciklama: "Yeşil bayrağa tıklandığında, tuşa basıldığında, ses çal ve nota blokları.",
+        link: "#"
     },
     {
-        "id": "6-9", "sinif": "6", "hafta": 9, "tarih": "9–13 Kasım 2026",
-        "baslik": "Video Dosyası Geliştirme ve Montaj",
-        "unite": "Dijital Ürün Tasarım ve Geliştirme",
-        "ozet": "BTY.6.2.10. Video montajı, efekt ekleme ve dijital video ürünü çıktı alma.",
-        "kategoriler": ["Video Montaj", "Dijital Ürün"], "ikon": "fa-film"
+        id: "5-hafta-18",
+        sinif: "5",
+        hafta: 18,
+        tarih: "04 - 08 Ocak 2027",
+        unite: "Problem Çözme ve Programlama",
+        konu: "Scratch - Kontrol ve Döngü Blokları",
+        kazanim: "Döngü (sürekli/defa) ve şart (eğer) yapılarını blok kodlarla uygular.",
+        aciklama: "Sürekli tekrarla, X defa tekrarla, eğer... ise kontrol blokları uygulamaları.",
+        link: "#"
     },
     {
-        "id": "6-10", "sinif": "6", "hafta": 10, "tarih": "23–27 Kasım 2026",
-        "baslik": "İletişim Teknolojileri ve Bilgisayar Ağları",
-        "unite": "Bilgisayar Ağları ve İletişim",
-        "ozet": "BTY.6.3.1. Ağ türleri (LAN, WAN), modem ve ağ bileşenleri.",
-        "kategoriler": ["Ağ Teknolojileri", "İnternet"], "ikon": "fa-network-wired"
-    }
-];
+        id: "5-hafta-19",
+        sin
