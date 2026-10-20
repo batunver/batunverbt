@@ -98,20 +98,17 @@
             </div>
         </section>
 
-        <!-- Sınıf Seçim Kartları (5 ve 6. Sınıf) -->
-       <!-- Sınıf Seçim Kartları (5 ve 6. Sınıf) -->
-        <<!-- Sınıf Seçim Kartları (5 ve 6. Sınıf) -->
+<!-- Sınıf Seçim Kartları (5 ve 6. Sınıf) -->
         <section class="grid md:grid-cols-2 gap-8">
             
             <!-- 5. Sınıf Kartı -->
             <div class="bg-slate-800/80 border border-slate-700/70 rounded-3xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 group flex flex-col justify-between shadow-2xl">
                 <div>
-                    <!-- Kart Üst Görsel Alanı -->
-                    <div class="relative h-52 sm:h-60 overflow-hidden bg-slate-950 flex items-center justify-center">
+                    <!-- Kart Üst Görsel Alanı (Tam Sığdırma & Net Görünüm) -->
+                    <div class="relative w-full bg-[#f39c12]/10 flex items-center justify-center p-2 border-b border-slate-700/50">
                         <img src="images/sinif_5_yeni_nesil_sinif.png" 
                              alt="5. Sınıflar Bilişim Teknolojileri ve Yazılım Dersi" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80"></div>
+                             class="w-full h-auto max-h-64 object-contain rounded-2xl group-hover:scale-[1.02] transition-transform duration-300">
                         
                         <!-- Etiket -->
                         <span class="absolute top-4 right-4 bg-blue-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-blue-400/30 shadow-lg">
@@ -124,7 +121,7 @@
                         <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-blue-400 transition-colors">
                             5. Sınıf Bilişim Teknolojileri ve Yazılım
                         </h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        <p class="text-slate-400 text-sm leading-relaxed mb-2">
                             Temel bilişim kavramları, dijital vatandaşlık, dosya yönetimi, bilgisayar donanım/yazılım bileşenleri ve Scratch ile görsel kodlama.
                         </p>
                     </div>
@@ -132,7 +129,7 @@
 
                 <!-- Buton -->
                 <div class="px-6 pb-6">
-                    <button onclick="filtreleSinif('5')" class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center space-x-2 group-hover:translate-y-[-2px]">
+                    <button onclick="filtreleSinif('5')" class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center space-x-2">
                         <span>5. Sınıf Materyallerine Git</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </button>
@@ -142,12 +139,11 @@
             <!-- 6. Sınıf Kartı -->
             <div class="bg-slate-800/80 border border-slate-700/70 rounded-3xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300 group flex flex-col justify-between shadow-2xl">
                 <div>
-                    <!-- Kart Üst Görsel Alanı -->
-                    <div class="relative h-52 sm:h-60 overflow-hidden bg-slate-950 flex items-center justify-center">
+                    <!-- Kart Üst Görsel Alanı (Tam Sığdırma & Net Görünüm) -->
+                    <div class="relative w-full bg-[#e74c3c]/10 flex items-center justify-center p-2 border-b border-slate-700/50">
                         <img src="images/sinif_6_yeni_nesil_sinif.png" 
                              alt="6. Sınıflar Bilişim Teknolojileri ve Yazılım Dersi" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80"></div>
+                             class="w-full h-auto max-h-64 object-contain rounded-2xl group-hover:scale-[1.02] transition-transform duration-300">
                         
                         <!-- Etiket -->
                         <span class="absolute top-4 right-4 bg-cyan-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-cyan-400/30 shadow-lg">
@@ -160,7 +156,7 @@
                         <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-cyan-400 transition-colors">
                             6. Sınıf Bilişim Teknolojileri ve Yazılım
                         </h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        <p class="text-slate-400 text-sm leading-relaxed mb-2">
                             Yenilikçi teknolojiler, tablolama (Calc/Excel), ses ve video düzenleme kurgusu, ağ teknolojileri ve metin tabanlı kodlama.
                         </p>
                     </div>
@@ -168,7 +164,7 @@
 
                 <!-- Buton -->
                 <div class="px-6 pb-6">
-                    <button onclick="filtreleSinif('6')" class="w-full py-3.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-cyan-600/20 flex items-center justify-center space-x-2 group-hover:translate-y-[-2px]">
+                    <button onclick="filtreleSinif('6')" class="w-full py-3.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-cyan-600/20 flex items-center justify-center space-x-2">
                         <span>6. Sınıf Materyallerine Git</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </button>
