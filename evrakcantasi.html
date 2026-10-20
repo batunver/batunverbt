@@ -44,7 +44,7 @@
     </header>
 
     <!-- Ana İçerik Alanı -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-8">
+    <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-8">
         
         <!-- Başlık ve Açıklama Bölümü -->
         <div class="bg-gradient-to-r from-slate-800/80 via-slate-800/50 to-blue-950/40 border border-slate-700/60 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
@@ -56,7 +56,7 @@
                     <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Evrak Çantası</h1>
                 </div>
                 <p class="text-slate-300 text-sm max-w-2xl leading-relaxed">
-                    Bilişim Teknolojileri ve Yazılım dersi Türkiye Yüzyılı Maarif Modeli için zümreler, yıllık planlar, ders planları ve öğretmen belgeleri.
+                    Bilişim Teknolojileri ve Yazılım dersi Türkiye Yüzyılı Maarif Modeli için planlar, zümre tutanakları ve öğretmen belgeleri.
                 </p>
             </div>
             
@@ -68,8 +68,8 @@
             </div>
         </div>
 
-        <!-- Evrak Kartları Izgarası (Grid) -->
-        <div id="evrak-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Yatay Liste Konteyneri -->
+        <div id="evrak-liste" class="space-y-3">
             <!-- JavaScript ile doldurulacak -->
         </div>
 
@@ -88,14 +88,14 @@
         });
 
         function evraklariGoster(liste) {
-            const container = document.getElementById("evrak-grid");
+            const container = document.getElementById("evrak-liste");
             if (!container) return;
 
             container.innerHTML = "";
 
             if (liste.length === 0) {
                 container.innerHTML = `
-                    <div class="col-span-full text-center py-12 text-slate-400">
+                    <div class="text-center py-12 text-slate-400 bg-slate-800/40 border border-slate-700/60 rounded-2xl">
                         <i class="fa-solid fa-folder-open text-4xl mb-3"></i>
                         <p class="text-sm">Bu kategoride henüz evrak bulunmuyor.</p>
                     </div>`;
@@ -105,36 +105,37 @@
             liste.forEach(evrak => {
                 const isYakinda = evrak.durum === "Yakında";
                 
-                const kartHTML = `
-                    <div class="bg-slate-800/80 border border-slate-700/70 rounded-3xl p-6 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-xl group">
-                        <div>
-                            <!-- Üst Kısım: İkon ve Kategori Rozeti -->
-                            <div class="flex justify-between items-center mb-4">
-                                <div class="w-12 h-12 rounded-2xl bg-${evrak.renk}-500/10 border border-${evrak.renk}-500/30 text-${evrak.renk}-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
-                                    <i class="fa-solid ${evrak.ikon}"></i>
-                                </div>
-                                <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700 text-slate-300">
-                                    ${evrak.kategori}
-                                </span>
+                const satirHTML = `
+                    <div class="bg-slate-800/70 border border-slate-700/60 hover:border-blue-500/50 rounded-2xl p-4 sm:p-5 transition-all duration-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg group">
+                        
+                        <!-- Sol Kısım: İkon, Başlık ve Açıklama -->
+                        <div class="flex items-start sm:items-center space-x-4">
+                            <div class="w-12 h-12 rounded-2xl bg-${evrak.renk}-500/10 border border-${evrak.renk}-500/30 text-${evrak.renk}-400 flex items-center justify-center text-lg shrink-0 group-hover:scale-105 transition-transform">
+                                <i class="fa-solid ${evrak.ikon}"></i>
                             </div>
-
-                            <!-- Başlık ve Açıklama -->
-                            <h3 class="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
-                                ${evrak.baslik}
-                            </h3>
-                            <p class="text-slate-300 text-xs leading-relaxed mb-6">
-                                ${evrak.aciklama}
-                            </p>
+                            <div class="space-y-0.5">
+                                <div class="flex items-center space-x-2">
+                                    <h3 class="text-base font-bold text-white group-hover:text-blue-400 transition-colors">
+                                        ${evrak.baslik}
+                                    </h3>
+                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-900/80 border border-slate-700 text-slate-400 hidden sm:inline-block">
+                                        ${evrak.kategori}
+                                    </span>
+                                </div>
+                                <p class="text-slate-300 text-xs leading-relaxed max-w-xl">
+                                    ${evrak.aciklama}
+                                </p>
+                            </div>
                         </div>
 
-                        <!-- Alt Buton / Durum -->
-                        <div class="pt-4 border-t border-slate-700/50 flex items-center justify-between">
-                            <span class="text-[11px] text-slate-400 font-medium">
-                                ${isYakinda ? '⏳ Yakında Eklenecek' : '✅ İndirilmeye Hazır'}
+                        <!-- Sağ Kısım: Durum ve Buton -->
+                        <div class="flex items-center justify-between sm:justify-end w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-t-0 border-slate-700/50 gap-3 shrink-0">
+                            <span class="text-[11px] text-slate-400 font-medium hidden md:inline-block">
+                                ${isYakinda ? '⏳ Yakında' : '✅ Hazır'}
                             </span>
                             
                             ${isYakinda ? `
-                                <span class="px-3 py-1.5 bg-slate-900/60 text-slate-500 text-xs font-semibold rounded-xl border border-slate-800 cursor-not-allowed">
+                                <span class="px-4 py-2 bg-slate-900/60 text-slate-500 text-xs font-semibold rounded-xl border border-slate-800 cursor-not-allowed">
                                     Yakında
                                 </span>
                             ` : `
@@ -144,15 +145,15 @@
                                 </a>
                             `}
                         </div>
+
                     </div>
                 `;
-                container.insertAdjacentHTML('beforeend', kartHTML);
+                container.insertAdjacentHTML('beforeend', satirHTML);
             });
         }
 
         // Kategoriye Göre Filtreleme Fonksiyonu
         function evraklariFiltrele(kategoriAdi) {
-            // Buton aktiflik sınıflarını güncelle
             const butonlar = document.querySelectorAll('#kategori-filtreler button');
             butonlar.forEach(btn => {
                 if (btn.innerText.includes(kategoriAdi)) {
