@@ -51,53 +51,66 @@
     <!-- Ana İçerik -->
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-12">
 
-        <!-- 1. Dinamik Karşılama ve Aktif Hafta Hızlı Erişim Alanı -->
-        <section class="bg-gradient-to-r from-slate-800/90 via-slate-800/60 to-blue-950/40 border border-slate-700/60 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+        <!-- 1. Aktif Hafta İki Pencereli Hızlı Erişim Alanı -->
+        <section class="grid md:grid-cols-2 gap-6">
             
-            <!-- Sol Taraf: Portal Bilgisi -->
-            <div class="space-y-3 max-w-2xl">
-                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold">
-                    <i class="fa-solid fa-star text-[10px]"></i>
-                    <span id="aktif-hafta-rozet">Bulunulan Hafta Hesaplanıyor...</span>
+            <!-- 5. Sınıf Aktif Hafta Penceresi -->
+            <a id="btn-5-aktif" href="#" class="bg-gradient-to-br from-slate-800/90 to-blue-950/50 border border-slate-700/70 hover:border-blue-500/60 rounded-3xl p-6 shadow-2xl backdrop-blur-md transition-all duration-300 group flex flex-col justify-between">
+                <div>
+                    <!-- Üst Bilgi Rozeti -->
+                    <div class="flex justify-between items-center mb-4">
+                        <span id="label-5-aktif" class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20">
+                            5. Sınıf • Aktif Hafta
+                        </span>
+                        <div id="num-5-aktif" class="w-8 h-8 rounded-xl bg-blue-600/30 text-blue-400 flex items-center justify-center font-bold text-xs border border-blue-500/30">
+                            ..
+                        </div>
+                    </div>
+
+                    <!-- Görsel Alanı (İleride görsel eklemek için hazır yer) -->
+                    <div class="w-full h-36 bg-slate-900/50 border border-slate-700/50 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-blue-500/30 transition-all">
+                        <img id="gorsel-5-aktif" src="" alt="5. Sınıf Hafta Görseli" class="w-full h-full object-cover hidden">
+                        <span id="placeholder-5-aktif" class="text-xs text-slate-500 font-medium flex items-center space-x-1.5">
+                            <i class="fa-solid fa-image"></i>
+                            <span>Görsel Eklenecek</span>
+                        </span>
+                    </div>
+
+                    <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors flex items-center justify-between">
+                        <span>Bu Haftanın 5. Sınıf Konusu</span>
+                        <i class="fa-solid fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
+                    </h3>
                 </div>
-                <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                    İhsan Aras Ortaokulu BTY Portalı
-                </h1>
-                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                    Bu haftanın 5. ve 6. sınıf ders konularına, sunumlarına, çalışma kağıtlarına ve uygulama etkinliklerine hızlıca erişebilirsiniz.
-                </p>
-            </div>
+            </a>
 
-            <!-- Sağ Taraf: Dinamik Aktif Hafta Hızlı Erişim Butonları -->
-            <div class="w-full lg:w-auto flex flex-col sm:flex-row gap-3 shrink-0">
-                
-                <!-- 5. Sınıf Aktif Hafta Kartı -->
-                <a id="btn-5-aktif" href="#" class="p-4 bg-blue-600/20 hover:bg-blue-600 border border-blue-500/40 hover:border-blue-400 rounded-2xl transition-all duration-300 group flex items-center space-x-3 shadow-lg">
-                    <div id="num-5-aktif" class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 group-hover:text-white flex items-center justify-center font-black text-sm border border-blue-400/30">
-                        ..
+            <!-- 6. Sınıf Aktif Hafta Penceresi -->
+            <a id="btn-6-aktif" href="#" class="bg-gradient-to-br from-slate-800/90 to-cyan-950/50 border border-slate-700/70 hover:border-cyan-500/60 rounded-3xl p-6 shadow-2xl backdrop-blur-md transition-all duration-300 group flex flex-col justify-between">
+                <div>
+                    <!-- Üst Bilgi Rozeti -->
+                    <div class="flex justify-between items-center mb-4">
+                        <span id="label-6-aktif" class="bg-cyan-500/10 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/20">
+                            6. Sınıf • Aktif Hafta
+                        </span>
+                        <div id="num-6-aktif" class="w-8 h-8 rounded-xl bg-cyan-600/30 text-cyan-400 flex items-center justify-center font-bold text-xs border border-cyan-500/30">
+                            ..
+                        </div>
                     </div>
-                    <div class="text-left">
-                        <span id="label-5-aktif" class="text-[10px] uppercase font-bold text-blue-300 group-hover:text-blue-100 block tracking-wider">5. Sınıf • Aktif Hafta</span>
-                        <span class="text-xs font-extrabold text-white group-hover:underline flex items-center">
-                            Haftanın Konusu <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i>
+
+                    <!-- Görsel Alanı (İleride görsel eklemek için hazır yer) -->
+                    <div class="w-full h-36 bg-slate-900/50 border border-slate-700/50 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-cyan-500/30 transition-all">
+                        <img id="gorsel-6-aktif" src="" alt="6. Sınıf Hafta Görseli" class="w-full h-full object-cover hidden">
+                        <span id="placeholder-6-aktif" class="text-xs text-slate-500 font-medium flex items-center space-x-1.5">
+                            <i class="fa-solid fa-image"></i>
+                            <span>Görsel Eklenecek</span>
                         </span>
                     </div>
-                </a>
 
-                <!-- 6. Sınıf Aktif Hafta Kartı -->
-                <a id="btn-6-aktif" href="#" class="p-4 bg-cyan-600/20 hover:bg-cyan-600 border border-cyan-500/40 hover:border-cyan-400 rounded-2xl transition-all duration-300 group flex items-center space-x-3 shadow-lg">
-                    <div id="num-6-aktif" class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 group-hover:text-white flex items-center justify-center font-black text-sm border border-cyan-400/30">
-                        ..
-                    </div>
-                    <div class="text-left">
-                        <span id="label-6-aktif" class="text-[10px] uppercase font-bold text-cyan-300 group-hover:text-cyan-100 block tracking-wider">6. Sınıf • Aktif Hafta</span>
-                        <span class="text-xs font-extrabold text-white group-hover:underline flex items-center">
-                            Haftanın Konusu <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i>
-                        </span>
-                    </div>
-                </a>
-
-            </div>
+                    <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center justify-between">
+                        <span>Bu Haftanın 6. Sınıf Konusu</span>
+                        <i class="fa-solid fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
+                    </h3>
+                </div>
+            </a>
 
         </section>
 
@@ -192,7 +205,7 @@
         });
 
         function aktifHaftayiHesaplaVeGuncelle() {
-            // Okul Başlangıç Tarihi: 8 Eylül 2026 Pazartesi (Ay indeksi 0 tabanlıdır: 8 = Eylül)
+            // Okul Başlangıç Tarihi: 8 Eylül 2026 Pazartesi
             const okulBaslangic = new Date(2026, 8, 8); 
             const bugun = new Date();
 
@@ -204,12 +217,10 @@
                 aktifHafta = Math.floor(farkGun / 7) + 1;
             }
 
-            // 1 - 36 Hafta Aralığında Sınırlandırma
             if (aktifHafta > 36) aktifHafta = 36;
             if (aktifHafta < 1) aktifHafta = 1;
 
             // HTML Arayüz Elemanlarını Güncelleme
-            const rozet = document.getElementById("aktif-hafta-rozet");
             const btn5 = document.getElementById("btn-5-aktif");
             const num5 = document.getElementById("num-5-aktif");
             const label5 = document.getElementById("label-5-aktif");
@@ -219,7 +230,6 @@
             const label6 = document.getElementById("label-6-aktif");
             const tarihEtiket = document.getElementById("aktif-tarih-etiket");
 
-            if (rozet) rozet.innerText = `Aktif Ders Haftası: ${aktifHafta}. Hafta`;
             if (tarihEtiket) tarihEtiket.innerText = `${aktifHafta}. Hafta`;
 
             if (btn5 && num5 && label5) {
@@ -233,6 +243,11 @@
                 num6.innerText = aktifHafta;
                 label6.innerText = `6. Sınıf • ${aktifHafta}. Hafta`;
             }
+
+            // İleride görsel eklemek istediğinizde buraya resim yolları verilebilir:
+            // Örnek: document.getElementById("gorsel-5-aktif").src = "images/hafta7_5.png";
+            // document.getElementById("gorsel-5-aktif").classList.remove("hidden");
+            // document.getElementById("placeholder-5-aktif").classList.add("hidden");
         }
     </script>
 </body>
