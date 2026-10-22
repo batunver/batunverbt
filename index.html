@@ -170,10 +170,9 @@
         });
 
         function aktifHaftayiHesaplaVeGuncelle() {
-            // 14 Eylül 2026 baz alınarak aktif hafta hesaplaması
             const okulBaslangic = new Date(2026, 8, 14); 
             const bugun = new Date();
-            let aktifHafta = 6; // Güvenli varsayılan
+            let aktifHafta = 6; 
 
             if (bugun >= okulBaslangic) {
                 const farkZaman = bugun - okulBaslangic;
@@ -181,7 +180,7 @@
                 aktifHafta = Math.floor(farkGun / 7) + 1;
             }
 
-            if (aktifHafta > 7) aktifHafta = 7; // Şimdilik 1-7 arası sınırlandı
+            if (aktifHafta > 7) aktifHafta = 7;
             if (aktifHafta < 1) aktifHafta = 1;
 
             const btn5 = document.getElementById("btn-5-aktif");
@@ -216,7 +215,6 @@
             }
         }
 
-        // Modal Açma Fonksiyonu (1'den 7'ye kadar listeler)
         function sinifModalAc(sinif) {
             const modal = document.getElementById("sinifModal");
             const modalBaslik = document.getElementById("modalBaslik");
