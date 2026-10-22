@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ders İçeriği - BATUNVER BT</title>
+    <title>Ders İçeriği - BATUNVER</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome İkonlar -->
@@ -24,158 +24,193 @@
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
 
     <!-- Üst Menü (Header) -->
-       <header class="bg-slate-800/90 backdrop-blur border-b border-slate-700/60 sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-            
-            <!-- Sol Logo Alanı (Alt yazısı ve çizgileriyle tam boy görünüm) -->
-            <a href="index.html" class="flex items-center h-20 overflow-hidden group">
-                <img src="images/logo3.png" 
-                     alt="Batunver - Bilişim Teknolojileri ve Yazılım Öğretmeni" 
-                     class="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+    <header class="bg-slate-800/90 backdrop-blur border-b border-slate-700/60 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center h-16 overflow-hidden group">
+                <img src="images/logo3.png" alt="BATUNVER" class="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
             </a>
-
-            <!-- Sağ Menü Bağlantıları -->
-            <nav class="flex items-center space-x-2 sm:space-x-3">
-                <a href="index.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-slate-700/80 text-white transition-all shadow-sm">Ana Sayfa</a>
-                <button onclick="sinifModalAc('5')" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all">5. Sınıf</button>
-                <button onclick="sinifModalAc('6')" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all">6. Sınıf</button>
-                <a href="evrak-cantasi.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 transition-all border border-amber-500/30 flex items-center space-x-1.5">
-                    <i class="fa-solid fa-briefcase"></i>
-                    <span>Evrak Çantası</span>
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="text-xs font-semibold px-4 py-2 rounded-xl bg-slate-700/80 hover:bg-slate-700 text-white transition-all border border-slate-600/50 flex items-center space-x-2">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Ana Sayfa</span>
                 </a>
-            </nav>
-
+            </div>
         </div>
     </header>
 
-    <!-- Ana İçerik Alanı -->
-    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
-        <div id="detay-container" class="bg-slate-800/80 border border-slate-700/70 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6">
-            <!-- Yükleniyor Mesajı -->
-            <div id="yukleniyor" class="text-center py-12 text-slate-400">
-                <i class="fa-solid fa-spinner fa-spin text-3xl mb-3"></i>
-                <p class="text-sm">İçerik yükleniyor...</p>
+    <!-- Ana İçerik -->
+    <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-8">
+
+        <!-- 1. Ders Bilgi Kartı ve Matbu Hızlı Erişim Navigasyonu -->
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md space-y-6">
+            <div class="space-y-2">
+                <div class="flex items-center space-x-2">
+                    <span id="ders-sinif-hafta" class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20">
+                        Yükleniyor...
+                    </span>
+                </div>
+                <h1 id="ders-baslik" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                    Ders Konusu Yükleniyor...
+                </h1>
+                <p id="ders-kazanim" class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                    Kazanım yükleniyor...
+                </p>
+            </div>
+
+            <hr class="border-slate-700/60">
+
+            <!-- Matbu Hızlı Erişim Butonları (Tıklandığında Sayfa İçi Yumuşak Kaydırma) -->
+            <div class="flex flex-wrap gap-2.5 sm:gap-3" id="hizli-erisim-butonlari">
+                <a href="#ders-sunusu-alani" class="px-4 py-2.5 bg-blue-600/20 border border-blue-500/40 hover:bg-blue-600/40 text-blue-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm">
+                    <i class="fa-solid fa-file-powerpoint text-blue-400"></i>
+                    <span>Ders Sunusu</span>
+                </a>
+                <a href="#ders-notu-alani" class="px-4 py-2.5 bg-emerald-600/20 border border-emerald-500/40 hover:bg-emerald-600/40 text-emerald-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm">
+                    <i class="fa-solid fa-book-open text-emerald-400"></i>
+                    <span>Ders Notu</span>
+                </a>
+                <!-- Etkinlik Butonları JS İle Otomatik Buraya Eklenir -->
             </div>
         </div>
+
+        <!-- 2. DERS SUNUSU ALANI (Sitede Açılır / Görev Yapar) -->
+        <section id="ders-sunusu-alani" class="bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 shadow-xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-sm border border-blue-500/30">
+                        <i class="fa-solid fa-file-powerpoint"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-bold text-white">Ders Sunusu</h2>
+                        <p class="text-[11px] text-slate-400">Sunumu doğrudan sayfa üzerinde inceleyebilirsiniz.</p>
+                    </div>
+                </div>
+
+                <!-- Sayfa İçi Tam Ekran Yapma Butonu -->
+                <button onclick="sunuyuTamEkranYap()" class="text-xs bg-slate-700/80 hover:bg-slate-700 text-slate-200 px-3.5 py-2 rounded-xl border border-slate-600/60 flex items-center space-x-2 transition-all">
+                    <i class="fa-solid fa-expand text-blue-400"></i>
+                    <span class="hidden sm:inline">Tam Ekran</span>
+                </button>
+            </div>
+
+            <!-- Sitede Doğrudan Açılan Sunu Penceresi (Iframe) -->
+            <div id="sunu-penceresi" class="w-full aspect-video bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60 shadow-inner relative flex items-center justify-center">
+                <iframe id="sunu-iframe" class="w-full h-full border-0" src="" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+            </div>
+        </section>
+
+        <!-- 3. İNTERAKTİF ETKİNLİKLER ALANI (Etkinlik 1, 2, 3...) -->
+        <section id="etkinlikler-alani" class="space-y-6">
+            <div id="etkinlik-baslik-alani" class="hidden flex items-center space-x-3 border-b border-slate-800 pb-3">
+                <i class="fa-solid fa-puzzle-piece text-purple-400 text-xl"></i>
+                <h2 class="text-xl font-extrabold text-white tracking-wide">Ders Etkinlikleri</h2>
+            </div>
+
+            <!-- JavaScript ile Kaç Tane Etkinlik Var İse Buraya Kart Olarak Basılır -->
+            <div id="etkinlik-kartlari-container" class="space-y-6">
+                <!-- Etkinlikler Dinamik Dolacak -->
+            </div>
+        </section>
+
+        <!-- 4. DERS NOTU / KONU ÖZETİ ALANI -->
+        <section id="ders-notu-alani" class="bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 sm:p-8 shadow-xl space-y-4">
+            <div class="flex items-center space-x-3 border-b border-slate-700/60 pb-4">
+                <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm border border-emerald-500/30">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+                <div>
+                    <h2 class="text-lg font-bold text-white">Ders Notu / Konu Özeti</h2>
+                    <p class="text-[11px] text-slate-400">Haftanın önemli noktaları ve ders özeti.</p>
+                </div>
+            </div>
+
+            <div id="ders-notu-icerik" class="text-slate-300 text-sm leading-relaxed space-y-4 pt-2">
+                <!-- Ders notu içeriği JS ile gelecek -->
+            </div>
+        </section>
+
     </main>
 
     <!-- Alt Bilgi (Footer) -->
     <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-400">
-        <p>&copy; 2026 BATUNVER BT - İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
+        <p>&copy; 2026 BATUNVER - İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
     </footer>
 
-    <!-- Veri Dosyası ve Sayfa Mantığı -->
+    <!-- Scriptler -->
     <script src="data.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            icerigiYukle();
+            const urlParams = new URLSearchParams(window.location.search);
+            const icerikId = urlParams.get('id') || '5-hafta-1'; // Varsayılan içerik ID
+
+            if (typeof dersIcerikleri !== 'undefined' && dersIcerikleri[icerikId]) {
+                const veri = dersIcerikleri[icerikId];
+
+                // 1. Temel Bilgileri Doldurma
+                document.getElementById('ders-sinif-hafta').innerText = `${veri.sinif}. Sınıf • ${veri.hafta}. Hafta`;
+                document.getElementById('ders-baslik').innerText = veri.baslik;
+                document.getElementById('ders-kazanim').innerText = `Kazanım: ${veri.kazanim}`;
+                
+                // 2. Sunuyu Sitede Açılır Hale Getirme (Iframe)
+                const sunuIframe = document.getElementById('sunu-iframe');
+                if (veri.sunuUrl) {
+                    sunuIframe.src = veri.sunuUrl;
+                }
+
+                // 3. Ders Notunu Doldurma
+                document.getElementById('ders-notu-icerik').innerHTML = veri.dersNotu || "<p class='text-slate-500 italic'>Bu hafta için henüz eklenmiş ders notu bulunmamaktadır.</p>";
+
+                // 4. Etkinlikleri Dinamik Doldurma
+                const butonlarBar = document.getElementById('hizli-erisim-butonlari');
+                const etkinlikContainer = document.getElementById('etkinlik-kartlari-container');
+                const etkinlikBaslik = document.getElementById('etkinlik-baslik-alani');
+
+                if (veri.etkinlikler && veri.etkinlikler.length > 0) {
+                    etkinlikBaslik.classList.remove('hidden');
+
+                    veri.etkinlikler.forEach((etk, idx) => {
+                        const etkNum = idx + 1;
+                        const etkId = `etkinlik-${etkNum}`;
+
+                        // Hızlı Erişim Butonu Ekleme
+                        const btn = document.createElement('a');
+                        btn.href = `#${etkId}`;
+                        btn.className = "px-4 py-2.5 bg-purple-600/20 border border-purple-500/40 hover:bg-purple-600/40 text-purple-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm";
+                        btn.innerHTML = `<i class="fa-solid fa-gamepad text-purple-400"></i> <span>Etkinlik ${etkNum}</span>`;
+                        butonlarBar.appendChild(btn);
+
+                        // Etkinlik Kutusunu Site İçine Göpme
+                        const etkKart = document.createElement('div');
+                        etkKart.id = etkId;
+                        etkKart.className = "bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 shadow-xl space-y-4";
+                        etkKart.innerHTML = `
+                            <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
+                                <div class="flex items-center space-x-3">
+                                    <span class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs font-black border border-purple-500/30">${etkNum}</span>
+                                    <h3 class="font-bold text-white text-base">${etk.baslik}</h3>
+                                </div>
+                                <span class="text-[10px] font-extrabold px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">${etk.tur || 'İnteraktif Etkinlik'}</span>
+                            </div>
+                            <div class="w-full aspect-[16/9] bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60">
+                                <iframe src="${etk.url}" class="w-full h-full border-0" allowfullscreen></iframe>
+                            </div>
+                        `;
+                        etkinlikContainer.appendChild(etkKart);
+                    });
+                }
+            }
         });
 
-        function icerigiYukle() {
-            const container = document.getElementById("detay-container");
-            
-            // Eğer data.js henüz yüklenmediyse 150ms sonra tekrar dene
-            if (typeof dersData === 'undefined') {
-                setTimeout(icerigiYukle, 150);
-                return;
+        // Sunu Ekranını Tam Ekran Yapma Fonksiyonu
+        function sunuyuTamEkranYap() {
+            const elem = document.getElementById("sunu-penceresi");
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
             }
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const dersId = urlParams.get('id');
-
-            // Eğer URL'de ID yoksa varsayılan olarak ilk haftayı (5-hafta-1) göster
-            const hedefId = dersId ? dersId : "5-hafta-1";
-
-            const ders = dersData.find(d => d.id === hedefId);
-
-            if (!ders) {
-                container.innerHTML = `
-                    <div class="text-center py-12 text-slate-400 space-y-3">
-                        <i class="fa-solid fa-triangle-exclamation text-3xl text-amber-400"></i>
-                        <p class="text-sm">Aradığınız haftaya ait içerik bulunamadı.</p>
-                        <a href="index.html" class="inline-block px-4 py-2 bg-blue-600 text-white text-xs font-bold rounded-xl">Ana Sayfaya Dön</a>
-                    </div>`;
-                return;
-            }
-
-            const isBeş = ders.sinif === "5";
-
-            // Şablon İçeriği Ekrana Bas
-            container.innerHTML = `
-                <!-- 1. Üst Bilgi Rozetleri -->
-                <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-700/60">
-                    <span class="${isBeş ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20'} text-xs font-bold px-3.5 py-1.5 rounded-full border">
-                        ${ders.sinif}. Sınıf • ${ders.hafta}. Hafta
-                    </span>
-                    <span class="text-xs text-slate-300 flex items-center bg-slate-900/50 px-3.5 py-1.5 rounded-xl border border-slate-700">
-                        <i class="fa-regular fa-calendar-days mr-2 ${isBeş ? 'text-blue-400' : 'text-cyan-400'}"></i> ${ders.tarih}
-                    </span>
-                </div>
-
-                <!-- 2. Ünite ve Konu Başlığı -->
-                <div class="space-y-2">
-                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">${ders.unite}</h4>
-                    <h1 class="text-2xl sm:text-3xl font-extrabold text-white">${ders.konu}</h1>
-                </div>
-
-                <!-- 3. Konu Özeti ve Açıklama -->
-                <div class="bg-slate-900/60 border border-slate-700/60 rounded-2xl p-6 space-y-2.5">
-                    <h3 class="text-sm font-bold text-slate-300 flex items-center">
-                        <i class="fa-solid fa-circle-info mr-2.5 ${isBeş ? 'text-blue-400' : 'text-cyan-400'}"></i> Konu Özeti ve Açıklama
-                    </h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        ${ders.aciklama}
-                    </p>
-                </div>
-
-                <!-- 4. Ders Kazanımı -->
-                <div class="bg-blue-950/20 border border-blue-500/30 rounded-2xl p-6 space-y-2">
-                    <h3 class="text-sm font-bold text-blue-400 flex items-center">
-                        <i class="fa-solid fa-bullseye mr-2.5"></i> Ders Kazanımı
-                    </h3>
-                    <p class="text-slate-200 text-sm italic">
-                        "${ders.kazanim}"
-                    </p>
-                </div>
-
-                <!-- 5. Haftanın Etkinliği / Uygulaması -->
-                <div class="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-6 space-y-2.5">
-                    <h3 class="text-sm font-bold text-amber-400 flex items-center">
-                        <i class="fa-solid fa-lightbulb mr-2.5 text-base"></i> Haftanın Etkinliği / Uygulaması
-                    </h3>
-                    <p class="text-slate-200 text-sm leading-relaxed font-medium">
-                        ${ders.etkinlik ? ders.etkinlik : 'Bu hafta için planlanan sınıf içi uygulama ve etkileşimli etkinlik notu.'}
-                    </p>
-                </div>
-
-                <!-- 6. Ders Materyalleri ve İndirmeler -->
-                <div class="pt-6 border-t border-slate-700/60 space-y-4">
-                    <h3 class="text-base font-bold text-white">Ders Materyalleri ve Etkinlikler</h3>
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <a href="${ders.link}" target="_blank" class="p-4 bg-slate-900/60 border border-slate-700 rounded-2xl hover:border-blue-500 transition-all flex items-center justify-between group">
-                            <div class="flex items-center space-x-3.5">
-                                <div class="w-11 h-11 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center justify-center font-bold text-xs">PDF</div>
-                                <div>
-                                    <h4 class="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">Ders Notu / Sunum</h4>
-                                    <span class="text-[11px] text-slate-400">Haftalık ders slaydı</span>
-                                </div>
-                            </div>
-                            <i class="fa-solid fa-download text-slate-400 group-hover:text-white text-sm"></i>
-                        </a>
-
-                        <a href="${ders.link}" target="_blank" class="p-4 bg-slate-900/60 border border-slate-700 rounded-2xl hover:border-emerald-500 transition-all flex items-center justify-between group">
-                            <div class="flex items-center space-x-3.5">
-                                <div class="w-11 h-11 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center font-bold text-xs">uyg</div>
-                                <div>
-                                    <h4 class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">Uygulama Dosyası</h4>
-                                    <span class="text-[11px] text-slate-400">Örnek çalışma dosyası</span>
-                                </div>
-                            </div>
-                            <i class="fa-solid fa-download text-slate-400 group-hover:text-white text-sm"></i>
-                        </a>
-                    </div>
-                </div>
-            `;
         }
     </script>
 </body>
