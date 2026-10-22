@@ -96,7 +96,6 @@
 
         <!-- 2. HAFTANIN KONUSU (AKTİF HAFTA PENCERELERİ) -->
         <section class="space-y-6">
-            <!-- Bölüm Başlığı -->
             <div class="flex items-center justify-between border-b border-slate-800 pb-4">
                 <div class="flex items-center space-x-3">
                     <div class="w-3 h-3 bg-emerald-500 rounded-full animate-ping"></div>
@@ -105,9 +104,7 @@
                 <span id="aktif-tarih-etiket" class="text-xs text-slate-400 bg-slate-800 px-3.5 py-1.5 rounded-xl border border-slate-700 font-semibold">Aktif Hafta Detayı</span>
             </div>
 
-            <!-- İki Pencereli Hızlı Erişim Kartları -->
             <div class="grid md:grid-cols-2 gap-6">
-                
                 <!-- 5. Sınıf Aktif Hafta Penceresi -->
                 <a id="btn-5-aktif" href="icerik.html?id=5-hafta-1" class="bg-gradient-to-br from-slate-800/90 to-blue-950/50 border border-slate-700/70 hover:border-blue-500/60 rounded-3xl p-6 shadow-2xl backdrop-blur-md transition-all duration-300 group flex flex-col justify-between">
                     <div>
@@ -119,14 +116,12 @@
                                 1
                             </div>
                         </div>
-
                         <div class="w-full h-36 bg-slate-900/50 border border-slate-700/50 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-blue-500/30 transition-all">
                             <span class="text-xs text-slate-500 font-medium flex items-center space-x-1.5">
                                 <i class="fa-solid fa-book-open text-blue-400 text-lg"></i>
                                 <span>Ders İçeriğine Git</span>
                             </span>
                         </div>
-
                         <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors flex items-center justify-between">
                             <span id="baslik-5-aktif">5. Sınıf Haftalık Ders İçeriği</span>
                             <i class="fa-solid fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
@@ -145,21 +140,18 @@
                                 1
                             </div>
                         </div>
-
                         <div class="w-full h-36 bg-slate-900/50 border border-slate-700/50 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-cyan-500/30 transition-all">
                             <span class="text-xs text-slate-500 font-medium flex items-center space-x-1.5">
                                 <i class="fa-solid fa-book-open text-cyan-400 text-lg"></i>
                                 <span>Ders İçeriğine Git</span>
                             </span>
                         </div>
-
                         <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center justify-between">
                             <span id="baslik-6-aktif">6. Sınıf Haftalık Ders İçeriği</span>
                             <i class="fa-solid fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
                         </h3>
                     </div>
                 </a>
-
             </div>
         </section>
 
@@ -168,26 +160,127 @@
     <!-- SINIFLAR İÇİN 36 HAFTA DETAY MODALI (AÇILIR PENCERE) -->
     <div id="sinifModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
         <div class="bg-slate-900 border border-slate-700 w-full max-w-4xl max-h-[90vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden">
-            <!-- Modal Üst Başlık -->
             <div class="px-6 py-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/90 sticky top-0 z-10">
                 <h3 id="modalBaslik" class="text-xl font-bold text-white">Sınıf Planı</h3>
                 <button type="button" onclick="modalKapat()" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
-            <!-- Modal İçerik Listesi -->
             <div id="modalIcerikContainer" class="p-6 overflow-y-auto space-y-3 flex-grow">
                 <!-- Javascript ile 36 hafta buraya doldurulur -->
             </div>
         </div>
     </div>
 
-    <!-- Alt Bilgi (Footer) -->
+    <!-- Alt Bilgi -->
     <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-400">
         <p>&copy; 2026 BATUNVER - İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
     </footer>
 
-    <!-- Veri Dosyası -->
+    <!-- Scriptler -->
     <script src="data.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            aktifHaftayiHesaplaVeGuncelle();
+        });
 
-    <!-- Ana Çalıştırma Scripti (Eksiksiz & Dahili) -->
+        function aktifHaftayiHesaplaVeGuncelle() {
+            const okulBaslangic = new Date(2026, 8, 8); 
+            const bugun = new Date();
+            let aktifHafta = 1;
+
+            if (bugun >= okulBaslangic) {
+                const farkZaman = bugun - okulBaslangic;
+                const farkGun = Math.floor(farkZaman / (1000 * 60 * 60 * 24));
+                aktifHafta = Math.floor(farkGun / 7) + 1;
+            }
+
+            if (aktifHafta > 36) aktifHafta = 36;
+            if (aktifHafta < 1) aktifHafta = 1;
+
+            const btn5 = document.getElementById("btn-5-aktif");
+            const num5 = document.getElementById("num-5-aktif");
+            const label5 = document.getElementById("label-5-aktif");
+            const baslik5 = document.getElementById("baslik-5-aktif");
+
+            const btn6 = document.getElementById("btn-6-aktif");
+            const num6 = document.getElementById("num-6-aktif");
+            const label6 = document.getElementById("label-6-aktif");
+            const baslik6 = document.getElementById("baslik-6-aktif");
+
+            const tarihEtiket = document.getElementById("aktif-tarih-etiket");
+            if (tarihEtiket) tarihEtiket.innerText = `${aktifHafta}. Hafta`;
+
+            if (btn5) btn5.href = `icerik.html?id=5-hafta-${aktifHafta}`;
+            if (num5) num5.innerText = aktifHafta;
+            if (label5) label5.innerText = `5. Sınıf • ${aktifHafta}. Hafta`;
+            if (baslik5) {
+                baslik5.innerText = (typeof dersIcerikleri !== 'undefined' && dersIcerikleri[`5-hafta-${aktifHafta}`]) 
+                    ? dersIcerikleri[`5-hafta-${aktifHafta}`].baslik 
+                    : `${aktifHafta}. Hafta Bilişim Teknolojileri Ders İçeriği`;
+            }
+
+            if (btn6) btn6.href = `icerik.html?id=6-hafta-${aktifHafta}`;
+            if (num6) num6.innerText = aktifHafta;
+            if (label6) label6.innerText = `6. Sınıf • ${aktifHafta}. Hafta`;
+            if (baslik6) {
+                baslik6.innerText = (typeof dersIcerikleri !== 'undefined' && dersIcerikleri[`6-hafta-${aktifHafta}`]) 
+                    ? dersIcerikleri[`6-hafta-${aktifHafta}`].baslik 
+                    : `${aktifHafta}. Hafta Bilişim Teknolojileri Ders İçeriği`;
+            }
+        }
+
+        // Güvenli Modal Açma Fonksiyonu (Data dosyası yüklenmemiş olsa bile çalışır)
+        function sinifModalAc(sinif) {
+            const modal = document.getElementById("sinifModal");
+            const modalBaslik = document.getElementById("modalBaslik");
+            const container = document.getElementById("modalIcerikContainer");
+
+            if (!modal || !container) return;
+
+            modalBaslik.innerText = `${sinif}. Sınıf Yıllık Ders Müfredatı (36 Hafta)`;
+            container.innerHTML = "";
+
+            for (let hafta = 1; hafta <= 36; hafta++) {
+                const key = `${sinif}-hafta-${hafta}`;
+                const veri = (typeof dersIcerikleri !== 'undefined' && dersIcerikleri[key]) ? dersIcerikleri[key] : null;
+
+                const baslik = veri ? veri.baslik : `${hafta}. Hafta Ders Konusu`;
+                const kazanim = veri ? veri.kazanim : "Ders içeriği hazırlanıyor...";
+
+                const item = document.createElement("a");
+                item.href = `icerik.html?id=${key}`;
+                item.className = "flex items-center justify-between p-4 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 rounded-2xl transition-all group";
+                
+                item.innerHTML = `
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 rounded-xl ${sinif === '5' ? 'bg-blue-600/20 text-blue-400 border-blue-500/30' : 'bg-cyan-600/20 text-cyan-400 border-cyan-500/30'} flex items-center justify-center font-bold text-sm border shrink-0">
+                            ${hafta}
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm sm:text-base group-hover:${sinif === '5' ? 'text-blue-400' : 'text-cyan-400'} transition-colors">${baslik}</h4>
+                            <p class="text-xs text-slate-400 line-clamp-1">${kazanim}</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-white transition-colors ml-2 shrink-0"></i>
+                `;
+
+                container.appendChild(item);
+            }
+
+            modal.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        }
+
+        function modalKapat() {
+            const modal = document.getElementById("sinifModal");
+            if (modal) modal.classList.add("hidden");
+            document.body.style.overflow = "auto";
+        }
+
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") modalKapat();
+        });
+    </script>
+</body>
+</html>
