@@ -10,7 +10,7 @@ const dersIcerikleri = {
         sunuUrl: "sunular/5-sinif-1-hafta.html",
         dersNotu: "<p>Bilişim teknolojileri; bilgiyi toplamak, işlemek, saklamak ve iletmek için kullanılan tüm teknolojilerdir. Sağlık, eğitim, ulaşım ve bankacılık gibi alanlarda yaygın olarak kullanılır.</p>",
         etkinlikler: [
-            { baslik: "1. Hafta Etkinliği", tur: "Soru-Cevap", url: "5.sınıf/1.haftaetkinlik.html" }
+            { baslik: "1. Hafta Etkinliği", tur: "Soru-Cevap", url: "5.sinif/1.haftaetkinlik.html" }
         ]
     },
     "5-hafta-2": {
@@ -21,7 +21,7 @@ const dersIcerikleri = {
         sunuUrl: "sunular/5-sinif-2-hafta.html",
         dersNotu: "<p>Bilgisayar sistemi Donanım ve Yazılım olmak üzere ikiye ayrılır. İç ve dış donanım birimleri bilgisayarın çalışmasını sağlar.</p>",
         etkinlikler: [
-            { baslik: "2. Hafta Donanım Eşleştirme", tur: "Eşleştirme", url: "5.sınıf/2.haftaetkinlik.html" }
+            { baslik: "2. Hafta Donanım Eşleştirme", tur: "Eşleştirme", url: "5.sinif/2.haftaetkinlik.html" }
         ]
     },
     "5-hafta-3": {
@@ -32,7 +32,7 @@ const dersIcerikleri = {
         sunuUrl: "sunular/5-sinif-3-hafta.html",
         dersNotu: "<p>İşletim sistemi (Windows, Pardus, Linux, Android), bilgisayardaki tüm donanım ve yazılımları yöneten ana sistem yazılımıdır.</p>",
         etkinlikler: [
-            { baslik: "3. Hafta İşletim Sistemleri Oyunu", tur: "Sınıflandırma", url: "5.sınıf/3.haftaetkinlik.html" }
+            { baslik: "3. Hafta İşletim Sistemleri Oyunu", tur: "Sınıflandırma", url: "5.sinif/3.haftaetkinlik.html" }
         ]
     },
     "5-hafta-4": {
@@ -43,7 +43,7 @@ const dersIcerikleri = {
         sunuUrl: "sunular/5-sinif-4-hafta.html",
         dersNotu: "<p>Siber zorbalık yapmamak, başkalarının içeriklerini izinsiz kullanmamak ve dijital ortamlarda saygılı olmak bilişim etiğinin temelidir.</p>",
         etkinlikler: [
-            { baslik: "4. Hafta Etik Davranış Testi", tur: "Test", url: "5.sınıf/4.haftaetkinlik.html" }
+            { baslik: "4. Hafta Etik Davranış Testi", tur: "Test", url: "5.sinif/4.haftaetkinlik.html" }
         ]
     },
     "5-hafta-5": {
@@ -54,7 +54,7 @@ const dersIcerikleri = {
         sunuUrl: "sunular/5-sinif-5-hafta.html",
         dersNotu: "<p>Dijital ayak izimiz internette bıraktığımız tüm izlerdir. Eser sahibinin haklarını korumak için telif haklarına uymalıyız.</p>",
         etkinlikler: [
-            { baslik: "5. Hafta Dijital Ayak İzi Etkinliği", tur: "Soru-Cevap", url: "5.sınıf/5.haftaetkinlik.html" }
+            { baslik: "5. Hafta Dijital Ayak İzi Etkinliği", tur: "Soru-Cevap", url: "5.sinif/5.haftaetkinlik.html" }
         ]
     },
     "5-hafta-6": {
@@ -65,7 +65,7 @@ const dersIcerikleri = {
         sunuUrl: "sunular/5-sinif-6-hafta.html",
         dersNotu: "<p>Güçlü şifreler büyük/küçük harf, rakam ve özel karakterler içerir. Kişisel bilgilerinizi internette kimseyle paylaşmayın.</p>",
         etkinlikler: [
-            { baslik: "6. Hafta Güçlü Şifre Oluşturucu", tur: "Uygulama", url: "5.sınıf/6.haftaetkinlik.html" }
+            { baslik: "6. Hafta Güçlü Şifre Oluşturucu", tur: "Uygulama", url: "5.sinif/6.haftaetkinlik.html" }
         ]
     },
     "5-hafta-7": {
@@ -76,7 +76,7 @@ const dersIcerikleri = {
         sunuUrl: "sunular/5-sinif-7-hafta.html",
         dersNotu: "<p>LAN (Yerel Alan Ağı) ve WAN (Geniş Alan Ağı) bilgisayarların haberleşmesini sağlar. İnternet dünyanın en büyük WAN ağıdır.</p>",
         etkinlikler: [
-            { baslik: "7. Hafta Ağ Türleri Eşleştirme", tur: "Eşleştirme", url: "5.sınıf/7.haftaetkinlik.html" }
+            { baslik: "7. Hafta Ağ Türleri Eşleştirme", tur: "Eşleştirme", url: "5.sinif/7.haftaetkinlik.html" }
         ]
     },
     "5-hafta-8": {
@@ -96,7 +96,7 @@ const dersIcerikleri = {
             {
                 baslik: "5. Sınıf 8. Hafta: Dosya ve Klasör Yönetimi Etkinliği",
                 tur: "Akıllı Tahta Oyunu",
-                url: "5.sınıf/8.haftaetkinlik.html"
+                url: "5.sinif/8.haftaetkinlik.html"
             }
         ]
     },
@@ -112,7 +112,7 @@ const dersIcerikleri = {
         sunuUrl: "sunular/6-sinif-1-hafta.html",
         dersNotu: "<p>Teknolojinin tarihsel gelişimi ve günümüz dijital dünyasına olan etkileri incelenir.</p>",
         etkinlikler: [
-            { baslik: "1. Hafta Tarihsel Gelişim", tur: "Soru-Cevap", url: "6.sınıf/1.haftaetkinlik.html" }
+            { baslik: "1. Hafta Tarihsel Gelişim", tur: "Soru-Cevap", url: "6.sinif/1.haftaetkinlik.html" }
         ]
     },
     "6-hafta-2": {
@@ -123,7 +123,7 @@ const dersIcerikleri = {
         sunuUrl: "sunular/6-sinif-2-hafta.html",
         dersNotu: "<p>Açık kaynak kodlu (Pardus, Linux) ve kapalı kaynak kodlu işletim sistemlerinin farkları.</p>",
         etkinlikler: [
-            { baslik: "2. Hafta İşletim Sistemi Karşılaştırma", tur: "Eşleştirme", url: "6.sınıf/2.haftaetkinlik.html" }
+            { baslik: "2. Hafta İşletim Sistemi Karşılaştırma", tur: "Eşleştirme", url: "6.sinif/2.haftaetkinlik.html" }
         ]
     },
     "6-hafta-3": {
@@ -134,7 +134,7 @@ const dersIcerikleri = {
         sunuUrl: "sunular/6-sinif-3-hafta.html",
         dersNotu: "<p>ZIP ve RAR gibi dosya sıkıştırma yöntemleri ile depolama alanından tasarruf sağlama.</p>",
         etkinlikler: [
-            { baslik: "3. Hafta Sıkıştırma Uygulaması", tur: "Uygulama", url: "6.sınıf/3.haftaetkinlik.html" }
+            { baslik: "3. Hafta Sıkıştırma Uygulaması", tur: "Uygulama", url: "6.sinif/3.haftaetkinlik.html" }
         ]
     },
     "6-hafta-4": {
@@ -145,7 +145,7 @@ const dersIcerikleri = {
         sunuUrl: "sunular/6-sinif-4-hafta.html",
         dersNotu: "<p>Creative Commons, ücretsiz yazılım (freeware) ve paylaşım lisanslarının incelenmesi.</p>",
         etkinlikler: [
-            { baslik: "4. Hafta Lisans Türleri Testi", tur: "Test", url: "6.sınıf/4.haftaetkinlik.html" }
+            { baslik: "4. Hafta Lisans Türleri Testi", tur: "Test", url: "6.sinif/4.haftaetkinlik.html" }
         ]
     },
     "6-hafta-5": {
@@ -156,7 +156,7 @@ const dersIcerikleri = {
         sunuUrl: "sunular/6-sinif-5-hafta.html",
         dersNotu: "<p>Virüs, Truva atı (Trojan), solucan (Worm) ve fidye yazılımlardan koruyucu antivirüs yazılımları.</p>",
         etkinlikler: [
-            { baslik: "5. Hafta Virüs Türleri Oyunu", tur: "Sınıflandırma", url: "6.sınıf/5.haftaetkinlik.html" }
+            { baslik: "5. Hafta Virüs Türleri Oyunu", tur: "Sınıflandırma", url: "6.sinif/5.haftaetkinlik.html" }
         ]
     },
     "6-hafta-6": {
@@ -167,7 +167,7 @@ const dersIcerikleri = {
         sunuUrl: "sunular/6-sinif-6-hafta.html",
         dersNotu: "<p>Bulut depolama servisleri (Google Drive, EBA Bulut) ile ortak dosya düzenleme yöntemleri.</p>",
         etkinlikler: [
-            { baslik: "6. Hafta Bulut Depolama Etkinliği", tur: "Soru-Cevap", url: "6.sınıf/6.haftaetkinlik.html" }
+            { baslik: "6. Hafta Bulut Depolama Etkinliği", tur: "Soru-Cevap", url: "6.sinif/6.haftaetkinlik.html" }
         ]
     },
     "6-hafta-7": {
@@ -178,7 +178,7 @@ const dersIcerikleri = {
         sunuUrl: "sunular/6-sinif-7-hafta.html",
         dersNotu: "<p>Metin belgesi düzenleme, hizalama, sayfa yapısı, tablo ekleme ve görsel biçimlendirme.</p>",
         etkinlikler: [
-            { baslik: "7. Hafta Belge Tasarım Etkinliği", tur: "Uygulama", url: "6.sınıf/7.haftaetkinlik.html" }
+            { baslik: "7. Hafta Belge Tasarım Etkinliği", tur: "Uygulama", url: "6.sinif/7.haftaetkinlik.html" }
         ]
     },
     "6-hafta-8": {
@@ -197,7 +197,7 @@ const dersIcerikleri = {
             {
                 baslik: "6. Sınıf 8. Hafta: Tablolama ve Veri Yönetimi Etkinliği",
                 tur: "İnteraktif Uygulama",
-                url: "6.sınıf/8.haftaetkinlik.html"
+                url: "6.sinif/8.haftaetkinlik.html"
             }
         ]
     }
