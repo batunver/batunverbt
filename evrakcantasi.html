@@ -1,37 +1,123 @@
-<!-- 5. Sınıf Yıllık Plan Kartı -->
-<div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 shadow-xl space-y-5 hover:border-blue-500/50 transition-all group">
-    <div class="flex items-center justify-between">
-        <span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20">2026 - 2027 Eğitim Öğretim Yılı</span>
-        <i class="fa-solid fa-file-excel text-emerald-400 text-xl"></i>
-    </div>
-    <div>
-        <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">5. Sınıf BTY Yıllık Planı</h3>
-        <p class="text-slate-400 text-xs mt-1">TYMM Müfredatına Uygun (İhsan Aras Ortaokulu)</p>
-    </div>
-    <div class="pt-2 flex items-center gap-3">
-        <!-- Görüntüle Butonu -->
-        <a href="https://view.officeapps.live.com/op/view.aspx?src=https://batunver.vercel.app/2026-2027_Bilisim_5_Sinif_Yillik_Plan.xlsx" target="_blank" class="flex-1 py-3 px-4 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg flex items-center justify-center space-x-2">
-            <i class="fa-solid fa-eye"></i>
-            <span>Planı Görüntüle</span>
-        </a>
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evrak Çantası - İhsan Aras Ortaokulu BTY Portalı</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome İkonlar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#3b82f6', 600: '#2563eb' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
 
-<!-- 6. Sınıf Yıllık Plan Kartı -->
-<div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 shadow-xl space-y-5 hover:border-cyan-500/50 transition-all group">
-    <div class="flex items-center justify-between">
-        <span class="bg-cyan-500/10 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/20">2026 - 2027 Eğitim Öğretim Yılı</span>
-        <i class="fa-solid fa-file-excel text-emerald-400 text-xl"></i>
-    </div>
-    <div>
-        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">6. Sınıf BTY Yıllık Planı</h3>
-        <p class="text-slate-400 text-xs mt-1">TYMM Müfredatına Uygun (İhsan Aras Ortaokulu)</p>
-    </div>
-    <div class="pt-2 flex items-center gap-3">
-        <!-- Görüntüle Butonu -->
-        <a href="https://view.officeapps.live.com/op/view.aspx?src=https://batunver.vercel.app/2026-2027_Bilisim_6_Sinif_Yillik_Plan.xlsx" target="_blank" class="flex-1 py-3 px-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg flex items-center justify-center space-x-2">
-            <i class="fa-solid fa-eye"></i>
-            <span>Planı Görüntüle</span>
-        </a>
-    </div>
-</div>
+    <!-- Üst Menü (Header) -->
+    <header class="bg-slate-800/90 backdrop-blur border-b border-slate-700/60 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+            <a href="index.html" class="flex items-center h-20 overflow-hidden group">
+                <img src="images/logo3.png" alt="Batunver" class="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+            </a>
+            <nav class="flex items-center space-x-2 sm:space-x-3">
+                <a href="index.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all">Ana Sayfa</a>
+                <a href="evrakcantasi.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/40 transition-all flex items-center space-x-1.5">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span>Evrak Çantası</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Ana İçerik -->
+    <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-8">
+
+        <!-- Sayfa Başlığı -->
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md space-y-3">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold border border-amber-500/30">
+                    <i class="fa-solid fa-briefcase text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Evrak Çantası</h1>
+                    <p class="text-slate-400 text-xs sm:text-sm">İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Yıllık Planları</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- YILLIK PLANLAR KART LİSTESİ -->
+        <section class="grid sm:grid-cols-2 gap-6">
+
+            <!-- 5. Sınıf Yıllık Plan Kartı -->
+            <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 shadow-xl space-y-5 hover:border-blue-500/50 transition-all group flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20">2026 - 2027 Eğitim Öğretim Yılı</span>
+                        <i class="fa-solid fa-file-excel text-emerald-400 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">5. Sınıf BTY Yıllık Planı</h3>
+                        <p class="text-slate-400 text-xs mt-1">TYMM Müfredatına Uygun (İhsan Aras Ortaokulu)</p>
+                    </div>
+                </div>
+
+                <!-- Çift Buton Alanı (Görüntüle + İndir) -->
+                <div class="pt-4 flex items-center gap-3">
+                    <a href="https://view.officeapps.live.com/op/view.aspx?src=https://batunver.vercel.app/2026-2027_Bilisim_5_Sinif_Yillik_Plan.xlsx" target="_blank" class="flex-1 py-3 px-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg flex items-center justify-center space-x-1.5">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>Görüntüle</span>
+                    </a>
+                    <a href="2026-2027_Bilisim_5_Sinif_Yillik_Plan.xlsx" download class="flex-1 py-3 px-3 bg-slate-700 hover:bg-slate-600 text-slate-200 hover:text-white font-bold text-xs rounded-xl transition-all border border-slate-600/60 flex items-center justify-center space-x-1.5">
+                        <i class="fa-solid fa-download"></i>
+                        <span>İndir</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 6. Sınıf Yıllık Plan Kartı -->
+            <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 shadow-xl space-y-5 hover:border-cyan-500/50 transition-all group flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="bg-cyan-500/10 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/20">2026 - 2027 Eğitim Öğretim Yılı</span>
+                        <i class="fa-solid fa-file-excel text-emerald-400 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">6. Sınıf BTY Yıllık Planı</h3>
+                        <p class="text-slate-400 text-xs mt-1">TYMM Müfredatına Uygun (İhsan Aras Ortaokulu)</p>
+                    </div>
+                </div>
+
+                <!-- Çift Buton Alanı (Görüntüle + İndir) -->
+                <div class="pt-4 flex items-center gap-3">
+                    <a href="https://view.officeapps.live.com/op/view.aspx?src=https://batunver.vercel.app/2026-2027_Bilisim_6_Sinif_Yillik_Plan.xlsx" target="_blank" class="flex-1 py-3 px-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg flex items-center justify-center space-x-1.5">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>Görüntüle</span>
+                    </a>
+                    <a href="2026-2027_Bilisim_6_Sinif_Yillik_Plan.xlsx" download class="flex-1 py-3 px-3 bg-slate-700 hover:bg-slate-600 text-slate-200 hover:text-white font-bold text-xs rounded-xl transition-all border border-slate-600/60 flex items-center justify-center space-x-1.5">
+                        <i class="fa-solid fa-download"></i>
+                        <span>İndir</span>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Alt Bilgi (Footer) -->
+    <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-400">
+        <p>&copy; 2026 BATUNVER - İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
+    </footer>
+
+</body>
+</html>
