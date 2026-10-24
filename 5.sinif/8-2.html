@@ -1,56 +1,141 @@
-
 <!DOCTYPE html>
 <html lang="tr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etkinlik 2: Uzantı Eşleştirme - İhsan Aras Ortaokulu BTY</title>
+    <title>Etkinlik 2: Tüm Uzantılar Eşleştirme Bulmacası - İhsan Aras Ortaokulu BTY</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#3b82f6', 600: '#2563eb' }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans p-6">
-    <div class="max-w-3xl mx-auto w-full space-y-6">
-        <div class="flex items-center justify-between bg-slate-800 p-6 rounded-3xl border border-slate-700">
-            <div>
-                <span class="bg-cyan-500/20 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/30">5. Sınıf • 8. Hafta</span>
-                <h1 class="text-2xl font-extrabold text-white mt-2">Dosya Uzantıları Eşleştirme Bulmacası</h1>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans p-4 sm:p-6 selection:bg-blue-500 selection:text-white">
+
+    <!-- Üst Bar -->
+    <div class="max-w-4xl mx-auto w-full space-y-6">
+        <div class="flex items-center justify-between bg-slate-800/90 backdrop-blur p-6 rounded-3xl border border-slate-700 shadow-2xl">
+            <div class="space-y-1">
+                <span class="bg-cyan-500/20 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/30">5. Sınıf • 8. Hafta Etkinliği</span>
+                <h1 class="text-xl sm:text-2xl font-extrabold text-white">Tüm Dosya Uzantıları Eşleştirme Bulmacası</h1>
+                <p class="text-slate-400 text-xs">Aşağıdaki tanım ve simgelere ait doğru dosya uzantılarını açılır menülerden seçerek bulmacayı tamamla!</p>
             </div>
-            <a href="javascript:history.back()" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-xs font-bold rounded-xl transition-all"><i class="fa-solid fa-arrow-left mr-1.5"></i> Geri Dön</a>
+            <a href="javascript:history.back()" class="px-4 py-2.5 bg-slate-700 hover:bg-slate-600 text-xs font-bold rounded-xl transition-all shadow-md flex items-center space-x-2 shrink-0">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="hidden sm:inline">Geri Dön</span>
+            </a>
         </div>
 
-        <div class="bg-slate-800/80 border border-slate-700 rounded-3xl p-6 space-y-4">
-            <h3 class="font-bold text-white text-base">Aşağıdaki dosya türlerini doğru uzantılarla eşleştirin:</h3>
-            
-            <div class="space-y-3">
-                <div class="p-3 bg-slate-900 border border-slate-700 rounded-xl flex justify-between items-center text-xs">
-                    <span>1. Word Metin Belgesi</span>
-                    <select class="bg-slate-800 border border-slate-700 text-amber-400 p-1.5 rounded-lg font-bold">
-                        <option>Seçiniz...</option>
-                        <option>.docx</option>
-                        <option>.xlsx</option>
-                        <option>.pdf</option>
-                    </select>
+        <!-- Skor Tablosu -->
+        <div class="bg-slate-800/60 border border-slate-700/80 rounded-2xl p-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold border border-amber-500/30">
+                    <i class="fa-solid fa-puzzle-piece text-lg"></i>
                 </div>
-                <div class="p-3 bg-slate-900 border border-slate-700 rounded-xl flex justify-between items-center text-xs">
-                    <span>2. Excel Tablo Dosyası</span>
-                    <select class="bg-slate-800 border border-slate-700 text-amber-400 p-1.5 rounded-lg font-bold">
-                        <option>Seçiniz...</option>
-                        <option>.docx</option>
-                        <option>.xlsx</option>
-                        <option>.pdf</option>
-                    </select>
-                </div>
-                <div class="p-3 bg-slate-900 border border-slate-700 rounded-xl flex justify-between items-center text-xs">
-                    <span>3. PDF Belge Formatı</span>
-                    <select class="bg-slate-800 border border-slate-700 text-amber-400 p-1.5 rounded-lg font-bold">
-                        <option>Seçiniz...</option>
-                        <option>.docx</option>
-                        <option>.xlsx</option>
-                        <option>.pdf</option>
-                    </select>
+                <div>
+                    <h3 class="font-bold text-white text-sm">Bulmaca Alanı</h3>
+                    <p class="text-xs text-slate-400">Toplam 8 Temel Uzantı</p>
                 </div>
             </div>
+            <span id="skor-gosterge" class="text-xs bg-blue-500/20 text-blue-300 px-4 py-2 rounded-xl border border-blue-500/30 font-extrabold shadow-inner">Doğru: 0 / 8</span>
+        </div>
+
+        <!-- Soru Kartları Listesi -->
+        <div class="grid gap-4" id="bulmaca-listesi">
+            <!-- JavaScript ile doldurulacak -->
+        </div>
+
+        <!-- Tebrikler Mesaj Alanı -->
+        <div id="bitis-mesaj" class="hidden bg-gradient-to-r from-emerald-900/80 to-slate-800 border border-emerald-500/50 p-6 rounded-3xl text-center space-y-3 shadow-2xl">
+            <div class="w-12 h-12 bg-emerald-500 text-white rounded-2xl mx-f flex items-center justify-center mx-auto text-xl shadow-lg">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h3 class="text-xl font-extrabold text-white">Tebrikler Harika İş Çıkardın! 🎉</h3>
+            <p class="text-xs text-slate-300">Tüm dosya uzantılarını başarıyla doğru yerleriyle eşleştirdin. Artık bilgisayarındaki dosyaları gözün kapalı tanırsın!</p>
         </div>
     </div>
+
+    <!-- Oyun Mantığı JavaScript -->
+    <script>
+        const bulmacaVerileri = [
+            { id: 1, ikon: "fa-file-word", renk: "text-blue-400", tanim: "Metin ve Kelime İşlemci Belgesi (Word)", dogru: ".docx" },
+            { id: 2, ikon: "fa-file-excel", renk: "text-emerald-400", tanim: "Tablo, Hesaplama ve Grafik Dosyası (Excel / Calc)", dogru: ".xlsx" },
+            { id: 3, ikon: "fa-file-pdf", renk: "text-rose-400", tanim: "Değiştirilemeyen Taşınabilir Belge Formatı (PDF)", dogru: ".pdf" },
+            { id: 4, ikon: "fa-file-code", renk: "text-amber-400", tanim: "Python Programlama Dili Kaynak Kodu", dogru: ".py" },
+            { id: 5, ikon: "fa-cat", renk: "text-purple-400", tanim: "Scratch Görsel Blok Kodlama Projesi", dogru: ".sb3" },
+            { id: 6, ikon: "fa-music", renk: "text-cyan-400", tanim: "Dijital Ses Kaydı ve Müzik Dosyası (MP3)", dogru: ".mp3" },
+            { id: 7, ikon: "fa-image", renk: "text-indigo-400", tanim: "Resim ve Fotoğraf Dosyası (Şeffaf Arka Plan)", dogru: ".png" },
+            { id: 8, ikon: "fa-file-zipper", renk: "text-yellow-400", tanim: "Boyut Küçülten Sıkıştırılmış Arşiv Dosyası", dogru: ".zip" }
+        ];
+
+        let dogruSayisi = 0;
+        const tumUzantilar = [".docx", ".xlsx", ".pdf", ".py", ".sb3", ".mp3", ".png", ".zip"];
+
+        function bulmacayiYukle() {
+            const container = document.getElementById('bulmaca-listesi');
+            container.innerHTML = '';
+
+            // Seçenekleri her yüklemede rastgele karıştır
+            let seceneklerKarisik = [...tumUzantilar].sort(() => Math.random() - 0.5);
+
+            bulmacaVerileri.forEach((item) => {
+                let card = document.createElement('div');
+                card.className = 'bg-slate-800/80 border border-slate-700/80 p-4 sm:p-5 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all hover:border-slate-600';
+                
+                card.innerHTML = `
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-slate-900 border border-slate-700 flex items-center justify-center text-xl ${item.renk} shrink-0 shadow-inner">
+                            <i class="fa-solid ${item.ikon}"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm sm:text-base">${item.tanim}</h4>
+                            <p class="text-xs text-slate-400">Bu dosyanın bilgisayardaki uzantısı nedir?</p>
+                        </div>
+                    </div>
+                    <div class="w-full sm:w-auto shrink-0">
+                        <select id="select-${item.id}" onchange="cevapKontrol(this, '${item.dogru}')" class="w-full sm:w-44 bg-slate-900 border border-slate-700 text-xs text-amber-400 font-bold p-3 rounded-xl focus:outline-none focus:border-blue-500 transition-all cursor-pointer">
+                            <option value="">Uzantı Seçiniz...</option>
+                            ${seceneklerKarisik.map(u => `<option value="${u}">${u}</option>`).join('')}
+                        </select>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function cevapKontrol(selectEl, dogruCevap) {
+            let secilen = selectEl.value;
+            if (secilen === "") return;
+
+            if (secilen === dogruCevap) {
+                selectEl.className = "w-full sm:w-44 bg-emerald-600/20 border border-emerald-500 text-xs text-emerald-300 font-bold p-3 rounded-xl transition-all";
+                selectEl.disabled = true;
+                dogruSayisi++;
+                document.getElementById('skor-gosterge').innerText = `Doğru: ${dogruSayisi} / 8`;
+
+                if (dogruSayisi === 8) {
+                    document.getElementById('bitis-mesaj').classList.remove('hidden');
+                    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                }
+            } else {
+                selectEl.className = "w-full sm:w-44 bg-rose-600/20 border border-rose-500 text-xs text-rose-300 font-bold p-3 rounded-xl transition-all animate-shake";
+                setTimeout(() => {
+                    selectEl.className = "w-full sm:w-44 bg-slate-900 border border-slate-700 text-xs text-amber-400 font-bold p-3 rounded-xl focus:outline-none focus:border-blue-500 transition-all cursor-pointer";
+                    selectEl.value = "";
+                }, 1200);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", bulmacayiYukle);
+    </script>
 </body>
 </html>
