@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etkinlik 2: Sürükle Bırak Uzantı Bulmacası - İhsan Aras Ortaokulu BTY</title>
+    <title>Etkinlik 2: Dosya Uzantıları Oyunu - İhsan Aras Ortaokulu BTY</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -18,22 +18,16 @@
             }
         }
     </script>
-    <style>
-        .surtunme-aktif {
-            border-color: #3b82f6 !important;
-            background-color: rgba(59, 130, 246, 0.1) !important;
-        }
-    </style>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans p-4 sm:p-6 selection:bg-blue-500 selection:text-white">
 
     <!-- Üst Bar -->
-    <div class="max-w-4xl mx-auto w-full space-y-6">
+    <div class="max-w-5xl mx-auto w-full space-y-6 flex-grow flex flex-col">
         <div class="flex items-center justify-between bg-slate-800/90 backdrop-blur p-6 rounded-3xl border border-slate-700 shadow-2xl">
             <div class="space-y-1">
                 <span class="bg-cyan-500/20 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/30">5. Sınıf • 8. Hafta Etkinliği</span>
-                <h1 class="text-xl sm:text-2xl font-extrabold text-white">Sürükle-Bırak Dosya Uzantıları Bulmacası</h1>
-                <p class="text-slate-400 text-xs">Uzantı kartlarını doğru tanımların yanına sürükleyip bırakın, ardından kontrol edin!</p>
+                <h1 class="text-xl sm:text-2xl font-extrabold text-white">İnteraktif Dosya Uzantıları Oyunu (Wordwall)</h1>
+                <p class="text-slate-400 text-xs">Etkinliği doğrudan aşağıdan oynayabilir veya tam ekran moduna geçebilirsiniz.</p>
             </div>
             <a href="javascript:history.back()" class="px-4 py-2.5 bg-slate-700 hover:bg-slate-600 text-xs font-bold rounded-xl transition-all shadow-md flex items-center space-x-2 shrink-0">
                 <i class="fa-solid fa-arrow-left"></i>
@@ -41,191 +35,29 @@
             </a>
         </div>
 
-        <!-- Üst Bilgi ve Kontrol Butonu -->
-        <div class="bg-slate-800/60 border border-slate-700/80 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold border border-amber-500/30">
-                    <i class="fa-solid fa-hand text-lg"></i>
+        <!-- Wordwall Oyun Gömme (Embed) Alanı -->
+        <div class="bg-slate-800/80 border border-slate-700/80 p-4 sm:p-6 rounded-3xl shadow-2xl flex-grow flex flex-col space-y-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2 text-amber-400 font-bold text-sm">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Wordwall Etkinlik Ekranı</span>
                 </div>
-                <div>
-                    <h3 class="font-bold text-white text-sm">Etkinlik Alanı</h3>
-                    <p class="text-xs text-slate-400">Tüm kartları yerleştirip kontrol edin</p>
-                </div>
+                <a href="https://wordwall.net/tr/resource/353953/dosya-uzant%C4%B1lar%C4%B1" target="_blank" class="text-xs bg-slate-700 hover:bg-slate-600 text-slate-200 px-3 py-1.5 rounded-xl border border-slate-600 transition-all flex items-center space-x-1.5">
+                    <i class="fa-solid fa-external-link-alt text-[10px]"></i>
+                    <span>Yeni Sekmede Aç</span>
+                </a>
             </div>
-            <button onclick="cevaplariKontrolEt()" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs rounded-xl transition-all shadow-lg shadow-blue-600/30 flex items-center space-x-2 cursor-pointer">
-                <i class="fa-solid fa-check-double"></i>
-                <span>Cevapları Kontrol Et</span>
-            </button>
-        </div>
 
-        <!-- 1. SÜRÜKLENEBİLİR UZANTI KARTLARI HAVUZU -->
-        <div class="bg-slate-800/80 border border-slate-700/80 p-5 rounded-3xl space-y-3 shadow-xl">
-            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Dosya Uzantısı Kartları (Sürükleyin):</h3>
-            <div id="havuz" class="flex flex-wrap gap-3 min-h-[70px] p-2 bg-slate-900/60 rounded-2xl border border-slate-700/50 items-center">
-                <!-- JavaScript ile doldurulacak -->
-            </div>
-        </div>
-
-        <!-- 2. HEDEF KUTULARI (BIRAKMA ALANLARI) -->
-        <div class="grid sm:grid-cols-2 gap-4" id="hedef-listesi">
-            <!-- JavaScript ile doldurulacak -->
-        </div>
-
-        <!-- Sonuç Bildirim Alanı -->
-        <div id="sonuc-mesaj" class="hidden p-6 rounded-3xl text-center space-y-3 shadow-2xl border">
-            <!-- JavaScript ile doldurulacak -->
-        </div>
-
-        <!-- EK ÖZELLİK: Harici Etkinlikler (Wordwall / LearningApps vb. Gömmek İçin) -->
-        <div class="bg-slate-800/50 border border-slate-700/60 p-6 rounded-3xl space-y-4">
-            <div class="flex items-center space-x-2 text-amber-400 font-bold text-sm">
-                <i class="fa-solid fa-globe"></i>
-                <span>Alternatif İnteraktif Etkinlik (Wordwall / LearningApps)</span>
-            </div>
-            <p class="text-xs text-slate-400">İleride bu alana harici bir etkileşimli oyun yerleştirmek isterseniz aşağıdaki iframe alanını kullanabilirsiniz:</p>
-            <div class="w-full h-96 bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden flex items-center justify-center relative">
-                <!-- ÖRNEK IFRAME KODU (Wordwall veya LearningApps linkinizi src kısmına yapıştırabilirsiniz) -->
-                <iframe src="about:blank" id="harici-oyun-frame" class="w-full h-full border-0"></iframe>
-                <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-slate-900/90 pointer-events-none" id="iframe-placeholder">
-                    <i class="fa-solid fa-gamepad text-4xl text-slate-600 mb-2"></i>
-                    <h4 class="font-bold text-white text-sm">Harici Oyun Alanı Boş</h4>
-                    <p class="text-xs text-slate-500 mt-1">Wordwall veya LearningApps embed kodunu buraya bağlayabilirsiniz.</p>
-                </div>
+            <!-- Iframe Konteyneri -->
+            <div class="w-full flex-grow min-h-[500px] bg-slate-900 border border-slate-700/80 rounded-2xl overflow-hidden relative shadow-inner">
+                <iframe src="https://wordwall.net/tr/embed/353953/dosya-uzant%C4%B1lar%C4%B1" width="100%" height="100%" frameborder="0" allowfullscreen class="w-full h-full absolute inset-0"></iframe>
             </div>
         </div>
     </div>
 
-    <!-- Sürükle Bırak ve Kontrol Mantığı JavaScript -->
-    <script>
-        const veriSeti = [
-            { id: "docx", uzanti: ".docx", ikon: "fa-file-word", renk: "text-blue-400", tanim: "Metin ve Kelime İşlemci Belgesi (Word)" },
-            { id: "xlsx", uzanti: ".xlsx", ikon: "fa-file-excel", renk: "text-emerald-400", tanim: "Tablo, Hesaplama ve Grafik Dosyası (Excel / Calc)" },
-            { id: "pdf", uzanti: ".pdf", ikon: "fa-file-pdf", renk: "text-rose-400", tanim: "Değiştirilemeyen Taşınabilir Belge Formatı (PDF)" },
-            { id: "py", uzanti: ".py", ikon: "fa-file-code", renk: "text-amber-400", tanim: "Python Programlama Dili Kaynak Kodu" },
-            { id: "sb3", uzanti: ".sb3", ikon: "fa-cat", renk: "text-purple-400", tanim: "Scratch Görsel Blok Kodlama Projesi" },
-            { id: "mp3", uzanti: ".mp3", ikon: "fa-music", renk: "text-cyan-400", tanim: "Dijital Ses Kaydı ve Müzik Dosyası (MP3)" },
-            { id: "png", uzanti: ".png", ikon: "fa-image", renk: "text-indigo-400", tanim: "Resim ve Fotoğraf Dosyası (Şeffaf Arka Plan)" },
-            { id: "zip", uzanti: ".zip", ikon: "fa-file-zipper", renk: "text-yellow-400", tanim: "Boyut Küçülten Sıkıştırılmış Arşiv Dosyası" }
-        ];
-
-        function oyunuBaslat() {
-            const havuz = document.getElementById('havuz');
-            const hedefListesi = document.getElementById('hedef-listesi');
-            havuz.innerHTML = '';
-            hedefListesi.innerHTML = '';
-
-            let karisikVeri = [...veriSeti].sort(() => Math.random() - 0.5);
-            let hedeflerKarisik = [...veriSeti].sort(() => Math.random() - 0.5);
-
-            // Havuz kartları
-            karisikVeri.forEach(item => {
-                let kart = document.createElement('div');
-                kart.id = `kart-${item.id}`;
-                kart.setAttribute('data-uzanti', item.id);
-                kart.className = "px-4 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl cursor-grab active:cursor-grabbing font-extrabold text-sm text-white shadow-md flex items-center space-x-2 transition-transform transform hover:scale-105";
-                kart.draggable = true;
-                kart.innerHTML = `<i class="fa-solid ${item.ikon} ${item.renk}"></i><span>${item.uzanti}</span>`;
-                
-                kart.addEventListener('dragstart', (e) => {
-                    e.dataTransfer.setData('text/plain', item.id);
-                });
-
-                havuz.appendChild(kart);
-            });
-
-            // Hedef kutuları
-            hedeflerKarisik.forEach(item => {
-                let kutu = document.createElement('div');
-                kutu.className = "bg-slate-800/80 border border-slate-700/80 p-4 rounded-2xl flex items-center justify-between gap-3 transition-all";
-                kutu.innerHTML = `
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-lg ${item.renk} shrink-0">
-                            <i class="fa-solid ${item.ikon}"></i>
-                        </div>
-                        <span class="text-xs sm:text-sm font-bold text-slate-200">${item.tanim}</span>
-                    </div>
-                    <div id="drop-${item.id}" data-hedef="${item.id}" class="drop-zone w-28 h-12 bg-slate-900/90 border-2 border-dashed border-slate-600 rounded-xl flex items-center justify-center text-xs font-bold text-slate-500 shrink-0 transition-all">
-                        Bırak
-                    </div>
-                `;
-
-                let dropZone = kutu.querySelector('.drop-zone');
-
-                dropZone.addEventListener('dragover', (e) => {
-                    e.preventDefault();
-                    dropZone.classList.add('surtunme-aktif');
-                });
-
-                dropZone.addEventListener('dragleave', () => {
-                    dropZone.classList.remove('surtunme-aktif');
-                });
-
-                dropZone.addEventListener('drop', (e) => {
-                    e.preventDefault();
-                    dropZone.classList.remove('surtunme-aktif');
-                    
-                    const suruklenenId = e.dataTransfer.getData('text/plain');
-                    const kart = document.getElementById(`kart-${suruklenenId}`);
-                    
-                    if (kart) {
-                        dropZone.innerHTML = "";
-                        dropZone.appendChild(kart);
-                        dropZone.className = "drop-zone w-auto px-3 h-12 bg-slate-900 border border-slate-600 rounded-xl flex items-center justify-center shrink-0 shadow-inner";
-                    }
-                });
-
-                hedefListesi.appendChild(kutu);
-            });
-        }
-
-        function cevaplariKontrolEt() {
-            let dogruSayisi = 0;
-            let toplamHedef = veriSeti.length;
-
-            veriSeti.forEach(item => {
-                const dropZone = document.getElementById(`drop-${item.id}`);
-                const yerlesenKart = dropZone.querySelector('[data-uzanti]');
-
-                if (yerlesenKart) {
-                    const uzantiId = yerlesenKart.getAttribute('data-uzanti');
-                    if (uzantiId === item.id) {
-                        dropZone.className = "w-auto px-3 h-12 bg-emerald-950/60 border-2 border-emerald-500 rounded-xl flex items-center justify-center shrink-0 shadow-lg";
-                        dogruSayisi++;
-                    } else {
-                        dropZone.className = "w-auto px-3 h-12 bg-rose-950/60 border-2 border-rose-500 rounded-xl flex items-center justify-center shrink-0 shadow-lg";
-                    }
-                } else {
-                    dropZone.className = "w-auto px-3 h-12 bg-amber-950/40 border-2 border-amber-500 rounded-xl flex items-center justify-center text-xs font-bold text-amber-400 shrink-0";
-                    dropZone.innerText = "Boş!";
-                }
-            });
-
-            const sonucDiv = document.getElementById('sonuc-mesaj');
-            sonucDiv.classList.remove('hidden');
-
-            if (dogruSayisi === toplamHedef) {
-                sonucDiv.className = "p-6 rounded-3xl text-center space-y-3 shadow-2xl bg-gradient-to-r from-emerald-900/80 to-slate-800 border border-emerald-500/50";
-                sonucDiv.innerHTML = `
-                    <div class="w-12 h-12 bg-emerald-500 text-white rounded-2xl mx-auto flex items-center justify-center text-xl shadow-lg">
-                        <i class="fa-solid fa-trophy"></i>
-                    </div>
-                    <h3 class="text-xl font-extrabold text-white">Mükemmel! Hepsini Doğru Bildin! 🎉</h3>
-                    <p class="text-xs text-slate-300">Tebrikler şampiyon, tüm eşleştirmeler kusursuz!</p>
-                `;
-            } else {
-                sonucDiv.className = "p-6 rounded-3xl text-center space-y-3 shadow-2xl bg-gradient-to-r from-slate-800 to-rose-950/60 border border-rose-500/50";
-                sonucDiv.innerHTML = `
-                    <div class="w-12 h-12 bg-rose-500 text-white rounded-2xl mx-auto flex items-center justify-center text-xl shadow-lg">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                    </div>
-                    <h3 class="text-xl font-extrabold text-white">Kontrol Tamamlandı: ${dogruSayisi} Doğru / ${toplamHedef}</h3>
-                    <p class="text-xs text-slate-300">Kırmızı işaretli hatalı eşleştirmeleri düzeltip tekrar kontrol edebilirsin!</p>
-                `;
-            }
-            sonucDiv.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        document.addEventListener("DOMContentLoaded", oyunuBaslat);
-    </script>
+    <!-- Alt Bilgi -->
+    <footer class="bg-slate-800/40 border-t border-slate-800 mt-12 py-6 text-center text-xs text-slate-400">
+        <p>&copy; 2026 BATUNVER - İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
+    </footer>
 </body>
 </html>
