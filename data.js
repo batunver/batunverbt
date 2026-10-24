@@ -79,24 +79,39 @@ const dersIcerikleri = {
             { baslik: "7. Hafta Ağ Türleri Eşleştirme", tur: "Eşleştirme", url: "5.sinif/7.haftaetkinlik.html" }
         ]
     },
+ // 5. Sınıf 7. Hafta (Önceki hafta burada bitiyor)
+    "5-hafta-7": {
+        // ... önceki haftanın içerikleri ...
+    },
+
+    // ---> BURAYA YAPIŞTIRACAKSINIZ <---
+    // 5. Sınıf 8. Hafta
     "5-hafta-8": {
-        sinif: 5,
+        sinif: "5. Sınıf",
         hafta: 8,
         baslik: "Dosya ve Klasör Yönetimi",
-        kazanim: "BT.5.1.3.1. Dosya ve klasör yönetiminin önemini açıklar.",
-        sunuUrl: "sunular/5-sinif-8-hafta.html",
-        dersNotu: `
-            <h3>📁 Dosya ve Klasör Yönetimi Konu Özeti</h3>
-            <p><b>Klasör (Dizin):</b> Dosyaları düzenli tutmak ve gruplandırmak için kullanılan dijital kutulardır.</p>
-            <p><b>Dosya:</b> Bilgisayardaki metin, resim, ses, video gibi verilerin her biridir.</p>
-            <p><b>Dosya Uzantısı:</b> Dosya adından sonra gelen noktadan sonraki kısımdır (<code>.docx</code>, <code>.jpg</code>, <code>.mp3</code> vb.). Dosyanın türünü belirler.</p>
-            <p><b>Yasaklı Karakterler:</b> Dosya/klasör isimlerinde <code>/ \\ : * ? " < > |</code> karakterleri kullanılamaz.</p>
-        `,
+        kazanim: "BT.5.2.2.1. Dosya ve klasör yönetimi ile ilgili temel kavramları açıklar. BT.5.2.2.2. Dosya ve klasörler üzerinde temel işlemleri yapar (oluşturma, taşıma, kopyalama, silme, yeniden adlandırma).",
+        aciklama: "Bu haftada bilgisayarımızdaki bilgileri düzenli tutmanın yollarını, uzantı mantığını, klasör açma, dosya taşıma, kopyalama ve silme işlemlerini uygulamalı olarak öğreniyoruz.",
         etkinlikler: [
             {
-                baslik: "5. Sınıf 8. Hafta: Dosya ve Klasör Yönetimi Etkinliği",
-                tur: "Akıllı Tahta Oyunu",
-                url: "5.sinif/8.haftaetkinlik.html"
+                baslik: "Etkinlik 1: Klasör Ağacı Oluşturma",
+                detay: "Masaüstünde adınıza bir ana klasör açın. İçine 'Dersler', 'Resimler' ve 'Projeler' adında üç alt klasör oluşturarak örnek dosyaları uygun yerlere taşıyın."
+            },
+            {
+                baslik: "Etkinlik 2: Dosya Uzantıları Eşleştirme Bulmacası",
+                detay: "Farklı dosya türlerini (.docx, .xlsx, .pdf, .mp3, .png) ait oldukları programlar ve simgelerle eşleştirin."
+            }
+        ],
+        sorular: [
+            {
+                soru: "Aşağıdakilerden hangisi bir klasör oluşturmanın kısayol tuş birleşimidir (Windows)?",
+                secenekler: ["Ctrl + C", "Ctrl + Shift + N", "Ctrl + V", "Ctrl + X"],
+                cevap: "Ctrl + Shift + N"
+            },
+            {
+                soru: "Bilgisayarda hazırladığımız bir metin belgesinin (Word) dosya uzantısı aşağıdakilerden hangisidir?",
+                secenekler: [".xlsx", ".pptx", ".docx", ".mp3"],
+                cevap: ".docx"
             }
         ]
     },
