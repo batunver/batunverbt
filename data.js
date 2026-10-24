@@ -84,8 +84,49 @@ const dersIcerikleri = {
         hafta: 8,
         baslik: "Dosya ve Klasör Yönetimi",
         kazanim: "BT.5.2.2.1. Dosya ve klasör yönetimi ile ilgili temel kavramları açıklar. BT.5.2.2.2. Dosya ve klasörler üzerinde temel işlemleri yapar (oluşturma, taşıma, kopyalama, silme, yeniden adlandırma).",
-        sunuUrl: "sunular/5-sinif-8-hafta.html",
-        dersNotu: "<p>Bu haftada bilgisayarımızdaki bilgileri düzenli tutmanın yollarını, uzantı mantığını, klasör açma, dosya taşıma, kopyalama ve silme işlemlerini uygulamalı olarak öğreniyoruz.</p>",
+        sunuUrl: "https://docs.google.com/presentation/d/1Ar_vqS7-VopYgt-tThOpA_A4WlxMksh8OZR89JDNDTw/embed?start=false&loop=false&delayms=3000",
+        dersNotu: `<div class="space-y-4">
+            <h3 class="font-bold text-white text-base">1. Temel Kavramlar: Dosya, Klasör ve Sürücü</h3>
+            <ul class="list-disc list-inside space-y-1 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Dosya (File):</strong> Bilgisayarda oluşturulan, kaydedilen ve içerisinde yazı, resim, müzik, video veya program kodları gibi veriler barındıran en temel kayıt birimidir. Her dosyanın bir adı, türünü belirten bir uzantısı ve kapladığı alanı gösteren bir boyutu vardır[cite: 3].</li>
+                <li><strong>Klasör (Dizin / Folder):</strong> Ortak bir özelliğe sahip dosyaları bir arada tutmak, karışıklığı önlemek ve aradığımız bilgiye hızla ulaşmak için kullanılan sanal kutulardır. Klasörlerin genellikle sarı bir simgesi vardır, uzantıları yoktur ve içleri boşken bellekte yer kaplamazlar. Bir klasörün içine açılan yeni klasöre Alt Klasör denir[cite: 3].</li>
+                <li><strong>Sürücü (Driver):</strong> Dosya ve klasörlerin kalıcı olarak saklandığı donanım alanlarıdır. İşletim sisteminde büyük harflerle ve iki nokta üst üste işaretiyle gösterilir: Yerel Disk (C:), Depolama (D:) veya taşınabilir bellek (E:) gibi[cite: 3].</li>
+            </ul>
+
+            <h3 class="font-bold text-white text-base pt-2">🔍 Bir Dosyanın Yapısı ve Dosya Yolu (Adres) Kavramı</h3>
+            <div class="bg-slate-900 p-4 rounded-2xl border border-slate-700 space-y-2 text-xs font-mono text-cyan-400">
+                <p>DOSYA YAPISI ÖRNEĞİ: Bilisim_Odevi.docx (Dosya Adı + Uzantı)</p>
+                <p>DOSYA YOLU: C:\\Okul\\5A_Sinifi\\Bilisim_Odevi.docx</p>
+            </div>
+            
+            <h3 class="font-bold text-white text-base pt-2">📋 Yaygın Dosya Türleri ve Uzantıları Tablosu</h3>
+            <ul class="list-disc list-inside space-y-1 text-slate-300 text-xs sm:text-sm">
+                <li><strong>Metin / Belge:</strong> .txt, .docx, .pdf (Yazı, ödev ve e-kitap dosyaları)[cite: 3]</li>
+                <li><strong>Resim / Görsel:</strong> .jpg, .png, .gif, .bmp (.png arka planı şeffaf tutar)[cite: 3]</li>
+                <li><strong>Ses / Müzik:</strong> .mp3, .wav, .ogg (Şarkı, ses kaydı ve efekt dosyaları)[cite: 3]</li>
+                <li><strong>Video / Film:</strong> .mp4, .avi, .mkv, .mov (Görüntü ve sesin bir arada olduğu hareketli medya)[cite: 3]</li>
+                <li><strong>Sunum & Tablo:</strong> .pptx, .xlsx (Slayt gösterileri ve hesaplama tabloları)[cite: 3]</li>
+                <li><strong>Sıkıştırılmış Arşiv:</strong> .zip, .rar (Birden fazla dosyayı tek pakette toplar)[cite: 3]</li>
+                <li><strong>Uygulama / Web:</strong> .exe, .html, .sb3 (Çalıştırılabilir program, web sayfası ve Scratch projesi)[cite: 3]</li>
+            </ul>
+
+            <h3 class="font-bold text-white text-base pt-2">⌨️ Pratik Klavye Kısayolları</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-300">
+                <div><strong>Ctrl + C:</strong> Seçili öğeyi Kopyalar[cite: 3]</div>
+                <div><strong>Ctrl + X:</strong> Seçili öğeyi Keser (taşır)[cite: 3]</div>
+                <div><strong>Ctrl + V:</strong> Kopyalanan veya kesilen öğeyi Yapıştırır[cite: 3]</div>
+                <div><strong>Ctrl + Z:</strong> Yapılan son işlemi Geri Alır[cite: 3]</div>
+                <div><strong>Ctrl + A:</strong> Tümünü Seçer[cite: 3]</div>
+                <div><strong>F2:</strong> Adını Değiştirir[cite: 3]</div>
+                <div><strong>Delete:</strong> Geri Dönüşüm Kutusu'na gönderir[cite: 3]</div>
+                <div><strong>Shift + Delete:</strong> Kalıcı olarak siler[cite: 3]</div>
+            </div>
+
+            <h3 class="font-bold text-white text-base pt-2">📌 İsimlendirme ve Seçim Kuralları</h3>
+            <p class="text-xs sm:text-sm text-slate-300"><strong>Yasaklı Karakterler:</strong> Dosya veya klasör isimlendirirken şu 9 sembol kesinlikle kullanılamaz: <strong>\\ / : * ? " &lt; &gt; |</strong>[cite: 3]</p>
+            <p class="text-xs sm:text-sm text-slate-300"><strong>Aynı İsim Kuralı:</strong> Aynı klasörün içinde hem adı hem de uzantısı birebir aynı olan iki dosya bulunamaz[cite: 3].</p>
+            <p class="text-xs sm:text-sm text-amber-400"><strong>💡 Aklında Olsun:</strong> Kopyala – Yapıştır yapıldığında dosya hem eski yerinde kalır hem yeni yerine çoğalır. Kes – Yapıştır yapıldığında ise dosya eski yerinden silinerek yeni konumuna taşınmış olur[cite: 3]!</p>
+        </div>`,
         etkinlikler: [
             { 
                 baslik: "Etkinlik 1: Klasör Ağacı ve Düzenleme", 
@@ -98,7 +139,7 @@ const dersIcerikleri = {
                 url: "5.sinif/8-2.html" 
             },
             { 
-                baslik: "Etkinlik 3: 20 Soruluk Değerlendirme Testi", 
+                baslik: "Etkinlik 3: Görsel Değerlendirme Testi", 
                 tur: "Test", 
                 url: "5.sinif/8-3.html" 
             }
