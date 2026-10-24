@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etkinlik 3: 20 Soruluk Kapsamlı Test - İhsan Aras Ortaokulu BTY</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#3b82f6', 600: '#2563eb' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans p-4 sm:p-6 selection:bg-blue-500 selection:text-white">
+
+    <div class="max-w-4xl mx-auto w-full space-y-6">
+        <!-- Üst Bar -->
+        <div class="flex items-center justify-between bg-slate-800/90 backdrop-blur p-6 rounded-3xl border border-slate-700 shadow-2xl">
+            <div class="space-y-1">
+                <span class="bg-emerald-500/20 text-emerald-400 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30">5. Sınıf • 8. Hafta Değerlendirme</span>
+                <h1 class="text-xl sm:text-2xl font-extrabold text-white">20 Soruluk Dosya ve Uzantı Bilgi Testi</h1>
+                <p class="text-slate-400 text-xs">Soruları dikkatle okuyup en doğru seçeneği işaretleyin ve test sonunda puanınızı görün!</p>
+            </div>
+            <a href="javascript:history.back()" class="px-4 py-2.5 bg-slate-700 hover:bg-slate-600 text-xs font-bold rounded-xl transition-all shadow-md flex items-center space-x-2 shrink-0">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="hidden sm:inline">Geri Dön</span>
+            </a>
+        </div>
+
+        <!-- Soruların Listesi -->
+        <div id="test-container" class="space-y-6">
+            <!-- JavaScript ile yüklenecek -->
+        </div>
+
+        <!-- Değerlendir Butonu -->
+        <div class="text-center pt-4 pb-12">
+            <button onclick="testiPuanla()" class="px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base rounded-2xl transition-all shadow-xl shadow-emerald-600/30 transform hover:scale-105 cursor-pointer">
+                <i class="fa-solid fa-square-check mr-2"></i> Testi Tamamla ve Puanımı Göster
+            </button>
+        </div>
+
+        <!-- Sonuç Alanı -->
+        <div id="sonuc-kutusu" class="hidden p-6 rounded-3xl text-center space-y-3 shadow-2xl border"></div>
+    </div>
+
+    <!-- Test Mantığı JavaScript -->
+    <script>
+        const sorular = [
+            { s: "1. Bilgisayarda hazırladığımız metin ve Word belgelerinin uzantısı nedir?", secenekler: [".docx", ".xlsx", ".pptx", ".pdf"], cevap: ".docx" },
+            { s: "2. Tablolama, hesaplama ve grafik işlemleri için hangi dosya uzantısı kullanılır?", secenekler: [".docx", ".xlsx", ".txt", ".mp3"], cevap: ".xlsx" },
+            { s: "3. Her bilgisayarda aynı görünümü koruyan, değiştirilmesi zor taşınabilir belge uzantısı hangisidir?", secenekler: [".png", ".pdf", ".zip", ".py"], cevap: ".pdf" },
+            { s: "4. Python programlama dilinde yazılan kaynak kod dosyalarının uzantısı nedir?", secenekler: [".py", ".sb3", ".js", ".html"], cevap: ".py" },
+            { s: "5. Scratch programında yapılan blok kodlama projelerinin uzantısı nedir?", secenekler: [".py", ".sb3", ".scratch", ".doc"], cevap: ".sb3" },
+            { s: "6. Boyut küçültmek ve dosyaları bir arada saklamak için kullanılan arşiv uzantısı hangisidir?", secenekler: [".rar", ".zip", ".7z", "Hepsi"], cevap: "Hepsi" },
+            { s: "7. Dijital ses kayıtları ve müzik dosyalarının en yaygın uzantısı nedir?", secenekler: [".mp3", ".mp4", ".avi", ".jpg"], cevap: ".mp3" },
+            { s: "8. Hareketli video ve film dosyalarının standart uzantılarından biri hangisidir?", secenekler: [".mp4", ".mp3", ".docx", ".png"], cevap: ".mp4" },
+            { s: "9. Saydam (şeffaf) arka planı destekleyen popüler resim uzantısı hangisidir?", secenekler: [".jpg", ".png", ".gif", ".bmp"], cevap: ".png" },
+            { s: "10. Sunum hazırlama programlarının (PowerPoint) standart dosya uzantısı nedir?", secenekler: [".pptx", ".docx", ".xlsx", ".pdf"], cevap: ".pptx" },
+            { s: "11. Bilgisayarda yeni bir klasör oluşturmanın klavye kısayolu (Windows) hangisidir?", secenekler: ["Ctrl + C", "Ctrl + Shift + N", "Ctrl + V", "Ctrl + X"], cevap: "Ctrl + Shift + N" },
+            { s: "12. Bir dosyayı silip doğrudan çöp kutusuna göndermeden kalıcı olarak silmek için hangi tuş kombinasyonu kullanılır?", secenekler: ["Shift + Delete", "Ctrl + Delete", "Alt + Delete", "Ctrl + Shift"], cevap: "Shift + Delete" },
+            { s: "13. Bilgisayardaki dosyalarımızı ve klasörlerimizi düzenli tutmamızı sağlayan sisteme ne ad verilir?", secenekler: ["Dosya ve Klasör Yönetimi", "Donanım Birimi", "İşletim Sistemi Çekirdeği", "Siber Güvenlik"], cevap: "Dosya ve Klasör Yönetimi" },
+            { s: "14. Aşağıdakilerden hangisi bir klasörün temel işlevlerinden biridir?", secenekler: ["Bilgisayarı hızlandırmak", "Dosyaları türlerine göre düzenli saklamak", "İnternete bağlanmak", "Antivirüs taraması yapmak"], cevap: "Dosyaları türlerine göre düzenli saklamak" },
+            { s: "15. Var olan bir dosyayı kopyalamanın klavye kısayolu hangisidir?", secenekler: ["Ctrl + C", "Ctrl + V", "Ctrl + X", "Ctrl + A"], cevap: "Ctrl + C" },
+            { s: "16. Kopyalanan veya kesilen bir dosyayı hedef klasöre yapıştırmanın kısayolu nedir?", secenekler: ["Ctrl + C", "Ctrl + V", "Ctrl + Z", "Ctrl + S"], cevap: "Ctrl + V" },
+            { s: "17. Bir dosyanın veya klasörün adını değiştirmek (yeniden adlandırmak) için hangi tuş kullanılır?", secenekler: ["F2", "F5", "F1", "Delete"], cevap: "F2" },
+            { s: "18. Sadece düz metin içeren, biçimlendirme barındırmayan dosya uzantısı nedir?", secenekler: [".txt", ".docx", ".pdf", ".rtf"], cevap: ".txt" },
+            { s: "19. İnternet sayfalarının yapısını oluşturan temel web dosyası uzantısı nedir?", secenekler: [".html", ".css", ".js", ".php"], cevap: ".html" },
+            { s: "20. Bilgisayarlarda doğrudan çalıştırılabilen program dosyalarının uzantısı genellikle nedir?", secenekler: [".exe", ".txt", ".mp3", ".zip"], cevap: ".exe" }
+        ];
+
+        function testiYukle() {
+            const container = document.getElementById('test-container');
+            container.innerHTML = '';
+
+            sorular.forEach((item, index) => {
+                let card = document.createElement('div');
+                card.className = "bg-slate-800/80 border border-slate-700/80 p-5 sm:p-6 rounded-3xl space-y-4 shadow-xl";
+                
+                card.innerHTML = `
+                    <h3 class="font-bold text-white text-sm sm:text-base">${item.s}</h3>
+                    <div class="grid sm:grid-cols-2 gap-2 pt-1">
+                        ${item.secenekler.map((sec, i) => `
+                            <label class="flex items-center space-x-3 p-3 bg-slate-900/80 hover:bg-slate-700/60 border border-slate-700/60 rounded-xl cursor-pointer transition-all">
+                                <input type="radio" name="soru-${index}" value="${sec}" class="text-emerald-500 focus:ring-emerald-400">
+                                <span class="text-xs sm:text-sm text-slate-200">${sec}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function testiPuanla() {
+            let dogruSayisi = 0;
+            sorular.forEach((item, index) => {
+                let secilen = document.querySelector(`input[name="soru-${index}"]:checked`);
+                if (secilen && secilen.value === item.cevap) {
+                    dogruSayisi++;
+                }
+            });
+
+            let puan = dogruSayisi * 5;
+            const sonucDiv = document.getElementById('sonuc-kutusu');
+            sonucDiv.classList.remove('hidden');
+
+            if (dogruSayisi >= 17) {
+                sonucDiv.className = "p-6 rounded-3xl text-center space-y-3 shadow-2xl bg-gradient-to-r from-emerald-900/80 to-slate-800 border border-emerald-500/50";
+                sonucDiv.innerHTML = `
+                    <div class="w-12 h-12 bg-emerald-500 text-white rounded-2xl mx-auto flex items-center justify-center text-xl shadow-lg"><i class="fa-solid fa-trophy"></i></div>
+                    <h3 class="text-xl font-extrabold text-white">Harika İş Çıkardın! Puanın: ${puan} (${dogruSayisi}/20 Doğru)</h3>
+                    <p class="text-xs text-slate-300">Konuyu mükemmel kavramışsın, tebrikler!</p>
+                `;
+            } else if (dogruSayisi >= 10) {
+                sonucDiv.className = "p-6 rounded-3xl text-center space-y-3 shadow-2xl bg-gradient-to-r from-blue-900/80 to-slate-800 border border-blue-500/50";
+                sonucDiv.innerHTML = `
+                    <div class="w-12 h-12 bg-blue-500 text-white rounded-2xl mx-auto flex items-center justify-center text-xl shadow-lg"><i class="fa-solid fa-thumbs-up"></i></div>
+                    <h3 class="text-xl font-extrabold text-white">İyi İş! Puanın: ${puan} (${dogruSayisi}/20 Doğru)</h3>
+                    <p class="text-xs text-slate-300">Birkaç eksikle konuyu biliyorsun, biraz daha tekrarla süper olursun.</p>
+                `;
+            } else {
+                sonucDiv.className = "p-6 rounded-3xl text-center space-y-3 shadow-2xl bg-gradient-to-r from-rose-950/80 to-slate-800 border border-rose-500/50";
+                sonucDiv.innerHTML = `
+                    <div class="w-12 h-12 bg-rose-500 text-white rounded-2xl mx-auto flex items-center justify-center text-xl shadow-lg"><i class="fa-solid fa-rotate-right"></i></div>
+                    <h3 class="text-xl font-extrabold text-white">Biraz Daha Çalışmalısın! Puanın: ${puan} (${dogruSayisi}/20 Doğru)</h3>
+                    <p class="text-xs text-slate-300">Ders notlarını ve sunuları inceleyip testi tekrar deneyebilirsin.</p>
+                `;
+            }
+
+            sonucDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.addEventListener("DOMContentLoaded", testiYukle);
+    </script>
+</body>
+</html>
