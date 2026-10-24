@@ -87,7 +87,16 @@ const dersIcerikleri = {
         sunuUrl: "sunular/5-sinif-8-hafta.html",
         dersNotu: "<p>Bu haftada bilgisayarımızdaki bilgileri düzenli tutmanın yollarını, uzantı mantığını, klasör açma, dosya taşıma, kopyalama ve silme işlemlerini uygulamalı olarak öğreniyoruz.</p>",
         etkinlikler: [
-            { baslik: "8. Hafta Klasör Yönetimi Etkinliği", tur: "Uygulama", url: "5.sinif/8.haftaetkinlik.html" }
+            { 
+                baslik: "Etkinlik 1: Klasör Ağacı ve Düzenleme", 
+                tur: "Uygulama", 
+                url: "5.sinif/8-1.html" 
+            },
+            { 
+                baslik: "Etkinlik 2: Dosya Uzantıları Eşleştirme", 
+                tur: "Bulmaca", 
+                url: "5.sinif/8-2.html" 
+            }
         ]
     },
 
