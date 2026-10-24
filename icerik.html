@@ -87,7 +87,7 @@
                 </div>
 
                 <!-- Sayfa İçi Tam Ekran Yapma Butonu -->
-                <button onclick="sunuyuTamEkranYap()" class="text-xs bg-slate-700/80 hover:bg-slate-700 text-slate-200 px-3.5 py-2 rounded-xl border border-slate-600/60 flex items-center space-x-2 transition-all">
+                <button onclick="ogeTamEkranYap('sunu-penceresi')" class="text-xs bg-slate-700/80 hover:bg-slate-700 text-slate-200 px-3.5 py-2 rounded-xl border border-slate-600/60 flex items-center space-x-2 transition-all cursor-pointer">
                     <i class="fa-solid fa-expand text-blue-400"></i>
                     <span class="hidden sm:inline">Tam Ekran</span>
                 </button>
@@ -171,6 +171,7 @@
                     veri.etkinlikler.forEach((etk, idx) => {
                         const etkNum = idx + 1;
                         const etkId = `etkinlik-${etkNum}`;
+                        const pencereId = `etk-pencere-${etkNum}`;
 
                         // Hızlı Erişim Butonu Ekleme
                         const btn = document.createElement('a');
@@ -179,7 +180,7 @@
                         btn.innerHTML = `<i class="fa-solid fa-gamepad text-purple-400"></i> <span>Etkinlik ${etkNum}</span>`;
                         butonlarBar.appendChild(btn);
 
-                        // Etkinlik Kutusunu Site İçine Göpme
+                        // Etkinlik Kutusunu Site İçine Gömmeli ve Tam Ekran Butonlu Oluşturma
                         const etkKart = document.createElement('div');
                         etkKart.id = etkId;
                         etkKart.className = "bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 shadow-xl space-y-4";
@@ -189,9 +190,18 @@
                                     <span class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs font-black border border-purple-500/30">${etkNum}</span>
                                     <h3 class="font-bold text-white text-base">${etk.baslik}</h3>
                                 </div>
-                                <span class="text-[10px] font-extrabold px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">${etk.tur || 'İnteraktif Etkinlik'}</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-[10px] font-extrabold px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">${etk.tur || 'İnteraktif Etkinlik'}</span>
+                                    <button onclick="ogeTamEkranYap('${pencereId}')" class="text-xs bg-slate-700/80 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-xl border border-slate-600/60 flex items-center space-x-1.5 transition-all cursor-pointer" title="Tam Ekran Yap">
+                                        <i class="fa-solid fa-expand text-purple-400"></i>
+                                        <span class="hidden sm:inline">Tam Ekran</span>
+                                    </button>
+                                    <a href="${etk.url}" target="_blank" class="text-xs bg-slate-700/80 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-xl border border-slate-600/60 flex items-center space-x-1.5 transition-all" title="Yeni Sekmede Aç">
+                                        <i class="fa-solid fa-external-link-alt text-purple-400"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="w-full aspect-[16/9] bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60">
+                            <div id="${pencereId}" class="w-full aspect-[16/9] bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60 relative flex items-center justify-center">
                                 <iframe src="${etk.url}" class="w-full h-full border-0" allowfullscreen></iframe>
                             </div>
                         `;
@@ -201,9 +211,11 @@
             }
         });
 
-        // Sunu Ekranını Tam Ekran Yapma Fonksiyonu
-        function sunuyuTamEkranYap() {
-            const elem = document.getElementById("sunu-penceresi");
+        // Genel Tam Ekran Yapma Fonksiyonu (Hem Sunu hem Tüm Etkinlikler İçin Çalışır)
+        function ogeTamEkranYap(elementId) {
+            const elem = document.getElementById(elementId);
+            if (!elem) return;
+            
             if (elem.requestFullscreen) {
                 elem.requestFullscreen();
             } else if (elem.webkitRequestFullscreen) { /* Safari */
