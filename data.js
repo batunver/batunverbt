@@ -84,7 +84,7 @@ const dersIcerikleri = {
         hafta: 8,
         baslik: "Dosya ve Klasör Yönetimi",
         kazanim: "BT.5.2.2.1. Dosya ve klasör yönetimi ile ilgili temel kavramları açıklar. BT.5.2.2.2. Dosya ve klasörler üzerinde temel işlemleri yapar (oluşturma, taşıma, kopyalama, silme, yeniden adlandırma).",
-        sunuUrl: "folder/5/Sunu/Dosya ve Klasor Yonetimi.pdf", // Doğrudan PDF dosya yolu
+        sunuUrl: "folder/5/Sunu/DosyaveKlasoryonetimi.pdf", // Doğrudan PDF dosya yolu
         dersNotuPdf: "folder/5/DersNotu/Dosya ve Klasor Yonetimi.pdf", // Ders Notu PDF yolu
         dersNotu: `<div class="space-y-4">
             <p class="text-xs text-slate-300">Bu haftanın ders notunu aşağıdan doğrudan PDF olarak inceleyebilir veya indirebilirsin.</p>
