@@ -1,108 +1,217 @@
-<!-- DERS NOTU VE ETKİNLİK BÖLÜMÜ -->
-<div style="margin: 30px 0; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-    
-    <!-- Başlık ve Açıklama -->
-    <div style="margin-bottom: 20px; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px;">
-        <h3 style="margin: 0 0 5px 0; color: #1e293b; font-size: 1.25rem;">📂 Ders Notu ve Etkinlik Merkezi</h3>
-        <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Bu haftaya ait ders notlarını indirebilir veya interaktif etkinlikleri başlatabilirsiniz.</p>
-    </div>
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ders İçeriği - BATUNVER</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome İkonlar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#3b82f6', 600: '#2563eb' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
 
-    <!-- 1. Doküman İndirme Alanı -->
-    <div style="margin-bottom: 20px;">
-        <h4 style="margin: 0 0 10px 0; color: #334155; font-size: 1rem;">Ders Notu İndir</h4>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <a href="dosyalar/bty_5_sinif_dosya_klasor_yonetimi.pdf" target="_blank" style="background-color: #e74c3c; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem;">
-                📄 PDF Olarak İndir
+    <!-- Üst Menü (Header) -->
+    <header class="bg-slate-800/90 backdrop-blur border-b border-slate-700/60 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center h-16 overflow-hidden group">
+                <img src="images/logo3.png" alt="BATUNVER" class="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
             </a>
-            <a href="dosyalar/bty_5_sinif_dosya_klasor_yonetimi.docx" target="_blank" style="background-color: #3498db; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem;">
-                📝 Word Olarak İndir
-            </a>
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="text-xs font-semibold px-4 py-2 rounded-xl bg-slate-700/80 hover:bg-slate-700 text-white transition-all border border-slate-600/50 flex items-center space-x-2">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Ana Sayfa</span>
+                </a>
+            </div>
         </div>
-    </div>
+    </header>
 
-    <!-- 2. Etkinlik Tetikleyici Alanı -->
-    <div>
-        <h4 style="margin: 0 0 10px 0; color: #334155; font-size: 1rem;">İnteraktif Etkinlikler ve Testler</h4>
-        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <button onclick="siteEtkinlikAc('eslestirme')" style="background-color: #2ecc71; color: white; border: none; padding: 10px 18px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px;">
-                🎮 Uzantı Eşleştirme Etkinliği
-            </button>
-            <button onclick="siteEtkinlikAc('test')" style="background-color: #9b59b6; color: white; border: none; padding: 10px 18px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px;">
-                📝 20 Soruluk Konu Testini Başlat
-            </button>
-        </div>
-    </div>
+    <!-- Ana İçerik -->
+    <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-8">
 
-    <!-- 3. Etkinlik Gösterim Kutusu (Başlangıçta Gizli) -->
-    <div id="site-etkinlik-kapsayici" style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 20px; background: #f8fafc; display: none; margin-top: 20px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 15px;">
-            <h3 id="site-etkinlik-baslik" style="margin: 0; font-size: 1.1rem; color: #1e293b;"></h3>
-            <button onclick="siteEtkinlikKapat()" style="background: #ef4444; color: white; border: none; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-weight: bold;">Kapat ✕</button>
-        </div>
-        <div id="site-etkinlik-govde"></div>
-    </div>
-
-</div>
-
-<!-- ETKİNLİK YÖNETİM SCRİPTİ -->
-<script>
-function siteEtkinlikAc(tur) {
-    const kapsayici = document.getElementById('site-etkinlik-kapsayici');
-    const baslik = document.getElementById('site-etkinlik-baslik');
-    const govde = document.getElementById('site-etkinlik-govde');
-    
-    kapsayici.style.display = 'block';
-    kapsayici.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    
-    if(tur === 'eslestirme') {
-        baslik.innerText = "🎮 Dosya Uzantıları Eşleştirme Bulmacası";
-        govde.innerHTML = `
-            <p style="margin-bottom: 15px; color: #475569;">Aşağıdaki dosya türlerini uygun açıklamalarla eşleştirin:</p>
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-                <div style="padding: 10px; background: white; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                    <span><strong>1. Metin Dosyaları</strong> (.txt, .docx, .pdf)</span>
-                    <select style="padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1;"><option>Seçiniz...</option><option>C. Metin, belge ve dokümanlar</option><option>A. Ses dosyaları</option></select>
+        <!-- 1. Ders Bilgi Kartı ve Matbu Hızlı Erişim Navigasyonu -->
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md space-y-6">
+            <div class="space-y-2">
+                <div class="flex items-center space-x-2">
+                    <span id="ders-sinif-hafta" class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20">
+                        Yükleniyor...
+                    </span>
                 </div>
-                <div style="padding: 10px; background: white; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                    <span><strong>2. Görsel Dosyaları</strong> (.jpg, .png, .gif)</span>
-                    <select style="padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1;"><option>Seçiniz...</option><option>D. Fotoğraf ve grafik formatları</option><option>B. Uygulama dosyaları</option></select>
+                <h1 id="ders-baslik" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                    Ders Konusu Yükleniyor...
+                </h1>
+                <p id="ders-kazanim" class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                    Kazanım yükleniyor...
+                </p>
+            </div>
+
+            <hr class="border-slate-700/60">
+
+            <!-- Matbu Hızlı Erişim Butonları (Tıklandığında Sayfa İçi Yumuşak Kaydırma) -->
+            <div class="flex flex-wrap gap-2.5 sm:gap-3" id="hizli-erisim-butonlari">
+                <a href="#ders-sunusu-alani" class="px-4 py-2.5 bg-blue-600/20 border border-blue-500/40 hover:bg-blue-600/40 text-blue-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm">
+                    <i class="fa-solid fa-file-powerpoint text-blue-400"></i>
+                    <span>Ders Sunusu</span>
+                </a>
+                <a href="#ders-notu-alani" class="px-4 py-2.5 bg-emerald-600/20 border border-emerald-500/40 hover:bg-emerald-600/40 text-emerald-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm">
+                    <i class="fa-solid fa-book-open text-emerald-400"></i>
+                    <span>Ders Notu</span>
+                </a>
+                <!-- Etkinlik Butonları JS İle Otomatik Buraya Eklenir -->
+            </div>
+        </div>
+
+        <!-- 2. DERS SUNUSU ALANI (Sitede Açılır / Görev Yapar) -->
+        <section id="ders-sunusu-alani" class="bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 shadow-xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-sm border border-blue-500/30">
+                        <i class="fa-solid fa-file-powerpoint"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-bold text-white">Ders Sunusu</h2>
+                        <p class="text-[11px] text-slate-400">Sunumu doğrudan sayfa üzerinde inceleyebilirsiniz.</p>
+                    </div>
                 </div>
-                <div style="padding: 10px; background: white; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                    <span><strong>3. Arşiv Dosyaları</strong> (.zip, .rar)</span>
-                    <select style="padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1;"><option>Seçiniz...</option><option>E. Sıkıştırılmış arşiv dosyaları</option><option>F. Video dosyaları</option></select>
+
+                <!-- Sayfa İçi Tam Ekran Yapma Butonu -->
+                <button onclick="sunuyuTamEkranYap()" class="text-xs bg-slate-700/80 hover:bg-slate-700 text-slate-200 px-3.5 py-2 rounded-xl border border-slate-600/60 flex items-center space-x-2 transition-all">
+                    <i class="fa-solid fa-expand text-blue-400"></i>
+                    <span class="hidden sm:inline">Tam Ekran</span>
+                </button>
+            </div>
+
+            <!-- Sitede Doğrudan Açılan Sunu Penceresi (Iframe) -->
+            <div id="sunu-penceresi" class="w-full aspect-video bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60 shadow-inner relative flex items-center justify-center">
+                <iframe id="sunu-iframe" class="w-full h-full border-0" src="" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+            </div>
+        </section>
+
+        <!-- 3. İNTERAKTİF ETKİNLİKLER ALANI (Etkinlik 1, 2, 3...) -->
+        <section id="etkinlikler-alani" class="space-y-6">
+            <div id="etkinlik-baslik-alani" class="hidden flex items-center space-x-3 border-b border-slate-800 pb-3">
+                <i class="fa-solid fa-puzzle-piece text-purple-400 text-xl"></i>
+                <h2 class="text-xl font-extrabold text-white tracking-wide">Ders Etkinlikleri</h2>
+            </div>
+
+            <!-- JavaScript ile Kaç Tane Etkinlik Var İse Buraya Kart Olarak Basılır -->
+            <div id="etkinlik-kartlari-container" class="space-y-6">
+                <!-- Etkinlikler Dinamik Dolacak -->
+            </div>
+        </section>
+
+        <!-- 4. DERS NOTU / KONU ÖZETİ ALANI -->
+        <section id="ders-notu-alani" class="bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 sm:p-8 shadow-xl space-y-4">
+            <div class="flex items-center space-x-3 border-b border-slate-700/60 pb-4">
+                <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm border border-emerald-500/30">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+                <div>
+                    <h2 class="text-lg font-bold text-white">Ders Notu / Konu Özeti</h2>
+                    <p class="text-[11px] text-slate-400">Haftanın önemli noktaları ve ders özeti.</p>
                 </div>
             </div>
-            <button onclick="alert('Harika! Eşleştirmeleri başarıyla tamamladın.')" style="margin-top: 15px; background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: 600;">Sonuçları Kontrol Et</button>
-        `;
-    } else if(tur === 'test') {
-        baslik.innerText = "📝 5. Sınıf BTY - Dosya ve Klasör Yönetimi Testi";
-        govde.innerHTML = `
-            <div style="max-height: 400px; overflow-y: auto; padding-right: 5px;">
-                <div style="margin-bottom: 15px; padding: 12px; background: white; border-radius: 6px; border: 1px solid #e2e8f0;">
-                    <p style="font-weight: 600; margin-bottom: 8px; color: #1e293b;">1. Aşağıdakilerden hangisi bilgi ve verilerin bilgisayarda saklandığı temel birimdir?</p>
-                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s1"> A) Ekran</label>
-                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s1"> B) Dosya</label>
-                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s1"> C) Klavye</label>
-                </div>
-                <div style="margin-bottom: 15px; padding: 12px; background: white; border-radius: 6px; border: 1px solid #e2e8f0;">
-                    <p style="font-weight: 600; margin-bottom: 8px; color: #1e293b;">2. Bir dosyayı Geri Dönüşüm Kutusu'na göndermeden kalıcı silmek için hangi kısayol kullanılır?</p>
-                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s2"> A) Ctrl + Delete</label>
-                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s2"> B) Shift + Delete</label>
-                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s2"> C) Alt + F4</label>
-                </div>
-                <div style="margin-bottom: 15px; padding: 12px; background: white; border-radius: 6px; border: 1px solid #e2e8f0;">
-                    <p style="font-weight: 600; margin-bottom: 8px; color: #1e293b;">3. Dosya veya klasör ismi verilirken hangi karakter kesinlikle <u>kullanılamaz</u>?</p>
-                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s3"> A) Alt çizgi (_)</label>
-                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s3"> B) Tire (-)</label>
-                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s3"> C) Yıldız (*)</label>
-                </div>
-            </div>
-            <button onclick="alert('Test başarıyla tamamlandı! Tüm soruları doğru yanıtladın.')" style="margin-top: 10px; background: #16a34a; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600; width: 100%;">Testi Bitir ve Puanı Gör</button>
-        `;
-    }
-}
 
-function siteEtkinlikKapat() {
-    document.getElementById('site-etkinlik-kapsayici').style.display = 'none';
-}
-</script>
+            <div id="ders-notu-icerik" class="text-slate-300 text-sm leading-relaxed space-y-4 pt-2">
+                <!-- Ders notu içeriği JS ile gelecek -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Alt Bilgi (Footer) -->
+    <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-400">
+        <p>&copy; 2026 BATUNVER - İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
+    </footer>
+
+    <!-- Scriptler -->
+    <script src="data.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const icerikId = urlParams.get('id') || '5-hafta-1'; // Varsayılan içerik ID
+
+            if (typeof dersIcerikleri !== 'undefined' && dersIcerikleri[icerikId]) {
+                const veri = dersIcerikleri[icerikId];
+
+                // 1. Temel Bilgileri Doldurma
+                document.getElementById('ders-sinif-hafta').innerText = `${veri.sinif}. Sınıf • ${veri.hafta}. Hafta`;
+                document.getElementById('ders-baslik').innerText = veri.baslik;
+                document.getElementById('ders-kazanim').innerText = `Kazanım: ${veri.kazanim}`;
+                
+                // 2. Sunuyu Sitede Açılır Hale Getirme (Iframe)
+                const sunuIframe = document.getElementById('sunu-iframe');
+                if (veri.sunuUrl) {
+                    sunuIframe.src = veri.sunuUrl;
+                }
+
+                // 3. Ders Notunu Doldurma
+                document.getElementById('ders-notu-icerik').innerHTML = veri.dersNotu || "<p class='text-slate-500 italic'>Bu hafta için henüz eklenmiş ders notu bulunmamaktadır.</p>";
+
+                // 4. Etkinlikleri Dinamik Doldurma
+                const butonlarBar = document.getElementById('hizli-erisim-butonlari');
+                const etkinlikContainer = document.getElementById('etkinlik-kartlari-container');
+                const etkinlikBaslik = document.getElementById('etkinlik-baslik-alani');
+
+                if (veri.etkinlikler && veri.etkinlikler.length > 0) {
+                    etkinlikBaslik.classList.remove('hidden');
+
+                    veri.etkinlikler.forEach((etk, idx) => {
+                        const etkNum = idx + 1;
+                        const etkId = `etkinlik-${etkNum}`;
+
+                        // Hızlı Erişim Butonu Ekleme
+                        const btn = document.createElement('a');
+                        btn.href = `#${etkId}`;
+                        btn.className = "px-4 py-2.5 bg-purple-600/20 border border-purple-500/40 hover:bg-purple-600/40 text-purple-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm";
+                        btn.innerHTML = `<i class="fa-solid fa-gamepad text-purple-400"></i> <span>Etkinlik ${etkNum}</span>`;
+                        butonlarBar.appendChild(btn);
+
+                        // Etkinlik Kutusunu Site İçine Göpme
+                        const etkKart = document.createElement('div');
+                        etkKart.id = etkId;
+                        etkKart.className = "bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 shadow-xl space-y-4";
+                        etkKart.innerHTML = `
+                            <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
+                                <div class="flex items-center space-x-3">
+                                    <span class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs font-black border border-purple-500/30">${etkNum}</span>
+                                    <h3 class="font-bold text-white text-base">${etk.baslik}</h3>
+                                </div>
+                                <span class="text-[10px] font-extrabold px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">${etk.tur || 'İnteraktif Etkinlik'}</span>
+                            </div>
+                            <div class="w-full aspect-[16/9] bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60">
+                                <iframe src="${etk.url}" class="w-full h-full border-0" allowfullscreen></iframe>
+                            </div>
+                        `;
+                        etkinlikContainer.appendChild(etkKart);
+                    });
+                }
+            }
+        });
+
+        // Sunu Ekranını Tam Ekran Yapma Fonksiyonu
+        function sunuyuTamEkranYap() {
+            const elem = document.getElementById("sunu-penceresi");
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
