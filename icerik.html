@@ -1,164 +1,96 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ders İçeriği - BATUNVER</title>
-    <!-- Sitenizin orijinal stil dosyaları buraya gelecektir -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<!-- ETKİNLİK VE İNDİRME BÖLÜMÜ (Orijinal site tasarımını bozmaz) -->
+<div class="ozel-ders-eklentileri" style="margin-top: 30px; padding: 20px 0; border-top: 1px solid #e2e8f0;">
 
-    <!-- ÜST BİLGİ / HEADER -->
-    <header>
-        <div>
-            <a href="index.html">
-                <img alt="BATUNVER" src="images/logo3.png">
-            </a>
-            <div>
-                <a href="index.html">
-                    <i>🏠</i>
-                    <span>Ana Sayfa</span>
-                </a>
-            </div>
+    <!-- 1. Ders Notu İndirme Butonları -->
+    <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+        <a href="dosyalar/bty_5_sinif_dosya_klasor_yonetimi.pdf" target="_blank" style="background-color: #e74c3c; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+            📄 Ders Notunu İndir (PDF)
+        </a>
+        <a href="dosyalar/bty_5_sinif_dosya_klasor_yonetimi.docx" target="_blank" style="background-color: #3498db; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+            📝 Ders Notunu İndir (Word)
+        </a>
+    </div>
+
+    <!-- 2. Etkinlik Tetikleyici Butonlar -->
+    <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;">
+        <button onclick="siteEtkinlikAc('eslestirme')" style="background-color: #2ecc71; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;">
+            🎮 Uzantı Eşleştirme Etkinliği
+        </button>
+        <button onclick="siteEtkinlikAc('test')" style="background-color: #9b59b6; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;">
+            📝 20 Soruluk Konu Testini Başlat
+        </button>
+    </div>
+
+    <!-- 3. Etkinlik Gösterim Kutusu -->
+    <div id="site-etkinlik-kapsayici" style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 20px; background: #ffffff; display: none; margin-top: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 15px;">
+            <h3 id="site-etkinlik-baslik" style="margin: 0; font-size: 1.1rem; color: #1e293b;"></h3>
+            <button onclick="siteEtkinlikKapat()" style="background: #ef4444; color: white; border: none; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-weight: bold;">Kapat ✕</button>
         </div>
-    </header>
+        <div id="site-etkinlik-govde"></div>
+    </div>
 
-    <!-- ANA İÇERİK ALANI -->
-    <main style="max-width: 900px; margin: 30px auto; padding: 0 20px;">
+</div>
 
-        <!-- ÜST BİLGİ KARTI -->
-        <div class="card" style="background: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 25px;">
-            <h1 id="konu-basligi" style="margin-top: 0; color: #1e293b;">5. Sınıf BTY - Dosya ve Klasör Yönetimi</h1>
-            <p id="konu-kazanim" style="color: #64748b;">Dijital verileri düzenleme, dosya uzantılarını tanıma ve pratik yönetim rehberi.</p>
-            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;">
-            <div style="display: flex; gap: 15px;">
-                <a href="#ders-sunusu-alani" style="text-decoration: none; color: #2563eb; font-weight: 600;">🖥️ Ders Sunusu</a>
-                <a href="#ders-notu-alani" style="text-decoration: none; color: #2563eb; font-weight: 600;">📄 Ders Notu</a>
-            </div>
-        </div>
-
-        <!-- 1. DERS SUNUSU BÖLÜMÜ -->
-        <section id="ders-sunusu-alani" style="margin-bottom: 30px;">
-            <div class="card" style="background: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                <h2>Ders Sunusu</h2>
-                <p>Sunumu doğrudan sayfa üzerinde inceleyebilirsiniz.</p>
-                <!-- Sunum Gömme Alanı (İframe veya Görsel) -->
-                <div style="background: #f8fafc; height: 300px; display: flex; align-items: center; justify-content: center; border-radius: 6px; border: 2px dashed #cbd5e1; color: #64748b; font-weight: 600;">
-                    [ Sunum Ekranı / Slayt Görüntüleyicisi ]
+<!-- ETKİNLİK YÖNETİM SCRİPTİ -->
+<script>
+function siteEtkinlikAc(tur) {
+    const kapsayici = document.getElementById('site-etkinlik-kapsayici');
+    const baslik = document.getElementById('site-etkinlik-baslik');
+    const govde = document.getElementById('site-etkinlik-govde');
+    
+    kapsayici.style.display = 'block';
+    kapsayici.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    
+    if(tur === 'eslestirme') {
+        baslik.innerText = "🎮 Dosya Uzantıları Eşleştirme Bulmacası";
+        govde.innerHTML = `
+            <p style="margin-bottom: 15px; color: #475569;">Aşağıdaki dosya türlerini uygun açıklamalarla eşleştirin:</p>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <span><strong>1. Metin Dosyaları</strong> (.txt, .docx, .pdf)</span>
+                    <select style="padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1;"><option>Seçiniz...</option><option>C. Metin, belge ve dokümanlar</option><option>A. Ses dosyaları</option></select>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <span><strong>2. Görsel Dosyaları</strong> (.jpg, .png, .gif)</span>
+                    <select style="padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1;"><option>Seçiniz...</option><option>D. Fotoğraf ve grafik formatları</option><option>B. Uygulama dosyaları</option></select>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <span><strong>3. Arşiv Dosyaları</strong> (.zip, .rar)</span>
+                    <select style="padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1;"><option>Seçiniz...</option><option>E. Sıkıştırılmış arşiv dosyaları</option><option>F. Video dosyaları</option></select>
                 </div>
             </div>
-        </section>
-
-        <!-- 2. DERS ETKİNLİKLERİ VE İNDİRME BÖLÜMÜ -->
-        <section id="ders-notu-alani" style="margin-bottom: 30px;">
-            <div class="card" style="background: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                <h2>Ders Etkinlikleri ve Notlar</h2>
-                <p>Haftanın önemli noktaları, indirilebilir notlar ve interaktif etkinlikler.</p>
-
-                <!-- İndirme Butonları -->
-                <div style="margin: 20px 0; display: flex; gap: 10px; flex-wrap: wrap;">
-                    <a href="dosyalar/bty_5_sinif_dosya_klasor_yonetimi.pdf" target="_blank" class="btn" style="background-color: #e74c3c; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
-                        📄 Ders Notunu İndir (PDF)
-                    </a>
-                    <a href="dosyalar/bty_5_sinif_dosya_klasor_yonetimi.docx" target="_blank" class="btn" style="background-color: #3498db; color: white; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
-                        📝 Ders Notunu İndir (Word)
-                    </a>
+            <button onclick="alert('Harika! Eşleştirmeleri başarıyla tamamladın.')" style="margin-top: 15px; background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: 600;">Sonuçları Kontrol Et</button>
+        `;
+    } else if(tur === 'test') {
+        baslik.innerText = "📝 5. Sınıf BTY - Dosya ve Klasör Yönetimi Testi";
+        govde.innerHTML = `
+            <div style="max-height: 400px; overflow-y: auto; padding-right: 5px;">
+                <div style="margin-bottom: 15px; padding: 12px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <p style="font-weight: 600; margin-bottom: 8px; color: #1e293b;">1. Aşağıdakilerden hangisi bilgi ve verilerin bilgisayarda saklandığı temel birimdir?</p>
+                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s1"> A) Ekran</label>
+                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s1"> B) Dosya</label>
+                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s1"> C) Klavye</label>
                 </div>
-
-                <!-- Etkinlik Tetikleyici Butonlar -->
-                <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;">
-                    <button onclick="siteEtkinlikAc('eslestirme')" class="btn" style="background-color: #2ecc71; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;">
-                        🎮 Uzantı Eşleştirme Etkinliği
-                    </button>
-                    <button onclick="siteEtkinlikAc('test')" class="btn" style="background-color: #9b59b6; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;">
-                        📝 20 Soruluk Konu Testini Başlat
-                    </button>
+                <div style="margin-bottom: 15px; padding: 12px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <p style="font-weight: 600; margin-bottom: 8px; color: #1e293b;">2. Bir dosyayı Geri Dönüşüm Kutusu'na göndermeden kalıcı silmek için hangi kısayol kullanılır?</p>
+                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s2"> A) Ctrl + Delete</label>
+                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s2"> B) Shift + Delete</label>
+                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s2"> C) Alt + F4</label>
                 </div>
-
-                <!-- İnteraktif Etkinlik Gösterim Alanı (Başlangıçta Gizli) -->
-                <div id="site-etkinlik-kapsayici" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; background: #f8fafc; display: none; margin-top: 15px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 15px;">
-                        <h3 id="site-etkinlik-baslik" style="margin: 0; font-size: 1.1rem; color: #1e293b;"></h3>
-                        <button onclick="siteEtkinlikKapat()" style="background: #ef4444; color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">Kapat ✕</button>
-                    </div>
-                    <div id="site-etkinlik-govde"></div>
+                <div style="margin-bottom: 15px; padding: 12px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <p style="font-weight: 600; margin-bottom: 8px; color: #1e293b;">3. Dosya veya klasör ismi verilirken hangi karakter kesinlikle <u>kullanılamaz</u>?</p>
+                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s3"> A) Alt çizgi (_)</label>
+                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s3"> B) Tire (-)</label>
+                    <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s3"> C) Yıldız (*)</label>
                 </div>
-
             </div>
-        </section>
-
-    </main>
-
-    <!-- ALT BİLGİ / FOOTER -->
-    <footer>
-        <p style="text-align: center; color: #64748b; padding: 20px 0; font-size: 0.9rem;">
-            © 2026 BATUNVER - İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Portalı
-        </p>
-    </footer>
-
-    <!-- ETKİNLİK YÖNETİM SCRİPTİ -->
-    <script>
-    function siteEtkinlikAc(tur) {
-        const kapsayici = document.getElementById('site-etkinlik-kapsayici');
-        const baslik = document.getElementById('site-etkinlik-baslik');
-        const govde = document.getElementById('site-etkinlik-govde');
-        
-        kapsayici.style.display = 'block';
-        kapsayici.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        
-        if(tur === 'eslestirme') {
-            baslik.innerText = "🎮 Dosya Uzantıları Eşleştirme Bulmacası";
-            govde.innerHTML = `
-                <p style="margin-bottom: 15px; color: #475569;">Aşağıdaki dosya türlerini uygun açıklamalarla eşleştirin:</p>
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <div style="padding: 10px; background: white; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                        <span><strong>1. Metin Dosyaları</strong> (.txt, .docx, .pdf)</span>
-                        <select style="padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1;"><option>Seçiniz...</option><option>C. Metin, belge ve dokümanlar</option><option>A. Ses dosyaları</option></select>
-                    </div>
-                    <div style="padding: 10px; background: white; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                        <span><strong>2. Görsel Dosyaları</strong> (.jpg, .png, .gif)</span>
-                        <select style="padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1;"><option>Seçiniz...</option><option>D. Fotoğraf ve grafik formatları</option><option>B. Uygulama dosyaları</option></select>
-                    </div>
-                    <div style="padding: 10px; background: white; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                        <span><strong>3. Arşiv Dosyaları</strong> (.zip, .rar)</span>
-                        <select style="padding: 6px; border-radius: 4px; border: 1px solid #cbd5e1;"><option>Seçiniz...</option><option>E. Sıkıştırılmış arşiv dosyaları</option><option>F. Video dosyaları</option></select>
-                    </div>
-                </div>
-                <button onclick="alert('Harika! Eşleştirmeleri başarıyla tamamladın.')" style="margin-top: 15px; background: #2563eb; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: 600;">Sonuçları Kontrol Et</button>
-            `;
-        } else if(tur === 'test') {
-            baslik.innerText = "📝 5. Sınıf BTY - Dosya ve Klasör Yönetimi Testi";
-            govde.innerHTML = `
-                <div style="max-height: 400px; overflow-y: auto; padding-right: 5px;">
-                    <div style="margin-bottom: 15px; padding: 12px; background: white; border-radius: 6px; border: 1px solid #e2e8f0;">
-                        <p style="font-weight: 600; margin-bottom: 8px; color: #1e293b;">1. Aşağıdakilerden hangisi bilgi ve verilerin bilgisayarda saklandığı temel birimdir?</p>
-                        <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s1"> A) Ekran</label>
-                        <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s1"> B) Dosya</label>
-                        <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s1"> C) Klavye</label>
-                    </div>
-                    <div style="margin-bottom: 15px; padding: 12px; background: white; border-radius: 6px; border: 1px solid #e2e8f0;">
-                        <p style="font-weight: 600; margin-bottom: 8px; color: #1e293b;">2. Bir dosyayı Geri Dönüşüm Kutusu'na göndermeden kalıcı silmek için hangi kısayol kullanılır?</p>
-                        <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s2"> A) Ctrl + Delete</label>
-                        <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s2"> B) Shift + Delete</label>
-                        <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s2"> C) Alt + F4</label>
-                    </div>
-                    <div style="margin-bottom: 15px; padding: 12px; background: white; border-radius: 6px; border: 1px solid #e2e8f0;">
-                        <p style="font-weight: 600; margin-bottom: 8px; color: #1e293b;">3. Dosya veya klasör ismi verilirken hangi karakter kesinlikle <u>kullanılamaz</u>?</p>
-                        <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s3"> A) Alt çizgi (_)</label>
-                        <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s3"> B) Tire (-)</label>
-                        <label style="display: block; margin-bottom: 5px; cursor: pointer;"><input type="radio" name="test_s3"> C) Yıldız (*)</label>
-                    </div>
-                </div>
-                <button onclick="alert('Test başarıyla tamamlandı! Tüm soruları doğru yanıtladın.')" style="margin-top: 10px; background: #16a34a; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600; width: 100%;">Testi Bitir ve Puanı Gör</button>
-            `;
-        }
+            <button onclick="alert('Test başarıyla tamamlandı! Tüm soruları doğru yanıtladın.')" style="margin-top: 10px; background: #16a34a; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600; width: 100%;">Testi Bitir ve Puanı Gör</button>
+        `;
     }
+}
 
-    function siteEtkinlikKapat() {
-        document.getElementById('site-etkinlik-kapsayici').style.display = 'none';
-    }
-    </script>
-
-</body>
-</html>
+function siteEtkinlikKapat() {
+    document.getElementById('site-etkinlik-kapsayici').style.display = 'none';
+}
+</script>
