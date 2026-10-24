@@ -33,7 +33,7 @@
             <div class="space-y-1">
                 <span class="bg-cyan-500/20 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/30">5. Sınıf • 8. Hafta Etkinliği</span>
                 <h1 class="text-xl sm:text-2xl font-extrabold text-white">Sürükle-Bırak Dosya Uzantıları Bulmacası</h1>
-                <p class="text-slate-400 text-xs">Yukarıdaki dosya uzantısı kartlarını tutun ve aşağıdaki doğru tanım kutusunun üzerine bırakın!</p>
+                <p class="text-slate-400 text-xs">Uzantı kartlarını doğru tanımların yanına sürükleyip bırakın, ardından kontrol edin!</p>
             </div>
             <a href="javascript:history.back()" class="px-4 py-2.5 bg-slate-700 hover:bg-slate-600 text-xs font-bold rounded-xl transition-all shadow-md flex items-center space-x-2 shrink-0">
                 <i class="fa-solid fa-arrow-left"></i>
@@ -41,18 +41,21 @@
             </a>
         </div>
 
-        <!-- Skor Tablosu -->
-        <div class="bg-slate-800/60 border border-slate-700/80 rounded-2xl p-4 flex items-center justify-between">
+        <!-- Üst Bilgi ve Kontrol Butonu -->
+        <div class="bg-slate-800/60 border border-slate-700/80 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold border border-amber-500/30">
                     <i class="fa-solid fa-hand text-lg"></i>
                 </div>
                 <div>
-                    <h3 class="font-bold text-white text-sm">Sürükleme Alanı</h3>
-                    <p class="text-xs text-slate-400">Kartları hedefe bırakın</p>
+                    <h3 class="font-bold text-white text-sm">Etkinlik Alanı</h3>
+                    <p class="text-xs text-slate-400">Tüm kartları yerleştirip kontrol edin</p>
                 </div>
             </div>
-            <span id="skor-gosterge" class="text-xs bg-blue-500/20 text-blue-300 px-4 py-2 rounded-xl border border-blue-500/30 font-extrabold shadow-inner">Yerleşen: 0 / 8</span>
+            <button onclick="cevaplariKontrolEt()" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs rounded-xl transition-all shadow-lg shadow-blue-600/30 flex items-center space-x-2 cursor-pointer">
+                <i class="fa-solid fa-check-double"></i>
+                <span>Cevapları Kontrol Et</span>
+            </button>
         </div>
 
         <!-- 1. SÜRÜKLENEBİLİR UZANTI KARTLARI HAVUZU -->
@@ -68,17 +71,31 @@
             <!-- JavaScript ile doldurulacak -->
         </div>
 
-        <!-- Tebrikler Mesaj Alanı -->
-        <div id="bitis-mesaj" class="hidden bg-gradient-to-r from-emerald-900/80 to-slate-800 border border-emerald-500/50 p-6 rounded-3xl text-center space-y-3 shadow-2xl">
-            <div class="w-12 h-12 bg-emerald-500 text-white rounded-2xl mx-auto flex items-center justify-center text-xl shadow-lg">
-                <i class="fa-solid fa-trophy"></i>
+        <!-- Sonuç Bildirim Alanı -->
+        <div id="sonuc-mesaj" class="hidden p-6 rounded-3xl text-center space-y-3 shadow-2xl border">
+            <!-- JavaScript ile doldurulacak -->
+        </div>
+
+        <!-- EK ÖZELLİK: Harici Etkinlikler (Wordwall / LearningApps vb. Gömmek İçin) -->
+        <div class="bg-slate-800/50 border border-slate-700/60 p-6 rounded-3xl space-y-4">
+            <div class="flex items-center space-x-2 text-amber-400 font-bold text-sm">
+                <i class="fa-solid fa-globe"></i>
+                <span>Alternatif İnteraktif Etkinlik (Wordwall / LearningApps)</span>
             </div>
-            <h3 class="text-xl font-extrabold text-white">Harika İş Çıkardın Şampiyon! 🎉</h3>
-            <p class="text-xs text-slate-300">Tüm dosya uzantılarını doğru yerlere sürükleyip bıraktın. Bilgisayar kullanımında artık uzmansın!</p>
+            <p class="text-xs text-slate-400">İleride bu alana harici bir etkileşimli oyun yerleştirmek isterseniz aşağıdaki iframe alanını kullanabilirsiniz:</p>
+            <div class="w-full h-96 bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden flex items-center justify-center relative">
+                <!-- ÖRNEK IFRAME KODU (Wordwall veya LearningApps linkinizi src kısmına yapıştırabilirsiniz) -->
+                <iframe src="about:blank" id="harici-oyun-frame" class="w-full h-full border-0"></iframe>
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-slate-900/90 pointer-events-none" id="iframe-placeholder">
+                    <i class="fa-solid fa-gamepad text-4xl text-slate-600 mb-2"></i>
+                    <h4 class="font-bold text-white text-sm">Harici Oyun Alanı Boş</h4>
+                    <p class="text-xs text-slate-500 mt-1">Wordwall veya LearningApps embed kodunu buraya bağlayabilirsiniz.</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Sürükle Bırak Mantığı JavaScript -->
+    <!-- Sürükle Bırak ve Kontrol Mantığı JavaScript -->
     <script>
         const veriSeti = [
             { id: "docx", uzanti: ".docx", ikon: "fa-file-word", renk: "text-blue-400", tanim: "Metin ve Kelime İşlemci Belgesi (Word)" },
@@ -91,22 +108,20 @@
             { id: "zip", uzanti: ".zip", ikon: "fa-file-zipper", renk: "text-yellow-400", tanim: "Boyut Küçülten Sıkıştırılmış Arşiv Dosyası" }
         ];
 
-        let yerlesenSayisi = 0;
-
         function oyunuBaslat() {
             const havuz = document.getElementById('havuz');
             const hedefListesi = document.getElementById('hedef-listesi');
             havuz.innerHTML = '';
             hedefListesi.innerHTML = '';
 
-            // Kartları ve hedefleri karıştır
             let karisikVeri = [...veriSeti].sort(() => Math.random() - 0.5);
             let hedeflerKarisik = [...veriSeti].sort(() => Math.random() - 0.5);
 
-            // Uzantı kartlarını havuza ekle
+            // Havuz kartları
             karisikVeri.forEach(item => {
                 let kart = document.createElement('div');
                 kart.id = `kart-${item.id}`;
+                kart.setAttribute('data-uzanti', item.id);
                 kart.className = "px-4 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl cursor-grab active:cursor-grabbing font-extrabold text-sm text-white shadow-md flex items-center space-x-2 transition-transform transform hover:scale-105";
                 kart.draggable = true;
                 kart.innerHTML = `<i class="fa-solid ${item.ikon} ${item.renk}"></i><span>${item.uzanti}</span>`;
@@ -118,7 +133,7 @@
                 havuz.appendChild(kart);
             });
 
-            // Hedef kutularını ekle
+            // Hedef kutuları
             hedeflerKarisik.forEach(item => {
                 let kutu = document.createElement('div');
                 kutu.className = "bg-slate-800/80 border border-slate-700/80 p-4 rounded-2xl flex items-center justify-between gap-3 transition-all";
@@ -129,7 +144,7 @@
                         </div>
                         <span class="text-xs sm:text-sm font-bold text-slate-200">${item.tanim}</span>
                     </div>
-                    <div id="drop-${item.id}" data-id="${item.id}" class="drop-zone w-24 h-11 bg-slate-900/90 border-2 border-dashed border-slate-600 rounded-xl flex items-center justify-center text-xs font-bold text-slate-500 shrink-0 transition-all">
+                    <div id="drop-${item.id}" data-hedef="${item.id}" class="drop-zone w-28 h-12 bg-slate-900/90 border-2 border-dashed border-slate-600 rounded-xl flex items-center justify-center text-xs font-bold text-slate-500 shrink-0 transition-all">
                         Bırak
                     </div>
                 `;
@@ -150,37 +165,64 @@
                     dropZone.classList.remove('surtunme-aktif');
                     
                     const suruklenenId = e.dataTransfer.getData('text/plain');
-                    const hedefId = dropZone.getAttribute('data-id');
-
-                    if (suruklenenId === hedefId) {
-                        // Doğru eşleşme
-                        const kart = document.getElementById(`kart-${suruklenenId}`);
-                        if (kart) {
-                            kart.draggable = false;
-                            kart.className = "px-3 py-1.5 bg-emerald-600/20 border border-emerald-500 text-emerald-300 rounded-lg text-xs font-extrabold flex items-center space-x-1.5 shadow-inner cursor-default";
-                            dropZone.innerHTML = "";
-                            dropZone.appendChild(kart);
-                            dropZone.className = "w-auto px-3 h-11 bg-emerald-950/40 border border-emerald-500/50 rounded-xl flex items-center justify-center shrink-0";
-                            
-                            yerlesenSayisi++;
-                            document.getElementById('skor-gosterge').innerText = `Yerleşen: ${yerlesenSayisi} / 8`;
-
-                            if (yerlesenSayisi === 8) {
-                                document.getElementById('bitis-mesaj').classList.remove('hidden');
-                                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-                            }
-                        }
-                    } else {
-                        // Yanlış bırakma efekti
-                        dropZone.classList.add('bg-rose-950/40', 'border-rose-500');
-                        setTimeout(() => {
-                            dropZone.classList.remove('bg-rose-950/40', 'border-rose-500');
-                        }, 800);
+                    const kart = document.getElementById(`kart-${suruklenenId}`);
+                    
+                    if (kart) {
+                        dropZone.innerHTML = "";
+                        dropZone.appendChild(kart);
+                        dropZone.className = "drop-zone w-auto px-3 h-12 bg-slate-900 border border-slate-600 rounded-xl flex items-center justify-center shrink-0 shadow-inner";
                     }
                 });
 
                 hedefListesi.appendChild(kutu);
             });
+        }
+
+        function cevaplariKontrolEt() {
+            let dogruSayisi = 0;
+            let toplamHedef = veriSeti.length;
+
+            veriSeti.forEach(item => {
+                const dropZone = document.getElementById(`drop-${item.id}`);
+                const yerlesenKart = dropZone.querySelector('[data-uzanti]');
+
+                if (yerlesenKart) {
+                    const uzantiId = yerlesenKart.getAttribute('data-uzanti');
+                    if (uzantiId === item.id) {
+                        dropZone.className = "w-auto px-3 h-12 bg-emerald-950/60 border-2 border-emerald-500 rounded-xl flex items-center justify-center shrink-0 shadow-lg";
+                        dogruSayisi++;
+                    } else {
+                        dropZone.className = "w-auto px-3 h-12 bg-rose-950/60 border-2 border-rose-500 rounded-xl flex items-center justify-center shrink-0 shadow-lg";
+                    }
+                } else {
+                    dropZone.className = "w-auto px-3 h-12 bg-amber-950/40 border-2 border-amber-500 rounded-xl flex items-center justify-center text-xs font-bold text-amber-400 shrink-0";
+                    dropZone.innerText = "Boş!";
+                }
+            });
+
+            const sonucDiv = document.getElementById('sonuc-mesaj');
+            sonucDiv.classList.remove('hidden');
+
+            if (dogruSayisi === toplamHedef) {
+                sonucDiv.className = "p-6 rounded-3xl text-center space-y-3 shadow-2xl bg-gradient-to-r from-emerald-900/80 to-slate-800 border border-emerald-500/50";
+                sonucDiv.innerHTML = `
+                    <div class="w-12 h-12 bg-emerald-500 text-white rounded-2xl mx-auto flex items-center justify-center text-xl shadow-lg">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-white">Mükemmel! Hepsini Doğru Bildin! 🎉</h3>
+                    <p class="text-xs text-slate-300">Tebrikler şampiyon, tüm eşleştirmeler kusursuz!</p>
+                `;
+            } else {
+                sonucDiv.className = "p-6 rounded-3xl text-center space-y-3 shadow-2xl bg-gradient-to-r from-slate-800 to-rose-950/60 border border-rose-500/50";
+                sonucDiv.innerHTML = `
+                    <div class="w-12 h-12 bg-rose-500 text-white rounded-2xl mx-auto flex items-center justify-center text-xl shadow-lg">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-white">Kontrol Tamamlandı: ${dogruSayisi} Doğru / ${toplamHedef}</h3>
+                    <p class="text-xs text-slate-300">Kırmızı işaretli hatalı eşleştirmeleri düzeltip tekrar kontrol edebilirsin!</p>
+                `;
+            }
+            sonucDiv.scrollIntoView({ behavior: 'smooth' });
         }
 
         document.addEventListener("DOMContentLoaded", oyunuBaslat);
