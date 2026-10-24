@@ -93,16 +93,17 @@ const dersIcerikleri = {
                 url: "5.sinif/8-1.html" 
             },
             { 
-                baslik: "Etkinlik 2: Dosya Uzantıları Eşleştirme", 
-                tur: "Bulmaca", 
+                baslik: "Etkinlik 2: Dosya Uzantıları Oyunu", 
+                tur: "Wordwall", 
                 url: "5.sinif/8-2.html" 
+            },
+            { 
+                baslik: "Etkinlik 3: 20 Soruluk Değerlendirme Testi", 
+                tur: "Test", 
+                url: "5.sinif/8-3.html" 
             }
         ]
     },
-
-    // =================================================================
-    // 6. SINIF DERS İÇERİKLERİ
-    // =================================================================
     "6-hafta-1": {
         sinif: 6,
         hafta: 1,
