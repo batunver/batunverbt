@@ -79,27 +79,23 @@ const dersIcerikleri = {
             { baslik: "7. Hafta Ağ Türleri Eşleştirme", tur: "Eşleştirme", url: "5.sinif/7.haftaetkinlik.html" }
         ]
     },
- // 5. Sınıf 7. Hafta (Önceki hafta burada bitiyor)
-    "5-hafta-7": {
-        // ... önceki haftanın içerikleri ...
-    },
-
-    // ---> BURAYA YAPIŞTIRACAKSINIZ <---
-    // 5. Sınıf 8. Hafta
     "5-hafta-8": {
-        sinif: "5. Sınıf",
+        sinif: 5,
         hafta: 8,
         baslik: "Dosya ve Klasör Yönetimi",
         kazanim: "BT.5.2.2.1. Dosya ve klasör yönetimi ile ilgili temel kavramları açıklar. BT.5.2.2.2. Dosya ve klasörler üzerinde temel işlemleri yapar (oluşturma, taşıma, kopyalama, silme, yeniden adlandırma).",
-        aciklama: "Bu haftada bilgisayarımızdaki bilgileri düzenli tutmanın yollarını, uzantı mantığını, klasör açma, dosya taşıma, kopyalama ve silme işlemlerini uygulamalı olarak öğreniyoruz.",
+        sunuUrl: "sunular/5-sinif-8-hafta.html",
+        dersNotu: "<p>Bu haftada bilgisayarımızdaki bilgileri düzenli tutmanın yollarını, uzantı mantığını, klasör açma, dosya taşıma, kopyalama ve silme işlemlerini uygulamalı olarak öğreniyoruz.</p>",
         etkinlikler: [
             {
                 baslik: "Etkinlik 1: Klasör Ağacı Oluşturma",
-                detay: "Masaüstünde adınıza bir ana klasör açın. İçine 'Dersler', 'Resimler' ve 'Projeler' adında üç alt klasör oluşturarak örnek dosyaları uygun yerlere taşıyın."
+                tur: "Uygulama",
+                url: "5.sinif/8.haftaetkinlik1.html"
             },
             {
                 baslik: "Etkinlik 2: Dosya Uzantıları Eşleştirme Bulmacası",
-                detay: "Farklı dosya türlerini (.docx, .xlsx, .pdf, .mp3, .png) ait oldukları programlar ve simgelerle eşleştirin."
+                tur: "Eşleştirme",
+                url: "5.sinif/8.haftaetkinlik2.html"
             }
         ],
         sorular: [
@@ -181,39 +177,3 @@ const dersIcerikleri = {
         kazanim: "BT.6.1.2.3. İnternet üzerinden işbirliği ve paylaşım araçlarını kullanır.",
         sunuUrl: "sunular/6-sinif-6-hafta.html",
         dersNotu: "<p>Bulut depolama servisleri (Google Drive, EBA Bulut) ile ortak dosya düzenleme yöntemleri.</p>",
-        etkinlikler: [
-            { baslik: "6. Hafta Bulut Depolama Etkinliği", tur: "Soru-Cevap", url: "6.sinif/6.haftaetkinlik.html" }
-        ]
-    },
-    "6-hafta-7": {
-        sinif: 6,
-        hafta: 7,
-        baslik: "Kelime İşlemci Programlarında İleri Özellikler",
-        kazanim: "BT.6.1.3.1. Kelime işlemci programlarında tablo, resim ve düzenleme işlemlerini yürütür.",
-        sunuUrl: "sunular/6-sinif-7-hafta.html",
-        dersNotu: "<p>Metin belgesi düzenleme, hizalama, sayfa yapısı, tablo ekleme ve görsel biçimlendirme.</p>",
-        etkinlikler: [
-            { baslik: "7. Hafta Belge Tasarım Etkinliği", tur: "Uygulama", url: "6.sinif/7.haftaetkinlik.html" }
-        ]
-    },
-    "6-hafta-8": {
-        sinif: 6,
-        hafta: 8,
-        baslik: "Tablolama Programları ve Veri Yönetimi",
-        kazanim: "BT.6.1.3.2. Tablolama programı ile veri düzenleme ve basit hesaplamaları yürütür.",
-        sunuUrl: "sunular/6-sinif-8-hafta.html",
-        dersNotu: `
-            <h3>📊 Tablolama Programları (Hesap Tablosu) Özeti</h3>
-            <p><b>Satır ve Sütun:</b> Tablolarda harflerle gösterilen dikey alanlara sütun, sayılarla gösterilen yatay alanlara satır denir.</p>
-            <p><b>Hücre:</b> Satır ve sütunların kesiştiği her bir kutudur (Örn: <code>A1</code>, <code>B5</code>).</p>
-            <p><b>Formüller:</b> Tablolama programlarında hesaplama yaptırırken tüm formüller <code>=</code> (eşittir) işareti ile başlar.</p>
-        `,
-        etkinlikler: [
-            {
-                baslik: "6. Sınıf 8. Hafta: Tablolama ve Veri Yönetimi Etkinliği",
-                tur: "İnteraktif Uygulama",
-                url: "6.sinif/8.haftaetkinlik.html"
-            }
-        ]
-    }
-};
