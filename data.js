@@ -172,7 +172,7 @@ const dersIcerikleri = {
             { 
                 baslik: "6. Hafta: Ses Kurgusu ve Düzenleme Etkinliği", 
                 tur: "İnteraktif Uygulama", 
-                url: "6.sinif/6.haftaetkinlik.html" 
+                url: "6.sinif/6-1.html" 
             }
         ]
     },
