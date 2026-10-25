@@ -152,7 +152,7 @@
                 </button>
             </div>
             <div id="modalIcerikContainer" class="p-6 overflow-y-auto space-y-3 flex-grow">
-                <!-- İçerikler listelenir -->
+                <!-- Sadece dosyası eklenenler listelenir -->
             </div>
         </div>
     </div>
@@ -177,7 +177,7 @@
 
             Object.keys(dersIcerikleri).forEach(key => {
                 const veri = dersIcerikleri[key];
-                // Sadece dosyası eklenmiş olanları dikkate al
+                // Sadece dosyası eklenmiş olanları dikkate al (sunuUrl veya dersNotuPdf var ise)
                 if (veri.sunuUrl || veri.dersNotuPdf) {
                     if (String(veri.sinif) === '5' || key.startsWith('5-')) {
                         if (!enSon5 || veri.hafta > enSon5.hafta) {
@@ -235,7 +235,12 @@
             if (typeof dersIcerikleri !== 'undefined') {
                 Object.keys(dersIcerikleri).forEach(key => {
                     const veri = dersIcerikleri[key];
-                    if ((String(veri.sinif) === String(sinif) || key.startsWith(sinif + "-")) && (veri.sunuUrl || veri.dersNotuPdf)) {
+                    
+                    // KESİN FİLTRE: Sadece doğru sınıf ve MUTLAKA DOSYASI (sunuUrl veya dersNotuPdf) EKLENMİŞ olanlar listelenecek
+                    const sinifEslesiyor = String(veri.sinif) === String(sinif) || key.startsWith(sinif + "-");
+                    const dosyaVar = veri.sunuUrl || veri.dersNotuPdf;
+
+                    if (sinifEslesiyor && dosyaVar) {
                         eklenenSayisi++;
                         const haftaNum = veri.hafta || key.split('-')[2] || '1';
                         const baslik = veri.baslik;
@@ -263,7 +268,7 @@
             }
 
             if (eklenenSayisi === 0) {
-                container.innerHTML = `<p class="text-center text-slate-500 py-8 text-sm">Bu sınıfa ait henüz içerik eklenmemiştir.</p>`;
+                container.innerHTML = `<p class="text-center text-slate-500 py-8 text-sm">Bu sınıfa ait henüz içerik/dosya eklenmemiştir.</p>`;
             }
 
             modal.classList.remove("hidden");
