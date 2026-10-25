@@ -62,11 +62,14 @@
                             <span id="label-5-son" class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20">5. Sınıf • Son Eklenen</span>
                             <div id="num-5-son" class="w-8 h-8 rounded-xl bg-blue-600/30 text-blue-400 flex items-center justify-center font-bold text-xs border border-blue-500/30">-</div>
                         </div>
-                        <div class="w-full h-36 bg-slate-900/50 border border-slate-700/50 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-blue-500/30 transition-all">
-                            <span class="text-xs text-slate-500 font-medium flex items-center space-x-1.5">
-                                <i class="fa-solid fa-book-open text-blue-400 text-lg"></i>
-                                <span>İçeriği İncele</span>
-                            </span>
+                        <div class="w-full aspect-[16/9] bg-slate-900/50 border border-slate-700/50 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-blue-500/40 transition-all">
+                            <img id="img-5-son" src="5.sinif/8.jfif" alt="5. Sınıf Son Eklenen" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                                <span class="px-4 py-2 bg-blue-600/90 text-white text-xs font-bold rounded-xl flex items-center space-x-1.5 shadow-lg">
+                                    <i class="fa-solid fa-book-open"></i>
+                                    <span>İçeriği İncele</span>
+                                </span>
+                            </div>
                         </div>
                         <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors flex items-center justify-between">
                             <span id="baslik-5-son">Yükleniyor...</span>
@@ -82,11 +85,14 @@
                             <span id="label-6-son" class="bg-cyan-500/10 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/20">6. Sınıf • Son Eklenen</span>
                             <div id="num-6-son" class="w-8 h-8 rounded-xl bg-cyan-600/30 text-cyan-400 flex items-center justify-center font-bold text-xs border border-cyan-500/30">-</div>
                         </div>
-                        <div class="w-full h-36 bg-slate-900/50 border border-slate-700/50 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-cyan-500/30 transition-all">
-                            <span class="text-xs text-slate-500 font-medium flex items-center space-x-1.5">
-                                <i class="fa-solid fa-book-open text-cyan-400 text-lg"></i>
-                                <span>İçeriği İncele</span>
-                            </span>
+                        <div class="w-full aspect-[16/9] bg-slate-900/50 border border-slate-700/50 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-cyan-500/40 transition-all">
+                            <img id="img-6-son" src="6.sinif/6.jfif" alt="6. Sınıf Son Eklenen" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                                <span class="px-4 py-2 bg-cyan-600/90 text-white text-xs font-bold rounded-xl flex items-center space-x-1.5 shadow-lg">
+                                    <i class="fa-solid fa-book-open"></i>
+                                    <span>İçeriği İncele</span>
+                                </span>
+                            </div>
                         </div>
                         <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center justify-between">
                             <span id="baslik-6-son">Yükleniyor...</span>
@@ -198,11 +204,13 @@
             const btn5 = document.getElementById("btn-5-son");
             const num5 = document.getElementById("num-5-son");
             const baslik5 = document.getElementById("baslik-5-son");
+            const img5 = document.getElementById("img-5-son");
 
             if (enSon5) {
                 if (btn5) btn5.href = `icerik.html?id=${enSon5.key}`;
                 if (num5) num5.innerText = enSon5.hafta;
                 if (baslik5) baslik5.innerText = enSon5.baslik;
+                if (img5) img5.src = enSon5.kapakResmi || `5.sinif/${enSon5.hafta}.jfif`;
             } else {
                 if (btn5) { btn5.href = "#"; btn5.style.opacity = "0.6"; }
                 if (baslik5) baslik5.innerText = "Henüz içerik eklenmedi";
@@ -212,11 +220,13 @@
             const btn6 = document.getElementById("btn-6-son");
             const num6 = document.getElementById("num-6-son");
             const baslik6 = document.getElementById("baslik-6-son");
+            const img6 = document.getElementById("img-6-son");
 
             if (enSon6) {
                 if (btn6) btn6.href = `icerik.html?id=${enSon6.key}`;
                 if (num6) num6.innerText = enSon6.hafta;
                 if (baslik6) baslik6.innerText = enSon6.baslik;
+                if (img6) img6.src = enSon6.kapakResmi || `6.sinif/${enSon6.hafta}.jfif`;
             } else {
                 if (btn6) { btn6.href = "#"; btn6.style.opacity = "0.6"; }
                 if (baslik6) baslik6.innerText = "Henüz içerik eklenmedi";
