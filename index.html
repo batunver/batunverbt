@@ -152,7 +152,7 @@
                 </button>
             </div>
             <div id="modalIcerikContainer" class="p-6 overflow-y-auto space-y-3 flex-grow">
-                <!-- Sadece dosyası eklenenler listelenir -->
+                <!-- Sadece yayinlananDersler listesindekiler buraya gelir -->
             </div>
         </div>
     </div>
@@ -165,6 +165,10 @@
     <!-- Veri Dosyası ve Mantık -->
     <script src="data.js"></script>
     <script>
+        // SADECE BURAYA YAZILAN HAFTALAR SİTEDE VE MODALDA GÖZÜKÜR:
+        // Yeni hafta ekledikçe buraya virgülle ekleyebilirsiniz (Örn: "5-hafta-9", "6-hafta-7")
+        const yayinlananDersler = ["5-hafta-8", "6-hafta-6"];
+
         document.addEventListener("DOMContentLoaded", function() {
             sonEklenenleriGuncelle();
         });
@@ -175,20 +179,17 @@
             let enSon5 = null;
             let enSon6 = null;
 
-            Object.keys(dersIcerikleri).forEach(key => {
+            yayinlananDersler.forEach(key => {
                 const veri = dersIcerikleri[key];
-                // Sadece dosyası (sunuUrl veya dersNotuPdf) tanımlanmış olanları dikkate al
-                const dosyaVar = (veri.sunuUrl && veri.sunuUrl.trim() !== "") || (veri.dersNotuPdf && veri.dersNotuPdf.trim() !== "");
+                if (!veri) return;
 
-                if (dosyaVar) {
-                    if (String(veri.sinif) === '5' || key.startsWith('5-')) {
-                        if (!enSon5 || Number(veri.hafta) > Number(enSon5.hafta)) {
-                            enSon5 = { key, ...veri };
-                        }
-                    } else if (String(veri.sinif) === '6' || key.startsWith('6-')) {
-                        if (!enSon6 || Number(veri.hafta) > Number(enSon6.hafta)) {
-                            enSon6 = { key, ...veri };
-                        }
+                if (String(veri.sinif) === '5' || key.startsWith('5-')) {
+                    if (!enSon5 || Number(veri.hafta) >= Number(enSon5.hafta)) {
+                        enSon5 = { key, ...veri };
+                    }
+                } else if (String(veri.sinif) === '6' || key.startsWith('6-')) {
+                    if (!enSon6 || Number(veri.hafta) >= Number(enSon6.hafta)) {
+                        enSon6 = { key, ...veri };
                     }
                 }
             });
@@ -235,14 +236,13 @@
             let eklenenSayisi = 0;
 
             if (typeof dersIcerikleri !== 'undefined') {
-                Object.keys(dersIcerikleri).forEach(key => {
+                yayinlananDersler.forEach(key => {
                     const veri = dersIcerikleri[key];
-                    
-                    const sinifEslesiyor = String(veri.sinif) === String(sinif) || key.startsWith(sinif + "-");
-                    // KESİN KONTROL: sunuUrl veya dersNotuPdf gerçekten dolu/tanımlı olmalı
-                    const dosyaVar = (veri.sunuUrl && veri.sunuUrl.trim() !== "") || (veri.dersNotuPdf && veri.dersNotuPdf.trim() !== "");
+                    if (!veri) return;
 
-                    if (sinifEslesiyor && dosyaVar) {
+                    const sinifEslesiyor = String(veri.sinif) === String(sinif) || key.startsWith(sinif + "-");
+
+                    if (sinifEslesiyor) {
                         eklenenSayisi++;
                         const haftaNum = veri.hafta || key.split('-')[2] || '1';
                         const baslik = veri.baslik;
@@ -270,7 +270,7 @@
             }
 
             if (eklenenSayisi === 0) {
-                container.innerHTML = `<p class="text-center text-slate-500 py-8 text-sm">Bu sınıfa ait henüz içerik/dosya eklenmemiştir.</p>`;
+                container.innerHTML = `<p class="text-center text-slate-500 py-8 text-sm">Bu sınıfa ait henüz içerik eklenmemiştir.</p>`;
             }
 
             modal.classList.remove("hidden");
