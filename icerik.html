@@ -59,7 +59,7 @@
 
             <hr class="border-slate-700/60">
 
-            <!-- Matbu Hızlı Erişim Butonları (Tıklandığında Sayfa İçi Yumuşak Kaydırma) -->
+            <!-- Matbu Hızlı Erişim Butonları -->
             <div class="flex flex-wrap gap-2.5 sm:gap-3" id="hizli-erisim-butonlari">
                 <a href="#ders-sunusu-alani" class="px-4 py-2.5 bg-blue-600/20 border border-blue-500/40 hover:bg-blue-600/40 text-blue-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm">
                     <i class="fa-solid fa-file-powerpoint text-blue-400"></i>
@@ -73,7 +73,7 @@
             </div>
         </div>
 
-        <!-- 2. DERS SUNUSU ALANI (Yeni Sekmede Açılır) -->
+        <!-- 2. DERS SUNUSU ALANI (Tıklanabilir Kapak Kartı - Yeni Sekmede Açılır) -->
         <section id="ders-sunusu-alani" class="bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 shadow-xl space-y-4">
             <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
                 <div class="flex items-center space-x-3">
@@ -82,40 +82,36 @@
                     </div>
                     <div>
                         <h2 class="text-lg font-bold text-white">Ders Sunusu</h2>
-                        <p class="text-[11px] text-slate-400">Sunum dosyasını yeni sekmede inceleyebilirsiniz.</p>
+                        <p class="text-[11px] text-slate-400">Kapak görseline tıklayarak sunumu yeni sekmede inceleyebilirsiniz.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="p-5 bg-slate-900/50 rounded-2xl border border-slate-700/50 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div class="flex items-center space-x-3">
-                    <i class="fa-solid fa-file-pdf text-red-400 text-2xl"></i>
+            <!-- Tıklanabilir Kapak Kartı -->
+            <a id="sunu-link" href="#" target="_blank" class="group relative block aspect-[16/9] w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60 shadow-lg transition-all duration-300 hover:border-blue-500/60 hover:shadow-blue-500/10">
+                <!-- Arka Plan / Önizleme Alanı -->
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-950/40 via-slate-900/80 to-slate-950 flex flex-col items-center justify-center p-6 text-center space-y-3 transition-transform duration-300 group-hover:scale-102">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-3xl border border-blue-500/30 shadow-inner group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
                     <div>
-                        <h4 class="text-sm font-bold text-white">Haftalık Ders Sunusu (PDF)</h4>
-                        <p class="text-xs text-slate-400">Tıkladığınızda sunum yeni sekmede açılacaktır.</p>
+                        <h3 id="sunu-kart-baslik" class="text-base sm:text-lg font-bold text-white group-hover:text-blue-400 transition-colors">Haftalık Ders Sunusu</h3>
+                        <p class="text-xs text-slate-400 mt-1">Görüntülemek için tıklayın ↗</p>
                     </div>
                 </div>
-                <a id="sunu-link" href="#" target="_blank" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-md w-full sm:w-auto justify-center">
-                    <i class="fa-solid fa-external-link-alt"></i>
-                    <span>Yeni Sekmede Aç</span>
-                </a>
-            </div>
+            </a>
         </section>
 
-        <!-- 3. İNTERAKTİF ETKİNLİKLER ALANI (Etkinlik 1, 2, 3...) -->
+        <!-- 3. İNTERAKTİF ETKİNLİKLER ALANI -->
         <section id="etkinlikler-alani" class="space-y-6">
             <div id="etkinlik-baslik-alani" class="hidden flex items-center space-x-3 border-b border-slate-800 pb-3">
                 <i class="fa-solid fa-puzzle-piece text-purple-400 text-xl"></i>
                 <h2 class="text-xl font-extrabold text-white tracking-wide">Ders Etkinlikleri</h2>
             </div>
-
-            <!-- JavaScript ile Kaç Tane Etkinlik Var İse Buraya Kart Olarak Basılır -->
-            <div id="etkinlik-kartlari-container" class="space-y-6">
-                <!-- Etkinlikler Dinamik Dolacak -->
-            </div>
+            <div id="etkinlik-kartlari-container" class="space-y-6"></div>
         </section>
 
-        <!-- 4. DERS NOTU / KONU ÖZETİ ALANI -->
+        <!-- 4. DERS NOTU / KONU ÖZETİ ALANI (Tıklanabilir Kapak Kartı) -->
         <section id="ders-notu-alani" class="bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 sm:p-8 shadow-xl space-y-4">
             <div class="flex items-center space-x-3 border-b border-slate-700/60 pb-4">
                 <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm border border-emerald-500/30">
@@ -123,24 +119,22 @@
                 </div>
                 <div>
                     <h2 class="text-lg font-bold text-white">Ders Notu / Konu Özeti</h2>
-                    <p class="text-[11px] text-slate-400">Haftanın ders notu ve özet içerikleri.</p>
+                    <p class="text-[11px] text-slate-400">Haftanın ders notunu yeni sekmede açmak için kapak kartına tıklayın.</p>
                 </div>
             </div>
 
-            <!-- Ders Notu PDF Butonu (Eğer PDF varsa yeni sekmede açılır) -->
-            <div id="ders-notu-btn-wrapper" class="hidden p-5 bg-slate-900/50 rounded-2xl border border-slate-700/50 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div class="flex items-center space-x-3">
-                    <i class="fa-solid fa-file-pdf text-red-400 text-2xl"></i>
+            <!-- Ders Notu Tıklanabilir Kapak Kartı -->
+            <a id="ders-notu-link" href="#" target="_blank" class="group relative block aspect-[16/9] w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60 shadow-lg transition-all duration-300 hover:border-emerald-500/60 hover:shadow-emerald-500/10">
+                <div class="absolute inset-0 bg-gradient-to-br from-emerald-950/40 via-slate-900/80 to-slate-950 flex flex-col items-center justify-center p-6 text-center space-y-3 transition-transform duration-300 group-hover:scale-102">
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-3xl border border-emerald-500/30 shadow-inner group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-file-word"></i>
+                    </div>
                     <div>
-                        <h4 class="text-sm font-bold text-white">Haftalık Ders Notu (PDF)</h4>
-                        <p class="text-xs text-slate-400">Ders notunu yeni sekmede açmak için tıklayın.</p>
+                        <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Haftalık Ders Notu / Dokümanı</h3>
+                        <p class="text-xs text-slate-400 mt-1">İncelemek / İndirmek için tıklayın ↗</p>
                     </div>
                 </div>
-                <a id="ders-notu-link" href="#" target="_blank" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-md w-full sm:w-auto justify-center">
-                    <i class="fa-solid fa-external-link-alt"></i>
-                    <span>Yeni Sekmede Aç</span>
-                </a>
-            </div>
+            </a>
 
             <div id="ders-notu-icerik" class="text-slate-300 text-sm leading-relaxed space-y-4 pt-2">
                 <!-- Metinsel ders notu varsa buraya gelecek -->
@@ -159,7 +153,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const icerikId = urlParams.get('id') || '5-hafta-1'; // Varsayılan içerik ID
+            const icerikId = urlParams.get('id') || '5-hafta-1';
 
             if (typeof dersIcerikleri !== 'undefined' && dersIcerikleri[icerikId]) {
                 const veri = dersIcerikleri[icerikId];
@@ -168,8 +162,9 @@
                 document.getElementById('ders-sinif-hafta').innerText = `${veri.sinif}. Sınıf • ${veri.hafta}. Hafta`;
                 document.getElementById('ders-baslik').innerText = veri.baslik;
                 document.getElementById('ders-kazanim').innerText = `Kazanım: ${veri.kazanim}`;
+                document.getElementById('sunu-kart-baslik').innerText = `${veri.baslik} - Ders Sunusu`;
                 
-                // 2. Sunu Linkini Yeni Sekmede Açılacak Şekilde Ayarlama
+                // 2. Sunu Kapak Kartı Linki
                 const sunuLink = document.getElementById('sunu-link');
                 if (veri.sunuUrl) {
                     sunuLink.href = veri.sunuUrl;
@@ -177,14 +172,13 @@
                     sunuLink.closest('section').style.display = 'none';
                 }
 
-                // 3. Ders Notu Linki veya İçeriği Ayarlama
+                // 3. Ders Notu Kapak Kartı Linki
                 const dersNotuLink = document.getElementById('ders-notu-link');
-                const dersNotuBtnWrapper = document.getElementById('ders-notu-btn-wrapper');
                 if (veri.dersNotuPdf) {
                     dersNotuLink.href = veri.dersNotuPdf;
-                    dersNotuBtnWrapper.classList.remove('hidden');
+                    dersNotuLink.style.display = 'block';
                 } else {
-                    dersNotuBtnWrapper.classList.add('hidden');
+                    dersNotuLink.style.display = 'none';
                 }
 
                 document.getElementById('ders-notu-icerik').innerHTML = veri.dersNotu || "";
@@ -202,14 +196,12 @@
                         const etkId = `etkinlik-${etkNum}`;
                         const pencereId = `etk-pencere-${etkNum}`;
 
-                        // Hızlı Erişim Butonu Ekleme
                         const btn = document.createElement('a');
                         btn.href = `#${etkId}`;
                         btn.className = "px-4 py-2.5 bg-purple-600/20 border border-purple-500/40 hover:bg-purple-600/40 text-purple-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm";
                         btn.innerHTML = `<i class="fa-solid fa-gamepad text-purple-400"></i> <span>Etkinlik ${etkNum}</span>`;
                         butonlarBar.appendChild(btn);
 
-                        // Etkinlik Kutusunu Site İçine Gömmeli ve Tam Ekran Butonlu Oluşturma
                         const etkKart = document.createElement('div');
                         etkKart.id = etkId;
                         etkKart.className = "bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 shadow-xl space-y-4";
@@ -240,16 +232,14 @@
             }
         });
 
-        // Genel Tam Ekran Yapma Fonksiyonu
         function ogeTamEkranYap(elementId) {
             const elem = document.getElementById(elementId);
             if (!elem) return;
-            
             if (elem.requestFullscreen) {
                 elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) { /* Safari */
+            } else if (elem.webkitRequestFullscreen) {
                 elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) { /* IE11 */
+            } else if (elem.msRequestFullscreen) {
                 elem.msRequestFullscreen();
             }
         }
