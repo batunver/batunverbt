@@ -158,8 +158,8 @@ const dersIcerikleri = {
         hafta: 6,
         baslik: "Ses Düzenleme Programlarına Giriş ve Ses Kurgusu",
         kazanim: "BTY.6.2.5. Ses düzenleme programlarından yararlanabilme BTY.6.2.6. Ses dosyası için kurgu oluşturabilme",
-        sunuUrl: "6/Sunu/SesKurgusu.pdf", // Doğrudan PDF sunum yolu
-        dersNotuPdf: "6/DersNotu/SesKurguDersNotu.docx", // Ders notu dosya yolu
+        sunuUrl: "folder/6/Sunu/SesKurgusu.pdf", // Doğrudan PDF sunum yolu
+        dersNotuPdf: "folder/6/DersNotu/SesKurguDersNotu.docx", // Ders notu dosya yolu
         dersNotu: `
             <div class="space-y-4">
                 <p class="text-xs text-slate-300">Bu haftanın ders notunu aşağıdan doğrudan inceleyebilir veya indirebilirsin.</p>
