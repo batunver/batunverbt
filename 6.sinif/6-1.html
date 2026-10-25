@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. Sınıf - Ses Düzenleme ve Kurgu 20 Soruluk Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen p-4 sm:p-8 flex flex-col items-center font-sans">
+    <div class="max-w-3xl w-full bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6">
+        
+        <!-- Üst Başlık -->
+        <div class="text-center space-y-2 border-b border-slate-800 pb-6">
+            <span class="bg-purple-500/10 text-purple-400 text-xs font-extrabold px-3 py-1 rounded-full border border-purple-500/20">
+                6. Sınıf • Ünite 2 Değerlendirme Testi
+            </span>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Ses Düzenleme ve Ses Kurgusu Testi</h1>
+            <p class="text-xs text-slate-400">Toplam 20 soru bulunmaktadır. Doğru seçenekleri işaretleyerek kendinizi sınayabilirsiniz.</p>
+        </div>
+
+        <!-- Soru Alanı -->
+        <div id="test-container" class="space-y-8">
+            <!-- Sorular JavaScript ile yüklenecek -->
+        </div>
+
+        <!-- Sonuç Butonu ve Alanı -->
+        <div class="pt-6 border-t border-slate-800 flex flex-col items-center space-y-4">
+            <button onclick="sonuclariHesapla()" class="px-8 py-3.5 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold text-sm rounded-2xl shadow-lg transition-all cursor-pointer">
+                <i class="fa-solid fa-check-double mr-2"></i> Sonuçları Göster
+            </button>
+            <div id="sonuc-alani" class="hidden text-center text-lg font-bold p-4 bg-slate-800/80 rounded-2xl border border-slate-700 w-full"></div>
+        </div>
+    </div>
+
+    <script>
+        const sorular = [
+            {
+                soru: "1. Çevrede duyduğumuz doğal seslerin bilgisayar tarafından işlenebilmesi için hangi formata dönüşmesi gerekir?",
+                secenekler: ["A) Analog ses", "B) Dijital ses", "C) Mekanik dalga", "D) Isı enerjisi"],
+                dogru: 1
+            },
+            {
+                soru: "2. Ses dalgalarını yakalayarak elektrik sinyallerine dönüştüren temel giriş donanımı aşağıdakilerden hangisidir?",
+                secenekler: ["A) Hoparlör", "B) Ses Kartı", "C) Mikrofon", "D) Kulaklık"],
+                dogru: 2
+            },
+            {
+                soru: "3. Bilgisayarda ses sinyallerinin ölçülerek 0 ve 1’lerden oluşan sayısal verilere dönüştürülme sürecine ne ad verilir?",
+                secenekler: ["A) Sayıssallaştırma (ADC)", "B) Sıkıştırma", "C) Fade-in", "D) Yankılama"],
+                dogru: 0
+            },
+            {
+                soru: "4. Aşağıdakilerden hangisi dijital ses teknolojilerinin günlük hayattaki kullanım alanlarından biri DEĞİLDİR?",
+                secenekler: ["A) Sesli kitaplar hazırlama", "B) Videolara arka plan müziği ekleme", "C) Donanım parçalarını lehimleme", "D) Konuşma kayıtları alma"],
+                dogru: 2
+            },
+            {
+                soru: "5. Ses kaydı yaparken arka plan gürültüsünü engellemek ve en net sesi elde etmek için aşağıdakilerden hangisi yapılmalıdır?",
+                secenekler: ["A) Mikrofona çok yakın bağırmak", "B) Sessiz ve yalıtımlı bir ortam seçmek", "C) Müziğin sesini sonuna kadar açmak", "D) Kayıt sırasında pencereyi açmak"],
+                dogru: 1
+            },
+            {
+                soru: "6. Mikrofon ile ağız arasında olması önerilen ideal mesafe kaç santimetredir?",
+                secenekler: ["A) 2-3 cm", "B) 15-20 cm", "C) 1 metre", "D) 3 metre"],
+                dogru: 1
+            },
+            {
+                soru: "7. Sıkıştırılmış, dosya boyutu küçük olduğu için internet paylaşımı için en çok tercih edilen yaygın ses formatı hangisidir?",
+                secenekler: ["A) WAV", "B) MP3", "C) DOCX", "D) MP4"],
+                dogru: 1
+            },
+            {
+                soru: "8. Sıkıştırılmamış, yüksek kaliteli profesyonel stüdyo kayıtlarında kullanılan ses formatı aşağıdakilerden hangisidir?",
+                secenekler: ["A) MP3", "B) WAV", "C) JPG", "D) TXT"],
+                dogru: 1
+            },
+            {
+                soru: "9. Sesin zaman eksenindeki şiddet değişimini görsel olarak gösteren grafik ifadesine ne denir?",
+                secenekler: ["A) Dalga Formu (Waveform)", "B) Klasör Hiyerarşisi", "C) Tablo Hücresi", "D) İşletim Sistemi"],
+                dogru: 0
+            },
+            {
+                soru: "10. Çoklu ses katmanlarının (müzik, seslendirme, efekt) bağımsız olarak düzenlenmesini sağlayan hatlara ne ad verilir?",
+                secenekler: ["A) Piksel", "B) Kanal / İz (Track)", "C) Tarayıcı", "D) Sütun"],
+                dogru: 1
+            },
+            {
+                soru: "11. Sesin başlangıçta yavaşça yükselmesini sağlayan ses kurgu efekti aşağıdakilerden hangisidir?",
+                secenekler: ["A) Fade-out", "B) Fade-in", "C) Kesme (Cut)", "D) Silme"],
+                dogru: 1
+            },
+            {
+                soru: "12. Bir sesin sonunda kademeli olarak azalıp sönümlenmesini sağlayan geçiş efekti hangisidir?",
+                secenekler: ["A) Fade-out", "B) Fade-in", "C) Mono", "D) Stereo"],
+                dogru: 0
+            },
+            {
+                soru: "13. Farklı ses kaynaklarını birleştirme, gereksiz kısımları temizleme ve ses seviyelerini dengeleme işlemine ne denir?",
+                secenekler: ["A) Karıştırma (Mixing)", "B) Tarama", "C) Arşivleme", "D) Sıkıştırma"],
+                dogru: 0
+            },
+            {
+                soru: "14. Audacity ve GarageBand gibi internetsiz çalışabilen tam güçlü ses düzenleme yazılımları hangi sınıfa girer?",
+                secenekler: ["A) Çevrimiçi Araçlar", "B) Masaüstü Programlar", "C) Donanım Birimleri", "D) İnternet Tarayıcıları"],
+                dogru: 1
+            },
+            {
+                soru: "15. 123apps ve Soundtrap gibi doğrudan web tarayıcısı üzerinden çalışan ses düzenleme çözümleri ne olarak adlandırılır?",
+                secenekler: ["A) Çevrimiçi Araçlar", "B) İşletim Sistemleri", "C) Antivirüsler", "D) Ofis Programları"],
+                dogru: 0
+            },
+            {
+                soru: "16. Gerçek hayatta karşılaşılan bir durumu ya da problemi anlatan ses dosyalarının önceden tasarlanmasına ve düzenlenmesine ne denir?",
+                secenekler: ["A) Donanım", "B) Kurgu", "C) Şifreleme", "D) Tarama"],
+                dogru: 1
+            },
+            {
+                soru: "17. Başkalarına ait müzik ve ses eserlerini izinsiz kullanmamak hangi kavramla doğrudan ilgilidir?",
+                secenekler: ["A) Telif Hakları ve Etik", "B) Güçlü Şifre", "C) Çözünürlük", "D) Piksel Yoğunluğu"],
+                dogru: 0
+            },
+            {
+                soru: "18. Yapay zekâ teknolojileriyle kişilerin seslerinin izinsiz ve gerçeğe yakın taklit edilmesine ne ad verilir?",
+                secenekler: ["A) Fade-in", "B) Deepfake / Sahte Ses", "C) Waveform", "D) Mono Ses"],
+                dogru: 1
+            },
+            {
+                soru: "19. Analog ses sinyallerini dijital verilere dönüştüren ve bu dönüşümü yöneten ana donanım birimi hangisidir?",
+                secenekler: ["A) Ses Kartı", "B) Klavye", "C) Fare", "D) Yazıcı"],
+                dogru: 0
+            },
+            {
+                soru: "20. Aşağıdakilerden hangisi bir ses kurgusu oluşturma aşamalarından biri DEĞİLDİR?",
+                secenekler: ["A) Konu planı yapma", "B) Senaryo ve akış hazırlama", "C) Bilgisayar kasasını açıp temizleme", "D) Kayıt alma ve dengeleme"],
+                dogru: 2
+            }
+        ];
+
+        function testiYukle() {
+            const container = document.getElementById('test-container');
+            let html = '';
+            sorular.forEach((q, idx) => {
+                html += `
+                    <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-5 space-y-3">
+                        <p class="font-bold text-white text-sm sm:text-base">${q.soru}</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                `;
+                q.secenekler.forEach((sec, sIdx) => {
+                    html += `
+                        <label class="flex items-center space-x-3 p-3 rounded-xl bg-slate-900/60 border border-slate-700/50 hover:bg-slate-700/40 cursor-pointer transition-all">
+                            <input type="radio" name="soru-${idx}" value="${sIdx}" class="text-blue-600 focus:ring-blue-500 h-4 w-4">
+                            <span class="text-xs sm:text-sm text-slate-200">${sec}</span>
+                        </label>
+                    `;
+                });
+                html += `</div></div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function sonuclariHesapla() {
+            let dogruSayisi = 0;
+            sorular.forEach((q, idx) => {
+                const secilen = document.querySelector(`input[name="soru-${idx}"]:checked`);
+                if (secilen && parseInt(secilen.value) === q.dogru) {
+                    dogruSayisi++;
+                }
+            });
+
+            const sonucAlani = document.getElementById('sonuc-alani');
+            sonucAlani.classList.remove('hidden');
+            let mesaj = `🎉 Tebrikler! 20 sorudan ${dogruSayisi} doğru yaptınız.`;
+            if (dogruSayisi < 10) {
+                mesaj = `⚠️ 20 sorudan ${dogruSayisi} doğru yaptınız. Konuyu tekrar gözden geçirmenizde fayda var.`;
+            }
+            sonucAlani.innerHTML = mesaj;
+            sonucAlani.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.onload = testiYukle;
+    </script>
+</body>
+</html>
+
+
+Testi portala ekledikten sonra öğrencileriniz etkinlik butonuna tıklayarak doğrudan tarayıcı üzerinden 20 soruluk bu testi çözebilecek ve anında sonuçlarını görebilecektir! Başarılar dilerim!
