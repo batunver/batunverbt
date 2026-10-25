@@ -156,8 +156,8 @@ const dersIcerikleri = {
     "6-hafta-6": {
         sinif: 6,
         hafta: 6,
-        baslik: "Dijital İletişim ve İşbirliği Araçları",
-        kazanim: "BT.6.1.2.3. İnternet üzerinden işbirliği ve paylaşım araçlarını kullanır.",
+        baslik: "Ses Düzenleme Programlarına Giriş-Ses Dosyası için Kurgu Oluşturma",
+        kazanim: "BTY.6.2.5. Ses düzenleme programlarından yararlanabilme BTY.6.2.6. Ses dosyası için kurgu oluşturabilme",
         sunuUrl: "sunular/6-sinif-6-hafta.html",
         dersNotu: "<p>Bulut depolama servisleri (Google Drive, EBA Bulut) ile ortak dosya düzenleme yöntemleri.</p>",
         etkinlikler: [
