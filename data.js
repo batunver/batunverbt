@@ -164,7 +164,7 @@ const dersIcerikleri = {
             <div class="space-y-4">
                 <p class="text-xs text-slate-300">Bu haftanın ders notunu aşağıdan doğrudan inceleyebilir veya indirebilirsin.</p>
                 <div class="w-full h-[600px] bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60">
-                    <iframe src="6/DersNotu/SesKurguDersNotu.docx" class="w-full h-full border-0"></iframe>
+                    <iframe src="folder/6/DersNotu/SesKurguDersNotu.docx" class="w-full h-full border-0"></iframe>
                 </div>
             </div>
         `,
