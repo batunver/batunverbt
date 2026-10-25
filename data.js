@@ -153,15 +153,27 @@ const dersIcerikleri = {
             { baslik: "5. Hafta Virüs Türleri Oyunu", tur: "Sınıflandırma", url: "6.sinif/5.haftaetkinlik.html" }
         ]
     },
-    "6-hafta-6": {
+   "6-hafta-6": {
         sinif: 6,
         hafta: 6,
-        baslik: "Ses Düzenleme Programlarına Giriş-Ses Dosyası için Kurgu Oluşturma",
+        baslik: "Ses Düzenleme Programlarına Giriş ve Ses Kurgusu",
         kazanim: "BTY.6.2.5. Ses düzenleme programlarından yararlanabilme BTY.6.2.6. Ses dosyası için kurgu oluşturabilme",
-        sunuUrl: "sunular/6-sinif-6-hafta.html",
-        dersNotu: "<p>Bulut depolama servisleri (Google Drive, EBA Bulut) ile ortak dosya düzenleme yöntemleri.</p>",
+        sunuUrl: "6/Sunu/SesKurgusu.pdf", // Doğrudan PDF sunum yolu
+        dersNotuPdf: "6/DersNotu/SesKurguDersNotu.docx", // Ders notu dosya yolu
+        dersNotu: `
+            <div class="space-y-4">
+                <p class="text-xs text-slate-300">Bu haftanın ders notunu aşağıdan doğrudan inceleyebilir veya indirebilirsin.</p>
+                <div class="w-full h-[600px] bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60">
+                    <iframe src="6/DersNotu/SesKurguDersNotu.docx" class="w-full h-full border-0"></iframe>
+                </div>
+            </div>
+        `,
         etkinlikler: [
-            { baslik: "6. Hafta Bulut Depolama Etkinliği", tur: "Soru-Cevap", url: "6.sinif/6.haftaetkinlik.html" }
+            { 
+                baslik: "6. Hafta: Ses Kurgusu ve Düzenleme Etkinliği", 
+                tur: "İnteraktif Uygulama", 
+                url: "6.sinif/6.haftaetkinlik.html" 
+            }
         ]
     },
     "6-hafta-7": {
