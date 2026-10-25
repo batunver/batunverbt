@@ -177,14 +177,16 @@
 
             Object.keys(dersIcerikleri).forEach(key => {
                 const veri = dersIcerikleri[key];
-                // Sadece dosyası eklenmiş olanları dikkate al (sunuUrl veya dersNotuPdf var ise)
-                if (veri.sunuUrl || veri.dersNotuPdf) {
+                // Sadece dosyası (sunuUrl veya dersNotuPdf) tanımlanmış olanları dikkate al
+                const dosyaVar = (veri.sunuUrl && veri.sunuUrl.trim() !== "") || (veri.dersNotuPdf && veri.dersNotuPdf.trim() !== "");
+
+                if (dosyaVar) {
                     if (String(veri.sinif) === '5' || key.startsWith('5-')) {
-                        if (!enSon5 || veri.hafta > enSon5.hafta) {
+                        if (!enSon5 || Number(veri.hafta) > Number(enSon5.hafta)) {
                             enSon5 = { key, ...veri };
                         }
                     } else if (String(veri.sinif) === '6' || key.startsWith('6-')) {
-                        if (!enSon6 || veri.hafta > enSon6.hafta) {
+                        if (!enSon6 || Number(veri.hafta) > Number(enSon6.hafta)) {
                             enSon6 = { key, ...veri };
                         }
                     }
@@ -236,9 +238,9 @@
                 Object.keys(dersIcerikleri).forEach(key => {
                     const veri = dersIcerikleri[key];
                     
-                    // KESİN FİLTRE: Sadece doğru sınıf ve MUTLAKA DOSYASI (sunuUrl veya dersNotuPdf) EKLENMİŞ olanlar listelenecek
                     const sinifEslesiyor = String(veri.sinif) === String(sinif) || key.startsWith(sinif + "-");
-                    const dosyaVar = veri.sunuUrl || veri.dersNotuPdf;
+                    // KESİN KONTROL: sunuUrl veya dersNotuPdf gerçekten dolu/tanımlı olmalı
+                    const dosyaVar = (veri.sunuUrl && veri.sunuUrl.trim() !== "") || (veri.dersNotuPdf && veri.dersNotuPdf.trim() !== "");
 
                     if (sinifEslesiyor && dosyaVar) {
                         eklenenSayisi++;
