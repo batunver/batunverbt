@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="flex items-center justify-between gap-2">
-                        <button onclick="turkceTonla('Öhö öhö... Sesim biraz bozuldu ama devam edelim.', 150, 0.25)" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 flex items-center space-x-1.5">
+                        <button onclick="gercekTurkceSes('Öhö öhö... Sesim biraz bozuldu ama devam edelim.')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 flex items-center space-x-1.5">
                             <i class="fa-solid fa-headphones text-rose-400"></i>
                             <span>Hatalı Kaydı Dinle</span>
                         </button>
@@ -210,19 +210,40 @@
             document.getElementById('canli-altyazi').innerHTML = metin;
         }
 
+        // KESİN VE GARANTİ TÜRKÇE KONUŞMA MOTORU
+        function gercekTurkceSes(metin, callback) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(metin);
+                utter.lang = 'tr-TR';
+                utter.rate = 0.95; // Doğal radyo konuşma hızı
+
+                // Sistemdeki mevcut sesleri tarayıp ilk Türkçe (tr) sesi zorunlu seç
+                const sesler = window.speechSynthesis.getVoices();
+                const trSes = sesler.find(v => v.lang.toLowerCase().includes('tr') || v.name.toLowerCase().includes('turkish'));
+                if (trSes) {
+                    utter.voice = trSes;
+                }
+
+                if (callback) utter.onend = callback;
+                window.speechSynthesis.speak(utter);
+            } else {
+                if (callback) callback();
+            }
+        }
+
         let audioCtx = null;
         function initAudio() {
             if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
 
-        function turkceTonla(metin, frekans, sure) {
+        function bipCal(frekans, sure) {
             initAudio();
-            altyaziGuncelle(`<strong>Seslendirme:</strong> ${metin}`);
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
-            osc.type = 'triangle';
+            osc.type = 'square';
             osc.frequency.setValueAtTime(frekans, audioCtx.currentTime);
-            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + sure);
             osc.connect(gain);
             gain.connect(audioCtx.destination);
@@ -239,7 +260,7 @@
                 satir.className = "bg-slate-950 border border-slate-800 rounded-xl p-2.5 flex items-center justify-between gap-2 text-xs";
                 satir.innerHTML = `
                     <div class="flex items-center space-x-2">
-                        <button onclick="turkceTonla('${k.metin}', ${300 + idx * 80}, 0.3)" class="w-7 h-7 rounded-lg bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 flex items-center justify-center shrink-0">
+                        <button onclick="gercekTurkceSes('${k.metin}')" class="w-7 h-7 rounded-lg bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 flex items-center justify-center shrink-0">
                             <i class="fa-solid fa-play"></i>
                         </button>
                         <div>
@@ -286,16 +307,15 @@
         }
 
         function efektCal(tur) {
-            initAudio();
             if (tur === 'telgraf') {
                 altyaziGuncelle(`<strong>Efekt:</strong> Telgraf Mors Sinyali (1923)`);
-                [0, 0.15, 0.3, 0.55].forEach((z, i) => setTimeout(() => turkceTonla('Dıt...', 850, 0.08), z * 1000));
+                [0, 0.15, 0.3, 0.55].forEach((z, i) => setTimeout(() => bipCal(850, 0.08), z * 1000));
             } else if (tur === 'telefon') {
                 altyaziGuncelle(`<strong>Tuzak Ses:</strong> Telefon Bildirimi (1923'te yok!)`);
-                turkceTonla('Bip bip!', 1200, 0.15);
+                bipCal(1200, 0.15);
             } else if (tur === 'ambulans') {
                 altyaziGuncelle(`<strong>Tuzak Ses:</strong> Modern Siren (1923'te yok!)`);
-                turkceTonla('Neıy neıy!', 600, 0.3);
+                bipCal(600, 0.3);
             }
         }
 
@@ -360,7 +380,7 @@
             document.getElementById('ilerleme-metni').innerText = `${sayac} / 4 Görev`;
         }
 
-        // AKILLI TONLAMA İLE ADIM ADIM KURGUYU OYNAT
+        // TÜRKÇE SESLENDİRME İLE ADIM ADIM KURGUYU OYNAT
         function turkceKurguyuOynat() {
             const sayac = Object.values(gorevDurumu).filter(Boolean).length;
             const sonucKutu = document.getElementById('sonuc-kutusu');
@@ -376,32 +396,27 @@
             altyaziGuncelle(`🎙️ <strong>Radyo Yayını Başladı:</strong> [Telgraf Efekti Çalıyor...]`);
 
             // 1. Telgraf Sesi
-            [0, 0.15, 0.3, 0.55].forEach((z, i) => setTimeout(() => turkceTonla('Dıt', 850, 0.08), z * 1000));
+            [0, 0.15, 0.3, 0.55].forEach((z, i) => setTimeout(() => bipCal(850, 0.08), z * 1000));
 
             setTimeout(() => {
-                // 2. 1. Konuşma
+                // 2. 1. Konuşma (Türkçe Ses)
                 altyaziGuncelle(`🎙️ <strong>Yayın:</strong> ${konusmalar[0].metin}`);
-                turkceTonla(konusmalar[0].metin, 320, 0.6);
-
-                setTimeout(() => {
-                    // 3. 2. Konuşma
+                gercekTurkceSes(konusmalar[0].metin, () => {
+                    
+                    // 3. 2. Konuşma (Türkçe Ses)
                     altyaziGuncelle(`🎙️ <strong>Yayın:</strong> ${konusmalar[1].metin}`);
-                    turkceTonla(konusmalar[1].metin, 400, 0.6);
-
-                    setTimeout(() => {
-                        // 4. 3. Konuşma
+                    gercekTurkceSes(konusmalar[1].metin, () => {
+                        
+                        // 4. 3. Konuşma (Türkçe Ses)
                         altyaziGuncelle(`🎙️ <strong>Yayın:</strong> ${konusmalar[2].metin}`);
-                        turkceTonla(konusmalar[2].metin, 480, 0.6);
-
-                        setTimeout(() => {
+                        gercekTurkceSes(konusmalar[2].metin, () => {
+                            
+                            // 5. Kapanış
                             altyaziGuncelle(`🎙️ <strong>Yayın Tamamlandı!</strong> [Fon Müziği -12dB ile yayına verildi]`);
-                            [523, 659, 783, 1046].forEach((f, i) => setTimeout(() => turkceTonla('Şşş...', f, 0.25), i * 150));
-                        }, 800);
-
-                    }, 800);
-
-                }, 800);
-
+                            [523, 659, 783, 1046].forEach((f, i) => setTimeout(() => bipCal(f, 0.15), i * 150));
+                        });
+                    });
+                });
             }, 900);
         }
 
