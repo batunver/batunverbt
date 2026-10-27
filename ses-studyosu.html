@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Ses Stüdyosu - Dedemin Tahta Radyosu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen p-3 sm:p-5 font-sans select-none overflow-x-hidden">
+
+    <div class="max-w-4xl mx-auto space-y-4">
+        
+        <!-- Üst Başlık ve İlerleme Çubuğu -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-lg">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <div>
+                    <h1 class="text-base sm:text-lg font-extrabold text-white">Dedemin Tahta Radyosu • Ses Montaj Stüdyosu</h1>
+                    <p class="text-xs text-slate-400">1923 Cumhuriyet Bayramı özel radyo yayınını 4 adımda yayına hazırlayın!</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2 bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800">
+                <span class="text-xs text-slate-400 font-semibold">Tamamlanan:</span>
+                <span id="ilerleme-metni" class="text-xs font-black text-emerald-400">0 / 4 Görev</span>
+            </div>
+        </div>
+
+        <!-- Altyazı / Spiker Ekranı (Kulaklıksız Sınıflar İçin Görsel Destek) -->
+        <div id="canli-altyazi-kutu" class="bg-slate-900/90 border border-blue-500/30 rounded-xl p-3 flex items-center space-x-3 text-xs sm:text-sm text-blue-200 shadow">
+            <i class="fa-solid fa-volume-high text-blue-400 animate-pulse text-base"></i>
+            <span id="canli-altyazi"><strong>Stüdyo Hazır:</strong> Parçaları dinlemek için <i class="fa-solid fa-play"></i> butonlarına tıklayın. (Hoparlör kapalıysa metinleri buradan takip edebilirsiniz.)</span>
+        </div>
+
+        <!-- GÖREV 1 & 2: KONUŞMA SIRALAMA VE HATA KESME -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <!-- 1. ADIM: Konuşmaları Sırala -->
+            <div id="kart-gorev-1" class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3 transition-all">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <span class="text-xs font-extrabold text-blue-400 uppercase tracking-wider">1. Görev: Konuşmaları Sırala</span>
+                    <span id="rozet-gorev-1" class="text-[11px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-bold">Bekliyor</span>
+                </div>
+                <p class="text-xs text-slate-400">Ok tuşlarıyla konuşmaları hikâye akışına (Başlangıç ➔ Gelişme ➔ Sonuç) göre dizin.</p>
+                
+                <div id="konusma-listesi" class="space-y-2"></div>
+            </div>
+
+            <!-- 2. ADIM: Hatayı Kes (Makas Aracı) -->
+            <div id="kart-gorev-2" class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3 transition-all">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <span class="text-xs font-extrabold text-rose-400 uppercase tracking-wider">2. Görev: Hatayı Kes (Delete)</span>
+                    <span id="rozet-gorev-2" class="text-[11px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-bold">Bekliyor</span>
+                </div>
+                <p class="text-xs text-slate-400">Ses dalgasındaki <strong class="text-rose-400">Öksürük / Hata</strong> bölümünü seçip makasla silin.</p>
+
+                <!-- Dalga Formu Simülasyonu -->
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 space-y-3">
+                    <div class="flex items-center space-x-1 h-16">
+                        <!-- Normal Ses Dalgası 1 -->
+                        <div class="flex-1 bg-blue-500/10 border border-blue-500/30 rounded-lg h-full flex flex-col items-center justify-center p-1">
+                            <div class="flex items-center space-x-0.5 h-6">
+                                <span class="w-1 h-3 bg-blue-400 rounded"></span>
+                                <span class="w-1 h-6 bg-blue-400 rounded"></span>
+                                <span class="w-1 h-4 bg-blue-400 rounded"></span>
+                                <span class="w-1 h-5 bg-blue-400 rounded"></span>
+                            </div>
+                            <span class="text-[10px] text-blue-300 mt-1">"O gece..."</span>
+                        </div>
+
+                        <!-- Hatalı Öksürük Bloğu -->
+                        <div id="hatali-blok" onclick="hataSec()" class="w-28 bg-rose-500/20 border-2 border-dashed border-rose-500 hover:bg-rose-500/30 rounded-lg h-full flex flex-col items-center justify-center p-1 cursor-pointer transition-all">
+                            <div class="flex items-center space-x-0.5 h-6">
+                                <span class="w-1.5 h-7 bg-rose-500 rounded animate-bounce"></span>
+                                <span class="w-1.5 h-4 bg-rose-500 rounded"></span>
+                                <span class="w-1.5 h-8 bg-rose-500 rounded animate-bounce"></span>
+                            </div>
+                            <span class="text-[10px] font-bold text-rose-300 mt-1">⚠ Öhö! Öhö!</span>
+                        </div>
+
+                        <!-- Normal Ses Dalgası 2 -->
+                        <div class="flex-1 bg-blue-500/10 border border-blue-500/30 rounded-lg h-full flex flex-col items-center justify-center p-1">
+                            <div class="flex items-center space-x-0.5 h-6">
+                                <span class="w-1 h-5 bg-blue-400 rounded"></span>
+                                <span class="w-1 h-3 bg-blue-400 rounded"></span>
+                                <span class="w-1 h-6 bg-blue-400 rounded"></span>
+                                <span class="w-1 h-4 bg-blue-400 rounded"></span>
+                            </div>
+                            <span class="text-[10px] text-blue-300 mt-1">"...Cumhuriyet ilan edildi!"</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between gap-2">
+                        <button onclick="efektCal('oksuruk')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 flex items-center space-x-1.5">
+                            <i class="fa-solid fa-headphones text-rose-400"></i>
+                            <span>Kaydı Dinle</span>
+                        </button>
+                        <button id="btn-makas" onclick="hatayiKes()" class="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-xs font-bold text-white flex items-center space-x-1.5 shadow">
+                            <i class="fa-solid fa-scissors"></i>
+                            <span>Hatalı Bölümü Kes (Delete)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GÖREV 3 & 4: EFEKT SEÇİMİ VE MÜZİK AYARI -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <!-- 3. ADIM: Doğru Ses Efektini Seç -->
+            <div id="kart-gorev-3" class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3 transition-all">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <span class="text-xs font-extrabold text-amber-400 uppercase tracking-wider">3. Görev: Efekt Yerleştir</span>
+                    <span id="rozet-gorev-3" class="text-[11px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-bold">Bekliyor</span>
+                </div>
+                <p class="text-xs text-slate-400">Dikkat! 2 tanesi 1923 yılında olamayacak <strong>tuzak sestir</strong>. Doğru efekti seçin:</p>
+
+                <div class="grid grid-cols-3 gap-2">
+                    <!-- Efekt 1: Tuzak -->
+                    <div id="efekt-kutu-telefon" class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 flex flex-col items-center text-center space-y-2">
+                        <i class="fa-solid fa-mobile-screen-button text-xl text-purple-400"></i>
+                        <span class="text-xs font-bold">Telefon Sesi</span>
+                        <div class="flex space-x-1 w-full">
+                            <button onclick="efektCal('telefon')" class="flex-1 py-1 bg-slate-800 hover:bg-slate-700 rounded text-[11px]"><i class="fa-solid fa-play"></i></button>
+                            <button onclick="efektSec('telefon')" class="flex-1 py-1 bg-amber-600/20 hover:bg-amber-600/40 text-amber-300 border border-amber-500/30 rounded text-[11px] font-bold">Seç</button>
+                        </div>
+                    </div>
+
+                    <!-- Efekt 2: Doğru (Telgraf) -->
+                    <div id="efekt-kutu-telgraf" class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 flex flex-col items-center text-center space-y-2">
+                        <i class="fa-solid fa-tower-broadcast text-xl text-amber-400"></i>
+                        <span class="text-xs font-bold">Telgraf Sesi</span>
+                        <div class="flex space-x-1 w-full">
+                            <button onclick="efektCal('telgraf')" class="flex-1 py-1 bg-slate-800 hover:bg-slate-700 rounded text-[11px]"><i class="fa-solid fa-play"></i></button>
+                            <button onclick="efektSec('telgraf')" class="flex-1 py-1 bg-amber-600/20 hover:bg-amber-600/40 text-amber-300 border border-amber-500/30 rounded text-[11px] font-bold">Seç</button>
+                        </div>
+                    </div>
+
+                    <!-- Efekt 3: Tuzak -->
+                    <div id="efekt-kutu-ambulans" class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 flex flex-col items-center text-center space-y-2">
+                        <i class="fa-solid fa-truck-medical text-xl text-rose-400"></i>
+                        <span class="text-xs font-bold">Modern Siren</span>
+                        <div class="flex space-x-1 w-full">
+                            <button onclick="efektCal('ambulans')" class="flex-1 py-1 bg-slate-800 hover:bg-slate-700 rounded text-[11px]"><i class="fa-solid fa-play"></i></button>
+                            <button onclick="efektSec('ambulans')" class="flex-1 py-1 bg-amber-600/20 hover:bg-amber-600/40 text-amber-300 border border-amber-500/30 rounded text-[11px] font-bold">Seç</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. ADIM: Müzik Kazanç (-12 dB) ve Fade Ayarı -->
+            <div id="kart-gorev-4" class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3 transition-all">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <span class="text-xs font-extrabold text-emerald-400 uppercase tracking-wider">4. Görev: Fon Müziği Ayarı</span>
+                    <span id="rozet-gorev-4" class="text-[11px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-bold">Bekliyor</span>
+                </div>
+                <p class="text-xs text-slate-400">Müziğin konuşmayı bastırmaması için sesi <strong>-10 dB ile -15 dB arasına</strong> indirin ve geçişleri açın.</p>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 space-y-3">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-slate-300 font-semibold"><i class="fa-solid fa-music text-emerald-400 mr-1"></i> Kazanç (Gain):</span>
+                        <span id="db-deger" class="font-mono font-bold text-rose-400">0 dB (Çok Yüksek!)</span>
+                    </div>
+                    <input id="db-slider" type="range" min="-20" max="0" value="0" step="1" oninput="muzikKontrol()" class="w-full accent-emerald-500 cursor-pointer">
+                    
+                    <div class="flex items-center justify-between pt-1 gap-2 text-xs">
+                        <label class="flex items-center space-x-2 cursor-pointer bg-slate-900 px-2.5 py-1.5 rounded-lg border border-slate-800 flex-1">
+                            <input id="chk-fadein" type="checkbox" onchange="muzikKontrol()" class="accent-emerald-500 rounded">
+                            <span>Fade In (Giriş)</span>
+                        </label>
+                        <label class="flex items-center space-x-2 cursor-pointer bg-slate-900 px-2.5 py-1.5 rounded-lg border border-slate-800 flex-1">
+                            <input id="chk-fadeout" type="checkbox" onchange="muzikKontrol()" class="accent-emerald-500 rounded">
+                            <span>Fade Out (Çıkış)</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FİNAL: BİRLEŞTİR, DİNLE VE DIŞA AKTAR -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
+            <div class="flex items-center space-x-3">
+                <button onclick="tamaminiOynat()" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm flex items-center space-x-2 shadow-lg transition-all cursor-pointer">
+                    <i class="fa-solid fa-circle-play text-base"></i>
+                    <span>Kurguyu Birleştir ve Dinle</span>
+                </button>
+                <button onclick="disaAktarModalAc()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm flex items-center space-x-2 shadow-lg transition-all cursor-pointer">
+                    <i class="fa-solid fa-file-export text-base"></i>
+                    <span>Kaydet (MP3 / WAV Karşılaştır)</span>
+                </button>
+            </div>
+            <div class="text-xs text-slate-400">
+                Hedef Dosya: <code class="text-emerald-400 font-mono bg-slate-950 px-2 py-1 rounded border border-slate-800">adsoyad_dedemin_radyosu.mp3</code>
+            </div>
+        </div>
+
+        <!-- DIŞA AKTARMA VE BAŞARI MODALI -->
+        <div id="sonuc-kutusu" class="hidden bg-gradient-to-r from-emerald-950/90 to-slate-900 border-2 border-emerald-500/60 rounded-2xl p-5 space-y-4 shadow-2xl">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500 text-slate-950 flex items-center justify-center text-2xl font-black shadow">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base sm:text-lg font-extrabold text-white">Tebrikler! Radyo Tiyatrosu Yayına Hazır!</h3>
+                        <p class="text-xs text-emerald-300">Tüm ses montaj ve kurgu görevlerini başarıyla tamamladınız.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="bg-slate-950/80 border border-slate-800 p-3 rounded-xl flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-white"><i class="fa-solid fa-file-audio text-blue-400 mr-1"></i> MP3 Formatı (Sıkıştırılmış)</div>
+                        <div class="text-slate-400">İnternette paylaşmak için idealdir, az yer kaplar.</div>
+                    </div>
+                    <span class="px-2.5 py-1 bg-blue-500/20 text-blue-300 font-mono font-bold rounded-lg border border-blue-500/30">2.4 MB</span>
+                </div>
+                <div class="bg-slate-950/80 border border-slate-800 p-3 rounded-xl flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-white"><i class="fa-solid fa-wave-square text-purple-400 mr-1"></i> WAV Formatı (Ham Ses)</div>
+                        <div class="text-slate-400">Stüdyo kalitesindedir, sıkıştırılmadığı için boyutu büyüktür.</div>
+                    </div>
+                    <span class="px-2.5 py-1 bg-purple-500/20 text-purple-300 font-mono font-bold rounded-lg border border-purple-500/30">24.8 MB</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- VERİ VE DURUM YÖNETİMİ ---
+        let konusmalar = [
+            { id: 'K2', dogruSira: 2, baslik: 'Kayıt B', metin: 'Dede: "O gece Ankara\'dan gelen telgraf sesiyle bütün mahalle sokağa döküldü."' },
+            { id: 'K3', dogruSira: 3, baslik: 'Kayıt C', metin: 'Dede: "Yaşasın Cumhuriyet sesleri gökyüzünü çınlattı, bayramımız kutlu olsun!"' },
+            { id: 'K1', dogruSira: 1, baslik: 'Kayıt A', metin: 'Kerem: "Dedeciğim, çatı katındaki bu eski tahta radyo 1923\'ten mi kaldı?"' }
+        ];
+
+        let gorevDurumu = { siralama: false, kesme: false, efekt: false, muzik: false };
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function altyaziGuncelle(metin, renk = 'blue') {
+            const kutu = document.getElementById('canli-altyazi');
+            kutu.innerHTML = metin;
+        }
+
+        // --- GÖREV 1: KONUŞMA SIRALAMA ---
+        function konusmalariCiz() {
+            const container = document.getElementById('konusma-listesi');
+            container.innerHTML = '';
+
+            konusmalar.forEach((k, idx) => {
+                const satir = document.createElement('div');
+                satir.className = "bg-slate-950 border border-slate-800 rounded-xl p-2.5 flex items-center justify-between gap-2 text-xs";
+                satir.innerHTML = `
+                    <div class="flex items-center space-x-2">
+                        <button onclick="konusmaDinle(${idx})" class="w-7 h-7 rounded-lg bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                        <div>
+                            <span class="font-bold text-blue-300">[${k.baslik}]</span>
+                            <span class="text-slate-300 ml-1">${k.metin}</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-1 shrink-0">
+                        <button onclick="yerDegistir(${idx}, -1)" class="w-6 h-6 rounded bg-slate-800 hover:bg-slate-700 text-slate-300"><i class="fa-solid fa-arrow-up"></i></button>
+                        <button onclick="yerDegistir(${idx}, 1)" class="w-6 h-6 rounded bg-slate-800 hover:bg-slate-700 text-slate-300"><i class="fa-solid fa-arrow-down"></i></button>
+                    </div>
+                `;
+                container.appendChild(satir);
+            });
+            siralamaKontrol();
+        }
+
+        function yerDegistir(idx, yon) {
+            const yeniIdx = idx + yon;
+            if (yeniIdx < 0 || yeniIdx >= konusmalar.length) return;
+            const temp = konusmalar[idx];
+            konusmalar[idx] = konusmalar[yeniIdx];
+            konusmalar[yeniIdx] = temp;
+            konusmalariCiz();
+        }
+
+        function siralamaKontrol() {
+            const dogruMu = konusmalar[0].dogruSira === 1 && konusmalar[1].dogruSira === 2 && konusmalar[2].dogruSira === 3;
+            gorevDurumu.siralama = dogruMu;
+            rozetGuncelle('rozet-gorev-1', 'kart-gorev-1', dogruMu);
+            ilerlemeHesapla();
+        }
+
+        function konusmaDinle(idx) {
+            initAudio();
+            const k = konusmalar[idx];
+            altyaziGuncelle(`<strong>Dinleniyor (${k.baslik}):</strong> ${k.metin}`);
+            
+            // Web Speech API varsa seslendir, yoksa melodik ton çal
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(k.metin.replace('Kerem:', '').replace('Dede:', ''));
+                utter.lang = 'tr-TR';
+                utter.pitch = k.dogruSira === 1 ? 1.3 : 0.85;
+                window.speechSynthesis.speak(utter);
+            }
+            tonCal(k.dogruSira * 120 + 200, 0.25);
+        }
+
+        // --- GÖREV 2: HATAYI KES ---
+        function hatayiKes() {
+            initAudio();
+            const blok = document.getElementById('hatali-blok');
+            blok.style.display = 'none';
+            const btn = document.getElementById('btn-makas');
+            btn.innerHTML = `<i class="fa-solid fa-check"></i> <span>Hata Silindi!</span>`;
+            btn.className = "px-3 py-1.5 rounded-lg bg-emerald-600 text-xs font-bold text-white flex items-center space-x-1.5";
+            
+            gorevDurumu.kesme = true;
+            rozetGuncelle('rozet-gorev-2', 'kart-gorev-2', true);
+            altyaziGuncelle(`<strong>Başarılı:</strong> Dedenin öksürdüğü hatalı ses dalgası zaman çizgisinden kesilerek silindi!`);
+            tonCal(520, 0.2);
+            ilerlemeHesapla();
+        }
+
+        // --- GÖREV 3: EFEKT SEÇİMİ ---
+        function efektSec(tur) {
+            initAudio();
+            ['telefon', 'telgraf', 'ambulans'].forEach(t => {
+                document.getElementById('efekt-kutu-' + t).className = "bg-slate-950 border border-slate-800 rounded-xl p-2.5 flex flex-col items-center text-center space-y-2";
+            });
+
+            if (tur === 'telgraf') {
+                document.getElementById('efekt-kutu-telgraf').className = "bg-emerald-950/50 border-2 border-emerald-500 rounded-xl p-2.5 flex flex-col items-center text-center space-y-2";
+                gorevDurumu.efekt = true;
+                rozetGuncelle('rozet-gorev-3', 'kart-gorev-3', true);
+                altyaziGuncelle(`<strong>Doğru Seçim:</strong> 1923 yılına uygun olan Telgraf Mors Sesi zaman çizgisine eklendi!`);
+                efektCal('telgraf');
+            } else {
+                document.getElementById('efekt-kutu-' + tur).className = "bg-rose-950/50 border-2 border-rose-500 rounded-xl p-2.5 flex flex-col items-center text-center space-y-2";
+                gorevDurumu.efekt = false;
+                rozetGuncelle('rozet-gorev-3', 'kart-gorev-3', false);
+                altyaziGuncelle(`<strong>Dikkat Tuzak Ses!</strong> 1923 yılında ${tur === 'telefon' ? 'akıllı telefon bildirimi' : 'modern ambulans sireni'} olamaz. Başka efekt seçin!`);
+                efektCal(tur);
+            }
+            ilerlemeHesapla();
+        }
+
+        // --- GÖREV 4: MÜZİK KAZANÇ VE FADE ---
+        function muzikKontrol() {
+            const db = parseInt(document.getElementById('db-slider').value);
+            const fadeIn = document.getElementById('chk-fadein').checked;
+            const fadeOut = document.getElementById('chk-fadeout').checked;
+            const dbMetin = document.getElementById('db-deger');
+
+            const dbUygun = (db <= -10 && db >= -15);
+            if (dbUygun) {
+                dbMetin.innerText = `${db} dB (İdeal Seviye ✓)`;
+                dbMetin.className = "font-mono font-bold text-emerald-400";
+            } else {
+                dbMetin.innerText = `${db} dB (${db > -10 ? 'Çok Yüksek!' : 'Çok Kısık!'})`;
+                dbMetin.className = "font-mono font-bold text-amber-400";
+            }
+
+            const tamam = dbUygun && fadeIn && fadeOut;
+            gorevDurumu.muzik = tamam;
+            rozetGuncelle('rozet-gorev-4', 'kart-gorev-4', tamam);
+            ilerlemeHesapla();
+        }
+
+        // --- YARDIMCI SES SENTEZLEYİCİ (SIFIR HARİCİ DOSYA) ---
+        function tonCal(frekans, sure, tip = 'sine') {
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = tip;
+            osc.frequency.setValueAtTime(frekans, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + sure);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + sure);
+        }
+
+        function efektCal(tur) {
+            initAudio();
+            if (tur === 'telgraf') {
+                altyaziGuncelle(`<strong>Efekt Dinleniyor:</strong> Telgraf Mors Sinyali (Dıt-Dıt-Dıııt) - 1923 Yılına Uygun`);
+                [0, 0.12, 0.24, 0.45, 0.65].forEach((z, i) => {
+                    setTimeout(() => tonCal(850, i === 2 ? 0.16 : 0.08, 'square'), z * 1000);
+                });
+            } else if (tur === 'telefon') {
+                altyaziGuncelle(`<strong>Efekt Dinleniyor:</strong> Akıllı Telefon Bildirim Sesi (Tuzak Ses!)`);
+                tonCal(1200, 0.12);
+                setTimeout(() => tonCal(1600, 0.2), 130);
+            } else if (tur === 'ambulans') {
+                altyaziGuncelle(`<strong>Efekt Dinleniyor:</strong> Modern Siren Sesi (Tuzak Ses!)`);
+                tonCal(600, 0.25, 'sawtooth');
+                setTimeout(() => tonCal(900, 0.25, 'sawtooth'), 260);
+            } else if (tur === 'oksuruk') {
+                if (gorevDurumu.kesme) {
+                    altyaziGuncelle(`<strong>Temiz Kayıt:</strong> "O gece... Cumhuriyet ilan edildi!" (Öksürük silindi)`);
+                    tonCal(440, 0.3);
+                } else {
+                    altyaziGuncelle(`<strong>Hatalı Kayıt:</strong> "O gece... [ÖHÖ! ÖHÖ!] ...Cumhuriyet ilan edildi!"`);
+                    tonCal(140, 0.15, 'sawtooth');
+                    setTimeout(() => tonCal(120, 0.2, 'sawtooth'), 180);
+                }
+            }
+        }
+
+        function rozetGuncelle(rozetId, kartId, tamam) {
+            const r = document.getElementById(rozetId);
+            const k = document.getElementById(kartId);
+            if (tamam) {
+                r.innerText = "Tamamlandı ✓";
+                r.className = "text-[11px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold";
+                k.className = "bg-slate-900 border-2 border-emerald-500/50 rounded-2xl p-4 space-y-3 transition-all";
+            } else {
+                r.innerText = "Bekliyor";
+                r.className = "text-[11px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-bold";
+                k.className = "bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3 transition-all";
+            }
+        }
+
+        function ilerlemeHesapla() {
+            const sayac = Object.values(gorevDurumu).filter(Boolean).length;
+            document.getElementById('ilerleme-metni').innerText = `${sayac} / 4 Görev`;
+        }
+
+        function tamaminiOynat() {
+            initAudio();
+            efektCal('telgraf');
+            altyaziGuncelle(`<strong>📻 Radyo Yayını Oynatılıyor:</strong> ${konusmalar[0].metin} ➔ ${konusmalar[1].metin} ➔ ${konusmalar[2].metin}`);
+        }
+
+        function disaAktarModalAc() {
+            const sayac = Object.values(gorevDurumu).filter(Boolean).length;
+            const sonucKutu = document.getElementById('sonuc-kutusu');
+            if (sayac < 4) {
+                altyaziGuncelle(`<strong class="text-rose-400">Eksik Görev Var!</strong> Dışa aktarmadan önce lütfen 4 görevin tamamını yeşil (Tamamlandı ✓) yapın.`);
+                tonCal(180, 0.3, 'sawtooth');
+                return;
+            }
+            sonucKutu.classList.remove('hidden');
+            sonucKutu.scrollIntoView({ behavior: 'smooth' });
+            altyaziGuncelle(`<strong class="text-emerald-400">Harika İş!</strong> Projeniz hem MP3 hem WAV olarak dışa aktarıldı.`);
+            [523, 659, 783, 1046].forEach((f, i) => setTimeout(() => tonCal(f, 0.18), i * 140));
+        }
+
+        // Başlangıçta çiz
+        konusmalariCiz();
+    </script>
+</body>
+</html>
