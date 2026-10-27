@@ -19,7 +19,7 @@
                 </div>
                 <div>
                     <h1 class="text-base sm:text-lg font-extrabold text-white">Dedemin Tahta Radyosu • Ses Montaj Stüdyosu</h1>
-                    <p class="text-xs text-slate-400">1923 Cumhuriyet Bayramı özel radyo yayınını hazırlayın ve hazırladığınız seslerle dinleyin!</p>
+                    <p class="text-xs text-slate-400">1923 Cumhuriyet Bayramı özel radyo yayınını adımlarla tamamlayın ve Türkçe seslerle dinleyin!</p>
                 </div>
             </div>
             <div class="flex items-center space-x-2 bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800">
@@ -31,7 +31,7 @@
         <!-- Altyazı / Canlı Durum Ekranı -->
         <div id="canli-altyazi-kutu" class="bg-slate-900/90 border border-blue-500/30 rounded-xl p-3 flex items-center space-x-3 text-xs sm:text-sm text-blue-200 shadow">
             <i class="fa-solid fa-volume-high text-blue-400 animate-pulse text-base"></i>
-            <span id="canli-altyazi"><strong>Stüdyo Hazır:</strong> Görevleri tamamlayın ve hazırladığınız gerçek ses dosyalarını dinleyin!</span>
+            <span id="canli-altyazi"><strong>Stüdyo Hazır:</strong> Görevleri tamamlayın ve Türkçe radyo yayınını canlı dinleyin!</span>
         </div>
 
         <!-- GÖREV 1 & 2: KONUŞMA SIRALAMA VE HATA KESME -->
@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="flex items-center justify-between gap-2">
-                        <button onclick="sesDosyasiCal('dosyalar/Dedemin_Radyosu/1_Konusmalar/K6.wav')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 flex items-center space-x-1.5">
+                        <button onclick="konusmaSeslendir('Dede: Öhö öhö... O gece zorlukla duyduk.')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 flex items-center space-x-1.5">
                             <i class="fa-solid fa-headphones text-rose-400"></i>
                             <span>Hatalı Kaydı Dinle</span>
                         </button>
@@ -99,7 +99,7 @@
                         <i class="fa-solid fa-mobile-screen-button text-xl text-purple-400"></i>
                         <span class="text-xs font-bold">Telefon Sesi</span>
                         <div class="flex space-x-1 w-full">
-                            <button onclick="sesDosyasiCal('dosyalar/Dedemin_Radyosu/2_Efektler/E7.wav')" class="flex-1 py-1 bg-slate-800 hover:bg-slate-700 rounded text-[11px]"><i class="fa-solid fa-play"></i></button>
+                            <button onclick="efektCal('telefon')" class="flex-1 py-1 bg-slate-800 hover:bg-slate-700 rounded text-[11px]"><i class="fa-solid fa-play"></i></button>
                             <button onclick="efektSec('telefon')" class="flex-1 py-1 bg-amber-600/20 hover:bg-amber-600/40 text-amber-300 border border-amber-500/30 rounded text-[11px] font-bold">Seç</button>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                         <i class="fa-solid fa-tower-broadcast text-xl text-amber-400"></i>
                         <span class="text-xs font-bold">Telgraf Sesi</span>
                         <div class="flex space-x-1 w-full">
-                            <button onclick="sesDosyasiCal('dosyalar/Dedemin_Radyosu/2_Efektler/E1.wav')" class="flex-1 py-1 bg-slate-800 hover:bg-slate-700 rounded text-[11px]"><i class="fa-solid fa-play"></i></button>
+                            <button onclick="efektCal('telgraf')" class="flex-1 py-1 bg-slate-800 hover:bg-slate-700 rounded text-[11px]"><i class="fa-solid fa-play"></i></button>
                             <button onclick="efektSec('telgraf')" class="flex-1 py-1 bg-amber-600/20 hover:bg-amber-600/40 text-amber-300 border border-amber-500/30 rounded text-[11px] font-bold">Seç</button>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                         <i class="fa-solid fa-truck-medical text-xl text-rose-400"></i>
                         <span class="text-xs font-bold">Modern Siren</span>
                         <div class="flex space-x-1 w-full">
-                            <button onclick="sesDosyasiCal('dosyalar/Dedemin_Radyosu/2_Efektler/E8.wav')" class="flex-1 py-1 bg-slate-800 hover:bg-slate-700 rounded text-[11px]"><i class="fa-solid fa-play"></i></button>
+                            <button onclick="efektCal('ambulans')" class="flex-1 py-1 bg-slate-800 hover:bg-slate-700 rounded text-[11px]"><i class="fa-solid fa-play"></i></button>
                             <button onclick="efektSec('ambulans')" class="flex-1 py-1 bg-amber-600/20 hover:bg-amber-600/40 text-amber-300 border border-amber-500/30 rounded text-[11px] font-bold">Seç</button>
                         </div>
                     </div>
@@ -151,12 +151,12 @@
             </div>
         </div>
 
-        <!-- FİNAL: GERÇEK SES DOSYALARIYLA CANLI DİNLE -->
+        <!-- FİNAL: TÜRKÇE SESLENDİRME İLE CANLI DİNLE -->
         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
             <div class="flex items-center space-x-3">
-                <button onclick="gercekSeslerleKurguyuOynat()" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm flex items-center space-x-2 shadow-lg transition-all cursor-pointer">
+                <button onclick="turkceKurguyuOynat()" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm flex items-center space-x-2 shadow-lg transition-all cursor-pointer">
                     <i class="fa-solid fa-circle-play text-base animate-pulse"></i>
-                    <span>🎙️ Hazırladığımız Seslerle Kurguyu Dinle</span>
+                    <span>🎙️ Türkçe Seslendirme ile Kurguyu Dinle</span>
                 </button>
             </div>
             <div class="text-xs text-slate-400">
@@ -173,7 +173,7 @@
                     </div>
                     <div>
                         <h3 class="text-base sm:text-lg font-extrabold text-white">Tebrikler! Radyo Tiyatrosu Başarıyla Tamamlandı!</h3>
-                        <p class="text-xs text-emerald-300">Gerçek ses paketleri birleştirildi ve yayın testi başarıyla geçti.</p>
+                        <p class="text-xs text-emerald-300">Tüm Türkçe seslendirme adımları ve kurgu testleri başarıyla tamamlandı.</p>
                     </div>
                 </div>
             </div>
@@ -198,31 +198,67 @@
     </div>
 
     <script>
-        // Konuşmaların gerçek ses dosyası yolları
         let konusmalar = [
-            { id: 'K2', dogruSira: 2, baslik: 'Kayıt B', dosya: 'dosyalar/Dedemin_Radyosu/1_Konusmalar/K2.wav', metin: 'Dede: O gece Ankara\'dan gelen telgraf sesiyle bütün mahalle sokağa döküldü.' },
-            { id: 'K3', dogruSira: 3, baslik: 'Kayıt C', dosya: 'dosyalar/Dedemin_Radyosu/1_Konusmalar/K3.wav', metin: 'Dede: Yaşasın Cumhuriyet sesleri gökyüzünü çınlattı!' },
-            { id: 'K1', dogruSira: 1, baslik: 'Kayıt A', dosya: 'dosyalar/Dedemin_Radyosu/1_Konusmalar/K1.wav', metin: 'Kerem: Dedeciğim, bu eski tahta radyo 1923\'ten mi kaldı?' }
+            { id: 'K2', dogruSira: 2, baslik: 'Kayıt B', metin: 'Dede: O gece Ankara\'dan gelen telgraf sesiyle bütün mahalle sokağa döküldü.', sesTonu: 0.8 },
+            { id: 'K3', dogruSira: 3, baslik: 'Kayıt C', metin: 'Dede: Yaşasın Cumhuriyet sesleri gökyüzünü çınlattı!', sesTonu: 0.85 },
+            { id: 'K1', dogruSira: 1, baslik: 'Kayıt A', metin: 'Kerem: Dedeciğim, bu eski tahta radyo 1923\'ten mi kaldı?', sesTonu: 1.2 }
         ];
 
         let gorevDurumu = { siralama: false, kesme: false, efekt: false, muzik: false };
-        let aktifSes = null;
+        let turkceSesler = [];
+
+        // Tarayıcıdaki Türkçe sesleri yükle
+        function sesleriYukle() {
+            if ('speechSynthesis' in window) {
+                turkceSesler = window.speechSynthesis.getVoices();
+            }
+        }
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = sesleriYukle;
+            sesleriYukle();
+        }
 
         function altyaziGuncelle(metin) {
             document.getElementById('canli-altyazi').innerHTML = metin;
         }
 
-        function sesDosyasiCal(url) {
-            if (aktifSes) {
-                aktifSes.pause();
-                aktifSes.currentTime = 0;
+        function konusmaSeslendir(metin, perde = 1.0, callback) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(metin);
+                utter.lang = 'tr-TR';
+                utter.pitch = perde;
+                
+                // Kesinlikle Türkçe ses seç (varsa tr-TR)
+                let trSes = turkceSesler.find(v => v.lang === 'tr-TR' || v.lang === 'tr_TR' || v.lang.startsWith('tr'));
+                if (trSes) {
+                    utter.voice = trSes;
+                }
+
+                if (callback) utter.onend = callback;
+                window.speechSynthesis.speak(utter);
+            } else {
+                if (callback) callback();
             }
-            altyaziGuncelle(`<strong>Ses Çalınıyor:</strong> ${url}`);
-            aktifSes = new Audio(url);
-            aktifSes.play().catch(e => {
-                console.error("Ses çalınamadı:", e);
-                altyaziGuncelle(`<strong class="text-rose-400">Hata:</strong> Ses dosyası bulunamadı (${url}). Lütfen dosyaların zip içinden çıkarılıp 'dosyalar/' klasörüne atıldığından emin olun.`);
-            });
+        }
+
+        let audioCtx = null;
+        function initAudio() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+
+        function tonCal(frekans, sure, tip = 'sine') {
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = tip;
+            osc.frequency.setValueAtTime(frekans, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + sure);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + sure);
         }
 
         function konusmalariCiz() {
@@ -234,7 +270,7 @@
                 satir.className = "bg-slate-950 border border-slate-800 rounded-xl p-2.5 flex items-center justify-between gap-2 text-xs";
                 satir.innerHTML = `
                     <div class="flex items-center space-x-2">
-                        <button onclick="sesDosyasiCal('${k.dosya}')" class="w-7 h-7 rounded-lg bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 flex items-center justify-center shrink-0">
+                        <button onclick="konusmaSeslendir('${k.metin}', ${k.sesTonu})" class="w-7 h-7 rounded-lg bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 flex items-center justify-center shrink-0">
                             <i class="fa-solid fa-play"></i>
                         </button>
                         <div>
@@ -276,8 +312,22 @@
             
             gorevDurumu.kesme = true;
             rozetGuncelle('rozet-gorev-2', 'kart-gorev-2', true);
-            altyaziGuncelle(`<strong>Başarılı:</strong> Dedenin öksürdüğü hatalı bölüm ses dosyasından kesilerek temizlendi!`);
+            altyaziGuncelle(`<strong>Başarılı:</strong> Dedenin öksürdüğü hatalı bölüm ses kaydından kesilerek temizlendi!`);
             ilerlemeHesapla();
+        }
+
+        function efektCal(tur) {
+            initAudio();
+            if (tur === 'telgraf') {
+                altyaziGuncelle(`<strong>Efekt:</strong> Telgraf Mors Sinyali`);
+                [0, 0.12, 0.24, 0.45].forEach((z, i) => setTimeout(() => tonCal(850, 0.08, 'square'), z * 1000));
+            } else if (tur === 'telefon') {
+                altyaziGuncelle(`<strong>Tuzak Ses:</strong> Telefon Bildirimi`);
+                tonCal(1200, 0.12); setTimeout(() => tonCal(1600, 0.2), 130);
+            } else if (tur === 'ambulans') {
+                altyaziGuncelle(`<strong>Tuzak Ses:</strong> Modern Siren`);
+                tonCal(600, 0.25, 'sawtooth'); setTimeout(() => tonCal(900, 0.25, 'sawtooth'), 260);
+            }
         }
 
         function efektSec(tur) {
@@ -290,14 +340,13 @@
                 gorevDurumu.efekt = true;
                 rozetGuncelle('rozet-gorev-3', 'kart-gorev-3', true);
                 altyaziGuncelle(`<strong>Doğru Seçim:</strong> 1923 yılına uygun Telgraf Sesi seçildi!`);
-                sesDosyasiCal('dosyalar/Dedemin_Radyosu/2_Efektler/E1.wav');
+                efektCal('telgraf');
             } else {
                 document.getElementById('efekt-kutu-' + tur).className = "bg-rose-950/50 border-2 border-rose-500 rounded-xl p-2.5 flex flex-col items-center text-center space-y-2";
                 gorevDurumu.efekt = false;
                 rozetGuncelle('rozet-gorev-3', 'kart-gorev-3', false);
                 altyaziGuncelle(`<strong>Dikkat Tuzak Ses!</strong> 1923 yılında bu ses olamaz. Başka efekt seçin!`);
-                let tuzakDosya = tur === 'telefon' ? 'dosyalar/Dedemin_Radyosu/2_Efektler/E7.wav' : 'dosyalar/Dedemin_Radyosu/2_Efektler/E8.wav';
-                sesDosyasiCal(tuzakDosya);
+                efektCal(tur);
             }
             ilerlemeHesapla();
         }
@@ -342,8 +391,8 @@
             document.getElementById('ilerleme-metni').innerText = `${sayac} / 4 Görev`;
         }
 
-        // HAZIRLADIĞIMIZ GERÇEK SES DOSYALARINI SIRAYLA ÇAL
-        function gercekSeslerleKurguyuOynat() {
+        // TÜRKÇE SESLENDİRME İLE ADIM ADIM KURGUYU OYNAT
+        function turkceKurguyuOynat() {
             const sayac = Object.values(gorevDurumu).filter(Boolean).length;
             const sonucKutu = document.getElementById('sonuc-kutusu');
 
@@ -357,38 +406,29 @@
 
             altyaziGuncelle(`🎙️ <strong>Radyo Yayını Başladı:</strong> [Telgraf Efekti Çalıyor...]`);
 
-            // 1. Önce Telgraf Efekti Çal
-            let telgrafSes = new Audio('dosyalar/Dedemin_Radyosu/2_Efektler/E1.wav');
-            telgrafSes.play().then(() => {
-                telgrafSes.onended = () => {
-                    // 2. Sıradaki 1. Konuşma
-                    altyaziGuncelle(`🎙️ <strong>Yayın:</strong> ${konusmalar[0].metin}`);
-                    let ses1 = new Audio(konusmalar[0].dosya);
-                    ses1.play();
-                    ses1.onended = () => {
-                        // 3. Sıradaki 2. Konuşma
-                        altyaziGuncelle(`🎙️ <strong>Yayın:</strong> ${konusmalar[1].metin}`);
-                        let ses2 = new Audio(konusmalar[1].dosya);
-                        ses2.play();
-                        ses2.onended = () => {
-                            // 4. Sıradaki 3. Konuşma
-                            altyaziGuncelle(`🎙️ <strong>Yayın:</strong> ${konusmalar[2].metin}`);
-                            let ses3 = new Audio(konusmalar[2].dosya);
-                            ses3.play();
-                            ses3.onended = () => {
-                                // 5. Fon Müziği (-12dB)
-                                altyaziGuncelle(`🎙️ <strong>Yayın Tamamlandı!</strong> [Fon Müziği -12dB ile yayına verildi]`);
-                                let muzikSes = new Audio('dosyalar/Dedemin_Radyosu/3_Muzik/fon_muzigi.wav');
-                                muzikSes.volume = 0.25; // Yaklaşık -12dB hissi
-                                muzikSes.play();
-                            };
-                        };
-                    };
-                };
-            }).catch(err => {
-                console.error("Ses oynatma hatası:", err);
-                altyaziGuncelle(`<strong class="text-rose-400">Ses Dosyası Bulunamadı!</strong> Lütfen 'dosyalar/Dedemin_Radyosu/' klasörünün GitHub'da olduğundan emin olun.`);
-            });
+            // 1. Telgraf Sesi Çal
+            [0, 0.15, 0.3, 0.55].forEach((z, i) => setTimeout(() => tonCal(850, 0.08, 'square'), z * 1000));
+
+            setTimeout(() => {
+                // 2. 1. Konuşma (Türkçe Ses)
+                altyaziGuncelle(`🎙️ <strong>Yayın:</strong> ${konusmalar[0].metin}`);
+                konusmaSeslendir(konusmalar[0].metin, konusmalar[0].sesTonu, () => {
+                    
+                    // 3. 2. Konuşma (Türkçe Ses)
+                    altyaziGuncelle(`🎙️ <strong>Yayın:</strong> ${konusmalar[1].metin}`);
+                    konusmaSeslendir(konusmalar[1].metin, konusmalar[1].sesTonu, () => {
+                        
+                        // 4. 3. Konuşma (Türkçe Ses)
+                        altyaziGuncelle(`🎙️ <strong>Yayın:</strong> ${konusmalar[2].metin}`);
+                        konusmaSeslendir(konusmalar[2].metin, konusmalar[2].sesTonu, () => {
+                            
+                            // 5. Fon Müziği Kapanış Melodisi
+                            altyaziGuncelle(`🎙️ <strong>Yayın Tamamlandı!</strong> [Fon Müziği -12dB ile yayına verildi]`);
+                            [523, 659, 783, 1046].forEach((f, i) => setTimeout(() => tonCal(f, 0.25), i * 150));
+                        });
+                    });
+                });
+            }, 900);
         }
 
         konusmalariCiz();
