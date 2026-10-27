@@ -51,7 +51,7 @@ const dersIcerikleri = {
                 {
                     baslik: "Web Tabanlı Mini Ses Stüdyosu: 1923 Radyo Anonsu",
                     tur: "İnteraktif Stüdyo",
-                    url: "etkinlikler/ses-studyosu.html"
+                    url: "/ses-studyosu.html"
                 }
             ]
         },
