@@ -171,9 +171,8 @@
     <!-- Veri Dosyası ve Mantık -->
     <script src="data.js"></script>
     <script>
-        // SADECE BURAYA YAZILAN HAFTALAR SİTEDE VE MODALDA GÖZÜKÜR:
-        // Yeni hafta ekledikçe buraya virgülle ekleyebilirsiniz (Örn: "5-hafta-9", "6-hafta-7")
-        const yayinlananDersler = ["5-hafta-8", "6-hafta-6"];
+        // YAYINLANAN DERSLER LİSTESİ (6. Hafta ve yeni eklenen 7. Hafta)
+        const yayinlananDersler = ["5-hafta-8", "6-hafta-6", "6-hafta-7"];
 
         document.addEventListener("DOMContentLoaded", function() {
             sonEklenenleriGuncelle();
@@ -216,7 +215,7 @@
                 if (baslik5) baslik5.innerText = "Henüz içerik eklenmedi";
             }
 
-            // 6. Sınıf Son Eklenen Kartı
+            // 6. Sınıf Son Eklenen Kartı (Artık 7. Hafta otomatik gelecek)
             const btn6 = document.getElementById("btn-6-son");
             const num6 = document.getElementById("num-6-son");
             const baslik6 = document.getElementById("baslik-6-son");
