@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="flex items-center justify-between gap-2">
-                        <button onclick="turkceKonus('Dede: Öhö öhö... Sesim biraz bozuldu ama devam edelim.', 0.8)" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 flex items-center space-x-1.5">
+                        <button onclick="turkceKonus('Öhö öhö... Sesim biraz bozuldu ama devam edelim.', 0.8)" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 flex items-center space-x-1.5">
                             <i class="fa-solid fa-headphones text-rose-400"></i>
                             <span>Hatalı Kaydı Dinle</span>
                         </button>
@@ -151,7 +151,7 @@
             </div>
         </div>
 
-        <!-- FİNAL: TÜRKÇE SESLENDİRME İLE CANLI DİNLE -->
+        <!-- FİNAL: KESİN TÜRKÇE SESLENDİRME İLE CANLI DİNLE -->
         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
             <div class="flex items-center space-x-3">
                 <button onclick="turkceKurguyuOynat()" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm flex items-center space-x-2 shadow-lg transition-all cursor-pointer">
@@ -199,9 +199,9 @@
 
     <script>
         let konusmalar = [
-            { id: 'K2', dogruSira: 2, baslik: 'Kayıt B', metin: 'Dede: O gece Ankara\'dan gelen telgraf sesiyle bütün mahalle sokağa döküldü.', sesTonu: 0.8 },
-            { id: 'K3', dogruSira: 3, baslik: 'Kayıt C', metin: 'Dede: Yaşasın Cumhuriyet sesleri gökyüzünü çınlattı!', sesTonu: 0.85 },
-            { id: 'K1', dogruSira: 1, baslik: 'Kayıt A', metin: 'Kerem: Dedeciğim, bu eski tahta radyo 1923\'ten mi kaldı?', sesTonu: 1.2 }
+            { id: 'K2', dogruSira: 2, baslik: 'Kayıt B', metin: 'O gece Ankara\'dan gelen telgraf sesiyle bütün mahalle sokağa döküldü.', sesTonu: 0.8 },
+            { id: 'K3', dogruSira: 3, baslik: 'Kayıt C', metin: 'Yaşasın Cumhuriyet sesleri gökyüzünü çınlattı!', sesTonu: 0.85 },
+            { id: 'K1', dogruSira: 1, baslik: 'Kayıt A', metin: 'Dedeciğim, bu eski tahta radyo 1923\'ten mi kaldı?', sesTonu: 1.2 }
         ];
 
         let gorevDurumu = { siralama: false, kesme: false, efekt: false, muzik: false };
@@ -210,24 +210,34 @@
             document.getElementById('canli-altyazi').innerHTML = metin;
         }
 
+        // KESİN TÜRKÇE SES SEÇİCİ
         function turkceKonus(metin, perde = 1.0, callback) {
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
                 const utter = new SpeechSynthesisUtterance(metin);
                 utter.lang = 'tr-TR';
                 utter.pitch = perde;
-                utter.rate = 0.95; // Daha sakin ve anlaşılır radyo hızı
+                utter.rate = 0.95;
 
-                // Tarayıcıdaki en iyi Türkçe sesi bulmaya çalış
                 const sesler = window.speechSynthesis.getVoices();
-                const trSes = sesler.find(v => v.lang === 'tr-TR' || v.lang === 'tr_TR' || v.lang.startsWith('tr'));
-                if (trSes) utter.voice = trSes;
+                // Kesinlikle Türkçe (tr veya tr-TR) olan bir ses bul
+                const trSes = sesler.find(v => v.lang.toLowerCase().includes('tr'));
+                if (trSes) {
+                    utter.voice = trSes;
+                }
 
                 if (callback) utter.onend = callback;
                 window.speechSynthesis.speak(utter);
             } else {
                 if (callback) callback();
             }
+        }
+
+        // Sayfa yüklendiğinde sesleri önceden cache'le
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                window.speechSynthesis.getVoices();
+            };
         }
 
         let audioCtx = null;
