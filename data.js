@@ -37,7 +37,7 @@ const dersIcerikleri = {
                 url: "6.sinif/6-1.html" 
             }
         ]
-    }
+    },
 
     "6-hafta-7": {
         sinif: 6,
