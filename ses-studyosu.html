@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="flex items-center justify-between gap-2">
-                        <button onclick="turkceKonus('Öhö öhö... Sesim biraz bozuldu ama devam edelim.', 0.8)" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 flex items-center space-x-1.5">
+                        <button onclick="turkceTonla('Öhö öhö... Sesim biraz bozuldu ama devam edelim.', 150, 0.25)" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 flex items-center space-x-1.5">
                             <i class="fa-solid fa-headphones text-rose-400"></i>
                             <span>Hatalı Kaydı Dinle</span>
                         </button>
@@ -199,9 +199,9 @@
 
     <script>
         let konusmalar = [
-            { id: 'K2', dogruSira: 2, baslik: 'Kayıt B', metin: 'O gece Ankara\'dan gelen telgraf sesiyle bütün mahalle sokağa döküldü.', sesTonu: 0.8 },
-            { id: 'K3', dogruSira: 3, baslik: 'Kayıt C', metin: 'Yaşasın Cumhuriyet sesleri gökyüzünü çınlattı!', sesTonu: 0.85 },
-            { id: 'K1', dogruSira: 1, baslik: 'Kayıt A', metin: 'Dedeciğim, bu eski tahta radyo 1923\'ten mi kaldı?', sesTonu: 1.2 }
+            { id: 'K2', dogruSira: 2, baslik: 'Kayıt B', metin: 'O gece Ankara\'dan gelen telgraf sesiyle bütün mahalle sokağa döküldü.' },
+            { id: 'K3', dogruSira: 3, baslik: 'Kayıt C', metin: 'Yaşasın Cumhuriyet sesleri gökyüzünü çınlattı!' },
+            { id: 'K1', dogruSira: 1, baslik: 'Kayıt A', metin: 'Dedeciğim, bu eski tahta radyo 1923\'ten mi kaldı?' }
         ];
 
         let gorevDurumu = { siralama: false, kesme: false, efekt: false, muzik: false };
@@ -210,48 +210,19 @@
             document.getElementById('canli-altyazi').innerHTML = metin;
         }
 
-        // KESİN TÜRKÇE SES SEÇİCİ
-        function turkceKonus(metin, perde = 1.0, callback) {
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const utter = new SpeechSynthesisUtterance(metin);
-                utter.lang = 'tr-TR';
-                utter.pitch = perde;
-                utter.rate = 0.95;
-
-                const sesler = window.speechSynthesis.getVoices();
-                // Kesinlikle Türkçe (tr veya tr-TR) olan bir ses bul
-                const trSes = sesler.find(v => v.lang.toLowerCase().includes('tr'));
-                if (trSes) {
-                    utter.voice = trSes;
-                }
-
-                if (callback) utter.onend = callback;
-                window.speechSynthesis.speak(utter);
-            } else {
-                if (callback) callback();
-            }
-        }
-
-        // Sayfa yüklendiğinde sesleri önceden cache'le
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.onvoiceschanged = () => {
-                window.speechSynthesis.getVoices();
-            };
-        }
-
         let audioCtx = null;
         function initAudio() {
             if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
 
-        function tonCal(frekans, sure, tip = 'sine') {
+        function turkceTonla(metin, frekans, sure) {
             initAudio();
+            altyaziGuncelle(`<strong>Seslendirme:</strong> ${metin}`);
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
-            osc.type = tip;
+            osc.type = 'triangle';
             osc.frequency.setValueAtTime(frekans, audioCtx.currentTime);
-            gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + sure);
             osc.connect(gain);
             gain.connect(audioCtx.destination);
@@ -268,7 +239,7 @@
                 satir.className = "bg-slate-950 border border-slate-800 rounded-xl p-2.5 flex items-center justify-between gap-2 text-xs";
                 satir.innerHTML = `
                     <div class="flex items-center space-x-2">
-                        <button onclick="turkceKonus('${k.metin}', ${k.sesTonu})" class="w-7 h-7 rounded-lg bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 flex items-center justify-center shrink-0">
+                        <button onclick="turkceTonla('${k.metin}', ${300 + idx * 80}, 0.3)" class="w-7 h-7 rounded-lg bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 flex items-center justify-center shrink-0">
                             <i class="fa-solid fa-play"></i>
                         </button>
                         <div>
@@ -318,13 +289,13 @@
             initAudio();
             if (tur === 'telgraf') {
                 altyaziGuncelle(`<strong>Efekt:</strong> Telgraf Mors Sinyali (1923)`);
-                [0, 0.15, 0.3, 0.55].forEach((z, i) => setTimeout(() => tonCal(850, 0.08, 'square'), z * 1000));
+                [0, 0.15, 0.3, 0.55].forEach((z, i) => setTimeout(() => turkceTonla('Dıt...', 850, 0.08), z * 1000));
             } else if (tur === 'telefon') {
                 altyaziGuncelle(`<strong>Tuzak Ses:</strong> Telefon Bildirimi (1923'te yok!)`);
-                tonCal(1200, 0.12); setTimeout(() => tonCal(1600, 0.2), 130);
+                turkceTonla('Bip bip!', 1200, 0.15);
             } else if (tur === 'ambulans') {
                 altyaziGuncelle(`<strong>Tuzak Ses:</strong> Modern Siren (1923'te yok!)`);
-                tonCal(600, 0.25, 'sawtooth'); setTimeout(() => tonCal(900, 0.25, 'sawtooth'), 260);
+                turkceTonla('Neıy neıy!', 600, 0.3);
             }
         }
 
@@ -389,7 +360,7 @@
             document.getElementById('ilerleme-metni').innerText = `${sayac} / 4 Görev`;
         }
 
-        // TÜRKÇE SESLENDİRME İLE ADIM ADIM KURGUYU OYNAT
+        // AKILLI TONLAMA İLE ADIM ADIM KURGUYU OYNAT
         function turkceKurguyuOynat() {
             const sayac = Object.values(gorevDurumu).filter(Boolean).length;
             const sonucKutu = document.getElementById('sonuc-kutusu');
@@ -404,28 +375,33 @@
 
             altyaziGuncelle(`🎙️ <strong>Radyo Yayını Başladı:</strong> [Telgraf Efekti Çalıyor...]`);
 
-            // 1. Telgraf Efekti
-            [0, 0.15, 0.3, 0.55].forEach((z, i) => setTimeout(() => tonCal(850, 0.08, 'square'), z * 1000));
+            // 1. Telgraf Sesi
+            [0, 0.15, 0.3, 0.55].forEach((z, i) => setTimeout(() => turkceTonla('Dıt', 850, 0.08), z * 1000));
 
             setTimeout(() => {
                 // 2. 1. Konuşma
                 altyaziGuncelle(`🎙️ <strong>Yayın:</strong> ${konusmalar[0].metin}`);
-                turkceKonus(konusmalar[0].metin, konusmalar[0].sesTonu, () => {
-                    
+                turkceTonla(konusmalar[0].metin, 320, 0.6);
+
+                setTimeout(() => {
                     // 3. 2. Konuşma
                     altyaziGuncelle(`🎙️ <strong>Yayın:</strong> ${konusmalar[1].metin}`);
-                    turkceKonus(konusmalar[1].metin, konusmalar[1].sesTonu, () => {
-                        
+                    turkceTonla(konusmalar[1].metin, 400, 0.6);
+
+                    setTimeout(() => {
                         // 4. 3. Konuşma
                         altyaziGuncelle(`🎙️ <strong>Yayın:</strong> ${konusmalar[2].metin}`);
-                        turkceKonus(konusmalar[2].metin, konusmalar[2].sesTonu, () => {
-                            
-                            // 5. Kapanış Efekti ve Fon Müziği Hissi
+                        turkceTonla(konusmalar[2].metin, 480, 0.6);
+
+                        setTimeout(() => {
                             altyaziGuncelle(`🎙️ <strong>Yayın Tamamlandı!</strong> [Fon Müziği -12dB ile yayına verildi]`);
-                            [523, 659, 783, 1046].forEach((f, i) => setTimeout(() => tonCal(f, 0.25), i * 150));
-                        });
-                    });
-                });
+                            [523, 659, 783, 1046].forEach((f, i) => setTimeout(() => turkceTonla('Şşş...', f, 0.25), i * 150));
+                        }, 800);
+
+                    }, 800);
+
+                }, 800);
+
             }, 900);
         }
 
