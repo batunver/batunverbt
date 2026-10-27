@@ -61,25 +61,28 @@
                     <span id="ders-kazanim">Kazanım yükleniyor...</span>
                 </div>
 
-                <!-- 2 Cümlelik Açıklama -->
-                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed pt-2">
+                <!-- Açıklama -->
+                <p id="ders-aciklama" class="text-slate-300 text-xs sm:text-sm leading-relaxed pt-2">
                     Seslerin bilgisayarda nasıl işlendiğini keşfedecek, kendi ses projelerinizi oluşturup düzenleme adımlarını öğreneceksiniz. Bu sayede dijital içeriklerinize profesyonel dokunuşlar katabileceksiniz.
                 </p>
             </div>
 
-            <hr class="border-slate-700/60">
+            <hr id="hizli-erisim-cizgi" class="border-slate-700/60">
 
             <div class="flex flex-wrap gap-2.5 sm:gap-3" id="hizli-erisim-butonlari">
-                <a href="#ders-sunusu-alani" class="px-4 py-2.5 bg-blue-600/20 border border-blue-500/40 hover:bg-blue-600/40 text-blue-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm">
+                <a id="btn-sunu" href="#ders-sunusu-alani" class="px-4 py-2.5 bg-blue-600/20 border border-blue-500/40 hover:bg-blue-600/40 text-blue-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm">
                     <i class="fa-solid fa-file-powerpoint text-blue-400"></i>
                     <span>Ders Sunusu</span>
                 </a>
-                <a href="#ders-notu-alani" class="px-4 py-2.5 bg-emerald-600/20 border border-emerald-500/40 hover:bg-emerald-600/40 text-emerald-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm">
+                <a id="btn-ders-notu" href="#ders-notu-alani" class="px-4 py-2.5 bg-emerald-600/20 border border-emerald-500/40 hover:bg-emerald-600/40 text-emerald-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm">
                     <i class="fa-solid fa-book-open text-emerald-400"></i>
                     <span>Ders Notu</span>
                 </a>
             </div>
         </div>
+
+        <!-- ÖZEL UYGULAMA / YÖNERGE ALANI (Sunu ve Ders Notu Olmayan Haftalar İçin) -->
+        <div id="ozel-icerik-alani" class="hidden space-y-6"></div>
 
         <!-- 2. DERS SUNUSU ALANI (Kapak Önizlemeli) -->
         <section id="ders-sunusu-alani" class="bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 shadow-xl space-y-4">
@@ -176,29 +179,39 @@
                 // Temel Bilgiler
                 document.getElementById('ders-sinif-hafta').innerText = `${veri.sinif}. Sınıf • ${veri.hafta}. Hafta`;
                 document.getElementById('ders-baslik').innerText = veri.baslik;
-                document.getElementById('ders-kazanim').innerText = `Kazanım: ${veri.kazanim}`;
-                document.getElementById('sunu-kart-baslik').innerText = `${veri.baslik} - Ders Sunusu`;
+                document.getElementById('ders-kazanim').innerText = `Kazanım: ${veri.kazanim}`; if (veri.aciklama) { document.getElementById('ders-aciklama').innerText = veri.aciklama; } document.getElementById('sunu-kart-baslik').innerText = `${veri.baslik} - Ders Sunusu`;
                 document.getElementById('ders-notu-kart-baslik').innerText = `${veri.baslik} - Ders Notu`;
-                
+
+                // Özel İçerik Alanı (Sunu ve Ders Notu olmayan proje haftaları için)
+                const ozelIcerikAlani = document.getElementById('ozel-icerik-alani');
+                if (veri.ozelIcerikHtml) {
+                    ozelIcerikAlani.innerHTML = veri.ozelIcerikHtml;
+                    ozelIcerikAlani.classList.remove('hidden');
+                }
+
                 // Sunu Kapak Kartı ve Önizleme
                 const sunuLink = document.getElementById('sunu-link');
                 const sunuOnizlemeIframe = document.getElementById('sunu-onizleme-iframe');
+                const btnSunu = document.getElementById('btn-sunu');
                 if (veri.sunuUrl) {
                     sunuLink.href = veri.sunuUrl;
                     sunuOnizlemeIframe.src = veri.sunuUrl + "#toolbar=0&navpanes=0&scrollbar=0";
                 } else {
                     sunuLink.closest('section').style.display = 'none';
+                    if (btnSunu) btnSunu.style.display = 'none';
                 }
 
                 // Ders Notu Kapak Kartı ve Önizleme
                 const dersNotuLink = document.getElementById('ders-notu-link');
                 const dersNotuOnizlemeIframe = document.getElementById('ders-notu-onizleme-iframe');
+                const btnDersNotu = document.getElementById('btn-ders-notu');
                 if (veri.dersNotuPdf) {
                     dersNotuLink.href = veri.dersNotuPdf;
                     dersNotuOnizlemeIframe.src = veri.dersNotuPdf + "#toolbar=0&navpanes=0&scrollbar=0";
                     dersNotuLink.closest('section').style.display = 'block';
                 } else {
                     dersNotuLink.closest('section').style.display = 'none';
+                    if (btnDersNotu) btnDersNotu.style.display = 'none';
                 }
 
                 // Etkinlikler
@@ -212,10 +225,7 @@
                     veri.etkinlikler.forEach((etk, idx) => {
                         const etkNum = idx + 1;
                         const etkId = `etkinlik-${etkNum}`;
-                        const pencereId = `etk-pencere-${etkNum}`;
-
-                        const btn = document.createElement('a');
-                        btn.href = `#${etkId}`;
+                        const pencereId = `etk-pencere-${etkNum}`;  const btn = document.createElement('a'); btn.href = `#${etkId}`;
                         btn.className = "px-4 py-2.5 bg-purple-600/20 border border-purple-500/40 hover:bg-purple-600/40 text-purple-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm";
                         btn.innerHTML = `<i class="fa-solid fa-gamepad text-purple-400"></i> <span>Etkinlik ${etkNum}</span>`;
                         butonlarBar.appendChild(btn);
@@ -246,6 +256,12 @@
                         `;
                         etkinlikContainer.appendChild(etkKart);
                     });
+                }
+
+                // Eğer hiçbir hızlı erişim butonu kalmadıysa çizgiyi ve barı gizle
+                if (!veri.sunuUrl && !veri.dersNotuPdf && (!veri.etkinlikler || veri.etkinlikler.length === 0)) {
+                    document.getElementById('hizli-erisim-cizgi').style.display = 'none';
+                    butonlarBar.style.display = 'none';
                 }
             }
         });
