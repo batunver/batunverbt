@@ -17,25 +17,21 @@ const dersIcerikleri = {
             { baslik: "Etkinlik 3: Görsel Değerlendirme Testi", tur: "Test", url: "5.sinif/8-3.html" }
         ]
     },
-"5-hafta-9": { sinif: 5, hafta: 9, baslik: "Görsel Düzenleme Programlarına Giriş", kazanim: "Görsel düzenleme programlarının temel kavramlarını ve araçlarını açıklar.", aciklama: "Görsel düzenleme programlarına giriş yapacak, temel kavramları ve görsel yapılarını öğreneceksiniz.", sunuUrl: "images/5-9.jpg", dersNotuPdf: "", dersNotu: "# Görsel Düzenleme Programları\n\n## 1. Temel Kavramlar\n- **Fotoğraf:** Gerçek nesne veya sahnelerin dijital ya da analog kameralarla kaydedilmiş görüntüsüdür.\n- **Çizim:** Fırça, kalem veya bilgisayar araçlarıyla sıfırdan oluşturulan resim ve tasarımlardır.\n- **Görsel:** Fotoğraf, resim ve çizimlerin tamamını kapsayan genel isimdir.\n- **Piksel:** Dijital görüntüleri oluşturan en küçük renkli karelerdir. Her pikselin kendine ait bir rengi vardır ve bir resmi milyonlarca piksel oluşturur.\n\n## 2. Dijital Görsel Yapıları\n- **Bitmap (Noktasal) Resimler:** Piksellerden oluşur. Görseller büyütüldüğünde pikseller belirginleşir ve görüntü kalitesinde bozulma (pikselleşme) yaşanır.\n- **Vektörel Resimler:** Matematiksel çizgi ve geometrik şekillerden oluşur. Ne kadar büyütülürse büyütülsün kalitesi asla bozulmaz.\n\n## 3. Görüntü Dosyası Biçimleri (Formatları)\nGörselin kalitesi ve kullanım amacına göre farklı uzantılar kullanılır:\n- **JPG / JPEG:** En yaygın fotoğraf formatıdır. Dosya boyutu küçüktür ancak arka planı şeffaf olamaz.\n- **PNG:** Arka planı şeffaf (saydam) olabilen, kaliteli görsel formatıdır.\n- **GIF:** Hareketli mini görseller için tercih edilir.\n\n## 4. Görsel İşleme ve Düzenleme Programları\n- **MS Paint:** Windows işletim sisteminde yüke gelmeden temel çizim ve düzenlemeler yapabileceğimiz ücretsiz bir programdır.\n- **Canva:** Sosyal medya grafikleri, sunumlar ve afişler tasarlamamıza olanak tanıyan, hazır şablonlar içeren web/mobil platformudur.\n- **GIMP:** Tamamen ücretsiz ve açık kaynaklı, profesyonel düzeyde piksel tabanlı grafik düzenleme programıdır.\n- **Google Çizimler:** Web tabanlı, ücretsiz çizim ve düzenlemeler yapabileceğimiz bir programdır.", etkinlikler: [{ baslik: "Etkinlik 1: Wordwall Etkinliği", tur: "Wordwall", url: "https://wordwall.net/tr/embed/6e91e255eb7940d7b45dd01db417eebf?themeId=1&templateId=36" }] },
-    // =================================================================
-    // 6. SINIF DERS İÇERİKLERİ
-    // =================================================================
-    "6-hafta-6": {
-        sinif: 6,
-        hafta: 6,
-        baslik: "Ses Düzenleme Programlarına Giriş ve Ses Kurgusu",
-        kazanim: "BTY.6.2.5. Ses düzenleme programlarından yararlanabilme • BTY.6.2.6. Ses dosyası için kurgu oluşturabilme",
-        aciklama: "Seslerin bilgisayarda nasıl işlendiğini keşfedecek, kendi ses projelerinizi oluşturup düzenleme adımlarını öğreneceksiniz. Bu sayede dijital içeriklerinize profesyonel dokunuşlar katabileceksiniz.",
-        sunuUrl: "folder/6/Sunu/SesKurgusu.pdf",
-        dersNotuPdf: "folder/6/DersNotu/SesKurguDersNotu.pdf",
-        dersNotu: "",
+"5-hafta-9": {
+        sinif: 5,
+        hafta: 9,
+        baslik: "Görsel Düzenleme Programlarına Giriş",
+        kazanim: "BTY.5.2.1. Görsel düzenleme programlarından yararlanabilme",
+        aciklama: "Görsel düzenleme araçlarını keşfederek dijital görseller üzerinde temel düzenlemeler yapmayı öğreneceksiniz.",
+        kapakResmi: "images/5-9-kapak.jpg",
+        // Google Slaytlar - Sayfa içinde doğrudan çalışan interaktif oynatıcı
+        sunuEmbed: "https://docs.google.com/presentation/d/1WFwmUeEdV6UrqaXqJ3OyOlliYyJ_xon-MdLKIM6yx68/embed?start=false&loop=false&delayms=3000",
+        sunuUrl: "https://docs.google.com/presentation/d/1WFwmUeEdV6UrqaXqJ3OyOlliYyJ_xon-MdLKIM6yx68/preview",
+        // Google Dokümanlar - Doğrudan gömülü ve açılan ders notu
+        dersNotuEmbed: "https://docs.google.com/document/d/12Tsb3T5YX44XnvB6QPKOvjX-8papGFbyjHhSoe0Gzxc/preview",
+        dersNotuUrl: "https://docs.google.com/document/d/12Tsb3T5YX44XnvB6QPKOvjX-8papGFbyjHhSoe0Gzxc/preview",
         etkinlikler: [
-            { 
-                baslik: "6. Hafta: Ses Kurgusu ve Düzenleme Etkinliği", 
-                tur: "İnteraktif Uygulama", 
-                url: "6.sinif/6-1.html" 
-            }
+            { baslik: "Etkinlik 1: Görsel Düzenleme Araçları Testi", tur: "Test", url: "5.sinif/9-1.html" }
         ]
     },
     "6-hafta-7": {
