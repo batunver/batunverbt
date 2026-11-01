@@ -60,7 +60,7 @@ const dersIcerikleri = {
             }
         ]
     },
-    "6-hafta-7": {
+ "6-hafta-7": {
         sinif: 6,
         hafta: 7,
         baslik: "Ses Dosyası Geliştirme: Dedemin Tahta Radyosu",
@@ -74,6 +74,23 @@ const dersIcerikleri = {
                 baslik: "Web Tabanlı Mini Ses Stüdyosu: 1923 Radyo Anonsu",
                 tur: "İnteraktif Stüdyo",
                 url: "/ses-studyosu.html"
+            }
+        ],
+        alternatifEtkinlikler: [
+            {
+                baslik: "BlocKodlama: Ses Düzenleme Etkinliği 1 (Bölüm 11)",
+                tur: "İnteraktif Ders",
+                url: "https://blockodlama.com/lesson/6/BTY.6.2/BTY.6.2.5_s11"
+            },
+            {
+                baslik: "BlocKodlama: Ses Düzenleme Etkinliği 2 (Bölüm 12)",
+                tur: "İnteraktif Ders",
+                url: "https://blockodlama.com/lesson/6/BTY.6.2/BTY.6.2.5_s12"
+            },
+            {
+                baslik: "BlocKodlama: Ses Düzenleme Etkinliği 3 (Bölüm 13)",
+                tur: "İnteraktif Ders",
+                url: "https://blockodlama.com/lesson/6/BTY.6.2/BTY.6.2.5_s13"
             }
         ]
     }
