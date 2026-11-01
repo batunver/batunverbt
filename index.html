@@ -168,7 +168,7 @@
 
     <!-- Alt Bilgi -->
     <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-400">
-        <p>&copy; 2026 BATUNVER - İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
+        <p>&copy; 2026 BATUNVER - Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
     </footer>
 
     <!-- Veri Dosyası ve Mantık -->
@@ -297,7 +297,8 @@
 
         document.addEventListener("keydown", function(e) {
             if (e.key === "Escape") modalKapat();
-        });
+        });f           function temaDegistir() { if (document.documentElement.classList.contains('dark')) { document.documentElement.classList.remove('dark'); localStorage.setItem('batunver_tema', 'light'); } else { document.documentElement.classList.add('dark'); localStorage.setItem('batunver_tema', 'dark'); } } if (localStorage.getItem('batunver_tema') === 'light') { document.documentElement.classList.remove('dark'); } else if (localStorage.getItem('batunver_tema') === 'dark') { document.documentElement.classList.add('dark'); }
+        
     </script>
 </body>
 </html>
