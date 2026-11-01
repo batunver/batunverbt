@@ -44,4 +44,294 @@
         <!-- 1. Ders Bilgi Kartı ve Hızlı Erişim -->
         <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md space-y-6">
             <div class="space-y-3">
-                <!-- Sınıf ve Hafta Roz
+                <!-- Sınıf ve Hafta Rozeti -->
+                <div class="flex items-center space-x-2">
+                    <span id="ders-sinif-hafta" class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20">
+                        Yükleniyor...
+                    </span>
+                </div>
+
+                <!-- Ders Başlığı -->
+                <h1 id="ders-baslik" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                    Ders Konusu Yükleniyor...
+                </h1>
+
+                <!-- Kazanım Rozeti -->
+                <div class="inline-block bg-purple-500/10 text-purple-300 text-xs font-semibold px-3 py-1.5 rounded-xl border border-purple-500/20">
+                    <span id="ders-kazanim">Kazanım yükleniyor...</span>
+                </div>
+
+                <!-- Açıklama -->
+                <p id="ders-aciklama" class="text-slate-300 text-xs sm:text-sm leading-relaxed pt-2">
+                    Ders içeriği hazırlanıyor...
+                </p>
+            </div>
+
+            <hr id="hizli-erisim-cizgi" class="border-slate-700/60">
+
+            <div class="flex flex-wrap gap-2.5 sm:gap-3" id="hizli-erisim-butonlari">
+                <a id="btn-sunu" href="#ders-sunusu-alani" class="px-4 py-2.5 bg-blue-600/20 border border-blue-500/40 hover:bg-blue-600/40 text-blue-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm">
+                    <i class="fa-solid fa-file-powerpoint text-blue-400"></i>
+                    <span>Ders Sunusu</span>
+                </a>
+                <a id="btn-ders-notu" href="#ders-notu-alani" class="px-4 py-2.5 bg-emerald-600/20 border border-emerald-500/40 hover:bg-emerald-600/40 text-emerald-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm">
+                    <i class="fa-solid fa-book-open text-emerald-400"></i>
+                    <span>Ders Notu</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ÖZEL UYGULAMA / YÖNERGE ALANI (Sunu ve Ders Notu Olmayan Haftalar İçin) -->
+        <div id="ozel-icerik-alani" class="hidden space-y-6"></div>
+
+        <!-- 2. DERS SUNUSU ALANI (Etkileşimli Canlı Oynatıcı) -->
+        <section id="ders-sunusu-alani" class="bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 shadow-xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-sm border border-blue-500/30">
+                        <i class="fa-solid fa-file-powerpoint"></i>
+                    </div>
+                    <div>
+                        <h2 id="sunu-kart-baslik" class="text-lg font-bold text-white">Ders Sunusu</h2>
+                        <p class="text-[11px] text-slate-400">Sunumu doğrudan sayfa üzerinde inceleyebilir, slaytları geçebilir veya tam ekran yapabilirsiniz.</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button type="button" onclick="ogeTamEkranYap('sunu-pencere')" class="text-xs bg-slate-700/80 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-xl border border-slate-600/60 flex items-center space-x-1.5 transition-all cursor-pointer" title="Tam Ekran Yap">
+                        <i class="fa-solid fa-expand text-blue-400"></i>
+                        <span class="hidden sm:inline">Tam Ekran</span>
+                    </button>
+                    <a id="sunu-dis-link" href="#" target="_blank" class="text-xs bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white font-semibold px-3 py-1.5 rounded-xl border border-blue-500/30 transition flex items-center space-x-1.5" title="Yeni Sekmede Aç">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        <span class="hidden sm:inline">Yeni Sekmede Aç</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Etkileşimli Sunum Görüntüleyici Çerçevesi -->
+            <div id="sunu-pencere" class="relative aspect-[16/9] w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60 shadow-lg flex items-center justify-center">
+                <iframe id="sunu-iframe" src="" class="w-full h-full border-0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+            </div>
+        </section>
+
+        <!-- 3. İNTERAKTİF ETKİNLİKLER ALANI -->
+        <section id="etkinlikler-alani" class="space-y-6">
+            <div id="etkinlik-baslik-alani" class="hidden flex items-center space-x-3 border-b border-slate-800 pb-3">
+                <i class="fa-solid fa-puzzle-piece text-purple-400 text-xl"></i>
+                <h2 class="text-xl font-extrabold text-white tracking-wide">Ders Etkinlikleri</h2>
+            </div>
+            <div id="etkinlik-kartlari-container" class="space-y-6"></div>
+        </section>
+
+        <!-- 4. DERS NOTU / KONU ÖZETİ ALANI (Doğrudan Açılan & Gömülü Alan) -->
+        <section id="ders-notu-alani" class="bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 sm:p-8 shadow-xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm border border-emerald-500/30">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <div>
+                        <h2 id="ders-notu-kart-baslik" class="text-lg font-bold text-white">Ders Notu / Konu Özeti</h2>
+                        <p class="text-[11px] text-slate-400">Ders notunu doğrudan aşağıdan okuyabilir veya tam sayfa açabilirsiniz.</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button type="button" onclick="ogeTamEkranYap('ders-notu-pencere')" class="text-xs bg-slate-700/80 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-xl border border-slate-600/60 flex items-center space-x-1.5 transition-all cursor-pointer" title="Tam Ekran Yap">
+                        <i class="fa-solid fa-expand text-emerald-400"></i>
+                        <span class="hidden sm:inline">Tam Ekran</span>
+                    </button>
+                    <a id="ders-notu-dis-link" href="#" target="_blank" class="text-xs bg-emerald-600/20 hover:bg-emerald-600 text-emerald-400 hover:text-white font-semibold px-3 py-1.5 rounded-xl border border-emerald-500/30 transition flex items-center space-x-1.5" title="Yeni Sekmede Aç">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        <span class="hidden sm:inline">Tam Sayfa Aç</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Doğrudan Gömülü Ders Notu Okuma Çerçevesi -->
+            <div id="ders-notu-pencere" class="relative w-full h-[650px] sm:h-[750px] bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60 shadow-lg flex items-center justify-center">
+                <iframe id="ders-notu-iframe" src="" class="w-full h-full border-0" allowfullscreen="true"></iframe>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Alt Bilgi -->
+    <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-400">
+        <p>&copy; 2026 BATUNVER - İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
+    </footer>
+
+    <!-- Scriptler -->
+    <script src="data.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const icerikId = urlParams.get('id') || '6-hafta-7';
+
+            if (typeof dersIcerikleri !== 'undefined' && dersIcerikleri[icerikId]) {
+                const veri = dersIcerikleri[icerikId];
+
+                // Temel Bilgiler
+                document.getElementById('ders-sinif-hafta').innerText = `${veri.sinif}. Sınıf • ${veri.hafta}. Hafta`;
+                document.getElementById('ders-baslik').innerText = veri.baslik;
+                document.getElementById('ders-kazanim').innerText = `Kazanım: ${veri.kazanim}`;
+                if (veri.aciklama) {
+                    document.getElementById('ders-aciklama').innerText = veri.aciklama;
+                }
+
+                // Özel İçerik Alanı
+                const ozelIcerikAlani = document.getElementById('ozel-icerik-alani');
+                if (veri.ozelIcerikHtml) {
+                    ozelIcerikAlani.innerHTML = veri.ozelIcerikHtml;
+                    ozelIcerikAlani.classList.remove('hidden');
+                }
+
+                // 1. DERS SUNUSU (İnteraktif Oynatıcı)
+                const sunuSection = document.getElementById('ders-sunusu-alani');
+                const sunuIframe = document.getElementById('sunu-iframe');
+                const sunuDisLink = document.getElementById('sunu-dis-link');
+                const btnSunu = document.getElementById('btn-sunu');
+                const sunuKaynak = veri.sunuEmbed || veri.sunuUrl;
+
+                if (sunuKaynak) {
+                    sunuSection.style.display = 'block';
+                    if (btnSunu) btnSunu.style.display = 'flex';
+                    if (sunuKaynak.includes('docs.google.com') || sunuKaynak.includes('/embed')) {
+                        sunuIframe.src = sunuKaynak;
+                        sunuDisLink.href = veri.sunuUrl || sunuKaynak;
+                    } else {
+                        sunuIframe.src = sunuKaynak + "#toolbar=0&navpanes=0&scrollbar=0";
+                        sunuDisLink.href = sunuKaynak;
+                    }
+                } else {
+                    sunuSection.style.display = 'none';
+                    if (btnSunu) btnSunu.style.display = 'none';
+                }
+
+                // 2. DERS NOTU / KONU ÖZETİ (Gömülü Okuyucu)
+                const dersNotuSection = document.getElementById('ders-notu-alani');
+                const dersNotuIframe = document.getElementById('ders-notu-iframe');
+                const dersNotuDisLink = document.getElementById('ders-notu-dis-link');
+                const btnDersNotu = document.getElementById('btn-ders-notu');
+                const notKaynak = veri.dersNotuEmbed || veri.dersNotuUrl || veri.dersNotuPdf;
+
+                if (notKaynak) {
+                    dersNotuSection.style.display = 'block';
+                    if (btnDersNotu) btnDersNotu.style.display = 'flex';
+                    if (notKaynak.includes('docs.google.com')) {
+                        dersNotuIframe.src = veri.dersNotuEmbed || notKaynak.replace(/\/edit.*$/, '/preview');
+                        dersNotuDisLink.href = veri.dersNotuUrl || notKaynak;
+                    } else {
+                        dersNotuIframe.src = notKaynak + "#toolbar=0&navpanes=0&scrollbar=0";
+                        dersNotuDisLink.href = notKaynak;
+                    }
+                } else {
+                    dersNotuSection.style.display = 'none';
+                    if (btnDersNotu) btnDersNotu.style.display = 'none';
+                }
+
+                // 3. İNTERAKTİF ETKİNLİKLER ALANI (Akıllı Çerçeve ve Dış Bağlantı Desteği)
+                const butonlarBar = document.getElementById('hizli-erisim-butonlari');
+                const etkinlikContainer = document.getElementById('etkinlik-kartlari-container');
+                const etkinlikBaslik = document.getElementById('etkinlik-baslik-alani');
+
+                const tumEtkinlikler = [
+                    ...(veri.etkinlikler || []),
+                    ...(veri.alternatifEtkinlikler || [])
+                ];
+
+                if (tumEtkinlikler.length > 0) {
+                    etkinlikBaslik.classList.remove('hidden');
+
+                    tumEtkinlikler.forEach((etk, idx) => {
+                        const etkNum = idx + 1;
+                        const etkId = `etkinlik-${etkNum}`;
+                        const pencereId = `etk-pencere-${etkNum}`;
+
+                        // Hızlı erişim butonu
+                        const btn = document.createElement('a');
+                        btn.href = `#${etkId}`;
+                        btn.className = "px-4 py-2.5 bg-purple-600/20 border border-purple-500/40 hover:bg-purple-600/40 text-purple-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm";
+                        btn.innerHTML = `<i class="fa-solid fa-gamepad text-purple-400"></i> <span>Etkinlik ${etkNum}</span>`;
+                        butonlarBar.appendChild(btn);
+
+                        const etkKart = document.createElement('div');
+                        etkKart.id = etkId;
+                        etkKart.className = "bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 shadow-xl space-y-4";
+
+                        // Çerçeve (iframe) engeli olan dış siteler (Örn: blockodlama.com) kontrolü
+                        const iframeEngelli = etk.url.includes('blockodlama.com') || etk.disBaglanti === true;
+
+                        if (iframeEngelli) {
+                            // Dış site için şık başlatma kartı (Gri "bağlanmayı reddetti" hatasını önler)
+                            etkKart.innerHTML = `
+                                <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs font-black border border-purple-500/30">${etkNum}</span>
+                                        <h3 class="font-bold text-white text-base">${etk.baslik}</h3>
+                                    </div>
+                                    <span class="text-[10px] font-extrabold px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">${etk.tur || 'Harici Etkinlik'}</span>
+                                </div>
+                                <div class="w-full py-12 px-6 bg-gradient-to-br from-slate-900 to-slate-950 rounded-2xl border border-slate-700/60 flex flex-col items-center justify-center text-center space-y-4">
+                                    <div class="w-16 h-16 rounded-2xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl shadow-xl">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </div>
+                                    <div class="max-w-md space-y-1.5">
+                                        <h4 class="text-white font-bold text-base sm:text-lg">BlocKodlama İnteraktif Dersi</h4>
+                                        <p class="text-xs text-slate-400 leading-relaxed">Bu ders içeriği platformun güvenlik politikası nedeniyle gömülü açılamamaktadır. Etkinliği tam ekran deneyimiyle açmak için aşağıdaki butona tıklayın.</p>
+                                    </div>
+                                    <a href="${etk.url}" target="_blank" rel="noopener noreferrer" class="mt-2 px-7 py-3.5 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-purple-600/25 transition-all flex items-center space-x-2.5 group cursor-pointer hover:scale-105 active:scale-95">
+                                        <span>Etkinliği Yeni Sekmede Başlat</span>
+                                        <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+                                    </a>
+                                </div>
+                            `;
+                        } else {
+                            // Kendi yerel stüdyonuz için normal gömülü çerçeve (iframe)
+                            etkKart.innerHTML = `
+                                <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs font-black border border-purple-500/30">${etkNum}</span>
+                                        <h3 class="font-bold text-white text-base">${etk.baslik}</h3>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-[10px] font-extrabold px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">${etk.tur || 'İnteraktif Etkinlik'}</span>
+                                        <button type="button" onclick="ogeTamEkranYap('${pencereId}')" class="text-xs bg-slate-700/80 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-xl border border-slate-600/60 flex items-center space-x-1.5 transition-all cursor-pointer" title="Tam Ekran Yap">
+                                            <i class="fa-solid fa-expand text-purple-400"></i>
+                                            <span class="hidden sm:inline">Tam Ekran</span>
+                                        </button>
+                                        <a href="${etk.url}" target="_blank" rel="noopener noreferrer" class="text-xs bg-slate-700/80 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-xl border border-slate-600/60 flex items-center space-x-1.5 transition-all" title="Yeni Sekmede Aç">
+                                            <i class="fa-solid fa-external-link-alt text-purple-400"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="${pencereId}" class="w-full aspect-[16/9] bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60 relative flex items-center justify-center">
+                                    <iframe src="${etk.url}" class="w-full h-full border-0" allowfullscreen="true" loading="lazy"></iframe>
+                                </div>
+                            `;
+                        }
+
+                        etkinlikContainer.appendChild(etkKart);
+                    });
+                }
+
+                if (!sunuKaynak && !notKaynak && tumEtkinlikler.length === 0) {
+                    document.getElementById('hizli-erisim-cizgi').style.display = 'none';
+                    butonlarBar.style.display = 'none';
+                }
+            }
+        });
+
+        function ogeTamEkranYap(elementId) {
+            const elem = document.getElementById(elementId);
+            if (!elem) return;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
