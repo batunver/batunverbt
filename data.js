@@ -60,38 +60,36 @@ const dersIcerikleri = {
             }
         ]
     },
- "6-hafta-7": {
-        sinif: 6,
-        hafta: 7,
-        baslik: "Ses Dosyası Geliştirme: Dedemin Tahta Radyosu",
-        kazanim: "BTY.6.2.6. Kurgu oluşturma • BTY.6.2.7. Ses dosyası geliştirebilme",
-        aciklama: "Web tabanlı mini ses stüdyosu ile 1923 Cumhuriyet Bayramı radyo anonsunu sıralayın, hatalı sesleri kesin ve efektlerle yayına hazırlayın.",
-        kapakResmi: "images/6-sinif-7-hafta-kapak.png",
-        sunuUrl: "",
-        dersNotuPdf: "",
-        etkinlikler: [
-            {
-                baslik: "Web Tabanlı Mini Ses Stüdyosu: 1923 Radyo Anonsu",
-                tur: "İnteraktif Stüdyo",
-                url: "/ses-studyosu.html"
-            }
-        ],
-        alternatifEtkinlikler: [
-            {
-                baslik: "BlocKodlama: Ses Düzenleme Etkinliği 1 (Bölüm 11)",
-                tur: "İnteraktif Ders",
-                url: "https://blockodlama.com/lesson/6/BTY.6.2/BTY.6.2.5_s11"
-            },
-            {
-                baslik: "BlocKodlama: Ses Düzenleme Etkinliği 2 (Bölüm 12)",
-                tur: "İnteraktif Ders",
-                url: "https://blockodlama.com/lesson/6/BTY.6.2/BTY.6.2.5_s12"
-            },
-            {
-                baslik: "BlocKodlama: Ses Düzenleme Etkinliği 3 (Bölüm 13)",
-                tur: "İnteraktif Ders",
-                url: "https://blockodlama.com/lesson/6/BTY.6.2/BTY.6.2.5_s13"
-            }
-        ]
-    }
+    "6-hafta-7": {
+            sinif: 6,
+            hafta: 7,
+            baslik: "Ses Dosyası Geliştirme: Dedemin Tahta Radyosu",
+            kazanim: "BTY.6.2.6. Kurgu oluşturma • BTY.6.2.7. Ses dosyası geliştirebilme",
+            aciklama: "Web tabanlı mini ses stüdyosu ile 1923 Cumhuriyet Bayramı radyo anonsunu sıralayın, hatalı sesleri kesin ve efektlerle yayına hazırlayın.",
+            kapakResmi: "images/6-sinif-7-hafta-kapak.png",
+            sunuUrl: "",
+            dersNotuPdf: "",
+            etkinlikler: [
+                {
+                    baslik: "Web Tabanlı Mini Ses Stüdyosu: 1923 Radyo Anonsu",
+                    tur: "İnteraktif Stüdyo",
+                    url: "/ses-studyosu.html"
+                },
+                {
+                    baslik: "BlocKodlama: Ses Düzenleme Etkinliği 1 (Bölüm 11)",
+                    tur: "Alternatif Etkinlik",
+                    url: "https://blockodlama.com/lesson/6/BTY.6.2/BTY.6.2.5_s11"
+                },
+                {
+                    baslik: "BlocKodlama: Ses Düzenleme Etkinliği 2 (Bölüm 12)",
+                    tur: "Alternatif Etkinlik",
+                    url: "https://blockodlama.com/lesson/6/BTY.6.2/BTY.6.2.5_s12"
+                },
+                {
+                    baslik: "BlocKodlama: Ses Düzenleme Etkinliği 3 (Bölüm 13)",
+                    tur: "Alternatif Etkinlik",
+                    url: "https://blockodlama.com/lesson/6/BTY.6.2/BTY.6.2.5_s13"
+                }
+            ]
+        }
 };
