@@ -65,7 +65,7 @@
         }
         #docxContainer p {
             margin-bottom: 0.75rem !important;
-            line-height: 1.6 !important;
+            line-height: 1.6 !important;<style>html:not(.dark){background-color:#f8fafc!important;color:#0f172a!important;}html:not(.dark) .bg-slate-900{background-color:#f8fafc!important;}html:not(.dark) .bg-slate-800{background-color:#ffffff!important;}html:not(.dark) .text-slate-100,html:not(.dark) .text-slate-200,html:not(.dark) .text-slate-300{color:#0f172a!important;}</style>
         }
     </style>
 </head>
@@ -85,7 +85,7 @@
                     <i class="fa-solid fa-file-pen"></i> Yazılı Çalışma Soruları
                 </a>
                 <a href="evrakcantasi.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center gap-2">
-                    <i class="fa-solid fa-folder-open text-amber-400"></i> Evrak Çantası
+                    <i class="fa-solid fa-folder-open text-amber-400"></i> Evrak Çantası<button onclick="temaDegistir()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-400 transition" title="Tema Değiştir"><i class="fa-solid fa-sun"></i></button>
                 </a>
             </nav>
         </div>
@@ -944,6 +944,6 @@
     <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-400">
         <p>&copy; 2026 BATUNVER - İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
     </footer>
-
+<script>function temaDegistir(){const h=document.documentElement;if(h.classList.contains('dark')){h.classList.remove('dark');localStorage.setItem('theme','light');}else{h.classList.add('dark');localStorage.setItem('theme','dark');}}if(localStorage.getItem('theme')==='light'){document.documentElement.classList.remove('dark');}</script>
 </body>
 </html>
