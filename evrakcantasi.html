@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evrak Çantası - İhsan Aras Ortaokulu BTY Portalı</title>
+    <title>Evrak Çantası - BATUNVER BTY Portalı</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome İkonlar -->
@@ -20,6 +20,14 @@
             }
         }
     </script>
+    <style>
+        html:not(.dark) body { background-color: #f8fafc !important; color: #0f172a !important; }
+        html:not(.dark) header, html:not(.dark) footer { background-color: rgba(255, 255, 255, 0.95) !important; border-color: #cbd5e1 !important; }
+        html:not(.dark) .bg-slate-800\/80, html:not(.dark) .bg-slate-800\/90, html:not(.dark) .bg-slate-800\/40 { background-color: #ffffff !important; border-color: #cbd5e1 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important; }
+        html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3 { color: #0f172a !important; }
+        html:not(.dark) p, html:not(.dark) .text-slate-400, html:not(.dark) .text-slate-300 { color: #475569 !important; }
+        html:not(.dark) header img { filter: brightness(0.15); }
+    </style>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
 
@@ -27,14 +35,22 @@
     <header class="bg-slate-800/90 backdrop-blur border-b border-slate-700/60 sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
             <a href="index.html" class="flex items-center h-20 overflow-hidden group">
-                <img src="images/logo3.png" alt="Batunver" class="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                <img src="images/logo3.png" alt="Batunver" class="h-20 w-auto object-contain transition-transform group-hover:scale-105">
             </a>
             <nav class="flex items-center space-x-2 sm:space-x-3">
-                <a href="index.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all">Ana Sayfa</a>
-                <a href="evrakcantasi.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/40 transition-all flex items-center space-x-1.5">
+                <a href="index.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition flex items-center space-x-2"><i class="fa-solid fa-house"></i><span>Ana Sayfa</span></a>
+                <a href="calismasorulari.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 transition flex items-center space-x-2">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span>Yazılı Çalışma Soruları</span>
+                </a>
+                <a href="evrakcantasi.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30 shadow-sm flex items-center space-x-2">
                     <i class="fa-solid fa-briefcase"></i>
                     <span>Evrak Çantası</span>
                 </a>
+                <button type="button" onclick="temaDegistir()" id="temaBtn" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-slate-700/60 hover:bg-slate-700 text-amber-300 border border-slate-600/50 transition flex items-center space-x-2 cursor-pointer">
+                    <i id="temaIkon" class="fa-solid fa-sun"></i>
+                    <span id="temaMetin">Açık Tema</span>
+                </button>
             </nav>
         </div>
     </header>
@@ -43,14 +59,14 @@
     <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-8">
 
         <!-- Sayfa Başlığı -->
-        <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md space-y-3">
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md flex items-center justify-between flex-wrap gap-4">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold border border-amber-500/30">
+                <div class="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center border border-amber-500/30 shadow-inner">
                     <i class="fa-solid fa-briefcase text-lg"></i>
                 </div>
                 <div>
                     <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Evrak Çantası</h1>
-                    <p class="text-slate-400 text-xs sm:text-sm">İhsan Aras Ortaokulu Bilişim Teknolojileri ve YEĞİTEK Dokümanları</p>
+                    <p class="text-slate-400 text-xs sm:text-sm">Bilişim Teknolojileri ve Yazılım Dersi Resmi Evrakları</p>
                 </div>
             </div>
         </div>
@@ -59,27 +75,27 @@
         <section class="grid sm:grid-cols-2 gap-6">
 
             <!-- 5. Sınıf Yıllık Plan Kartı -->
-            <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 shadow-xl space-y-5 hover:border-blue-500/50 transition-all group flex flex-col justify-between">
+            <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 shadow-xl space-y-5 hover:border-slate-600 transition group">
                 <div class="space-y-4">
                     <div class="flex items-center justify-between">
-                        <span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20">2026 - 2027 Eğitim Öğretim Yılı</span>
+                        <span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20">5. Sınıf</span>
                         <div class="flex items-center space-x-2 text-lg">
                             <i class="fa-solid fa-file-pdf text-rose-400" title="PDF Formatı"></i>
                             <i class="fa-solid fa-file-excel text-emerald-400" title="Excel Formatı"></i>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">5. Sınıf BTY Yıllık Planı</h3>
-                        <p class="text-slate-400 text-xs mt-1">TYMM Müfredatına Uygun (İhsan Aras Ortaokulu)</p>
+                        <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">5. Sınıf Yıllık Planı</h3>
+                        <p class="text-slate-400 text-xs mt-1">TYMM Müfredatına Uygun Yıllık Plan</p>
                     </div>
                 </div>
 
                 <div class="pt-4 flex items-center gap-3">
-                    <a href="folder/2026-2027_Bilisim_5_Sinif_Yillik_Plan.pdf" target="_blank" class="flex-1 py-3 px-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg flex items-center justify-center space-x-1.5">
+                    <a href="folder/2026-2027_Bilisim_5_Sinif_Yillik_Plan.pdf" target="_blank" class="flex-1 py-3 px-4 bg-slate-700/50 hover:bg-blue-600 text-slate-200 hover:text-white rounded-2xl text-xs font-semibold flex items-center justify-center space-x-2 border border-slate-600/50 hover:border-blue-500 transition shadow-sm">
                         <i class="fa-solid fa-eye"></i>
                         <span>Görüntüle</span>
                     </a>
-                    <a href="folder/2026-2027_Bilisim_5_Sinif_Yillik_Plan.xlsx" download class="flex-1 py-3 px-3 bg-slate-700 hover:bg-slate-600 text-slate-200 hover:text-white font-bold text-xs rounded-xl transition-all border border-slate-600/60 flex items-center justify-center space-x-1.5">
+                    <a href="folder/2026-2027_Bilisim_5_Sinif_Yillik_Plan.xlsx" download class="flex-1 py-3 px-3 bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white rounded-2xl text-xs font-semibold flex items-center justify-center space-x-2 border border-emerald-500/30 transition shadow-sm">
                         <i class="fa-solid fa-download"></i>
                         <span>İndir (XLSX)</span>
                     </a>
@@ -87,27 +103,27 @@
             </div>
 
             <!-- 6. Sınıf Yıllık Plan Kartı -->
-            <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 shadow-xl space-y-5 hover:border-cyan-500/50 transition-all group flex flex-col justify-between">
+            <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 shadow-xl space-y-5 hover:border-slate-600 transition group">
                 <div class="space-y-4">
                     <div class="flex items-center justify-between">
-                        <span class="bg-cyan-500/10 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-400/20">2026 - 2027 Eğitim Öğretim Yılı</span>
+                        <span class="bg-cyan-500/10 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/20">6. Sınıf</span>
                         <div class="flex items-center space-x-2 text-lg">
                             <i class="fa-solid fa-file-pdf text-rose-400" title="PDF Formatı"></i>
                             <i class="fa-solid fa-file-excel text-emerald-400" title="Excel Formatı"></i>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">6. Sınıf BTY Yıllık Planı</h3>
-                        <p class="text-slate-400 text-xs mt-1">TYMM Müfredatına Uygun (İhsan Aras Ortaokulu)</p>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">6. Sınıf Yıllık Planı</h3>
+                        <p class="text-slate-400 text-xs mt-1">TYMM Müfredatına Uygun Yıllık Plan</p>
                     </div>
                 </div>
 
                 <div class="pt-4 flex items-center gap-3">
-                    <a href="folder/2026-2027_Bilisim_6_Sinif_Yillik_Plan.pdf" target="_blank" class="flex-1 py-3 px-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg flex items-center justify-center space-x-1.5">
+                    <a href="folder/2026-2027_Bilisim_6_Sinif_Yillik_Plan.pdf" target="_blank" class="flex-1 py-3 px-4 bg-slate-700/50 hover:bg-cyan-600 text-slate-200 hover:text-white rounded-2xl text-xs font-semibold flex items-center justify-center space-x-2 border border-slate-600/50 hover:border-cyan-500 transition shadow-sm">
                         <i class="fa-solid fa-eye"></i>
                         <span>Görüntüle</span>
                     </a>
-                    <a href="folder/2026-2027_Bilisim_6_Sinif_Yillik_Plan.xlsx" download class="flex-1 py-3 px-3 bg-slate-700 hover:bg-slate-600 text-slate-200 hover:text-white font-bold text-xs rounded-xl transition-all border border-slate-600/60 flex items-center justify-center space-x-1.5">
+                    <a href="folder/2026-2027_Bilisim_6_Sinif_Yillik_Plan.xlsx" download class="flex-1 py-3 px-3 bg-cyan-600/20 hover:bg-cyan-600 text-cyan-300 hover:text-white rounded-2xl text-xs font-semibold flex items-center justify-center space-x-2 border border-cyan-500/30 transition shadow-sm">
                         <i class="fa-solid fa-download"></i>
                         <span>İndir (XLSX)</span>
                     </a>
@@ -115,27 +131,27 @@
             </div>
 
             <!-- YEĞİTEK Okul Sorumlusu Çalışma Planı Kartı -->
-            <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 shadow-xl space-y-5 hover:border-amber-500/50 transition-all group flex flex-col justify-between sm:col-span-2">
+            <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 shadow-xl space-y-5 hover:border-slate-600 transition group">
                 <div class="space-y-4">
                     <div class="flex items-center justify-between">
-                        <span class="bg-amber-500/10 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/20">YEĞİTEK Sorumluluğu</span>
+                        <span class="bg-amber-500/10 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/20">YEĞİTEK</span>
                         <div class="flex items-center space-x-2 text-lg">
                             <i class="fa-solid fa-file-pdf text-rose-400" title="PDF Formatı"></i>
                             <i class="fa-solid fa-file-word text-blue-400" title="Word Formatı"></i>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">YEĞİTEK Okul Sorumlusu 1. Dönem Çalışma Planı</h3>
-                        <p class="text-slate-400 text-xs mt-1">1. Dönem YEĞİTEK Görev, Sorumluluk ve Çalışma Takvimi Örnek Dokümanı</p>
+                        <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">YEĞİTEK Okul Sorumlusu Çalışma Planı</h3>
+                        <p class="text-slate-400 text-xs mt-1">1. Dönem YEĞİTEK Görev, Sorumluluk ve Çalışma Takvimi</p>
                     </div>
                 </div>
 
                 <div class="pt-4 flex items-center gap-3">
-                    <a href="folder/yegitek_okul_sorumlusu_1_donem_calisma_plani_örnek.pdf" target="_blank" class="flex-1 py-3 px-3 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl transition-all shadow-lg flex items-center justify-center space-x-1.5">
+                    <a href="folder/yegitek_okul_sorumlusu_1_donem_calisma_plani_örnek.pdf" target="_blank" class="flex-1 py-3 px-4 bg-slate-700/50 hover:bg-amber-600 text-slate-200 hover:text-white rounded-2xl text-xs font-semibold flex items-center justify-center space-x-2 border border-slate-600/50 hover:border-amber-500 transition shadow-sm">
                         <i class="fa-solid fa-eye"></i>
                         <span>Görüntüle (PDF)</span>
                     </a>
-                    <a href="folder/yegitek_okul_sorumlusu_1_donem_calisma_plani_örnek.docx" download class="flex-1 py-3 px-3 bg-slate-700 hover:bg-slate-600 text-slate-200 hover:text-white font-bold text-xs rounded-xl transition-all border border-slate-600/60 flex items-center justify-center space-x-1.5">
+                    <a href="folder/yegitek_okul_sorumlusu_1_donem_calisma_plani_örnek.docx" download class="flex-1 py-3 px-3 bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white rounded-2xl text-xs font-semibold flex items-center justify-center space-x-2 border border-amber-500/30 transition shadow-sm">
                         <i class="fa-solid fa-download"></i>
                         <span>İndir (DOCX)</span>
                     </a>
@@ -148,8 +164,36 @@
 
     <!-- Alt Bilgi (Footer) -->
     <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-400">
-        <p>&copy; 2026 BATUNVER - İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
+        <p>&copy; 2026 BATUNVER - Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
     </footer>
 
+    <script>
+        function temaUygula(tema) {
+            const htmlEl = document.documentElement;
+            const ikon = document.getElementById('temaIkon');
+            const metin = document.getElementById('temaMetin');
+            if (tema === 'light') {
+                htmlEl.classList.remove('dark');
+                if (ikon) ikon.className = 'fa-solid fa-moon text-indigo-600';
+                if (metin) metin.innerText = 'Koyu Tema';
+            } else {
+                htmlEl.classList.add('dark');
+                if (ikon) ikon.className = 'fa-solid fa-sun text-amber-300';
+                if (metin) metin.innerText = 'Açık Tema';
+            }
+        }
+        function temaDegistir() {
+            const mevcut = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+            const yeni = mevcut === 'dark' ? 'light' : 'dark';
+            try { localStorage.setItem('batunver_tema', yeni); } catch(e) {}
+            temaUygula(yeni);
+        }
+        (function() {
+            try {
+                const kayitli = localStorage.getItem('batunver_tema') || 'dark';
+                temaUygula(kayitli);
+            } catch(e) {}
+        })();
+    </script>
 </body>
 </html>
