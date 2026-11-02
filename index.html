@@ -5,448 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>İhsan Aras Ortaokulu BTY Portalı - BATUNVER</title>
     <!-- Tailwind CSS CDN -->
-    <script src="https:&#47;&#47;cdn&#46;tailwindcss&#46;com"></script>
-    <!-- FontAwesome İkonlar -->
-    <link rel="stylesheet" href="https:&#47;&#47;cdnjs&#46;cloudflare&#46;com&#47;ajax&#47;libs&#47;font-awesome&#47;6.4.0&#47;css&#47;all.min.css">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: { 500: '#3b82f6', 600: '#2563eb' }
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
-
-    <!-- Üst Menü (Header) -->
-    <header class="bg-slate-800/90 backdrop-blur border-b border-slate-700/60 sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-            <a href="index.html" class="flex items-center h-20 overflow-hidden group">
-                <img src="images/logo3.png" alt="Batunver - Bilişim Teknolojileri ve Yazılım Öğretmeni" class="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
-            </a>
-            <nav class="flex items-center space-x-2 sm:space-x-3">
-                <a href="index.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-slate-700/80 text-white transition-all shadow-sm">Ana Sayfa</a>
-                <button type="button" onclick="sinifModalAc('5')" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all cursor-pointer">5. Sınıf</button>
-                <button type="button" onclick="sinifModalAc('6')" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all cursor-pointer">6. Sınıf</button>
-                <a href="calismasorulari.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition-all border border-rose-500/30 flex items-center space-x-1.5">
-                    <i class="fa-solid fa-file-pen"></i>
-                    <span>Yazılı Çalışma Soruları</span>
-                </a>
-                <a href="evrakcantasi.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 transition-all border border-amber-500/30 flex items-center space-x-1.5">
-                    <i class="fa-solid fa-briefcase"></i>
-                    <span>Evrak Çantası</span>
-                </a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Ana İçerik -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-
-        <!-- 1. BÖLÜM: SON EKLENENLER (EN ÜSTTE) -->
-        <section>
-            <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center space-x-3">
-                    <div class="p-2 bg-blue-500/10 rounded-xl border border-blue-500/20 text-blue-400">
-                        <i class="fa-solid fa-bolt text-lg"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-xl font-bold text-white">Son Eklenen Çalışmalar</h2>
-                        <p class="text-xs text-slate-400">Sınıflara göre en son yayınlanan ders içerikleri</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- 5. Sınıf Son Eklenen Kartı -->
-                <a id="btn-5-son" href="#" class="group relative block overflow-hidden rounded-3xl bg-slate-800/80 border border-slate-700/60 shadow-xl hover:border-blue-500/50 transition-all duration-300">
-                    <div class="relative h-48 sm:h-56 w-full overflow-hidden">
-                        <img id="img-5-son" src="5.sinif/8.jfif" alt="5. Sınıf Son Eklenen" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-blue-600 text-white shadow-lg flex items-center space-x-1">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                            <span>5. Sınıf</span>
-                        </span>
-                    </div>
-                    <div class="p-6 relative z-10 -mt-12 bg-slate-800/90 backdrop-blur-md rounded-t-3xl border-t border-slate-700/50">
-                        <p class="text-xs font-medium text-blue-400 mb-1">En Son Eklenen Ders</p>
-                        <h3 id="baslik-5-son" class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-1">Yükleniyor...</h3>
-                    </div>
-                </a>
-
-                <!-- 6. Sınıf Son Eklenen Kartı -->
-                <a id="btn-6-son" href="#" class="group relative block overflow-hidden rounded-3xl bg-slate-800/80 border border-slate-700/60 shadow-xl hover:border-purple-500/50 transition-all duration-300">
-                    <div class="relative h-48 sm:h-56 w-full overflow-hidden">
-                        <img id="img-6-son" src="6.sinif/7.jfif" alt="6. Sınıf Son Eklenen" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-purple-600 text-white shadow-lg flex items-center space-x-1">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                            <span>6. Sınıf</span>
-                        </span>
-                    </div>
-                    <div class="p-6 relative z-10 -mt-12 bg-slate-800/90 backdrop-blur-md rounded-t-3xl border-t border-slate-700/50">
-                        <p class="text-xs font-medium text-purple-400 mb-1">En Son Eklenen Ders</p>
-                        <h3 id="baslik-6-son" class="text-lg font-bold text-white group-hover:text-purple-400 transition-colors line-clamp-1">Yükleniyor...</h3>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- 2. BÖLÜM: SINIF GÖRSEL SEÇİM KARTLARI -->
-        <section>
-            <div class="text-center max-w-2xl mx-auto mb-8">
-                <h2 class="text-2xl font-bold text-white mb-2">Tüm Ders İçerikleri</h2>
-                <p class="text-sm text-slate-400">Görüntülemek istediğiniz sınıf seviyesini seçin</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- 5. Sınıf Seçim Kartı -->
-                <button type="button" onclick="sinifModalAc('5')" class="group relative block w-full text-left overflow-hidden rounded-3xl bg-slate-800/80 border border-slate-700/60 shadow-2xl hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="relative h-64 sm:h-72 w-full overflow-hidden">
-                        <img src="images/sinif_5_yeni_nesil_sinif.png" alt="5. Sınıf Bilişim Teknolojileri" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-blue-600 text-white mb-2">5. Sınıf</span>
-                            <h3 class="text-2xl font-bold text-white mb-1">Bilişim Teknolojileri</h3>
-                            <p class="text-xs text-slate-300">Konu anlatımları, sunumlar ve çalışma kağıtları</p>
-                        </div>
-                    </div>
-                </button>
-
-                <!-- 6. Sınıf Seçim Kartı -->
-                <button type="button" onclick="sinifModalAc('6')" class="group relative block w-full text-left overflow-hidden rounded-3xl bg-slate-800/80 border border-slate-700/60 shadow-2xl hover:border-purple-500/50 transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="relative h-64 sm:h-72 w-full overflow-hidden">
-                        <img src="images/sinif_6_yeni_nesil_sinif.png" alt="6. Sınıf Bilişim Teknolojileri" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-purple-600 text-white mb-2">6. Sınıf</span>
-                            <h3 class="text-2xl font-bold text-white mb-1">Bilişim Teknolojileri</h3>
-                            <p class="text-xs text-slate-300">Konu anlatımları, kodlama etkinlikleri ve uygulamalar</p>
-                        </div>
-                    </div>
-                </button>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Sınıf Konu Listesi Modalı -->
-    <div id="sinifModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
-            <!-- Modal Header -->
-            <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/50">
-                <div class="flex items-center space-x-3">
-                    <span id="modalSinifRozet" class="px-3 py-1 rounded-full text-xs font-bold bg-blue-600 text-white">5. Sınıf</span>
-                    <h3 id="modalBaslik" class="text-lg font-bold text-white">Ders Konuları</h3>
-                </div>
-                <button type="button" onclick="sinifModalKapat()" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition-colors">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-            <!-- Modal Body (Konu Listesi) -->
-            <div id="modalKonuListesi" class="p-6 overflow-y-auto space-y-3 flex-1">
-                <!-- JavaScript ile doldurulacak -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Alt Bilgi (Footer) -->
-    <footer class="bg-slate-950 border-t border-slate-800/80 py-8 text-center text-xs text-slate-500">
-        <p>© 2026 İhsan Aras Ortaokulu BTY Portalı - Tüm hakları saklıdır.</p>
-    </footer>
-
-    <!-- Veri ve Uygulama Scriptleri -->
-    <script src="data.js"></script>
-    <script src="main.js"></script>
-    <script>
-        // Sayfa yüklendiğinde son eklenen dersleri getir
-        document.addEventListener('DOMContentLoaded', () => {
-            if (typeof dersler !== 'undefined') {
-                const d5 = dersler.filter(d => d.sinif == 5);
-                const d6 = dersler.filter(d => d.sinif == 6);
-                if (d5.length > 0) {
-                    const son5 = d5[d5.length - 1];
-                    document.getElementById('baslik-5-son').textContent = son5.baslik;
-                    document.getElementById('btn-5-son').href = `icerik.html?id=${son5.id}`;
-                    if (son5.kapakResmi) document.getElementById('img-5-son').src = son5.kapakResmi;
-                }
-                if (d6.length > 0) {
-                    const son6 = d6[d6.length - 1];
-                    document.getElementById('baslik-6-son').textContent = son6.baslik;
-                    document.getElementById('btn-6-son').href = `icerik.html?id=${son6.id}`;
-                    if (son6.kapakResmi) document.getElementById('img-6-son').src = son6.kapakResmi;
-                }
-            }
-        });
-
-        function sinifModalAc(sinif) {
-            const modal = document.getElementById('sinifModal');
-            const rozet = document.getElementById('modalSinifRozet');
-            const baslik = document.getElementById('modalBaslik');
-            const liste = document.getElementById('modalKonuListesi');
-
-            rozet.textContent = `${sinif}. Sınıf`;
-            baslik.textContent = `${sinif}. Sınıf Bilişim Teknolojileri Dersleri`;
-            if (sinif == 5) {
-                rozet.className = 'px-3 py-1 rounded-full text-xs font-bold bg-blue-600 text-white';
-            } else {
-                rozet.className = 'px-3 py-1 rounded-full text-xs font-bold bg-purple-600 text-white';
-            }
-
-            const sinifDersleri = dersler.filter(d => d.sinif == sinif);
-            liste.innerHTML = sinifDersleri.map(d => `
-                <a href="icerik.html?id=${d.id}" class="flex items-center justify-between p-4 rounded-2xl bg-slate-800/50 hover:bg-slate-800 border border-slate-700/40 hover:border-blue-500/40 transition-all group">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-xl bg-slate-700/50 flex items-center justify-center text-slate-300 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                            <i class="fa-solid fa-book-open text-sm"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-sm font-semibold text-white group-hover:text-blue-400 transition-colors">${d.baslik}</h4>
-                            <p class="text-xs text-slate-400 line-clamp-1">${d.ozet || ''}</p>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-blue-400 transition-colors"></i>
-                </a>
-            `).join('');
-
-            modal.classList.remove('hidden');
-        }
-
-        function sinifModalKapat() {
-            document.getElementById('sinifModal').classList.add('hidden');
-        }
-    </script>
-</body>
-</html>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İhsan Aras Ortaokulu BTY Portalı - BATUNVER</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https:&#47;&#47;cdn&#46;tailwindcss&#46;com"></script>
-    <!-- FontAwesome İkonlar -->
-    <link rel="stylesheet" href="https:&#47;&#47;cdnjs&#46;cloudflare&#46;com&#47;ajax&#47;libs&#47;font-awesome&#47;6.4.0&#47;css&#47;all.min.css">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: { 500: '#3b82f6', 600: '#2563eb' }
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
-
-    <!-- Üst Menü (Header) -->
-    <header class="bg-slate-800/90 backdrop-blur border-b border-slate-700/60 sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-            <a href="index.html" class="flex items-center h-20 overflow-hidden group">
-                <img src="images/logo3.png" alt="Batunver - Bilişim Teknolojileri ve Yazılım Öğretmeni" class="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
-            </a>
-            <nav class="flex items-center space-x-2 sm:space-x-3">
-                <a href="index.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-slate-700/80 text-white transition-all shadow-sm">Ana Sayfa</a>
-                <button type="button" onclick="sinifModalAc('5')" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all cursor-pointer">5. Sınıf</button>
-                <button type="button" onclick="sinifModalAc('6')" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all cursor-pointer">6. Sınıf</button>
-                <a href="calismasorulari.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition-all border border-rose-500/30 flex items-center space-x-1.5">
-                    <i class="fa-solid fa-file-pen"></i>
-                    <span>Yazılı Çalışma Soruları</span>
-                </a>
-                <a href="evrakcantasi.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 transition-all border border-amber-500/30 flex items-center space-x-1.5">
-                    <i class="fa-solid fa-briefcase"></i>
-                    <span>Evrak Çantası</span>
-                </a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Ana İçerik -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-
-        <!-- 1. BÖLÜM: SON EKLENENLER (EN ÜSTTE) -->
-        <section>
-            <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center space-x-3">
-                    <div class="p-2 bg-blue-500/10 rounded-xl border border-blue-500/20 text-blue-400">
-                        <i class="fa-solid fa-bolt text-lg"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-xl font-bold text-white">Son Eklenen Çalışmalar</h2>
-                        <p class="text-xs text-slate-400">Sınıflara göre en son yayınlanan ders içerikleri</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- 5. Sınıf Son Eklenen Kartı -->
-                <a id="btn-5-son" href="#" class="group relative block overflow-hidden rounded-3xl bg-slate-800/80 border border-slate-700/60 shadow-xl hover:border-blue-500/50 transition-all duration-300">
-                    <div class="relative h-48 sm:h-56 w-full overflow-hidden">
-                        <img id="img-5-son" src="5.sinif/8.jfif" alt="5. Sınıf Son Eklenen" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-blue-600 text-white shadow-lg flex items-center space-x-1">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                            <span>5. Sınıf</span>
-                        </span>
-                    </div>
-                    <div class="p-6 relative z-10 -mt-12 bg-slate-800/90 backdrop-blur-md rounded-t-3xl border-t border-slate-700/50">
-                        <p class="text-xs font-medium text-blue-400 mb-1">En Son Eklenen Ders</p>
-                        <h3 id="baslik-5-son" class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors line-clamp-1">Yükleniyor...</h3>
-                    </div>
-                </a>
-
-                <!-- 6. Sınıf Son Eklenen Kartı -->
-                <a id="btn-6-son" href="#" class="group relative block overflow-hidden rounded-3xl bg-slate-800/80 border border-slate-700/60 shadow-xl hover:border-purple-500/50 transition-all duration-300">
-                    <div class="relative h-48 sm:h-56 w-full overflow-hidden">
-                        <img id="img-6-son" src="6.sinif/7.jfif" alt="6. Sınıf Son Eklenen" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-purple-600 text-white shadow-lg flex items-center space-x-1">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                            <span>6. Sınıf</span>
-                        </span>
-                    </div>
-                    <div class="p-6 relative z-10 -mt-12 bg-slate-800/90 backdrop-blur-md rounded-t-3xl border-t border-slate-700/50">
-                        <p class="text-xs font-medium text-purple-400 mb-1">En Son Eklenen Ders</p>
-                        <h3 id="baslik-6-son" class="text-lg font-bold text-white group-hover:text-purple-400 transition-colors line-clamp-1">Yükleniyor...</h3>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- 2. BÖLÜM: SINIF GÖRSEL SEÇİM KARTLARI -->
-        <section>
-            <div class="text-center max-w-2xl mx-auto mb-8">
-                <h2 class="text-2xl font-bold text-white mb-2">Tüm Ders İçerikleri</h2>
-                <p class="text-sm text-slate-400">Görüntülemek istediğiniz sınıf seviyesini seçin</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- 5. Sınıf Seçim Kartı -->
-                <button type="button" onclick="sinifModalAc('5')" class="group relative block w-full text-left overflow-hidden rounded-3xl bg-slate-800/80 border border-slate-700/60 shadow-2xl hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="relative h-64 sm:h-72 w-full overflow-hidden">
-                        <img src="images/sinif_5_yeni_nesil_sinif.png" alt="5. Sınıf Bilişim Teknolojileri" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-blue-600 text-white mb-2">5. Sınıf</span>
-                            <h3 class="text-2xl font-bold text-white mb-1">Bilişim Teknolojileri</h3>
-                            <p class="text-xs text-slate-300">Konu anlatımları, sunumlar ve çalışma kağıtları</p>
-                        </div>
-                    </div>
-                </button>
-
-                <!-- 6. Sınıf Seçim Kartı -->
-                <button type="button" onclick="sinifModalAc('6')" class="group relative block w-full text-left overflow-hidden rounded-3xl bg-slate-800/80 border border-slate-700/60 shadow-2xl hover:border-purple-500/50 transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="relative h-64 sm:h-72 w-full overflow-hidden">
-                        <img src="images/sinif_6_yeni_nesil_sinif.png" alt="6. Sınıf Bilişim Teknolojileri" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-purple-600 text-white mb-2">6. Sınıf</span>
-                            <h3 class="text-2xl font-bold text-white mb-1">Bilişim Teknolojileri</h3>
-                            <p class="text-xs text-slate-300">Konu anlatımları, kodlama etkinlikleri ve uygulamalar</p>
-                        </div>
-                    </div>
-                </button>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Sınıf Konu Listesi Modalı -->
-    <div id="sinifModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
-            <!-- Modal Header -->
-            <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/50">
-                <div class="flex items-center space-x-3">
-                    <span id="modalSinifRozet" class="px-3 py-1 rounded-full text-xs font-bold bg-blue-600 text-white">5. Sınıf</span>
-                    <h3 id="modalBaslik" class="text-lg font-bold text-white">Ders Konuları</h3>
-                </div>
-                <button type="button" onclick="sinifModalKapat()" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition-colors">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-            <!-- Modal Body (Konu Listesi) -->
-            <div id="modalKonuListesi" class="p-6 overflow-y-auto space-y-3 flex-1">
-                <!-- JavaScript ile doldurulacak -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Alt Bilgi (Footer) -->
-    <footer class="bg-slate-950 border-t border-slate-800/80 py-8 text-center text-xs text-slate-500">
-        <p>© 2026 İhsan Aras Ortaokulu BTY Portalı - Tüm hakları saklıdır.</p>
-    </footer>
-
-    <!-- Veri ve Uygulama Scriptleri -->
-    <script src="data.js"></script>
-    <script src="main.js"></script>
-    <script>
-        // Sayfa yüklendiğinde son eklenen dersleri getir
-        document.addEventListener('DOMContentLoaded', () => {
-            if (typeof dersler !== 'undefined') {
-                const d5 = dersler.filter(d => d.sinif == 5);
-                const d6 = dersler.filter(d => d.sinif == 6);
-                if (d5.length > 0) {
-                    const son5 = d5[d5.length - 1];
-                    document.getElementById('baslik-5-son').textContent = son5.baslik;
-                    document.getElementById('btn-5-son').href = `icerik.html?id=${son5.id}`;
-                    if (son5.kapakResmi) document.getElementById('img-5-son').src = son5.kapakResmi;
-                }
-                if (d6.length > 0) {
-                    const son6 = d6[d6.length - 1];
-                    document.getElementById('baslik-6-son').textContent = son6.baslik;
-                    document.getElementById('btn-6-son').href = `icerik.html?id=${son6.id}`;
-                    if (son6.kapakResmi) document.getElementById('img-6-son').src = son6.kapakResmi;
-                }
-            }
-        });
-
-        function sinifModalAc(sinif) {
-            const modal = document.getElementById('sinifModal');
-            const rozet = document.getElementById('modalSinifRozet');
-            const baslik = document.getElementById('modalBaslik');
-            const liste = document.getElementById('modalKonuListesi');
-
-            rozet.textContent = `${sinif}. Sınıf`;
-            baslik.textContent = `${sinif}. Sınıf Bilişim Teknolojileri Dersleri`;
-            if (sinif == 5) {
-                rozet.className = 'px-3 py-1 rounded-full text-xs font-bold bg-blue-600 text-white';
-            } else {
-                rozet.className = 'px-3 py-1 rounded-full text-xs font-bold bg-purple-600 text-white';
-            }
-
-            const sinifDersleri = dersler.filter(d => d.sinif == sinif);
-            liste.innerHTML = sinifDersleri.map(d => `
-                <a href="icerik.html?id=${d.id}" class="flex items-center justify-between p-4 rounded-2xl bg-slate-800/50 hover:bg-slate-800 border border-slate-700/40 hover:border-blue-500/40 transition-all group">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-xl bg-slate-700/50 flex items-center justify-center text-slate-300 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                            <i class="fa-solid fa-book-open text-sm"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-sm font-semibold text-white group-hover:text-blue-400 transition-colors">${d.baslik}</h4>
-                            <p class="text-xs text-slate-400 line-clamp-1">${d.ozet || ''}</p>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-blue-400 transition-colors"></i>
-                </a>
-            `).join('');
-
-            modal.classList.remove('hidden');
-        }
-
-        function sinifModalKapat() {
-            document.getElementById('sinifModal').classList.add('hidden');
-        }
-    </script>
-</body>
-</html>8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BATUNVER - Bilişim Teknolojileri ve Yazılım Portalı</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome İkonlar -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
@@ -460,17 +20,6 @@
             }
         }
     </script>
-    <style>
-        html:not(.dark) body { background-color: #f1f5f9 !important; color: #0f172a !important; }
-        html:not(.dark) header, html:not(.dark) footer { background-color: rgba(255, 255, 255, 0.95) !important; border-color: #cbd5e1 !important; }
-        html:not(.dark) .bg-slate-900, html:not(.dark) .bg-slate-950 { background-color: #ffffff !important; color: #0f172a !important; border-color: #cbd5e1 !important; }
-        html:not(.dark) .bg-slate-800, html:not(.dark) .bg-slate-800\/90, html:not(.dark) .bg-slate-800\/80, html:not(.dark) .bg-slate-800\/70, html:not(.dark) .bg-slate-800\/60, html:not(.dark) .bg-slate-800\/50, html:not(.dark) .bg-slate-800\/40 { background-color: #ffffff !important; border-color: #cbd5e1 !important; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.06) !important; }
-        html:not(.dark) .bg-slate-700\/80, html:not(.dark) .bg-slate-700\/60, html:not(.dark) .bg-slate-700\/50 { background-color: #e2e8f0 !important; color: #0f172a !important; border-color: #cbd5e1 !important; }
-        html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3, html:not(.dark) h4, html:not(.dark) .text-white { color: #0f172a !important; }
-        html:not(.dark) p, html:not(.dark) .text-slate-300, html:not(.dark) .text-slate-400 { color: #475569 !important; }
-        html:not(.dark) .border-slate-700, html:not(.dark) .border-slate-700\/80, html:not(.dark) .border-slate-700\/70, html:not(.dark) .border-slate-700\/60, html:not(.dark) .border-slate-800 { border-color: #cbd5e1 !important; }
-        html:not(.dark) header img { filter: brightness(0.15); }
-    </style>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
 
@@ -478,24 +27,16 @@
     <header class="bg-slate-800/90 backdrop-blur border-b border-slate-700/60 sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
             <a href="index.html" class="flex items-center h-20 overflow-hidden group">
-                <img src="images/logo3.png" alt="Batunver - Bilişim Teknolojileri ve Yazılım Öğretmeni" class="h-20 w-auto object-contain transition-transform group-hover:scale-105">
+                <img src="images/logo3.png" alt="Batunver - Bilişim Teknolojileri ve Yazılım Öğretmeni" class="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
             </a>
-            <nav class="flex items-center flex-wrap gap-2 sm:gap-3">
-                <a href="index.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-slate-700/80 text-white shadow-sm flex items-center space-x-2"><i class="fa-solid fa-house"></i><span>Ana Sayfa</span></a>
-                <button type="button" onclick="sinifModalAc('5')" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-blue-400 hover:text-white hover:bg-slate-700/50 transition flex items-center space-x-2 cursor-pointer"><i class="fa-solid fa-layer-group"></i><span>5. Sınıf</span></button>
-                <button type="button" onclick="sinifModalAc('6')" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-cyan-400 hover:text-white hover:bg-slate-700/50 transition flex items-center space-x-2 cursor-pointer"><i class="fa-solid fa-layer-group"></i><span>6. Sınıf</span></button>
-                <a href="calismasorulari.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 transition flex items-center space-x-2">
-                    <i class="fa-solid fa-briefcase"></i>
-                    <span>Yazılı Çalışma Soruları</span>
-                </a>
-                <a href="evrakcantasi.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 transition flex items-center space-x-2">
+            <nav class="flex items-center space-x-2 sm:space-x-3">
+                <a href="index.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-slate-700/80 text-white transition-all shadow-sm">Ana Sayfa</a>
+                <button type="button" onclick="sinifModalAc('5')" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all cursor-pointer">5. Sınıf</button>
+                <button type="button" onclick="sinifModalAc('6')" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all cursor-pointer">6. Sınıf</button>
+                <a href="evrakcantasi.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 transition-all border border-amber-500/30 flex items-center space-x-1.5">
                     <i class="fa-solid fa-briefcase"></i>
                     <span>Evrak Çantası</span>
                 </a>
-                <button type="button" onclick="temaDegistir()" id="temaBtn" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-slate-700/60 hover:bg-slate-700 text-amber-300 border border-slate-600/50 transition flex items-center space-x-2 cursor-pointer">
-                    <i id="temaIkon" class="fa-solid fa-sun"></i>
-                    <span id="temaMetin">Açık Tema</span>
-                </button>
             </nav>
         </div>
     </header>
@@ -503,222 +44,198 @@
     <!-- Ana İçerik -->
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-12">
 
-        <!-- 1. BÖLÜM: SON EKLENENLER -->
-        <section class="space-y-4">
-            <div class="flex items-center justify-between">
+        <!-- 1. BÖLÜM: SON EKLENENLER (EN ÜSTTE) -->
+        <section class="space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
                 <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                    </div>
+                    <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-wide">Son Eklenenler</h2>
+                </div>
+                <span class="text-xs text-slate-400 bg-slate-800 px-3.5 py-1.5 rounded-xl border border-slate-700 font-semibold">Güncel İçerikler</span>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 5. Sınıf Son Eklenen -->
+                <a id="btn-5-son" href="#" class="bg-gradient-to-br from-slate-800/90 to-blue-950/50 border border-slate-700/70 hover:border-blue-500/60 rounded-3xl p-6 shadow-2xl backdrop-blur-md transition-all duration-300 group flex flex-col justify-between">
                     <div>
-                        <h2 class="text-lg font-bold text-white">Son Eklenen Ders İçerikleri</h2>
-                        <p class="text-xs text-slate-400">En son yayınlanan tüm içerikler</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span id="label-5-son" class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20">5. Sınıf • Son Eklenen</span>
+                            <div id="num-5-son" class="w-8 h-8 rounded-xl bg-blue-600/30 text-blue-400 flex items-center justify-center font-bold text-xs border border-blue-500/30">-</div>
+                        </div>
+                        <div class="w-full aspect-[16/9] bg-slate-900/50 border border-slate-700/50 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-blue-500/40 transition-all">
+                            <img id="img-5-son" src="5.sinif/8.jfif" alt="5. Sınıf Son Eklenen" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                                <span class="px-4 py-2 bg-blue-600/90 text-white text-xs font-bold rounded-xl flex items-center space-x-1.5 shadow-lg">
+                                    <i class="fa-solid fa-book-open"></i>
+                                    <span>İçeriği İncele</span>
+                                </span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors flex items-center justify-between">
+                            <span id="baslik-5-son">Yükleniyor...</span>
+                            <i class="fa-solid fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
+                        </h3>
                     </div>
+                </a>
+
+                <!-- 6. Sınıf Son Eklenen -->
+                <a id="btn-6-son" href="#" class="bg-gradient-to-br from-slate-800/90 to-cyan-950/50 border border-slate-700/70 hover:border-cyan-500/60 rounded-3xl p-6 shadow-2xl backdrop-blur-md transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span id="label-6-son" class="bg-cyan-500/10 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/20">6. Sınıf • Son Eklenen</span>
+                            <div id="num-6-son" class="w-8 h-8 rounded-xl bg-cyan-600/30 text-cyan-400 flex items-center justify-center font-bold text-xs border border-cyan-500/30">-</div>
+                        </div>
+                        <div class="w-full aspect-[16/9] bg-slate-900/50 border border-slate-700/50 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-cyan-500/40 transition-all">
+                            <img id="img-6-son" src="6.sinif/6.jfif" alt="6. Sınıf Son Eklenen" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                                <span class="px-4 py-2 bg-cyan-600/90 text-white text-xs font-bold rounded-xl flex items-center space-x-1.5 shadow-lg">
+                                    <i class="fa-solid fa-book-open"></i>
+                                    <span>İçeriği İncele</span>
+                                </span>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center justify-between">
+                            <span id="baslik-6-son">Yükleniyor...</span>
+                            <i class="fa-solid fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
+                        </h3>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. BÖLÜM: SINIF GÖRSEL SEÇİM KARTLARI -->
+        <section class="grid md:grid-cols-2 gap-8">
+            <!-- 5. Sınıf Kartı -->
+            <div class="bg-slate-800/80 border border-slate-700/70 rounded-3xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 group flex flex-col justify-between shadow-2xl">
+                <div>
+                    <div class="relative w-full bg-[#f39c12]/10 flex items-center justify-center p-2 border-b border-slate-700/50">
+                        <img src="images/sinif_5_yeni_nesil_sinif.png" alt="5. Sınıflar" class="w-full h-auto max-h-64 object-contain rounded-2xl group-hover:scale-[1.02] transition-transform duration-300">
+                        <span class="absolute top-4 right-4 bg-blue-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-blue-400/30 shadow-lg">5. Sınıf</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-blue-400 transition-colors">5. Sınıf Bilişim Teknolojileri</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Temel bilişim kavramları, dijital vatandaşlık, dosya yönetimi ve Scratch ile görsel kodlama dünyası.</p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <button type="button" onclick="sinifModalAc('5')" class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center space-x-2 cursor-pointer">
+                        <span>5. Sınıf Eklenen İçerikleri Gör</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
                 </div>
             </div>
 
-            <div id="sonEklenenlerListesi" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            <!-- 6. Sınıf Kartı -->
+            <div class="bg-slate-800/80 border border-slate-700/70 rounded-3xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300 group flex flex-col justify-between shadow-2xl">
+                <div>
+                    <div class="relative w-full bg-[#e74c3c]/10 flex items-center justify-center p-2 border-b border-slate-700/50">
+                        <img src="images/sinif_6_yeni_nesil_sinif.png" alt="6. Sınıflar" class="w-full h-auto max-h-64 object-contain rounded-2xl group-hover:scale-[1.02] transition-transform duration-300">
+                        <span class="absolute top-4 right-4 bg-cyan-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-cyan-400/30 shadow-lg">6. Sınıf</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-cyan-400 transition-colors">6. Sınıf Bilişim Teknolojileri</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Tablolama (Calc/Excel), ses-video kurgu, ağ teknolojileri ve Python ile metin tabanlı kodlama.</p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6">
+                    <button type="button" onclick="sinifModalAc('6')" class="w-full py-3.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-cyan-600/20 flex items-center justify-center space-x-2 cursor-pointer">
+                        <span>6. Sınıf Eklenen İçerikleri Gör</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
         </section>
-
-        <!-- 2. BÖLÜM: SINIF KARTLARI VE LİSTELERİ -->
-        <div class="grid lg:grid-cols-2 gap-8">
-            
-            <!-- 5. Sınıf Bloğu -->
-            <section class="space-y-4">
-                <div class="flex items-center justify-between bg-slate-800/80 p-4 rounded-2xl border border-slate-700/80 flex-wrap gap-2">
-                    <div class="flex items-center space-x-3">
-                        <span class="w-10 h-10 rounded-xl bg-blue-600/20 text-blue-400 font-black text-lg flex items-center justify-center border border-blue-500/30">5</span>
-                        <div>
-                            <h2 class="text-base font-bold text-white">5. Sınıf Ders İçerikleri</h2>
-                            <p class="text-xs text-slate-400">Türkiye Yüzyılı Maarif Modeli</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <a href="calismasorulari.html?sinif=5" class="text-xs bg-rose-500/20 hover:bg-rose-600 text-rose-300 hover:text-white px-3 py-1.5 rounded-xl border border-rose-500/30 transition flex items-center space-x-1.5">
-                            <i class="fa-solid fa-briefcase"></i>
-                            <span>Yazılı Soruları</span>
-                        </a>
-                        <button type="button" onclick="sinifModalAc('5')" class="text-xs bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white px-3 py-1.5 rounded-xl border border-blue-500/30 transition flex items-center space-x-1.5 cursor-pointer">
-                            <span>Tümünü Gör</span>
-                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="sinif5Listesi" class="space-y-3"></div>
-            </section>
-
-            <!-- 6. Sınıf Bloğu -->
-            <section class="space-y-4">
-                <div class="flex items-center justify-between bg-slate-800/80 p-4 rounded-2xl border border-slate-700/80 flex-wrap gap-2">
-                    <div class="flex items-center space-x-3">
-                        <span class="w-10 h-10 rounded-xl bg-cyan-600/20 text-cyan-400 font-black text-lg flex items-center justify-center border border-cyan-500/30">6</span>
-                        <div>
-                            <h2 class="text-base font-bold text-white">6. Sınıf Ders İçerikleri</h2>
-                            <p class="text-xs text-slate-400">Türkiye Yüzyılı Maarif Modeli</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <a href="calismasorulari.html?sinif=6" class="text-xs bg-rose-500/20 hover:bg-rose-600 text-rose-300 hover:text-white px-3 py-1.5 rounded-xl border border-rose-500/30 transition flex items-center space-x-1.5">
-                            <i class="fa-solid fa-briefcase"></i>
-                            <span>Yazılı Soruları</span>
-                        </a>
-                        <button type="button" onclick="sinifModalAc('6')" class="text-xs bg-cyan-600/20 hover:bg-cyan-600 text-cyan-300 hover:text-white px-3 py-1.5 rounded-xl border border-cyan-500/30 transition flex items-center space-x-1.5 cursor-pointer">
-                            <span>Tümünü Gör</span>
-                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="sinif6Listesi" class="space-y-3"></div>
-            </section>
-
-        </div>
 
     </main>
 
-    <!-- Sınıf Tüm İçerikler Pop-up (Modal) -->
-    <div id="sinifModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-700/80 rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
-            <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-800/50">
-                <h3 id="modalBaslik" class="font-bold text-lg text-white">Sınıf İçerikleri</h3>
-                <button type="button" onclick="modalKapat()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 flex items-center justify-center transition cursor-pointer">
-                    <i class="fa-solid fa-xmark"></i>
+    <!-- SINIFLAR İÇİN DERS İÇERİK MODALI -->
+    <div id="sinifModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
+        <div class="bg-slate-900 border border-slate-700 w-full max-w-4xl max-h-[90vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden">
+            <div class="px-6 py-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/90 sticky top-0 z-10">
+                <h3 id="modalBaslik" class="text-xl font-bold text-white">Sınıf Planı</h3>
+                <button type="button" onclick="modalKapat()" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer">
+                    <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
-            <div id="modalIcerikKutusu" class="p-5 overflow-y-auto space-y-3 flex-grow"></div>
+            <div id="modalIcerikContainer" class="p-6 overflow-y-auto space-y-3 flex-grow">
+                <!-- Sadece yayinlananDersler listesindekiler buraya gelir -->
+            </div>
         </div>
     </div>
 
-    <!-- Alt Bilgi (Footer) -->
+    <!-- Alt Bilgi -->
     <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-400">
-        <p>&copy; 2026 BATUNVER - Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
+        <p>&copy; 2026 BATUNVER - İhsan Aras Ortaokulu Bilişim Teknolojileri ve Yazılım Dersi Portalı</p>
     </footer>
 
-    <!-- Veri Dosyası -->
+    <!-- Veri Dosyası ve Mantık -->
     <script src="data.js"></script>
-
-    <!-- Ana Sayfa Script Kodları -->
     <script>
-        function temaUygula(tema) {
-            const htmlEl = document.documentElement;
-            const ikon = document.getElementById('temaIkon');
-            const metin = document.getElementById('temaMetin');
-            if (tema === 'light') {
-                htmlEl.classList.remove('dark');
-                if (ikon) ikon.className = 'fa-solid fa-moon text-indigo-500';
-                if (metin) metin.innerText = 'Koyu Tema';
-            } else {
-                htmlEl.classList.add('dark');
-                if (ikon) ikon.className = 'fa-solid fa-sun text-amber-400';
-                if (metin) metin.innerText = 'Açık Tema';
-            }
-        }
-        function temaDegistir() {
-            const mevcut = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-            const yeni = mevcut === 'dark' ? 'light' : 'dark';
-            try { localStorage.setItem('batunver_tema', yeni); } catch (e) {}
-            temaUygula(yeni);
-        }
-        (function() {
-            try {
-                const kayitli = localStorage.getItem('batunver_tema') || 'dark';
-                temaUygula(kayitli);
-            } catch (e) {}
-        })();
+        // YAYINLANAN DERSLER LİSTESİ (6. Hafta ve yeni eklenen 7. Hafta)
+        const yayinlananDersler = ["5-hafta-8","5-hafta-9","6-hafta-6", "6-hafta-7"];
 
         document.addEventListener("DOMContentLoaded", function() {
+            sonEklenenleriGuncelle();
+        });
+
+        function sonEklenenleriGuncelle() {
             if (typeof dersIcerikleri === 'undefined') return;
 
-            const anahtarListesi = (typeof yayinlananDersler !== 'undefined' && Array.isArray(yayinlananDersler))
-                ? yayinlananDersler
-                : Object.keys(dersIcerikleri);
+            let enSon5 = null;
+            let enSon6 = null;
 
-            const sonEklenenlerKutusu = document.getElementById("sonEklenenlerListesi");
-            const sinif5Kutusu = document.getElementById("sinif5Listesi");
-            const sinif6Kutusu = document.getElementById("sinif6Listesi");
-
-            if (sonEklenenlerKutusu) sonEklenenlerKutusu.innerHTML = "";
-            if (sinif5Kutusu) sinif5Kutusu.innerHTML = "";
-            if (sinif6Kutusu) sinif6Kutusu.innerHTML = "";
-
-            let eklenecekListesi = [];
-            anahtarListesi.forEach(key => {
+            yayinlananDersler.forEach(key => {
                 const veri = dersIcerikleri[key];
-                if (veri) {
-                    eklenecekListesi.push({ key: key, ...veri });
+                if (!veri) return;
+
+                if (String(veri.sinif) === '5' || key.startsWith('5-')) {
+                    if (!enSon5 || Number(veri.hafta) >= Number(enSon5.hafta)) {
+                        enSon5 = { key, ...veri };
+                    }
+                } else if (String(veri.sinif) === '6' || key.startsWith('6-')) {
+                    if (!enSon6 || Number(veri.hafta) >= Number(enSon6.hafta)) {
+                        enSon6 = { key, ...veri };
+                    }
                 }
             });
 
-            const sonEklenenler = eklenecekListesi.slice(-6).reverse();
-            sonEklenenler.forEach(item => {
-                if (sonEklenenlerKutusu) {
-                    const kart = document.createElement("a");
-                    kart.href = `icerik.html?id=${item.key}`;
-                    kart.className = "bg-slate-800/80 border border-slate-700/70 hover:border-blue-500/50 rounded-2xl p-4 transition group flex flex-col justify-between space-y-3 shadow-lg";
-                    
-                    const sinifRenk = String(item.sinif) === '5' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20';
-                    const haftaNum = item.hafta || item.key.split('-')[2] || '1';
+            // 5. Sınıf Son Eklenen Kartı
+            const btn5 = document.getElementById("btn-5-son");
+            const num5 = document.getElementById("num-5-son");
+            const baslik5 = document.getElementById("baslik-5-son");
+            const img5 = document.getElementById("img-5-son");
 
-                    kart.innerHTML = `
-                        <div class="space-y-2">
-                            <div class="flex items-center justify-between">
-                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${sinifRenk}">${item.sinif}. Sınıf</span>
-                                <span class="text-[11px] text-slate-400 font-medium">${haftaNum}. Hafta</span>
-                            </div>
-                            <h3 class="font-bold text-white text-sm group-hover:text-blue-400 transition-colors line-clamp-2">${item.baslik}</h3>
-                            <p class="text-xs text-slate-400 line-clamp-2">${item.kazanim || ''}</p>
-                        </div>
-                        <div class="pt-2 border-t border-slate-700/50 flex items-center justify-between text-xs text-slate-400 group-hover:text-slate-200">
-                            <span>İçeriğe Git</span>
-                            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
-                        </div>
-                    `;
-                    sonEklenenlerKutusu.appendChild(kart);
-                }
-            });
-
-            const sinif5Dersleri = eklenecekListesi.filter(i => String(i.sinif) === '5' || i.key.startsWith('5-')).slice(-4).reverse();
-            const sinif6Dersleri = eklenecekListesi.filter(i => String(i.sinif) === '6' || i.key.startsWith('6-')).slice(-4).reverse();
-
-            function listeOlustur(liste, kutu, sinif) {
-                if (!kutu) return;
-                if (liste.length === 0) {
-                    kutu.innerHTML = `<p class="text-xs text-slate-500 italic p-3">Bu sınıfa ait içerik henüz eklenmedi.</p>`;
-                    return;
-                }
-                liste.forEach(item => {
-                    const el = document.createElement("a");
-                    el.href = `icerik.html?id=${item.key}`;
-                    el.className = "flex items-center justify-between p-3.5 bg-slate-800/60 border border-slate-700/50 rounded-2xl hover:bg-slate-800 hover:border-slate-600 transition group";
-                    
-                    const haftaNum = item.hafta || item.key.split('-')[2] || '1';
-                    const rozetRenk = sinif === '5' ? 'bg-blue-600/20 text-blue-400 border-blue-500/30' : 'bg-cyan-600/20 text-cyan-400 border-cyan-500/30';
-
-                    el.innerHTML = `
-                        <div class="flex items-center space-x-3 overflow-hidden">
-                            <div class="w-8 h-8 rounded-xl ${rozetRenk} border flex items-center justify-center font-bold text-xs flex-shrink-0">
-                                ${haftaNum}
-                            </div>
-                            <div class="truncate">
-                                <h4 class="font-semibold text-white text-xs group-hover:text-blue-400 transition-colors truncate">${item.baslik}</h4>
-                                <p class="text-[11px] text-slate-400 truncate">${item.kazanim || ''}</p>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-white group-hover:translate-x-0.5 transition flex-shrink-0 ml-2"></i>
-                    `;
-                    kutu.appendChild(el);
-                });
+            if (enSon5) {
+                if (btn5) btn5.href = `icerik.html?id=${enSon5.key}`;
+                if (num5) num5.innerText = enSon5.hafta;
+                if (baslik5) baslik5.innerText = enSon5.baslik;
+                if (img5) img5.src = enSon5.kapakResmi || `5.sinif/${enSon5.hafta}.jfif`;
+            } else {
+                if (btn5) { btn5.href = "#"; btn5.style.opacity = "0.6"; }
+                if (baslik5) baslik5.innerText = "Henüz içerik eklenmedi";
             }
 
-            listeOlustur(sinif5Dersleri, sinif5Kutusu, '5');
-            listeOlustur(sinif6Dersleri, sinif6Kutusu, '6');
-        });
+            // 6. Sınıf Son Eklenen Kartı (Artık 7. Hafta otomatik gelecek)
+            const btn6 = document.getElementById("btn-6-son");
+            const num6 = document.getElementById("num-6-son");
+            const baslik6 = document.getElementById("baslik-6-son");
+            const img6 = document.getElementById("img-6-son");
+
+            if (enSon6) {
+                if (btn6) btn6.href = `icerik.html?id=${enSon6.key}`;
+                if (num6) num6.innerText = enSon6.hafta;
+                if (baslik6) baslik6.innerText = enSon6.baslik;
+                if (img6) img6.src = enSon6.kapakResmi || `6.sinif/${enSon6.hafta}.jfif`;
+            } else {
+                if (btn6) { btn6.href = "#"; btn6.style.opacity = "0.6"; }
+                if (baslik6) baslik6.innerText = "Henüz içerik eklenmedi";
+            }
+        }
 
         function sinifModalAc(sinif) {
             const modal = document.getElementById("sinifModal");
             const modalBaslik = document.getElementById("modalBaslik");
-            const container = document.getElementById("modalIcerikKutusu");
+            const container = document.getElementById("modalIcerikContainer");
 
             if (!modal || !container) return;
 
@@ -728,11 +245,7 @@
             let eklenenSayisi = 0;
 
             if (typeof dersIcerikleri !== 'undefined') {
-                const anahtarListesi = (typeof yayinlananDersler !== 'undefined' && Array.isArray(yayinlananDersler))
-                    ? yayinlananDersler
-                    : Object.keys(dersIcerikleri);
-
-                anahtarListesi.forEach(key => {
+                yayinlananDersler.forEach(key => {
                     const veri = dersIcerikleri[key];
                     if (!veri) return;
 
@@ -746,19 +259,19 @@
 
                         const item = document.createElement("a");
                         item.href = `icerik.html?id=${key}`;
-                        item.className = "flex items-center justify-between p-4 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 rounded-2xl transition group mb-3";
-
+                        item.className = "flex items-center justify-between p-4 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 rounded-2xl transition-all group";
+                        
                         item.innerHTML = `
                             <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 rounded-xl ${String(sinif) === '5' ? 'bg-blue-600/20 text-blue-400 border-blue-500/30' : 'bg-cyan-600/20 text-cyan-400 border-cyan-500/30'} border flex items-center justify-center font-bold text-sm">
+                                <div class="w-10 h-10 rounded-xl ${sinif === '5' ? 'bg-blue-600/20 text-blue-400 border-blue-500/30' : 'bg-cyan-600/20 text-cyan-400 border-cyan-500/30'} flex items-center justify-center font-bold text-sm border shrink-0">
                                     ${haftaNum}
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-white text-sm sm:text-base group-hover:${String(sinif) === '5' ? 'text-blue-400' : 'text-cyan-400'} transition-colors">${baslik}</h4>
+                                    <h4 class="font-bold text-white text-sm sm:text-base group-hover:${sinif === '5' ? 'text-blue-400' : 'text-cyan-400'} transition-colors">${baslik}</h4>
                                     <p class="text-xs text-slate-400 line-clamp-1">${kazanim}</p>
                                 </div>
                             </div>
-                            <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-white transition"></i>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-white transition-colors ml-2 shrink-0"></i>
                         `;
                         container.appendChild(item);
                     }
@@ -766,7 +279,7 @@
             }
 
             if (eklenenSayisi === 0) {
-                container.innerHTML = `<p class="text-center text-slate-500 py-8 text-sm">Bu sınıfa ait henüz içerik bulunmamaktadır.</p>`;
+                container.innerHTML = `<p class="text-center text-slate-500 py-8 text-sm">Bu sınıfa ait henüz içerik eklenmemiştir.</p>`;
             }
 
             modal.classList.remove("hidden");
