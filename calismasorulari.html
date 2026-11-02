@@ -18,17 +18,218 @@
             document.head.appendChild(fa);
 
             var m = document.createElement('script');
-            m.src = 'https://cdnjs.cloudflare' + dotCom + '/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js';
-            document.head.appendChild(m);
-        })();
-    </script>
+            m.src = 'https://cdnjs.cloudflare' + dotCom + '/ajax/libs/mammoth/1.6.0/mammoth<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yazılı Çalışma Soruları - İhsan Aras Ortaokulu BTY Portalı</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https:&#47;&#47;cdn&#46;tailwindcss&#46;com"></script>
+    <!-- FontAwesome İkonlar -->
+    <link rel="stylesheet" href="https:&#47;&#47;cdnjs&#46;cloudflare&#46;com&#47;ajax&#47;libs&#47;font-awesome&#47;6.4.0&#47;css&#47;all.min.css">
+    <!-- Mammoth JS (docx okuyucu için) -->
+    <script src="https:&#47;&#47;cdnjs&#46;cloudflare&#46;com&#47;ajax&#47;libs&#47;mammoth&#47;1.6.0&#47;mammoth.browser.min.js"></script>
     <script>
-        tailwind = {
-            config: {
-                darkMode: 'class',
-                theme: {
-                    extend: {
-                        colors: {
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#3b82f6', 600: '#2563eb' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            body * { visibility: hidden; }
+            #docxContainer, #docxContainer * { visibility: visible; }
+            #docxContainer { position: absolute; left: 0; top: 0; width: 100%; margin: 0; }
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
+    <!-- Header -->
+    <header class="bg-slate-800/90 backdrop-blur border-b border-slate-700/60 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <img src="images/logo3.png" alt="Logo" class="h-12 w-auto object-contain">
+            </a>
+            <nav class="flex items-center space-x-2 sm:space-x-3">
+                <a href="index.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all">Ana Sayfa</a>
+                <a href="calismasorulari.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/30 transition-all shadow-sm flex items-center space-x-1.5">
+                    <i class="fa-solid fa-file-pen"></i>
+                    <span>Yazılı Çalışma Soruları</span>
+                </a>
+                <a href="evrakcantasi.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 transition-all border border-amber-500/30 flex items-center space-x-1.5">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span>Evrak Çantası</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        <!-- Başlık Bölümü -->
+        <div class="bg-gradient-to-r from-rose-900/40 via-slate-800 to-slate-800/80 p-8 rounded-3xl border border-rose-500/20 shadow-xl relative overflow-hidden">
+            <div class="relative z-10">
+                <div class="flex items-center space-x-3 mb-2">
+                    <span class="p-2 bg-rose-500/20 rounded-xl text-rose-400 border border-rose-500/30">
+                        <i class="fa-solid fa-file-signature text-xl"></i>
+                    </span>
+                    <h1 class="text-2xl font-extrabold text-white">Yazılı Çalışma Soruları</h1>
+                </div>
+                <p class="text-sm text-slate-300 max-w-2xl">Yazılı sınavlara hazırlık çalışma kağıtları, örnek çalışma soruları ve çözümleri.</p>
+            </div>
+        </div>
+
+        <!-- Filtreleme Butonları -->
+        <div class="flex flex-wrap items-center gap-3 bg-slate-800/50 p-3 rounded-2xl border border-slate-700/50">
+            <button onclick="filtrele('hepsi')" id="btn-hepsi" class="filtre-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-blue-600 text-white shadow-md">Tümü</button>
+            <button onclick="filtrele('5')" id="btn-5" class="filtre-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-700 text-slate-300 hover:bg-slate-600">5. Sınıf</button>
+            <button onclick="filtrele('6')" id="btn-6" class="filtre-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-700 text-slate-300 hover:bg-slate-600">6. Sınıf</button>
+        </div>
+
+        <!-- Kartlar Grid -->
+        <div id="soruKartlariContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- JavaScript ile doldurulacak -->
+        </div>
+    </main>
+
+    <!-- Belge Görüntüleme Modalı -->
+    <div id="docxModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700/80 rounded-3xl max-w-4xl w-full h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+            <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-800/50">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-file-word text-blue-400 text-xl"></i>
+                    <h3 id="modalBelgeBaslik" class="text-sm font-bold text-white truncate max-w-md">Belge Önizleme</h3>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button onclick="yazdir()" class="px-3 py-1.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition-colors">
+                        <i class="fa-solid fa-print"></i>
+                        <span>Yazdır</span>
+                    </button>
+                    <button onclick="modalKapat()" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition-colors">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1 bg-white text-slate-900" id="docxContainer">
+                <div class="flex items-center justify-center h-full text-slate-500">
+                    <i class="fa-solid fa-spinner fa-spin text-2xl mr-2"></i> Belge yükleniyor...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800/80 py-8 text-center text-xs text-slate-500">
+        <p>© 2026 İhsan Aras Ortaokulu BTY Portalı - Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="evrak-data.js"></script>
+    <script>
+        let tumSorular = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof calismaSorulariData !== 'undefined') {
+                tumSorular = calismaSorulariData;
+            } else if (typeof evraklarData !== 'undefined') {
+                tumSorular = evraklarData.filter(e => e.kategori === 'calisma-sorulari' || e.kategori === 'yazili-sorulari');
+            }
+            kartlariListele(tumSorular);
+        });
+
+        function kartlariListele(liste) {
+            const container = document.getElementById('soruKartlariContainer');
+            if (!container) return;
+
+            if (liste.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-slate-400">
+                        <i class="fa-solid fa-folder-open text-4xl mb-3 text-slate-600 block"></i>
+                        Bu kategoride henüz çalışma sorusu eklenmemiştir.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = liste.map(item => `
+                <div class="bg-slate-800/80 border border-slate-700/60 rounded-3xl p-6 shadow-xl flex flex-col justify-between hover:border-rose-500/40 transition-all duration-300">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold ${item.sinif == 5 ? 'bg-blue-600' : 'bg-purple-600'} text-white">
+                                ${item.sinif}. Sınıf
+                            </span>
+                            <span class="text-xs text-slate-400 flex items-center space-x-1">
+                                <i class="fa-solid fa-calendar-day"></i>
+                                <span>${item.tarih || '2026'}</span>
+                            </span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2 line-clamp-2">${item.baslik}</h3>
+                        <p class="text-xs text-slate-400 mb-6 line-clamp-3">${item.aciklama || item.ozet || ''}</p>
+                    </div>
+                    <div class="flex items-center space-x-2 pt-4 border-t border-slate-700/50">
+                        <button onclick="belgeGoruntule('${item.dosyaUrl}', '${item.baslik}')" class="flex-1 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-md flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-eye"></i>
+                            <span>Görüntüle</span>
+                        </button>
+                        <a href="${item.dosyaUrl}" download class="px-3.5 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-bold transition-all flex items-center justify-center" title="İndir">
+                            <i class="fa-solid fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filtrele(sinif) {
+            document.querySelectorAll('.filtre-btn').forEach(btn => {
+                btn.className = 'filtre-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-700 text-slate-300 hover:bg-slate-600';
+            });
+            const aktifBtn = document.getElementById(`btn-${sinif}`);
+            if (aktifBtn) {
+                aktifBtn.className = 'filtre-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-blue-600 text-white shadow-md';
+            }
+
+            if (sinif === 'hepsi') {
+                kartlariListele(tumSorular);
+            } else {
+                const filtrelenmis = tumSorular.filter(s => s.sinif == sinif);
+                kartlariListele(filtrelenmis);
+            }
+        }
+
+        function belgeGoruntule(url, baslik) {
+            document.getElementById('modalBelgeBaslik').textContent = baslik;
+            const modal = document.getElementById('docxModal');
+            const container = document.getElementById('docxContainer');
+            modal.classList.remove('hidden');
+
+            container.innerHTML = `<div class="flex items-center justify-center h-full text-slate-500"><i class="fa-solid fa-spinner fa-spin text-2xl mr-2"></i> Yükleniyor...</div>`;
+
+            fetch(url)
+                .then(res => res.arrayBuffer())
+                .then(buffer => mammoth.convertToHtml({ arrayBuffer: buffer }))
+                .then(result => {
+                    container.innerHTML = result.value;
+                })
+                .catch(err => {
+                    container.innerHTML = `<div class="text-rose-500 p-4 text-center"><i class="fa-solid fa-circle-exclamation text-2xl mb-2"></i><br>Belge yüklenirken hata oluştu veya bu dosya formatı önizleme desteklemiyor.</div>`;
+                });
+        }
+
+        function modalKapat() {
+            document.getElementById('docxModal').classList.add('hidden');
+        }
+
+        function yazdir() {
+            window.print();
+        }
+    </script>
+</body>
+</html>: {
                             brand: { 500: '#3b82f6', 600: '#2563eb' }
                         }
                     }
