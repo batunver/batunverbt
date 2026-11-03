@@ -1,0 +1,734 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="batunverbt eğitim portalı hakkında. Bilişim Teknolojileri ve Yazılım dersine yönelik konu anlatımları, etkinlikler ve öğrenci materyalleri.">
+
+    <title>Hakkımda | batunverbt</title>
+
+    <style>
+        :root {
+            --bg: #07111f;
+            --surface: #0e1c2d;
+            --surface-light: #12243a;
+            --text: #edf5ff;
+            --muted: #a6b8cc;
+            --accent: #35d0c2;
+            --accent-blue: #65a9ff;
+            --border: rgba(173, 202, 232, 0.15);
+            --max-width: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                radial-gradient(
+                    circle at 85% 5%,
+                    rgba(53, 208, 194, 0.10),
+                    transparent 28rem
+                ),
+                var(--bg);
+
+            color: var(--text);
+
+            font-family:
+                Inter,
+                "Segoe UI",
+                system-ui,
+                -apple-system,
+                sans-serif;
+
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(
+                var(--max-width),
+                calc(100% - 40px)
+            );
+
+            margin: 0 auto;
+        }
+
+        /* ÜST MENÜ */
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 24px 0;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo-icon {
+            display: grid;
+            place-items: center;
+
+            width: 40px;
+            height: 40px;
+
+            border-radius: 12px;
+
+            background: var(--accent);
+            color: #06121f;
+
+            font-weight: 900;
+        }
+
+        .nav-link {
+            color: var(--muted);
+            font-size: 0.95rem;
+
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        /* HERO */
+
+        .hero {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.35fr)
+                minmax(260px, 0.65fr);
+
+            align-items: center;
+            gap: 48px;
+
+            padding: 80px 0 70px;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+            color: var(--accent);
+
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+
+            width: 25px;
+            height: 2px;
+
+            background: var(--accent);
+        }
+
+        .hero h1 {
+            margin-bottom: 24px;
+
+            font-size: clamp(2.6rem, 6vw, 4.6rem);
+            line-height: 1.1;
+            letter-spacing: -3px;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: var(--accent);
+        }
+
+        .hero-description {
+            max-width: 650px;
+
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        /* HERO KARTI */
+
+        .hero-card {
+            position: relative;
+
+            padding: 30px;
+
+            border: 1px solid var(--border);
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    var(--surface-light),
+                    var(--surface)
+                );
+
+            overflow: hidden;
+        }
+
+        .hero-card-label {
+            color: var(--muted);
+
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero-card h2 {
+            margin: 14px 0 24px;
+
+            font-size: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .tag {
+            padding: 7px 12px;
+
+            border: 1px solid rgba(53, 208, 194, 0.25);
+            border-radius: 30px;
+
+            background: rgba(53, 208, 194, 0.08);
+            color: #c8fff8;
+
+            font-size: 0.82rem;
+        }
+
+        /* GENEL BÖLÜMLER */
+
+        .section {
+            padding: 60px 0;
+
+            border-top: 1px solid var(--border);
+        }
+
+        .section-heading {
+            max-width: 750px;
+            margin-bottom: 32px;
+        }
+
+        .section-heading h2 {
+            margin-bottom: 16px;
+
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+            line-height: 1.25;
+            letter-spacing: -1.5px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+        }
+
+        /* BİLGİ KARTLARI */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .info-card {
+            padding: 30px;
+
+            border: 1px solid var(--border);
+            border-radius: 20px;
+
+            background: rgba(14, 28, 45, 0.8);
+
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(53, 208, 194, 0.4);
+        }
+
+        .card-icon {
+            display: grid;
+            place-items: center;
+
+            width: 48px;
+            height: 48px;
+
+            margin-bottom: 20px;
+
+            border-radius: 14px;
+
+            background: rgba(53, 208, 194, 0.1);
+            color: var(--accent);
+
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        .info-card h3 {
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+
+        .info-card p {
+            color: var(--muted);
+        }
+
+        /* İÇERİK KARTLARI */
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .resource-card {
+            padding: 26px;
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            background: var(--surface);
+        }
+
+        .resource-number {
+            display: block;
+
+            margin-bottom: 18px;
+
+            color: var(--accent);
+
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .resource-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .resource-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        /* VURGU ALANI */
+
+        .quote {
+            padding: 36px;
+
+            border: 1px solid rgba(53, 208, 194, 0.25);
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(53, 208, 194, 0.09),
+                    rgba(101, 169, 255, 0.06)
+                );
+        }
+
+        .quote p {
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            font-weight: 750;
+            line-height: 1.5;
+            letter-spacing: -1px;
+        }
+
+        .quote span {
+            color: var(--accent);
+        }
+
+        /* ALT BÖLÜM */
+
+        footer {
+            padding: 30px 0;
+
+            border-top: 1px solid var(--border);
+
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        /* MOBİL UYUMLULUK */
+
+        @media (max-width: 760px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 30px;
+
+                padding: 55px 0 45px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .about-grid,
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 45px 0;
+            }
+
+            .info-card,
+            .resource-card {
+                padding: 24px;
+            }
+
+            .quote {
+                padding: 26px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- ÜST MENÜ -->
+
+        <header class="navbar">
+
+            <a href="index.html" class="logo">
+
+                <span class="logo-icon">b</span>
+
+                <span>batunverbt</span>
+
+            </a>
+
+            <a href="index.html" class="nav-link">
+                ← Ana Sayfaya Dön
+            </a>
+
+        </header>
+
+
+        <main>
+
+            <!-- GİRİŞ -->
+
+            <section class="hero">
+
+                <div>
+
+                    <p class="eyebrow">
+                        Hakkımda
+                    </p>
+
+                    <h1>
+                        Teknolojiyi keşfet,
+                        <span>öğren ve üret!</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Bilgisayar ve Öğretim Teknolojileri Öğretmeni
+                        olarak öğrencilerin teknolojiyi yalnızca kullanan
+                        değil; anlayan, sorgulayan ve üreten bireyler
+                        olmalarını destekliyorum.
+                    </p>
+
+                </div>
+
+
+                <div class="hero-card">
+
+                    <span class="hero-card-label">
+                        Eğitim Odağım
+                    </span>
+
+                    <h2>
+                        Bilgiyi keşfetmekten,
+                        fikirleri ürüne dönüştürmeye.
+                    </h2>
+
+                    <div class="tags">
+
+                        <span class="tag">
+                            Algoritmik Düşünme
+                        </span>
+
+                        <span class="tag">
+                            Dijital Okuryazarlık
+                        </span>
+
+                        <span class="tag">
+                            Programlama
+                        </span>
+
+                        <span class="tag">
+                            Üretken Öğrenme
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ÖĞRETMENLİK YAKLAŞIMI -->
+
+            <section class="section">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">
+                        Bu Yolculuk
+                    </p>
+
+                    <h2>
+                        Eğitim ve teknoloji bir arada
+                    </h2>
+
+                    <p>
+                        2021 yılında başladığım öğretmenlik yolculuğumda,
+                        bilişim eğitiminin problem çözme, yaratıcılık ve
+                        dijital beceriler geliştirmedeki gücüne inanıyorum.
+                        Öğrenmenin; deneyerek, keşfederek ve üreterek daha
+                        kalıcı hâle geldiğini düşünüyorum.
+                    </p>
+
+                </div>
+
+
+                <div class="about-grid">
+
+                    <article class="info-card">
+
+                        <div class="card-icon">
+                            ✦
+                        </div>
+
+                        <h3>
+                            Öğretmenlik yaklaşımım
+                        </h3>
+
+                        <p>
+                            Soyut kavramları günlük yaşamdan örneklerle
+                            somutlaştırmaya, öğrenci seviyesine uygun bir
+                            dil kullanmaya ve öğrenme sürecini
+                            uygulamalarla desteklemeye özen gösteriyorum.
+                        </p>
+
+                    </article>
+
+
+                    <article class="info-card">
+
+                        <div class="card-icon">
+                            &lt;/&gt;
+                        </div>
+
+                        <h3>
+                            Üretmeye dayalı öğrenme
+                        </h3>
+
+                        <p>
+                            Öğrencilerin yalnızca hazır bilgiyi tüketmek
+                            yerine kendi çözümlerini geliştirmelerini,
+                            fikirlerini paylaşmalarını ve teknolojiyle
+                            yeni ürünler ortaya koymalarını önemsiyorum.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- BATUNVERBT -->
+
+            <section class="section">
+
+                <div class="section-heading">
+
+                    <p class="eyebrow">
+                        batunverbt
+                    </p>
+
+                    <h2>
+                        Öğrenmeyi destekleyen dijital bir alan
+                    </h2>
+
+                    <p>
+                        batunverbt, Bilişim Teknolojileri ve Yazılım
+                        dersini daha anlaşılır, erişilebilir ve etkileşimli
+                        hâle getirmek amacıyla oluşturulmuş bir eğitim
+                        portalıdır.
+
+                        Özellikle 5. ve 6. sınıf öğrencilerinin ders
+                        içeriklerine ulaşabilecekleri, öğrendiklerini
+                        pekiştirebilecekleri materyaller sunmayı hedefler.
+                    </p>
+
+                </div>
+
+
+                <div class="resource-grid">
+
+                    <article class="resource-card">
+
+                        <span class="resource-number">
+                            01 / ÖĞREN
+                        </span>
+
+                        <h3>
+                            Konu Anlatımları
+                        </h3>
+
+                        <p>
+                            Ders konularını sade anlatım ve örneklerle
+                            destekleyen içerikler.
+                        </p>
+
+                    </article>
+
+
+                    <article class="resource-card">
+
+                        <span class="resource-number">
+                            02 / UYGULA
+                        </span>
+
+                        <h3>
+                            Etkinlikler ve Programlama
+                        </h3>
+
+                        <p>
+                            Algoritmik düşünmeyi ve uygulamalı öğrenmeyi
+                            destekleyen çalışmalar.
+                        </p>
+
+                    </article>
+
+
+                    <article class="resource-card">
+
+                        <span class="resource-number">
+                            03 / PEKİŞTİR
+                        </span>
+
+                        <h3>
+                            Yazılıya Hazırlık
+                        </h3>
+
+                        <p>
+                            Konu tekrarına ve sınav hazırlığına yardımcı
+                            soru ve materyaller.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- SON MESAJ -->
+
+            <section class="section">
+
+                <div class="quote">
+
+                    <p>
+                        “Teknoloji, doğru kullanıldığında yalnızca
+                        bir araç değil;
+                        <span>
+                            öğrenmenin ve üretmenin güçlü bir yoludur.
+                        </span>”
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- ALT MENÜ -->
+
+        <footer>
+
+            <div class="footer-content">
+
+                <span>
+                    © <span id="year">2026</span> batunverbt
+                    · Eğitim ve teknoloji
+                </span>
+
+                <a href="index.html" class="nav-link">
+                    Ana Sayfa
+                </a>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
