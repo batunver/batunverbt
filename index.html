@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="tr" class="dark">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,10 +28,10 @@
     </script>
 </head>
 
-<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
 
     <!-- ÜST MENÜ (HEADER) -->
-    <header class="bg-slate-800/90 backdrop-blur border-b border-slate-700/60 sticky top-0 z-40">
+    <header class="bg-white/90 backdrop-blur border-b border-slate-200 shadow-sm sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
 
             <a href="index.html" class="flex items-center h-20 overflow-hidden group">
@@ -47,7 +46,7 @@
 
                 <a
                     href="index.html"
-                    class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-slate-700/80 text-white transition-all shadow-sm"
+                    class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-blue-50 text-blue-700 transition-all shadow-sm"
                 >
                     Ana Sayfa
                 </a>
@@ -55,7 +54,7 @@
                 <button
                     type="button"
                     onclick="sinifModalAc('5')"
-                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all cursor-pointer"
+                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all cursor-pointer"
                 >
                     5. Sınıf
                 </button>
@@ -63,14 +62,14 @@
                 <button
                     type="button"
                     onclick="sinifModalAc('6')"
-                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all cursor-pointer"
+                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all cursor-pointer"
                 >
                     6. Sınıf
                 </button>
 
                 <a
                     href="calismasorulari.html"
-                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all"
+                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all"
                 >
                     <i class="fa-solid fa-file-pen"></i>
                     Yazılı Çalışma Soruları
@@ -78,14 +77,14 @@
 
                 <a
                     href="evrakcantasi.html"
-                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all"
+                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all"
                 >
                     <i class="fa-solid fa-briefcase"></i>
                     <span>Evrak Çantası</span>
                 </a>
                 <a
                     href="hakkimda.html"
-                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all"
+                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all"
                 >
                     <i class="fa-solid fa-id-badge"></i>        <!-- kimlik rozeti -->
                     Hakkımda
@@ -100,17 +99,17 @@
         <!-- 1. BÖLÜM: SON EKLENENLER -->
         <section class="space-y-6">
 
-            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-4">
 
                 <div class="flex items-center space-x-3">
                     <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
 
-                    <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-wide">
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-wide">
                         Son Eklenenler
                     </h2>
                 </div>
 
-                <span class="text-xs text-slate-400 bg-slate-800 px-3.5 py-1.5 rounded-xl border border-slate-700 font-semibold">
+                <span class="text-xs text-slate-600 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200 font-semibold">
                     Güncel İçerikler
                 </span>
 
@@ -122,7 +121,7 @@
                 <a
                     id="btn-5-son"
                     href="#"
-                    class="bg-gradient-to-br from-slate-800/90 to-blue-950/50 border border-slate-700/70 hover:border-blue-500/60 rounded-3xl p-6 shadow-2xl backdrop-blur-md transition-all duration-300 group flex flex-col justify-between"
+                    class="bg-gradient-to-br from-white to-blue-50 border border-slate-200 hover:border-blue-400 rounded-3xl p-6 shadow-lg hover:shadow-xl backdrop-blur-md transition-all duration-300 group flex flex-col justify-between"
                 >
 
                     <div>
@@ -131,21 +130,21 @@
 
                             <span
                                 id="label-5-son"
-                                class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20"
+                                class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full border border-blue-200"
                             >
                                 5. Sınıf • Son Eklenen
                             </span>
 
                             <div
                                 id="num-5-son"
-                                class="w-8 h-8 rounded-xl bg-blue-600/30 text-blue-400 flex items-center justify-center font-bold text-xs border border-blue-500/30"
+                                class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs border border-blue-200"
                             >
                                 -
                             </div>
 
                         </div>
 
-                        <div class="w-full aspect-[16/9] bg-slate-900/50 border border-slate-700/50 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-blue-500/40 transition-all">
+                        <div class="w-full aspect-[16/9] bg-slate-100 border border-slate-200 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-blue-400 transition-all">
 
                             <img
                                 id="img-5-son"
@@ -168,7 +167,7 @@
 
                         </div>
 
-                        <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors flex items-center justify-between">
+                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors flex items-center justify-between">
 
                             <span id="baslik-5-son">
                                 Yükleniyor...
@@ -186,7 +185,7 @@
                 <a
                     id="btn-6-son"
                     href="#"
-                    class="bg-gradient-to-br from-slate-800/90 to-cyan-950/50 border border-slate-700/70 hover:border-cyan-500/60 rounded-3xl p-6 shadow-2xl backdrop-blur-md transition-all duration-300 group flex flex-col justify-between"
+                    class="bg-gradient-to-br from-white to-cyan-50 border border-slate-200 hover:border-cyan-400 rounded-3xl p-6 shadow-lg hover:shadow-xl backdrop-blur-md transition-all duration-300 group flex flex-col justify-between"
                 >
 
                     <div>
@@ -195,21 +194,21 @@
 
                             <span
                                 id="label-6-son"
-                                class="bg-cyan-500/10 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/20"
+                                class="bg-cyan-50 text-cyan-700 text-xs font-bold px-3 py-1 rounded-full border border-cyan-200"
                             >
                                 6. Sınıf • Son Eklenen
                             </span>
 
                             <div
                                 id="num-6-son"
-                                class="w-8 h-8 rounded-xl bg-cyan-600/30 text-cyan-400 flex items-center justify-center font-bold text-xs border border-cyan-500/30"
+                                class="w-8 h-8 rounded-xl bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold text-xs border border-cyan-200"
                             >
                                 -
                             </div>
 
                         </div>
 
-                        <div class="w-full aspect-[16/9] bg-slate-900/50 border border-slate-700/50 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-cyan-500/40 transition-all">
+                        <div class="w-full aspect-[16/9] bg-slate-100 border border-slate-200 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-cyan-400 transition-all">
 
                             <img
                                 id="img-6-son"
@@ -232,7 +231,7 @@
 
                         </div>
 
-                        <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center justify-between">
+                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-cyan-600 transition-colors flex items-center justify-between">
 
                             <span id="baslik-6-son">
                                 Yükleniyor...
@@ -254,11 +253,11 @@
         <section class="grid md:grid-cols-2 gap-8">
 
             <!-- 5. SINIF KARTI -->
-            <div class="bg-slate-800/80 border border-slate-700/70 rounded-3xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 group flex flex-col justify-between shadow-2xl">
+            <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden hover:border-blue-400 transition-all duration-300 group flex flex-col justify-between shadow-lg hover:shadow-xl">
 
                 <div>
 
-                    <div class="relative w-full bg-[#f39c12]/10 flex items-center justify-center p-2 border-b border-slate-700/50">
+                    <div class="relative w-full bg-[#f39c12]/10 flex items-center justify-center p-2 border-b border-slate-200">
 
                         <img
                             src="images/sinif_5_yeni_nesil_sinif.png"
@@ -274,11 +273,11 @@
 
                     <div class="p-6">
 
-                        <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
                             5. Sınıf Bilişim Teknolojileri
                         </h3>
 
-                        <p class="text-slate-400 text-sm leading-relaxed">
+                        <p class="text-slate-600 text-sm leading-relaxed">
                             Bilişim teknolojilerini tanır, güvenli ve etik kullanır, dosyalarını düzenler, görsel, belge ve sunum hazırlar, yapay zekâyı sorgular ve blok tabanlı kodlamayla ilk yazılımlarını geliştirir.
                         </p>
 
@@ -305,11 +304,11 @@
             </div>
 
             <!-- 6. SINIF KARTI -->
-            <div class="bg-slate-800/80 border border-slate-700/70 rounded-3xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300 group flex flex-col justify-between shadow-2xl">
+            <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden hover:border-cyan-400 transition-all duration-300 group flex flex-col justify-between shadow-lg hover:shadow-xl">
 
                 <div>
 
-                    <div class="relative w-full bg-[#e74c3c]/10 flex items-center justify-center p-2 border-b border-slate-700/50">
+                    <div class="relative w-full bg-[#e74c3c]/10 flex items-center justify-center p-2 border-b border-slate-200">
 
                         <img
                             src="images/sinif_6_yeni_nesil_sinif.png"
@@ -325,11 +324,11 @@
 
                     <div class="p-6">
 
-                        <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-3 group-hover:text-cyan-400 transition-colors">
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">
                             6. Sınıf Bilişim Teknolojileri
                         </h3>
 
-                        <p class="text-slate-400 text-sm leading-relaxed">
+                        <p class="text-slate-600 text-sm leading-relaxed">
                             Verileri analiz eder, grafiğe döker, ses ve video kurgular, telif ve siber güvenliği öğrenir, yapay zekâ destekli yazılım ürünleri ortaya koyar ve blok tabanlı kodlama ile yazılım geliştirir.
                         </p>
 
@@ -362,21 +361,21 @@
     <!-- SINIFLAR İÇİN DERS İÇERİK MODALI -->
     <div
         id="sinifModal"
-        class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
+        class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
     >
 
-        <div class="bg-slate-900 border border-slate-700 w-full max-w-4xl max-h-[90vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden">
+        <div class="bg-white border border-slate-200 w-full max-w-4xl max-h-[90vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden">
 
-            <div class="px-6 py-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/90 sticky top-0 z-10">
+            <div class="px-6 py-5 border-b border-slate-200 flex items-center justify-between bg-white/90 sticky top-0 z-10">
 
-                <h3 id="modalBaslik" class="text-xl font-bold text-white">
+                <h3 id="modalBaslik" class="text-xl font-bold text-slate-900">
                     Sınıf Planı
                 </h3>
 
                 <button
                     type="button"
                     onclick="modalKapat()"
-                    class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer"
+                    class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-all cursor-pointer"
                 >
 
                     <i class="fa-solid fa-xmark text-lg"></i>
@@ -397,7 +396,7 @@
     </div>
 
     <!-- ALT BİLGİ -->
-    <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-400">
+    <footer class="bg-white border-t border-slate-200 mt-16 py-8 text-center text-xs text-slate-500">
 
         <p>
             &copy;2026 batunver Tüm hakları saklıdır. - Bilişim Teknolojileri ve Yazılım Dersi Portalı 
@@ -565,7 +564,7 @@
                         item.href = `icerik.html?id=${key}`;
 
                         item.className =
-                            "flex items-center justify-between p-4 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 rounded-2xl transition-all group";
+                            "flex items-center justify-between p-4 bg-white hover:bg-slate-50 border border-slate-200 shadow-sm rounded-2xl transition-all group";
 
                         item.innerHTML = `
 
@@ -573,8 +572,8 @@
 
                                 <div class="w-10 h-10 rounded-xl ${
                                     sinif === '5'
-                                        ? 'bg-blue-600/20 text-blue-400 border-blue-500/30'
-                                        : 'bg-cyan-600/20 text-cyan-400 border-cyan-500/30'
+                                        ? 'bg-blue-100 text-blue-700 border-blue-200'
+                                        : 'bg-cyan-100 text-cyan-700 border-cyan-200'
                                 } flex items-center justify-center font-bold text-sm border shrink-0">
 
                                     ${haftaNum}
@@ -583,17 +582,17 @@
 
                                 <div>
 
-                                    <h4 class="font-bold text-white text-sm sm:text-base group-hover:${
+                                    <h4 class="font-bold text-slate-900 text-sm sm:text-base group-hover:${
                                         sinif === '5'
-                                            ? 'text-blue-400'
-                                            : 'text-cyan-400'
+                                            ? 'text-blue-600'
+                                            : 'text-cyan-600'
                                     } transition-colors">
 
                                         ${baslik}
 
                                     </h4>
 
-                                    <p class="text-xs text-slate-400 line-clamp-1">
+                                    <p class="text-xs text-slate-500 line-clamp-1">
                                         ${kazanim}
                                     </p>
 
@@ -601,7 +600,7 @@
 
                             </div>
 
-                            <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-white transition-colors ml-2 shrink-0"></i>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-slate-700 transition-colors ml-2 shrink-0"></i>
 
                         `;
 
