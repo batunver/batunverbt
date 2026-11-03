@@ -23,29 +23,29 @@ function aktifHaftayiGoster() {
 // Küçük aktif hafta kart şablonu
 function kartOlusturKucuk(ders, renk) {
     return `
-        <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 hover:border-${renk}-400 hover:shadow-md transition-all flex flex-col justify-between">
+        <div class="bg-slate-900/60 border border-slate-700/60 rounded-2xl p-5 hover:border-${renk}-500/50 transition-all flex flex-col justify-between">
             <div>
                 <div class="flex justify-between items-center mb-2">
-                    <span class="bg-${renk}-50 text-${renk}-700 text-xs font-bold px-2.5 py-0.5 rounded-full border border-${renk}-200">
+                    <span class="bg-${renk}-500/10 text-${renk}-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-${renk}-500/20">
                         ${ders.sinif}. Sınıf • ${ders.hafta}. Hafta
                     </span>
-                    <span class="text-xs text-slate-500">${ders.tarih}</span>
+                    <span class="text-xs text-slate-400">${ders.tarih}</span>
                 </div>
-                <h4 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">${ders.unite}</h4>
-                <h3 class="text-base font-bold text-slate-900 mb-2">${ders.konu}</h3>
-                <p class="text-slate-600 text-xs leading-relaxed mb-3">${ders.aciklama}</p>
+                <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">${ders.unite}</h4>
+                <h3 class="text-base font-bold text-white mb-2">${ders.konu}</h3>
+                <p class="text-slate-300 text-xs leading-relaxed mb-3">${ders.aciklama}</p>
                 
                 ${ders.etkinlik ? `
-                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 flex items-start space-x-2.5">
-                        <i class="fa-solid fa-lightbulb text-amber-500 mt-0.5 shrink-0"></i>
+                    <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 flex items-start space-x-2.5">
+                        <i class="fa-solid fa-lightbulb text-amber-400 mt-0.5 shrink-0"></i>
                         <div>
-                            <span class="text-[11px] font-bold text-amber-600 block uppercase tracking-wider">Haftanın Etkinliği</span>
-                            <p class="text-xs text-slate-700">${ders.etkinlik}</p>
+                            <span class="text-[11px] font-bold text-amber-400 block uppercase tracking-wider">Haftanın Etkinliği</span>
+                            <p class="text-xs text-slate-200">${ders.etkinlik}</p>
                         </div>
                     </div>
                 ` : ''}
             </div>
-            <div class="mt-4 pt-3 border-t border-slate-200 text-[11px] text-slate-500 italic">
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400 italic">
                 📌 Kazanım: ${ders.kazanim}
             </div>
         </div>
@@ -68,20 +68,20 @@ function sinifModalAc(sinifTuru) {
 
     filtrelenmis.forEach(ders => {
         const haftaHTML = `
-            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 hover:border-${renk}-400 transition-all flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div class="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 hover:border-${renk}-500/40 transition-all flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div class="space-y-1">
                     <div class="flex items-center space-x-2">
-                        <span class="bg-${renk}-50 text-${renk}-700 text-xs font-bold px-2.5 py-0.5 rounded-full border border-${renk}-200">
+                        <span class="bg-${renk}-500/10 text-${renk}-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-${renk}-500/20">
                             Hafta ${ders.hafta}
                         </span>
-                        <span class="text-xs text-slate-500"><i class="fa-regular fa-calendar mr-1"></i>${ders.tarih}</span>
+                        <span class="text-xs text-slate-400"><i class="fa-regular fa-calendar mr-1"></i>${ders.tarih}</span>
                     </div>
-                    <h4 class="text-xs font-semibold text-slate-500 uppercase tracking-wider">${ders.unite}</h4>
-                    <h3 class="text-base font-bold text-slate-900">${ders.konu}</h3>
-                    <p class="text-slate-600 text-xs leading-relaxed">${ders.aciklama}</p>
-                    <p class="text-[11px] text-slate-500 italic">📌 ${ders.kazanim}</p>
+                    <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">${ders.unite}</h4>
+                    <h3 class="text-base font-bold text-white">${ders.konu}</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed">${ders.aciklama}</p>
+                    <p class="text-[11px] text-slate-400 italic">📌 ${ders.kazanim}</p>
                 </div>
-                <a href="icerik.html?id=${ders.id}" class="w-full sm:w-auto px-4 py-2 bg-${renk}-50 hover:bg-${renk}-600 text-${renk}-700 hover:text-white text-xs font-semibold rounded-xl transition-all border border-${renk}-200 flex items-center justify-center space-x-1.5 shrink-0">
+                <a href="icerik.html?id=${ders.id}" class="w-full sm:w-auto px-4 py-2 bg-${renk}-600/20 hover:bg-${renk}-600 text-${renk}-400 hover:text-white text-xs font-semibold rounded-xl transition-all border border-${renk}-500/30 flex items-center justify-center space-x-1.5 shrink-0">
                     <span>Materyal / İçerik</span>
                     <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                 </a>
