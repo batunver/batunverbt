@@ -59,7 +59,7 @@ const dersIcerikleri = {
             {
                 baslik: "Canva 3 Aşamalı Etkinlik Sistemi (Isınma • Lab Görevi • Çıkış Bileti)",
                 tur: "İnteraktif Atölye",
-                url: "canva_etkinlik_10_hafta.html"
+                url: "folder/5/etkinlik/5-canva_etkinlik_10_hafta.html"
             }
         ]
     },
