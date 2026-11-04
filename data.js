@@ -43,7 +43,7 @@ const dersIcerikleri = {
     "5-hafta-10": {
         sinif: 5,
         hafta: 10,
-        baslik: "Görsel Düzenleme Programlarına Giriş",
+        baslik: "Görsel Düzenleme ve Kurgu Oluşturma-Canva Öğreniyoruz",
         kazanim: "BTY.5.2.2 Görsel için kurgu oluşturabilme, BTY.5.2.3 Görsel dosyası geliştirebilme",
         aciklama: "Görsel düzenleme programlarını kullanarak dijital bir ürün tasarlayabileceksiniz..",
         kapakResmi: "images/5-10-kapak.jpg",
