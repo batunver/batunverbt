@@ -55,13 +55,13 @@ const dersIcerikleri = {
         dersNotuUrl: "https://docs.google.com/document/d/12Tsb3T5YX44XnvB6QPKOvjX-8papGFbyjHhSoe0Gzxc/preview",
         dersNotuPdf: "https://docs.google.com/document/d/12Tsb3T5YX44XnvB6QPKOvjX-8papGFbyjHhSoe0Gzxc/preview",
         dersNotu: "",
-        /*etkinlikler: [
+        etkinlikler: [
             {
-                baslik: "Etkinlik 1: Wordwall Etkinliği",
-                tur: "Wordwall",
-                url: "https://wordwall.net/tr/embed/6e91e255eb7940d7b45dd01db417eebf?themeId=1&templateId=36"
+                baslik: "Canva 3 Aşamalı Etkinlik Sistemi (Isınma • Lab Görevi • Çıkış Bileti)",
+                tur: "İnteraktif Atölye",
+                url: "canva_etkinlik_10_hafta.html"
             }
-        ]*/
+        ]
     },
     // ==================================================
     // 6. SINIF DERS İÇERİKLERİ
