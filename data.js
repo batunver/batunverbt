@@ -40,6 +40,29 @@ const dersIcerikleri = {
             }
         ]
     },
+    "5-hafta-10": {
+        sinif: 5,
+        hafta: 10,
+        baslik: "Görsel Düzenleme Programlarına Giriş",
+        kazanim: "BTY.5.2.2 Görsel için kurgu oluşturabilme, BTY.5.2.3 Görsel dosyası geliştirebilme",
+        aciklama: "Görsel düzenleme programlarını kullanarak dijital bir ürün tasarlayabileceksiniz..",
+        kapakResmi: "images/5-10-kapak.jpg",
+        // Google Slaytlar - Sayfa içinde doğrudan çalışan interaktif oynatıcı
+        sunuEmbed: "https://docs.google.com/presentation/d/14lhAx0tOhhZ_2nsZTSJrVZLZKELitZ6GMsaNFAzpHWQ/edit?usp=sharing",
+        sunuUrl: "https://docs.google.com/presentation/d/14lhAx0tOhhZ_2nsZTSJrVZLZKELitZ6GMsaNFAzpHWQ/edit",
+        // Google Dokümanlar - Doğrudan gömülü ve açılan ders notu
+        dersNotuEmbed: "https://docs.google.com/document/d/12Tsb3T5YX44XnvB6QPKOvjX-8papGFbyjHhSoe0Gzxc/preview",
+        dersNotuUrl: "https://docs.google.com/document/d/12Tsb3T5YX44XnvB6QPKOvjX-8papGFbyjHhSoe0Gzxc/preview",
+        dersNotuPdf: "https://docs.google.com/document/d/12Tsb3T5YX44XnvB6QPKOvjX-8papGFbyjHhSoe0Gzxc/preview",
+        dersNotu: "",
+        /*etkinlikler: [
+            {
+                baslik: "Etkinlik 1: Wordwall Etkinliği",
+                tur: "Wordwall",
+                url: "https://wordwall.net/tr/embed/6e91e255eb7940d7b45dd01db417eebf?themeId=1&templateId=36"
+            }
+        ]*/
+    },
     // ==================================================
     // 6. SINIF DERS İÇERİKLERİ
     // ==================================================
