@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5. Sınıf BTY - 10. Hafta: Canva ile Görsel Kurgu ve Tasarım Etkinlikleri | batunver.com</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        h1, h2, h3, .font-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        /* Canva-inspired subtle gradient accents */
+        .canva-gradient {
+            background: linear-gradient(135deg, #00C4CC 0%, #7D2AE8 100%);
+        }
+        .canva-gradient-soft {
+            background: linear-gradient(135deg, rgba(0, 196, 204, 0.1) 0%, rgba(125, 42, 232, 0.1) 100%);
+        }
+        /* Realistic Canva Left Panel Styling */
+        .canva-sidebar-item {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+        }
+        .canva-sidebar-item:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-1px);
+        }
+        .canva-sidebar-item.drag-over {
+            background-color: #e0f2fe;
+            border-color: #0284c7;
+            transform: scale(1.03);
+        }
+        .canva-sidebar-item.matched {
+            background-color: #f0fdf4;
+            border-color: #22c55e;
+        }
+        /* Scenario Card Animations */
+        .scenario-card {
+            transition: all 0.2s ease;
+            cursor: grab;
+        }
+        .scenario-card:active {
+            cursor: grabbing;
+        }
+        .scenario-card.selected-card {
+            border-color: #7D2AE8;
+            background-color: #faf5ff;
+            box-shadow: 0 0 0 3px rgba(125, 42, 232, 0.2);
+            transform: translateY(-2px);
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+        .animate-shake {
+            animation: shake 0.35s ease-in-out;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.92); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-pop {
+            animation: popIn 0.25s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-800">
+
+    <!-- ÜST BİLGİ VE LOGO ÇUBUĞU (batunver.com Uyumlu Açık Tema) -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
+            <!-- Sol: Logo ve Ders Başlığı -->
+            <div class="flex items-center gap-3.5">
+                <a href="https://batunver.com" class="flex items-center gap-3 group focus:outline-none">
+                    <img src="logo3.jpg" alt="batunver.com Logo" 
+                         class="h-12 w-auto object-contain rounded-xl border border-slate-200 shadow-sm transition-transform group-hover:scale-105"
+                         onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden');">
+                    <div id="logo-fallback" class="hidden h-12 w-12 rounded-xl canva-gradient flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                        BÜ
+                    </div>
+                </a>
+                <div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800">
+                            5. Sınıf BTY • 10. Hafta
+                        </span>
+                        <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-cyan-50 text-cyan-700 border border-cyan-200">
+                            BTY.5.2.2 & BTY.5.2.3
+                        </span>
+                    </div>
+                    <h1 class="text-lg sm:text-xl font-extrabold text-slate-900 mt-0.5">
+                        Canva ile Görsel Kurgu ve Afiş Tasarımı Etkinlik Sistemi
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Sağ: Genel İlerleme Durumu -->
+            <div class="flex items-center gap-4 bg-slate-50 px-4 py-2 rounded-2xl border border-slate-200/80">
+                <div class="text-right">
+                    <div class="text-xs font-medium text-slate-500">Ders Etkinlik İlerlemesi</div>
+                    <div class="text-sm font-bold text-slate-800" id="global-progress-text">0 / 3 Aşama Tamamlandı</div>
+                </div>
+                <div class="w-12 h-12 rounded-xl canva-gradient-soft border border-purple-200 flex items-center justify-center font-extrabold text-purple-700 text-sm" id="global-score-badge">
+                    0 Puan
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ANA İÇERİK KONTEYNERİ -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- ÖĞRENME ÇIKTILARI BİLGİ KARTI -->
+        <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm mb-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div class="flex items-start gap-3.5">
+                <div class="w-10 h-10 rounded-xl canva-gradient flex-shrink-0 flex items-center justify-center text-white shadow-sm mt-0.5">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-sm font-bold text-slate-900">Bu Haftanın Hedefleri (Isın - Uygula - Değerlendir)</h2>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
+                        <strong>BTY.5.2.2:</strong> Görsel için kurgu oluşturabilme &nbsp;|&nbsp; 
+                        <strong>BTY.5.2.3:</strong> Görsel dosyası geliştirebilme (Canva arayüzü, sol araçlar paneli ve afiş tasarımı).
+                    </p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 self-end md:self-center">
+                <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-xl">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    EBA Eğitim Hesabı Uyumlu
+                </span>
+            </div>
+        </div>
+
+        <!-- 3'LÜ ETKİNLİK SİSTEMİ SEKMELERİ (TABS) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6" role="tablist">
+            <!-- Sekme 1 -->
+            <button onclick="switchStage(1)" id="tab-btn-1"
+                    class="stage-tab flex items-center justify-between p-4 rounded-2xl border-2 transition-all text-left bg-white border-purple-600 shadow-md ring-2 ring-purple-500/10">
+                <div class="flex items-center gap-3.5">
+                    <div id="tab-icon-1" class="w-10 h-10 rounded-xl canva-gradient text-white flex items-center justify-center font-bold text-base shadow-sm">
+                        1
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-600 block">1. Aşama • Isınma</span>
+                        <span class="text-sm sm:text-base font-bold text-slate-900">Canva Dedektifi Oyunu</span>
+                    </div>
+                </div>
+                <span id="stage-1-status" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600">0/12</span>
+            </button>
+
+            <!-- Sekme 2 -->
+            <button onclick="switchStage(2)" id="tab-btn-2"
+                    class="stage-tab flex items-center justify-between p-4 rounded-2xl border-2 transition-all text-left bg-white border-slate-200 hover:border-slate-300">
+                <div class="flex items-center gap-3.5">
+                    <div id="tab-icon-2" class="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center font-bold text-base">
+                        2
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-cyan-600 block">2. Aşama • Uygulama</span>
+                        <span class="text-sm sm:text-base font-bold text-slate-900">Laboratuvar Afiş Görevi</span>
+                    </div>
+                </div>
+                <span id="stage-2-status" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600">0/5 Adım</span>
+            </button>
+
+            <!-- Sekme 3 -->
+            <button onclick="switchStage(3)" id="tab-btn-3"
+                    class="stage-tab flex items-center justify-between p-4 rounded-2xl border-2 transition-all text-left bg-white border-slate-200 hover:border-slate-300">
+                <div class="flex items-center gap-3.5">
+                    <div id="tab-icon-3" class="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center font-bold text-base">
+                        3
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 block">3. Aşama • Değerlendirme</span>
+                        <span class="text-sm sm:text-base font-bold text-slate-900">Sergileme & Çıkış Bileti</span>
+                    </div>
+                </div>
+                <span id="stage-3-status" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600">Bekliyor</span>
+            </button>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- 1. AŞAMA İÇERİĞİ: DİJİTAL ISINMA (SOL PANEL EŞLEŞTİRME + MİNİ TEST) -->
+        <!-- =================================================================== -->
+        <section id="stage-1-panel" class="space-y-8 animate-pop">
+            
+            <!-- BÖLÜM 1A: SOL PANEL ARAÇLARINI ÇÖZ -->
+            <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="p-5 sm:p-6 border-b border-slate-100 flex flex-wrap items-center justify-between gap-4 bg-gradient-to-r from-slate-50 to-purple-50/40">
+                    <div>
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-3 py-1 rounded-full mb-1.5">
+                            Bölüm 1A • Sol Araçlar Paneli Eşleştirmesi
+                        </span>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-slate-900">Canva Sol Panelindeki Araçları Görevleriyle Eşleştir!</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                            Sağdaki <strong>Görev Kartlarından</strong> birine tıkla (veya sürükle) ve soldaki <strong>gerçek Canva menüsünde</strong> hangi araca aitse üzerine bırak!
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm text-center">
+                            <span class="text-xs text-slate-500 block">Doğru Eşleşme</span>
+                            <span id="match-counter" class="text-base font-extrabold text-purple-700">0 / 8</span>
+                        </div>
+                        <button onclick="resetMatchingGame()" class="text-xs font-semibold text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-200 transition">
+                            Sıfırla
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Geri Bildirim Mesaj Çubuğu -->
+                <div id="match-feedback-bar" class="bg-slate-100 px-6 py-2.5 text-xs sm:text-sm font-semibold text-slate-700 flex items-center justify-between border-b border-slate-200/70">
+                    <span id="match-feedback-text">💡 İpucu: Sağdaki bir senaryo kartına tıklayıp seçtikten sonra soldaki ilgili Canva ikonuna tıklayabilirsin!</span>
+                    <span id="selected-card-indicator" class="hidden text-xs bg-purple-600 text-white px-2.5 py-0.5 rounded-full">Kart Seçildi - Soldan Araç Seçin</span>
+                </div>
+
+                <div class="p-5 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    
+                    <!-- SOL TARAF: GERÇEK CANVA SOL ARAÇLAR PANELİ (Görseldeki Birebir Sıra ve İkonlar) -->
+                    <div class="lg:col-span-5 flex flex-col sm:flex-row gap-4 items-start">
+                        <!-- Birebir Dikey Canva Sol Şeridi Görünümü -->
+                        <div class="w-full bg-slate-50 rounded-2xl p-3 border border-slate-200 shadow-inner">
+                            <div class="text-center text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2.5">
+                                Canva Sol Araçlar Paneli
+                            </div>
+                            <div id="canva-left-toolbar" class="grid grid-cols-2 sm:grid-cols-2 gap-2.5">
+                                <!-- JS tarafından birebir SVG ikonlarla doldurulur -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SAĞ TARAF: EŞLEŞTİRİLECEK SENARYO KARTLARI -->
+                    <div class="lg:col-span-7">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="text-sm font-bold text-slate-700">Afiş Hazırlarken İhtiyacımız Olan Görevler (Senaryolar)</h4>
+                            <span class="text-xs text-slate-500">Tıkla & Seç veya Sürükle</span>
+                        </div>
+                        <div id="scenario-cards-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <!-- JS tarafından karıştırılarak doldurulur -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- BÖLÜM 1B: HIZLI BİLGİ TURU (KURUCU, EBA HESABI, NELER YAPILIR, KURGU) -->
+            <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="p-5 sm:p-6 border-b border-slate-100 flex flex-wrap items-center justify-between gap-4 bg-gradient-to-r from-slate-50 to-cyan-50/40">
+                    <div>
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-cyan-800 bg-cyan-100 px-3 py-1 rounded-full mb-1.5">
+                            Bölüm 1B • Hızlı Bilgi Turu (4 Soru)
+                        </span>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-slate-900">Canva'nın Hikayesi, EBA Girişi ve Görsel Kurgu</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                            Derste öğrendiğimiz temel bilgileri test edelim ve 2. Aşamadaki Laboratuvar Görevine hazır olalım!
+                        </p>
+                    </div>
+                    <div class="bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm text-center">
+                        <span class="text-xs text-slate-500 block">Bilgi Turu Doğru</span>
+                        <span id="quiz-counter" class="text-base font-extrabold text-cyan-700">0 / 4</span>
+                    </div>
+                </div>
+
+                <div id="quiz-container" class="p-5 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <!-- JS tarafından doldurulur -->
+                </div>
+
+                <!-- 2. Aşamaya Geçiş Alt Çubuğu -->
+                <div class="px-6 py-4 bg-slate-50 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-4">
+                    <p class="text-xs sm:text-sm text-slate-600 font-medium">
+                        Sol paneli ve temel bilgileri tamamladıysan şimdi Canva'da kendi afişimizi tasarlama zamanı!
+                    </p>
+                    <button onclick="switchStage(2)" class="canva-gradient text-white font-bold text-sm px-6 py-3 rounded-xl shadow-md hover:opacity-95 transition flex items-center gap-2">
+                        <span>2. Aşama: Laboratuvar Görevine Geç</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 2. AŞAMA İÇERİĞİ: LABORATUVAR GÖREVİ (PRATİK AFİŞ UYGULAMASI)       -->
+        <!-- =================================================================== -->
+        <section id="stage-2-panel" class="hidden space-y-8 animate-pop">
+
+            <!-- YENİ EKLENEN BÖLÜM: ADIM 0 - GÖRSEL KURGU OLUŞTURMA REHBERİ (BTY.5.2.2 ÖZETİ) -->
+            <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="p-5 sm:p-6 border-b border-slate-100 bg-gradient-to-r from-purple-50/70 via-slate-50 to-cyan-50/70 flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-purple-800 bg-purple-100 px-3 py-1 rounded-full mb-1.5">
+                            BTY.5.2.2 • Tasarıma Başlamadan Önce
+                        </span>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-slate-900">Görsel Kurgu Oluşturma Rehberi (Adım Adım Özet)</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                            İyi bir afiş tasarımı doğrudan bilgisayarda çizim yapmakla değil, önce <strong>problemi belirleyip zihinde kurgu oluşturmakla</strong> başlar!
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white px-3.5 py-2 rounded-2xl border border-purple-200 shadow-sm">
+                        <span class="text-xl">🎨</span>
+                        <div class="text-xs">
+                            <span class="font-bold text-slate-800 block">Kurgu Formülü</span>
+                            <span class="text-slate-500">Problem → Senaryo → Görsel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Sütunlu Kurgu Kartları -->
+                <div class="p-5 sm:p-6 grid grid-cols-1 lg:grid-cols-3 gap-5">
+                    
+                    <!-- 1. Kart: Gerçek Hayat Problemi Nedir? -->
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50/60 p-4 sm:p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2.5 mb-3">
+                                <span class="w-8 h-8 rounded-xl bg-cyan-600 text-white font-extrabold text-sm flex items-center justify-center shadow-sm">1</span>
+                                <h4 class="text-base font-extrabold text-slate-900">Gerçek Hayat Problemi Nedir?</h4>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                                Günlük yaşamda çözülmesi gereken bir durum veya çevremizde <strong>farkındalık oluşturmak istediğimiz</strong> önemli bir konudur.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-2">Örnek Afiş Temaları:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800">🌱 Çevre bilinci</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800">📱 Dijital bağımlılık</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-rose-100 text-rose-800">🛑 Siber zorbalık</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-purple-100 text-purple-800">🏛️ Kültürel miras</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-cyan-100 text-cyan-800">🔐 Dijital güvenlik</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-lime-100 text-lime-800">🍎 Sağlıklı yaşam</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Kart: Hikâye veya Senaryo Oluşturma Adımları -->
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50/60 p-4 sm:p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2.5 mb-3">
+                                <span class="w-8 h-8 rounded-xl bg-purple-600 text-white font-extrabold text-sm flex items-center justify-center shadow-sm">2</span>
+                                <h4 class="text-base font-extrabold text-slate-900">Hikâye veya Senaryo Adımları</h4>
+                            </div>
+                            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 mb-4">
+                                <li class="flex items-center gap-2 bg-white p-2 rounded-xl border border-slate-200/80">
+                                    <span class="text-base">👤</span>
+                                    <span><strong>Kim var?</strong> <span class="text-slate-500">(Kahramanlar / Hedef Kitle)</span></span>
+                                </li>
+                                <li class="flex items-center gap-2 bg-white p-2 rounded-xl border border-slate-200/80">
+                                    <span class="text-base">📍</span>
+                                    <span><strong>Nerede geçiyor?</strong> <span class="text-slate-500">(Mekan / Ortam)</span></span>
+                                </li>
+                                <li class="flex items-center gap-2 bg-white p-2 rounded-xl border border-slate-200/80">
+                                    <span class="text-base">⚡</span>
+                                    <span><strong>Ne oluyor?</strong> <span class="text-slate-500">(Olay / Sorun)</span></span>
+                                </li>
+                                <li class="flex items-center gap-2 bg-white p-2 rounded-xl border border-slate-200/80">
+                                    <span class="text-base">💡</span>
+                                    <span><strong>Ne mesaj veriyor?</strong> <span class="text-slate-500">(Amaç / Çözüm)</span></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-2.5 flex items-start gap-2 text-xs text-amber-900">
+                            <span class="text-base leading-none mt-0.5">⚠️</span>
+                            <span><strong>Unutma:</strong> Telif hakkına dikkat et, kullandığın hazır görsellerde gerekirse kaynak belirt!</span>
+                        </div>
+                    </div>
+
+                    <!-- 3. Kart: Kurguyu Görsele Dönüştürme -->
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50/60 p-4 sm:p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2.5 mb-3">
+                                <span class="w-8 h-8 rounded-xl bg-emerald-600 text-white font-extrabold text-sm flex items-center justify-center shadow-sm">3</span>
+                                <h4 class="text-base font-extrabold text-slate-900">Kurguyu Görsele Dönüştürme</h4>
+                            </div>
+                            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 mb-4">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-emerald-600 font-bold">✓</span>
+                                    <span><strong>Başlık belirle:</strong> Kısa, çarpıcı ve büyük bir başlık.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-emerald-600 font-bold">✓</span>
+                                    <span><strong>Ana mesajı seç:</strong> İzleyiciye geçecek en net cümle.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-emerald-600 font-bold">✓</span>
+                                    <span><strong>Görsel öğeleri düzenle:</strong> Resim, simge ve yazıları dengeli yerleştir.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-emerald-600 font-bold">✓</span>
+                                    <span><strong>Bütünlük oluştur:</strong> Metin + Renk + Görsel uyumu yakala.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="canva-gradient-soft border border-purple-200 rounded-xl p-3 text-xs text-purple-950">
+                            🎯 <strong>Hedef:</strong> Hikâyeni görsel olarak anlatan özgün bir <strong>afiş, poster veya dijital resim</strong> oluştur!
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- ÜST BÖLÜM: KONU SEÇİMİ (A, B, C, D) VE GÖREV PAKETİ İNDİRME -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Afiş Konusu Seçimi ve Görev Paketi -->
+                <div class="lg:col-span-7 bg-white rounded-3xl border border-slate-200 shadow-sm p-5 sm:p-6 flex flex-col justify-between">
+                    <div>
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-cyan-800 bg-cyan-100 px-3 py-1 rounded-full mb-2">
+                            BTY.5.2.2 & BTY.5.2.3 • Uygulamalı Laboratuvar Görevi
+                        </span>
+                        <h3 class="text-xl font-extrabold text-slate-900">1. Afiş Konunu Seç ve Görev Görsellerini İndir</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-1 mb-4">
+                            Aşağıdaki dört gerçek hayat temasından (A, B, C veya D) birini seç. Ardından <strong>"Yüklemeler"</strong> sekmesinde kullanacağın hazır görev görsellerini bilgisayarına indir.
+                        </p>
+
+                        <!-- 4 Konu Seçeneği (Konu A, B, C, D - 2x2 Grid) -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-6">
+                            <!-- Konu A -->
+                            <button onclick="selectPosterTopic('lab')" id="topic-btn-lab"
+                                    class="p-4 rounded-2xl border-2 border-purple-600 bg-purple-50/50 text-left transition flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span id="topic-badge-lab" class="text-xs font-bold uppercase text-purple-700 bg-purple-100 px-2.5 py-0.5 rounded-md">Konu A (Seçili)</span>
+                                        <span class="text-lg">🖥️</span>
+                                    </div>
+                                    <h4 class="font-bold text-slate-900 text-sm sm:text-base mt-2">Bilişim Laboratuvarı Kuralları</h4>
+                                    <p class="text-xs text-slate-600 mt-1">Bilgisayar sınıfımızda cihazları koruma ve düzenli kullanım farkındalığı oluşturan afiş.</p>
+                                </div>
+                            </button>
+
+                            <!-- Konu B -->
+                            <button onclick="selectPosterTopic('cyber')" id="topic-btn-cyber"
+                                    class="p-4 rounded-2xl border-2 border-slate-200 hover:border-slate-300 bg-white text-left transition flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span id="topic-badge-cyber" class="text-xs font-bold uppercase text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-md">Konu B</span>
+                                        <span class="text-lg">🛡️</span>
+                                    </div>
+                                    <h4 class="font-bold text-slate-900 text-sm sm:text-base mt-2">Siber Zorbalığa Dur De!</h4>
+                                    <p class="text-xs text-slate-600 mt-1">İnternette nazik olmayı, dijital güvenliği ve siber zorbalığa karşı doğru adımları anlatan afiş.</p>
+                                </div>
+                            </button>
+
+                            <!-- Konu C -->
+                            <button onclick="selectPosterTopic('digital')" id="topic-btn-digital"
+                                    class="p-4 rounded-2xl border-2 border-slate-200 hover:border-slate-300 bg-white text-left transition flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span id="topic-badge-digital" class="text-xs font-bold uppercase text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-md">Konu C</span>
+                                        <span class="text-lg">⏳</span>
+                                    </div>
+                                    <h4 class="font-bold text-slate-900 text-sm sm:text-base mt-2">Dijital Bağımlılık ve Sağlıklı Yaşam</h4>
+                                    <p class="text-xs text-slate-600 mt-1">"Ekranı Değil, Hayatı Yaşa!" mesajıyla ekran süresini dengeleme ve gerçek hayat vurgusu yapan afiş.</p>
+                                </div>
+                            </button>
+
+                            <!-- Konu D -->
+                            <button onclick="selectPosterTopic('eco')" id="topic-btn-eco"
+                                    class="p-4 rounded-2xl border-2 border-slate-200 hover:border-slate-300 bg-white text-left transition flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <span id="topic-badge-eco" class="text-xs font-bold uppercase text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-md">Konu D</span>
+                                        <span class="text-lg">🌱</span>
+                                    </div>
+                                    <h4 class="font-bold text-slate-900 text-sm sm:text-base mt-2">Çevre Bilinci ve Kültürel Miras</h4>
+                                    <p class="text-xs text-slate-600 mt-1">"Doğayı ve Mirasını Koru!" mesajıyla çevre temizliği, sıfır atık ve ortak değerlerimizi anlatan afiş.</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Görev Görsel Paketi İndirme Kutusu (Gerçek PNG Üretici) -->
+                    <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200">
+                        <div class="flex items-center justify-between flex-wrap gap-3">
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                                    <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                    </svg>
+                                    Canva "Yüklemeler" Aracı İçin Görev Görselleri
+                                </h4>
+                                <p class="text-xs text-slate-600 mt-0.5">
+                                    Bu butonlara tıklayarak görselleri bilgisayarına indir, sonra Canva'da <strong>Yüklemeler</strong> menüsünden afişine ekle!
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <button onclick="downloadLabAsset('badge')" class="bg-white hover:bg-purple-50 text-purple-700 border border-purple-200 font-bold text-xs px-3.5 py-2.5 rounded-xl shadow-sm transition flex items-center gap-1.5">
+                                    <span>📥 1. BTY Ders Rozetini İndir (.PNG)</span>
+                                </button>
+                                <button onclick="downloadLabAsset('icon')" class="canva-gradient text-white font-bold text-xs px-3.5 py-2.5 rounded-xl shadow-sm hover:opacity-95 transition flex items-center gap-1.5">
+                                    <span>📥 2. Konu İkonunu İndir (.PNG)</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="download-feedback" class="hidden mt-2.5 text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200">
+                            ✅ Görsel bilgisayarına indirildi! Şimdi Canva'da sol paneldeki "Yüklemeler" sekmesinden bu dosyayı yükleyebilirsin.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SAĞ: GÖRSEL KURGU ÖNİZLEME SİMÜLATÖRÜ (BTY.5.2.2) -->
+                <div class="lg:col-span-5 bg-white rounded-3xl border border-slate-200 shadow-sm p-5 sm:p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-purple-600 block">BTY.5.2.2 • Kurgu Deneme Tahtası</span>
+                            <h4 class="text-base font-extrabold text-slate-900">Afiş Kurgu & Renk Uyumu Simülatörü</h4>
+                        </div>
+                        <span id="contrast-badge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">
+                            ✓ Kontrast Uygun
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-600 mb-3">
+                        Canva'da çalışmaya başlamadan önce arka plan ve başlık uyumunu burada hızlıca test et:
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div>
+                            <label class="text-xs font-semibold text-slate-700 block mb-1">Afiş Arka Plan Teması</label>
+                            <select id="sim-bg-select" onchange="updatePosterSimulator()" class="w-full text-xs font-semibold rounded-xl border border-slate-200 p-2 bg-slate-50">
+                                <option value="navy">Gece Mavisi (Koyu)</option>
+                                <option value="light">Açık Buz Mavisi (Açık)</option>
+                                <option value="purple">Canva Moru (Koyu)</option>
+                                <option value="cream">Yumuşak Krem (Açık)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs font-semibold text-slate-700 block mb-1">Yazı (Metin) Rengi</label>
+                            <select id="sim-text-select" onchange="updatePosterSimulator()" class="w-full text-xs font-semibold rounded-xl border border-slate-200 p-2 bg-slate-50">
+                                <option value="white">Beyaz / Açık Sarı</option>
+                                <option value="dark">Koyu Lacivert / Siyah</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Mini Afiş Önizleme Kartı -->
+                    <div id="sim-poster-canvas" class="w-full max-w-[240px] mx-auto aspect-[3/4] rounded-2xl p-4 flex flex-col justify-between shadow-md border-2 border-slate-200 transition-colors duration-300 bg-slate-900 text-white relative overflow-hidden">
+                        <!-- Üst Köşe Yüklenen Logo Temsili -->
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-white/20 backdrop-blur-sm">BTY 5. Sınıf</span>
+                            <span class="text-xs" title="Yüklemeler'den eklenen logo">🏅</span>
+                        </div>
+                        <!-- Orta Ana Başlık ve Kurallar -->
+                        <div class="text-center my-auto space-y-2">
+                            <div id="sim-poster-icon" class="text-3xl">🖥️</div>
+                            <h5 id="sim-poster-title" class="font-extrabold text-sm leading-tight uppercase tracking-wide">
+                                BİLİŞİM LABORATUVARI KURALLARI
+                            </h5>
+                            <ul id="sim-poster-list" class="text-[11px] space-y-1 text-left bg-black/15 p-2.5 rounded-xl">
+                                <li>1. Bilgisayarları özenli kullan.</li>
+                                <li>2. Yiyecek ve içecekle girme.</li>
+                                <li>3. Çıkarken oturumunu kapat.</li>
+                            </ul>
+                        </div>
+                        <!-- Alt Bileşenler Temsili -->
+                        <div class="text-[10px] text-center opacity-80 font-medium border-t border-current/20 pt-1.5">
+                            Canva ile Tasarlandı • BTY.5.2.3
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ALT BÖLÜM: 5 ADIMLI İNTERAKTİF UYGULAMA YÖNERGESİ -->
+            <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-5 sm:p-6">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-slate-900">2. Adım Adım Canva Afiş Uygulama Yönergesi</h3>
+                        <p class="text-xs sm:text-sm text-slate-600">
+                            Bilgisayarında yaptığın her adımı aşağıdaki kutucuklara tıklayarak işaretle!
+                        </p>
+                    </div>
+                    <span id="lab-steps-badge" class="text-xs font-extrabold px-3.5 py-1.5 rounded-xl bg-cyan-50 text-cyan-800 border border-cyan-200">
+                        0 / 5 Adım Tamamlandı
+                    </span>
+                </div>
+
+                <div class="space-y-3" id="lab-steps-list">
+                    <!-- Adım 1 -->
+                    <label class="flex items-start gap-4 p-4 rounded-2xl border border-slate-200 hover:bg-slate-50/80 cursor-pointer transition select-none">
+                        <input type="checkbox" onchange="updateLabProgress()" class="lab-step-check mt-1 w-5 h-5 rounded text-purple-600 focus:ring-purple-500">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">1. Adım</span>
+                                <h4 class="text-sm sm:text-base font-bold text-slate-900">EBA Hesabınla Bağlan ve "Afiş" Boyutu Seç</h4>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                                Canva'ya EBA hesabınla giriş yap. Sağ üstteki <strong>"Tasarım Oluştur"</strong> butonuna tıkla ve <strong>"Afiş (Dikey - 42 x 59.4 cm)"</strong> seçeneğini aç.
+                            </p>
+                        </div>
+                    </label>
+
+                    <!-- Adım 2 -->
+                    <label class="flex items-start gap-4 p-4 rounded-2xl border border-slate-200 hover:bg-slate-50/80 cursor-pointer transition select-none">
+                        <input type="checkbox" onchange="updateLabProgress()" class="lab-step-check mt-1 w-5 h-5 rounded text-purple-600 focus:ring-purple-500">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="text-xs font-bold px-2 py-0.5 rounded bg-cyan-100 text-cyan-800">2. Adım • BTY.5.2.2</span>
+                                <h4 class="text-sm sm:text-base font-bold text-slate-900">Sol Panelden "Şablonlar" Seç veya Arka Plan Kurgunu Oluştur</h4>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                                Sol araçlar panelindeki <strong>Şablonlar</strong> sekmesinden konuna uygun sade bir afiş düzeni seç ya da sayfa arka plan rengini yazıların net okunacağı şekilde ayarla.
+                            </p>
+                        </div>
+                    </label>
+
+                    <!-- Adım 3 -->
+                    <label class="flex items-start gap-4 p-4 rounded-2xl border border-slate-200 hover:bg-slate-50/80 cursor-pointer transition select-none">
+                        <input type="checkbox" onchange="updateLabProgress()" class="lab-step-check mt-1 w-5 h-5 rounded text-purple-600 focus:ring-purple-500">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">3. Adım • Dışarıdan Görsel Aktarma</span>
+                                <h4 class="text-sm sm:text-base font-bold text-slate-900">"Yüklemeler" Menüsünü Kullanarak Görev Görselini Ekle</h4>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                                Yukarıdaki <strong>"BTY Ders Rozetini İndir"</strong> butonuyla bilgisayarına indirdiğin PNG görselini, sol paneldeki <strong>Yüklemeler → Dosya Yükle</strong> adımıyla Canva'ya yükle ve afişinin üst köşesine yerleştir.
+                            </p>
+                        </div>
+                    </label>
+
+                    <!-- Adım 4 -->
+                    <label class="flex items-start gap-4 p-4 rounded-2xl border border-slate-200 hover:bg-slate-50/80 cursor-pointer transition select-none">
+                        <input type="checkbox" onchange="updateLabProgress()" class="lab-step-check mt-1 w-5 h-5 rounded text-purple-600 focus:ring-purple-500">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">4. Adım • BTY.5.2.3</span>
+                                <h4 class="text-sm sm:text-base font-bold text-slate-900">"Metin" ve "Bileşenler" ile Afişini Geliştir</h4>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                                <strong>Metin</strong> aracından büyük bir Ana Başlık ve en az 3 maddelik kural metni ekle. Ardından <strong>Bileşenler</strong> aracından konuna uygun en az 3 adet grafik/çıkartma veya şekil ekleyip sayfaya dengeli biçimde yerleştir.
+                            </p>
+                        </div>
+                    </label>
+
+                    <!-- Adım 5 -->
+                    <label class="flex items-start gap-4 p-4 rounded-2xl border border-slate-200 hover:bg-slate-50/80 cursor-pointer transition select-none">
+                        <input type="checkbox" onchange="updateLabProgress()" class="lab-step-check mt-1 w-5 h-5 rounded text-purple-600 focus:ring-purple-500">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="text-xs font-bold px-2 py-0.5 rounded bg-rose-100 text-rose-800">5. Adım • Dışa Aktarma</span>
+                                <h4 class="text-sm sm:text-base font-bold text-slate-900">Afişini PNG Formatında Bilgisayarına İndir</h4>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                                Sağ üst köşedeki <strong>Paylaş → İndir → Dosya Türü: PNG</strong> seçerek afişini bilgisayarına indir ve Masaüstüne <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono text-purple-700">Sinif_No_AdSoyad.png</code> olarak kaydet.
+                            </p>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-100 flex justify-end">
+                    <button onclick="switchStage(3)" class="canva-gradient text-white font-bold text-sm px-6 py-3 rounded-xl shadow-md hover:opacity-95 transition flex items-center gap-2">
+                        <span>3. Aşama: Sergileme & Çıkış Biletine Geç</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 3. AŞAMA İÇERİĞİ: SERGİLEME & ÇIKIŞ BİLETİ (ÖZ DEĞERLENDİRME)       -->
+        <!-- =================================================================== -->
+        <section id="stage-3-panel" class="hidden space-y-8 animate-pop">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- SOL: ÖZ DEĞERLENDİRME KONTROL LİSTESİ (CHECKLIST) -->
+                <div class="lg:col-span-6 bg-white rounded-3xl border border-slate-200 shadow-sm p-5 sm:p-6">
+                    <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full mb-2">
+                        Çıkış Bileti • Tasarım Kontrol Listesi
+                    </span>
+                    <h3 class="text-xl font-extrabold text-slate-900">Afişini Teslim Etmeden Önce Kontrol Et!</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1 mb-4">
+                        Hazırladığın afişin <strong>BTY.5.2.2</strong> ve <strong>BTY.5.2.3</strong> tasarım ilkelerine uygunluğunu kontrol et:
+                    </p>
+
+                    <div class="space-y-3" id="checklist-container">
+                        <label class="flex items-center gap-3.5 p-3.5 rounded-2xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="checkbox" onchange="updateChecklist()" class="self-check-item w-5 h-5 rounded text-emerald-600 focus:ring-emerald-500">
+                            <span class="text-xs sm:text-sm font-medium text-slate-800">Ana başlığım uzaktan ilk bakışta okunabilecek kadar büyük ve net mi?</span>
+                        </label>
+                        <label class="flex items-center gap-3.5 p-3.5 rounded-2xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="checkbox" onchange="updateChecklist()" class="self-check-item w-5 h-5 rounded text-emerald-600 focus:ring-emerald-500">
+                            <span class="text-xs sm:text-sm font-medium text-slate-800">Arka plan rengi ile yazı renkleri birbirine zıt (okunaklı kontrast) seçildi mi?</span>
+                        </label>
+                        <label class="flex items-center gap-3.5 p-3.5 rounded-2xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="checkbox" onchange="updateChecklist()" class="self-check-item w-5 h-5 rounded text-emerald-600 focus:ring-emerald-500">
+                            <span class="text-xs sm:text-sm font-medium text-slate-800"><strong>Yüklemeler</strong> bölümünden ders rozetini ve <strong>Bileşenler</strong> bölümünden en az 3 görsel öğeyi kullandım mı?</span>
+                        </label>
+                        <label class="flex items-center gap-3.5 p-3.5 rounded-2xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="checkbox" onchange="updateChecklist()" class="self-check-item w-5 h-5 rounded text-emerald-600 focus:ring-emerald-500">
+                            <span class="text-xs sm:text-sm font-medium text-slate-800">Görseller ve metinler üst üste binmeden, sayfada dengeli boşluklar bırakılarak yerleştirildi mi?</span>
+                        </label>
+                        <label class="flex items-center gap-3.5 p-3.5 rounded-2xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="checkbox" onchange="updateChecklist()" class="self-check-item w-5 h-5 rounded text-emerald-600 focus:ring-emerald-500">
+                            <span class="text-xs sm:text-sm font-medium text-slate-800">Tasarımımı <strong>PNG</strong> formatında bilgisayarıma indirdim mi?</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- SAĞ: ÖĞRENCİ KİMLİK KARTI VE GÖREV TAMAMLAMA ROZETİ -->
+                <div class="lg:col-span-6 bg-white rounded-3xl border border-slate-200 shadow-sm p-5 sm:p-6 flex flex-col justify-between">
+                    <div>
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-purple-800 bg-purple-100 px-3 py-1 rounded-full mb-2">
+                            Dijital Teslim & Tamamlama Kartı
+                        </span>
+                        <h3 class="text-xl font-extrabold text-slate-900">10. Hafta Etkinlik Karnesi Oluştur</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-1 mb-4">
+                            Bilgilerini yazarak bu haftaki dijital etkinlik özet kartını oluşturabilir ve öğretmenine gösterebilirsin.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+                            <div class="sm:col-span-2">
+                                <label class="text-xs font-bold text-slate-700 block mb-1">Adın ve Soyadın</label>
+                                <input type="text" id="student-name" oninput="updateSummaryCard()" placeholder="Örn: Ali Yılmaz"
+                                       class="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2 focus:outline-none focus:border-purple-500">
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-700 block mb-1">Sınıf / Bilgisayar No</label>
+                                <input type="text" id="student-class" oninput="updateSummaryCard()" placeholder="Örn: 5/A - PC 07"
+                                       class="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2 focus:outline-none focus:border-purple-500">
+                            </div>
+                        </div>
+
+                        <!-- Özet Rozet Kartı -->
+                        <div id="student-summary-card" class="rounded-2xl p-5 canva-gradient text-white shadow-lg relative overflow-hidden">
+                            <div class="flex items-center justify-between border-b border-white/20 pb-3 mb-3">
+                                <div>
+                                    <span class="text-[11px] uppercase tracking-wider font-bold opacity-85 block">batunver.com • 5. Sınıf BTY 10. Hafta</span>
+                                    <h4 id="card-student-name" class="text-lg font-extrabold">Öğrenci Adı Girilmedi</h4>
+                                </div>
+                                <div class="text-right">
+                                    <span id="card-student-class" class="text-xs font-bold bg-white/20 px-2.5 py-1 rounded-lg">Sınıf / PC</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-2 text-center bg-black/15 rounded-xl p-3">
+                                <div>
+                                    <span class="text-[11px] opacity-80 block">1. Aşama Oyun</span>
+                                    <span id="card-stage1-score" class="text-sm sm:text-base font-extrabold">0 / 12</span>
+                                </div>
+                                <div class="border-x border-white/15">
+                                    <span class="text-[11px] opacity-80 block">2. Aşama Uygulama</span>
+                                    <span id="card-stage2-steps" class="text-sm sm:text-base font-extrabold">0 / 5 Adım</span>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] opacity-80 block">3. Aşama Kontrol</span>
+                                    <span id="card-stage3-checks" class="text-sm sm:text-base font-extrabold">0 / 5 Kriter</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-3 flex items-center justify-between text-xs opacity-90">
+                                <span>Kazanım: BTY.5.2.2 & BTY.5.2.3</span>
+                                <span id="card-completion-badge" class="font-bold">⏳ Devam Ediyor</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Teslim Yönergesi ve Karne İndirme Butonu -->
+                    <div class="mt-5 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+                        <div class="text-xs text-slate-600">
+                            📌 <strong>Teslim Notu:</strong> İndirdiğin afişi Masaüstüne kaydet, öğretmen bilgisayarına toplanacaktır.
+                        </div>
+                        <button onclick="downloadCompletionCertificate()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-sm transition flex items-center gap-1.5">
+                            <span>🏅 Etkinlik Karnemi İndir (.PNG)</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ALT BİLGİ (FOOTER) -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+            <div>
+                <strong>batunver.com</strong> • 5. ve 6. Sınıf Bilişim Teknolojileri ve Yazılım Ders İçerikleri Sistemi
+            </div>
+            <div>
+                10. Hafta: Canva ile Görsel Kurgu Oluşturma (BTY.5.2.2) ve Görsel Dosyası Geliştirme (BTY.5.2.3)
+            </div>
+        </div>
+    </footer>
+
+    <!-- GİZLİ CANVAS (Görev Görselleri ve Karne PNG Üretimi İçin) -->
+    <canvas id="asset-generator-canvas" class="hidden"></canvas>
+
+    <!-- =================================================================== -->
+    <!-- JAVASCRIPT: OYUN MANTIĞI, ETKİLEŞİMLER VE GÖRSEL ÜRETİCİ            -->
+    <!-- =================================================================== -->
+    <script>
+        /* -----------------------------------------------------------------
+           1. VERİ SETİ: SOL PANEL ARAÇLARI (Görseldeki Birebir 8 Araç)
+        ----------------------------------------------------------------- */
+        const canvaTools = [
+            {
+                id: 'sablonlar',
+                label: 'Şablonlar',
+                pro: false,
+                scenario: 'Sıfırdan başlamak yerine hazır bir afiş düzeni seçmek istiyorum.',
+                svg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                        <line x1="12" y1="3" x2="12" y2="21"></line>
+                        <line x1="12" y1="11" x2="21" y2="11"></line>
+                      </svg>`
+            },
+            {
+                id: 'bilesenler',
+                label: 'Bileşenler',
+                pro: false,
+                scenario: 'Afişime ok işareti, geometrik şekil, çerçeve ve çıkartmalar eklemek istiyorum.',
+                svg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M7.5 4.5c-1.5 0-2.5 1-2.5 2.3 0 2 3.5 4.2 3.5 4.2s3.5-2.2 3.5-4.2c0-1.3-1-2.3-2.5-2.3-.6 0-1 .3-1 .3s-.4-.3-1-.3z"></path>
+                        <polygon points="15,4.5 20,7.5 15,10.5"></polygon>
+                        <path d="M6 19v-4.5l4-1v4.5"></path>
+                        <circle cx="5" cy="19" r="1.2"></circle>
+                        <circle cx="9" cy="18" r="1.2"></circle>
+                        <circle cx="17" cy="17" r="3"></circle>
+                      </svg>`
+            },
+            {
+                id: 'metin',
+                label: 'Metin',
+                pro: false,
+                scenario: 'Afişin en üstüne dikkat çekici büyük bir başlık ve bilgi yazıları yazmak istiyorum.',
+                svg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M5 6V4h14v2"></path>
+                        <line x1="12" y1="4" x2="12" y2="20"></line>
+                        <line x1="9" y1="20" x2="15" y2="20"></line>
+                      </svg>`
+            },
+            {
+                id: 'marka',
+                label: 'Marka',
+                pro: true,
+                scenario: 'Okulumuzun kurumsal renk ve yazı tipi paletini sabitlemek istiyorum.',
+                svg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <rect x="4" y="9" width="16" height="11" rx="2.5"></rect>
+                        <path d="M8 9V7a4 4 0 018 0v2"></path>
+                        <circle cx="10" cy="14.5" r="1.5"></circle>
+                        <circle cx="14" cy="14.5" r="1.5"></circle>
+                      </svg>`
+            },
+            {
+                id: 'yuklemeler',
+                label: 'Yüklemeler',
+                pro: false,
+                scenario: 'Bilgisayarımdaki okul logosunu veya kendi fotoğrafımı afişe eklemek istiyorum.',
+                svg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1"></path>
+                        <polyline points="9 15 12 12 15 15"></polyline>
+                        <line x1="12" y1="12" x2="12" y2="21"></line>
+                      </svg>`
+            },
+            {
+                id: 'araclar',
+                label: 'Araçlar',
+                pro: false,
+                scenario: 'Serbest el çizimi yapmak veya işaretleyici kalem kullanmak istiyorum.',
+                svg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M15 5l4 4L8 20H4v-4L15 5z"></path>
+                        <path d="M4 20c3 0 6 1 9-1"></path>
+                      </svg>`
+            },
+            {
+                id: 'projeler',
+                label: 'Projeler',
+                pro: false,
+                scenario: 'Geçen hafta yaptığım tasarımları ve klasörlerimi bulup açmak istiyorum.',
+                svg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M3 7v11a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                      </svg>`
+            },
+            {
+                id: 'uygulamalar',
+                label: 'Uygulamalar',
+                pro: false,
+                scenario: 'Canva içine QR kod oluşturucu gibi ekstra özellikler bağlamak istiyorum.',
+                svg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <rect x="4" y="4" width="6" height="6" rx="1.5"></rect>
+                        <rect x="14" y="4" width="6" height="6" rx="1.5"></rect>
+                        <rect x="4" y="14" width="6" height="6" rx="1.5"></rect>
+                        <line x1="17" y1="14" x2="17" y2="20"></line>
+                        <line x1="14" y1="17" x2="20" y2="17"></line>
+                      </svg>`
+            }
+        ];
+
+        /* -----------------------------------------------------------------
+           2. VERİ SETİ: BÖLÜM 1B HIZLI BİLGİ TURU SORULARI
+        ----------------------------------------------------------------- */
+        const quizQuestions = [
+            {
+                id: 1,
+                badge: 'Kurucusu ve Geçmişi',
+                question: 'Canva, 2013 yılında Avustralya\'da herkesin kolayca tasarım yapabilmesi amacıyla kim tarafından kurulmuştur?',
+                options: [
+                    'Melanie Perkins',
+                    'Ada Lovelace',
+                    'Bill Gates',
+                    'Steve Jobs'
+                ],
+                correctIndex: 0
+            },
+            {
+                id: 2,
+                badge: 'EBA ile Hesap Bağlama',
+                question: 'Öğrenciler olarak Canva\'nın tüm Eğitim (Pro) özelliklerini ücretsiz ve güvenli kullanmak için nasıl giriş yapmalıyız?',
+                options: [
+                    'Ücretli kredi kartı bilgisi girerek',
+                    'EBA (Eğitim Bilişim Ağı) hesabımızla bağlanarak',
+                    'Kayıt olmadan misafir modunda kalarak',
+                    'Oyun konsolu hesabımızla giriş yaparak'
+                ],
+                correctIndex: 1
+            },
+            {
+                id: 3,
+                badge: 'Canva ile Neler Yapılabilir?',
+                question: 'Aşağıdakilerden hangisi Canva platformu kullanılarak hazırlanabilecek çalışmalardan biri DEĞİLDİR?',
+                options: [
+                    'Afiş ve Poster Tasarımı',
+                    'Ders Sunumu ve İnfografik',
+                    'Bilgisayar İşletim Sistemi Formatlama',
+                    'Sosyal Medya ve Davetiye Görseli'
+                ],
+                correctIndex: 2
+            },
+            {
+                id: 4,
+                badge: 'Görsel Kurgu (BTY.5.2.2)',
+                question: 'Bir afiş tasarlarken görsel kurgunun başarılı olması için hangisine dikkat edilmelidir?',
+                options: [
+                    'Sayfada hiç boş yer kalmayacak kadar çok yazı yazmaya',
+                    'Arka plan ile aynı renkte okunmayan yazılar seçmeye',
+                    'Başlığın okunaklı olmasına, renk uyumuna ve dengeli yerleşime',
+                    'Tüm görselleri üst üste koymaya'
+                ],
+                correctIndex: 2
+            }
+        ];
+
+        /* -----------------------------------------------------------------
+           3. UYGULAMA DURUMU (STATE)
+        ----------------------------------------------------------------- */
+        let matchedTools = new Set();
+        let selectedScenarioToolId = null;
+        let answeredQuizzes = new Set();
+        let correctQuizzes = new Set();
+        let currentPosterTopic = 'lab'; // 'lab' veya 'cyber'
+
+        /* -----------------------------------------------------------------
+           4. SEKME (AŞAMA) GEÇİŞ FONKSİYONU
+        ----------------------------------------------------------------- */
+        function switchStage(stageNumber) {
+            [1, 2, 3].forEach(num => {
+                const panel = document.getElementById(`stage-${num}-panel`);
+                const btn = document.getElementById(`tab-btn-${num}`);
+                const icon = document.getElementById(`tab-icon-${num}`);
+
+                if (num === stageNumber) {
+                    panel.classList.remove('hidden');
+                    btn.classList.add('border-purple-600', 'shadow-md', 'ring-2', 'ring-purple-500/10');
+                    btn.classList.remove('border-slate-200');
+                    icon.classList.add('canva-gradient', 'text-white');
+                    icon.classList.remove('bg-slate-100', 'text-slate-700');
+                } else {
+                    panel.classList.add('hidden');
+                    btn.classList.remove('border-purple-600', 'shadow-md', 'ring-2', 'ring-purple-500/10');
+                    btn.classList.add('border-slate-200');
+                    icon.classList.remove('canva-gradient', 'text-white');
+                    icon.classList.add('bg-slate-100', 'text-slate-700');
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            updateGlobalProgress();
+        }
+
+        /* -----------------------------------------------------------------
+           5. 1. AŞAMA: SOL PANEL EŞLEŞTİRME OYUNU KURULUMU
+        ----------------------------------------------------------------- */
+        function initMatchingGame() {
+            const toolbarContainer = document.getElementById('canva-left-toolbar');
+            const cardsContainer = document.getElementById('scenario-cards-container');
+
+            toolbarContainer.innerHTML = '';
+            cardsContainer.innerHTML = '';
+
+            // 1. Sol Panel Araçlarını Görseldeki Sırayla Oluştur
+            canvaTools.forEach(tool => {
+                const isMatched = matchedTools.has(tool.id);
+                const toolEl = document.createElement('div');
+                toolEl.id = `tool-target-${tool.id}`;
+                toolEl.dataset.toolId = tool.id;
+                toolEl.className = `canva-sidebar-item relative flex flex-col items-center justify-center p-3 rounded-2xl border-2 cursor-pointer transition ${
+                    isMatched ? 'matched border-emerald-500 bg-emerald-50/70' : 'bg-white border-slate-200/90 hover:border-purple-300'
+                }`;
+
+                // Marka üzerindeki Pro/Eğitim Tacı
+                const crownBadge = tool.pro ? `
+                    <span class="absolute top-2 right-2 w-5 h-5 rounded-full bg-amber-400 text-white flex items-center justify-center shadow-sm" title="EBA Eğitim Hesabıyla Ücretsiz!">
+                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.5 14h15l1.5-8-4.5 3.5L10 3 5.5 9.5 1 6l1.5 8z"></path>
+                        </svg>
+                    </span>
+                ` : '';
+
+                const matchedCheck = isMatched ? `
+                    <span class="mt-1 text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">✓ Eşleşti</span>
+                ` : `<span class="mt-1 text-[10px] text-slate-400">Buraya Bırak</span>`;
+
+                toolEl.innerHTML = `
+                    ${crownBadge}
+                    <div class="text-slate-700 mb-1.5">${tool.svg}</div>
+                    <span class="text-xs font-bold text-slate-800">${tool.label}</span>
+                    ${matchedCheck}
+                `;
+
+                // Drag & Drop Olayları
+                toolEl.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    if (!matchedTools.has(tool.id)) toolEl.classList.add('drag-over');
+                });
+                toolEl.addEventListener('dragleave', () => {
+                    toolEl.classList.remove('drag-over');
+                });
+                toolEl.addEventListener('drop', e => {
+                    e.preventDefault();
+                    toolEl.classList.remove('drag-over');
+                    const draggedToolId = e.dataTransfer.getData('text/plain');
+                    handleToolMatchAttempt(draggedToolId, tool.id);
+                });
+
+                // Tıklayarak Eşleştirme Olayı (Pardus Laboratuvar Kolaylığı)
+                toolEl.addEventListener('click', () => {
+                    if (selectedScenarioToolId) {
+                        handleToolMatchAttempt(selectedScenarioToolId, tool.id);
+                    } else if (!matchedTools.has(tool.id)) {
+                        setFeedback(`Önce sağ taraftan bir görev kartına tıkla, sonra "${tool.label}" aracına tıkla!`, 'info');
+                    }
+                });
+
+                toolbarContainer.appendChild(toolEl);
+            });
+
+            // 2. Sağdaki Senaryo Kartlarını Karıştırarak Oluştur
+            const shuffledScenarios = [...canvaTools].sort(() => Math.random() - 0.5);
+            shuffledScenarios.forEach(item => {
+                const isMatched = matchedTools.has(item.id);
+                const cardEl = document.createElement('div');
+                cardEl.id = `scenario-card-${item.id}`;
+                cardEl.draggable = !isMatched;
+                cardEl.className = `scenario-card p-3.5 rounded-2xl border-2 text-left flex flex-col justify-between ${
+                    isMatched
+                        ? 'bg-emerald-50/60 border-emerald-300 opacity-60 cursor-default'
+                        : 'bg-white border-slate-200 hover:border-purple-400 shadow-sm'
+                }`;
+
+                cardEl.innerHTML = `
+                    <div class="flex items-start gap-2.5">
+                        <span class="w-6 h-6 rounded-lg ${isMatched ? 'bg-emerald-500 text-white' : 'bg-purple-100 text-purple-700'} flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5">
+                            ${isMatched ? '✓' : '?'}
+                        </span>
+                        <p class="text-xs sm:text-sm font-semibold text-slate-800 leading-snug">
+                            "${item.scenario}"
+                        </p>
+                    </div>
+                    <div class="mt-2.5 flex items-center justify-between text-[11px] font-bold ${isMatched ? 'text-emerald-700' : 'text-purple-600'}">
+                        <span>${isMatched ? `Doğru Araç: ${item.label}` : 'Bu hangi sol panel aracıdır?'}</span>
+                        <span>${isMatched ? 'Tamamlandı' : 'Seç / Sürükle →'}</span>
+                    </div>
+                `;
+
+                if (!isMatched) {
+                    cardEl.addEventListener('dragstart', e => {
+                        selectedScenarioToolId = item.id;
+                        e.dataTransfer.setData('text/plain', item.id);
+                    });
+
+                    cardEl.addEventListener('click', () => {
+                        document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('selected-card'));
+                        if (selectedScenarioToolId === item.id) {
+                            selectedScenarioToolId = null;
+                            document.getElementById('selected-card-indicator').classList.add('hidden');
+                            setFeedback('Kart seçimi kaldırıldı. Yeni bir görev kartı seçebilirsin.', 'info');
+                        } else {
+                            selectedScenarioToolId = item.id;
+                            cardEl.classList.add('selected-card');
+                            document.getElementById('selected-card-indicator').classList.remove('hidden');
+                            setFeedback('Harika! Şimdi sol taraftaki Canva menüsünden bu göreve uygun ikona tıkla.', 'select');
+                        }
+                    });
+                }
+
+                cardsContainer.appendChild(cardEl);
+            });
+
+            document.getElementById('match-counter').textContent = `${matchedTools.size} / 8`;
+        }
+
+        function handleToolMatchAttempt(sourceId, targetId) {
+            if (!sourceId || matchedTools.has(targetId)) return;
+
+            const targetEl = document.getElementById(`tool-target-${targetId}`);
+            const targetToolObj = canvaTools.find(t => t.id === targetId);
+
+            if (sourceId === targetId) {
+                matchedTools.add(targetId);
+                selectedScenarioToolId = null;
+                document.getElementById('selected-card-indicator').classList.add('hidden');
+                setFeedback(`🎉 Tebrikler! "${targetToolObj.label}" aracını doğru görevle eşleştirdin!`, 'success');
+                initMatchingGame();
+                updateGlobalProgress();
+            } else {
+                targetEl.classList.add('animate-shake', 'border-rose-500', 'bg-rose-50');
+                setFeedback(`🤔 "${targetToolObj.label}" bu görev için uygun değil. Tekrar dene!`, 'error');
+                setTimeout(() => {
+                    targetEl.classList.remove('animate-shake', 'border-rose-500', 'bg-rose-50');
+                }, 500);
+            }
+        }
+
+        function setFeedback(message, type) {
+            const bar = document.getElementById('match-feedback-bar');
+            const text = document.getElementById('match-feedback-text');
+            text.textContent = message;
+
+            bar.className = 'px-6 py-2.5 text-xs sm:text-sm font-semibold flex items-center justify-between border-b transition-colors ';
+            if (type === 'success') {
+                bar.className += 'bg-emerald-50 text-emerald-800 border-emerald-200';
+            } else if (type === 'error') {
+                bar.className += 'bg-rose-50 text-rose-800 border-rose-200';
+            } else if (type === 'select') {
+                bar.className += 'bg-purple-50 text-purple-800 border-purple-200';
+            } else {
+                bar.className += 'bg-slate-100 text-slate-700 border-slate-200/70';
+            }
+        }
+
+        function resetMatchingGame() {
+            matchedTools.clear();
+            selectedScenarioToolId = null;
+            document.getElementById('selected-card-indicator').classList.add('hidden');
+            setFeedback('Oyun sıfırlandı! Sağdaki görev kartlarını soldaki Canva araçlarıyla eşleştir.', 'info');
+            initMatchingGame();
+            updateGlobalProgress();
+        }
+
+        /* -----------------------------------------------------------------
+           6. 1. AŞAMA BÖLÜM 1B: HIZLI BİLGİ TURU KURULUMU
+        ----------------------------------------------------------------- */
+        function initQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            quizQuestions.forEach((q, qIdx) => {
+                const qCard = document.createElement('div');
+                qCard.className = 'p-4 sm:p-5 rounded-2xl border border-slate-200 bg-slate-50/60 flex flex-col justify-between';
+
+                const optionsHtml = q.options.map((opt, optIdx) => `
+                    <button onclick="answerQuiz(${q.id}, ${optIdx}, ${q.correctIndex})"
+                            id="quiz-btn-${q.id}-${optIdx}"
+                            class="quiz-opt-btn-${q.id} w-full text-left text-xs sm:text-sm font-medium p-3 rounded-xl border border-slate-200 bg-white hover:border-cyan-400 transition flex items-center justify-between gap-2">
+                        <span>${opt}</span>
+                    </button>
+                `).join('');
+
+                qCard.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md bg-cyan-100 text-cyan-800">
+                                Soru ${qIdx + 1} • ${q.badge}
+                            </span>
+                            <span id="quiz-status-${q.id}" class="text-xs font-bold text-slate-400">Bekliyor</span>
+                        </div>
+                        <h4 class="text-sm sm:text-base font-bold text-slate-900 mb-3">${q.question}</h4>
+                    </div>
+                    <div class="space-y-2">
+                        ${optionsHtml}
+                    </div>
+                `;
+                container.appendChild(qCard);
+            });
+        }
+
+        function answerQuiz(qId, selectedIdx, correctIdx) {
+            const buttons = document.querySelectorAll(`.quiz-opt-btn-${qId}`);
+            const statusEl = document.getElementById(`quiz-status-${qId}`);
+
+            buttons.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === correctIdx) {
+                    btn.classList.remove('bg-white', 'border-slate-200');
+                    btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900', 'font-bold');
+                } else if (idx === selectedIdx && selectedIdx !== correctIdx) {
+                    btn.classList.remove('bg-white', 'border-slate-200');
+                    btn.classList.add('bg-rose-50', 'border-rose-400', 'text-rose-900');
+                }
+            });
+
+            answeredQuizzes.add(qId);
+            if (selectedIdx === correctIdx) {
+                correctQuizzes.add(qId);
+                statusEl.textContent = '✓ Doğru (+10 Puan)';
+                statusEl.className = 'text-xs font-bold text-emerald-600';
+            } else {
+                statusEl.textContent = '✗ Doğru Cevap İşaretlendi';
+                statusEl.className = 'text-xs font-bold text-rose-600';
+            }
+
+            document.getElementById('quiz-counter').textContent = `${correctQuizzes.size} / 4`;
+            updateGlobalProgress();
+        }
+
+        /* -----------------------------------------------------------------
+           7. 2. AŞAMA: LABORATUVAR GÖREVİ & GERÇEK PNG GÖRSEL ÜRETİCİ
+        ----------------------------------------------------------------- */
+        const posterTopicData = {
+            lab: {
+                code: 'Konu A',
+                icon: '🖥️',
+                title: 'BİLİŞİM LABORATUVARI KURALLARI',
+                rules: [
+                    '1. Bilgisayarları özenli kullan.',
+                    '2. Yiyecek ve içecekle girme.',
+                    '3. Çıkarken oturumunu kapat.'
+                ],
+                pngTitle: 'BİLİŞİM LAB',
+                pngSub: 'KURALLAR & DÜZEN',
+                accentColor: '#00C4CC'
+            },
+            cyber: {
+                code: 'Konu B',
+                icon: '🛡️',
+                title: 'SİBER ZORBALIĞA DUR DE!',
+                rules: [
+                    '1. Dijital dünyada nazik ol.',
+                    '2. Kişisel bilgilerini paylaşma.',
+                    '3. Zorbalığı ailene ve öğretmenine bildir.'
+                ],
+                pngTitle: 'GÜVENLİ İNTERNET',
+                pngSub: 'SİBER ZORBALIĞA HAYIR',
+                accentColor: '#f43f5e'
+            },
+            digital: {
+                code: 'Konu C',
+                icon: '⏳',
+                title: 'EKRANI DEĞİL, HAYATI YAŞA!',
+                rules: [
+                    '1. Ekran süreni planla, mola ver.',
+                    '2. Arkadaşlarınla açık havada oyna.',
+                    '3. Uyku öncesi ekrandan uzak dur.'
+                ],
+                pngTitle: 'DİJİTAL DENGE',
+                pngSub: 'SAĞLIKLI YAŞAM',
+                accentColor: '#f59e0b'
+            },
+            eco: {
+                code: 'Konu D',
+                icon: '🌱',
+                title: 'DOĞAYI VE MİRASINI KORU!',
+                rules: [
+                    '1. Atıkları geri dönüşüme ayır.',
+                    '2. Enerji ve su tasarrufu yap.',
+                    '3. Doğayı ve kültürel mirası yaşat.'
+                ],
+                pngTitle: 'ÇEVRE BİLİNCİ',
+                pngSub: 'DOĞAYI KORU',
+                accentColor: '#10b981'
+            }
+        };
+
+        function selectPosterTopic(topic) {
+            currentPosterTopic = topic;
+            const topics = ['lab', 'cyber', 'digital', 'eco'];
+
+            topics.forEach(t => {
+                const btn = document.getElementById(`topic-btn-${t}`);
+                const badge = document.getElementById(`topic-badge-${t}`);
+                const data = posterTopicData[t];
+
+                if (t === topic) {
+                    btn.className = 'p-4 rounded-2xl border-2 border-purple-600 bg-purple-50/50 text-left transition flex flex-col justify-between shadow-sm';
+                    badge.className = 'text-xs font-bold uppercase text-purple-700 bg-purple-100 px-2.5 py-0.5 rounded-md';
+                    badge.textContent = `${data.code} (Seçili)`;
+                } else {
+                    btn.className = 'p-4 rounded-2xl border-2 border-slate-200 hover:border-slate-300 bg-white text-left transition flex flex-col justify-between';
+                    badge.className = 'text-xs font-bold uppercase text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-md';
+                    badge.textContent = data.code;
+                }
+            });
+
+            // Simülatörü Seçilen Konuya Göre Güncelle
+            const activeData = posterTopicData[topic];
+            document.getElementById('sim-poster-icon').textContent = activeData.icon;
+            document.getElementById('sim-poster-title').textContent = activeData.title;
+            document.getElementById('sim-poster-list').innerHTML = activeData.rules.map(r => `<li>${r}</li>`).join('');
+        }
+
+        function updatePosterSimulator() {
+            const bg = document.getElementById('sim-bg-select').value;
+            const text = document.getElementById('sim-text-select').value;
+            const canvasEl = document.getElementById('sim-poster-canvas');
+            const badge = document.getElementById('contrast-badge');
+
+            const bgClasses = {
+                navy: 'bg-slate-900',
+                light: 'bg-sky-100',
+                purple: 'bg-purple-800',
+                cream: 'bg-amber-50'
+            };
+            const textClasses = {
+                white: 'text-white',
+                dark: 'text-slate-900'
+            };
+
+            canvasEl.className = `w-full max-w-[240px] mx-auto aspect-[3/4] rounded-2xl p-4 flex flex-col justify-between shadow-md border-2 border-slate-200 transition-colors duration-300 relative overflow-hidden ${bgClasses[bg]} ${textClasses[text]}`;
+
+            // Kontrast Kontrolü (Açık üstüne açık veya koyu üstüne koyu uyarısı)
+            const isDarkBg = (bg === 'navy' || bg === 'purple');
+            const isLightText = (text === 'white');
+
+            if ((isDarkBg && isLightText) || (!isDarkBg && !isLightText)) {
+                badge.textContent = '✓ Kontrast Uygun (Okunaklı)';
+                badge.className = 'text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800';
+            } else {
+                badge.textContent = '⚠️ Düşük Kontrast (Zor Okunur!)';
+                badge.className = 'text-xs font-bold px-2.5 py-1 rounded-full bg-rose-100 text-rose-800';
+            }
+        }
+
+        // Öğrencinin Canva "Yüklemeler" sekmesine yükleyebileceği gerçek PNG dosyalarını üretir
+        function downloadLabAsset(type) {
+            const canvas = document.getElementById('asset-generator-canvas');
+            canvas.width = 500;
+            canvas.height = 500;
+            const ctx = canvas.getContext('2d');
+
+            ctx.clearRect(0, 0, 500, 500);
+            const activeData = posterTopicData[currentPosterTopic] || posterTopicData.lab;
+
+            if (type === 'badge') {
+                // Yuvarlak BTY Ders Rozeti
+                const grad = ctx.createLinearGradient(0, 0, 500, 500);
+                grad.addColorStop(0, '#00C4CC');
+                grad.addColorStop(1, '#7D2AE8');
+
+                ctx.beginPath();
+                ctx.arc(250, 250, 220, 0, Math.PI * 2);
+                ctx.fillStyle = grad;
+                ctx.fill();
+                ctx.lineWidth = 14;
+                ctx.strokeStyle = '#ffffff';
+                ctx.stroke();
+
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 42px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('5. SINIF BTY', 250, 195);
+                ctx.font = 'bold 30px sans-serif';
+                ctx.fillText('BİLİŞİM TEKNOLOJİLERİ', 250, 255);
+                ctx.font = '600 26px sans-serif';
+                ctx.fillText('batunver.com', 250, 315);
+            } else {
+                // Seçilen Konuya (A, B, C veya D) Özel İkon Kartı
+                ctx.fillStyle = '#1e1b4b';
+                ctx.beginPath();
+                ctx.roundRect(40, 40, 420, 420, 60);
+                ctx.fill();
+
+                ctx.lineWidth = 12;
+                ctx.strokeStyle = activeData.accentColor;
+                ctx.stroke();
+
+                ctx.fillStyle = '#ffffff';
+                ctx.font = '130px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(activeData.icon, 250, 235);
+
+                ctx.font = 'bold 34px sans-serif';
+                ctx.fillText(activeData.pngTitle, 250, 335);
+                ctx.font = 'bold 22px sans-serif';
+                ctx.fillStyle = activeData.accentColor;
+                ctx.fillText(activeData.pngSub, 250, 385);
+            }
+
+            const link = document.createElement('a');
+            link.download = type === 'badge' ? 'BTY_Ders_Rozeti.png' : `Afis_${activeData.code.replace(' ', '_')}_Ikonu.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+
+            const fb = document.getElementById('download-feedback');
+            fb.classList.remove('hidden');
+        }
+
+        function updateLabProgress() {
+            const checks = document.querySelectorAll('.lab-step-check:checked').length;
+            document.getElementById('lab-steps-badge').textContent = `${checks} / 5 Adım Tamamlandı`;
+            updateGlobalProgress();
+        }
+
+        /* -----------------------------------------------------------------
+           8. 3. AŞAMA: ÇIKIŞ BİLETİ VE GENEL İLERLEME HESAPLAMA
+        ----------------------------------------------------------------- */
+        function updateChecklist() {
+            updateGlobalProgress();
+        }
+
+        function updateSummaryCard() {
+            const nameVal = document.getElementById('student-name').value.trim();
+            const classVal = document.getElementById('student-class').value.trim();
+
+            document.getElementById('card-student-name').textContent = nameVal || 'Öğrenci Adı Girilmedi';
+            document.getElementById('card-student-class').textContent = classVal || 'Sınıf / PC';
+        }
+
+        function updateGlobalProgress() {
+            const stage1Total = matchedTools.size + correctQuizzes.size; // max 12
+            const stage2Steps = document.querySelectorAll('.lab-step-check:checked').length; // max 5
+            const stage3Checks = document.querySelectorAll('.self-check-item:checked').length; // max 5
+
+            // Sekme rozetlerini güncelle
+            document.getElementById('stage-1-status').textContent = `${stage1Total}/12`;
+            document.getElementById('stage-2-status').textContent = `${stage2Steps}/5 Adım`;
+            document.getElementById('stage-3-status').textContent = `${stage3Checks}/5 Kriter`;
+
+            // Özet kartı güncelle
+            document.getElementById('card-stage1-score').textContent = `${stage1Total} / 12`;
+            document.getElementById('card-stage2-steps').textContent = `${stage2Steps} / 5 Adım`;
+            document.getElementById('card-stage3-checks').textContent = `${stage3Checks} / 5 Kriter`;
+
+            // Puan hesaplama (100 üzerinden)
+            const totalPoints = (matchedTools.size * 5) + (correctQuizzes.size * 5) + (stage2Steps * 4) + (stage3Checks * 4);
+            document.getElementById('global-score-badge').textContent = `${totalPoints} Puan`;
+
+            let completedStages = 0;
+            if (stage1Total >= 8) completedStages++;
+            if (stage2Steps === 5) completedStages++;
+            if (stage3Checks === 5) completedStages++;
+
+            document.getElementById('global-progress-text').textContent = `${completedStages} / 3 Aşama Tamamlandı`;
+
+            const badgeEl = document.getElementById('card-completion-badge');
+            if (completedStages === 3) {
+                badgeEl.textContent = '🏆 Tüm Görevler Tamamlandı!';
+            } else {
+                badgeEl.textContent = `⏳ ${completedStages}/3 Aşama Tamamlandı`;
+            }
+        }
+
+        function downloadCompletionCertificate() {
+            const canvas = document.getElementById('asset-generator-canvas');
+            canvas.width = 800;
+            canvas.height = 450;
+            const ctx = canvas.getContext('2d');
+
+            const grad = ctx.createLinearGradient(0, 0, 800, 450);
+            grad.addColorStop(0, '#00C4CC');
+            grad.addColorStop(1, '#7D2AE8');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, 800, 450);
+
+            ctx.fillStyle = 'rgba(255,255,255,0.14)';
+            ctx.beginPath();
+            ctx.roundRect(30, 30, 740, 390, 24);
+            ctx.fill();
+
+            const nameVal = document.getElementById('student-name').value.trim() || 'Öğrenci';
+            const classVal = document.getElementById('student-class').value.trim() || '5. Sınıf';
+            const stage1Total = matchedTools.size + correctQuizzes.size;
+            const stage2Steps = document.querySelectorAll('.lab-step-check:checked').length;
+            const stage3Checks = document.querySelectorAll('.self-check-item:checked').length;
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 20px sans-serif';
+            ctx.fillText('batunver.com • 5. SINIF BTY 10. HAFTA ETKİNLİK KARNESİ', 60, 85);
+
+            ctx.font = 'bold 40px sans-serif';
+            ctx.fillText(nameVal, 60, 145);
+
+            ctx.font = '24px sans-serif';
+            ctx.fillText(`Sınıf / Bilgisayar: ${classVal}`, 60, 185);
+
+            ctx.fillStyle = 'rgba(0,0,0,0.25)';
+            ctx.beginPath();
+            ctx.roundRect(60, 220, 680, 110, 16);
+            ctx.fill();
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 22px sans-serif';
+            ctx.fillText(`1. Aşama Oyun: ${stage1Total}/12`, 90, 282);
+            ctx.fillText(`2. Aşama Afiş: ${stage2Steps}/5 Adım`, 320, 282);
+            ctx.fillText(`3. Aşama Kontrol: ${stage3Checks}/5`, 560, 282);
+
+            ctx.font = '18px sans-serif';
+            ctx.fillText('Öğrenme Çıktıları: BTY.5.2.2 Görsel Kurgu & BTY.5.2.3 Görsel Geliştirme (Canva)', 60, 380);
+
+            const link = document.createElement('a');
+            link.download = `10_Hafta_BTY_Karne_${nameVal.replace(/\s+/g, '_')}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Sayfa Yüklendiğinde Başlat
+        window.onload = function () {
+            initMatchingGame();
+            initQuiz();
+            updatePosterSimulator();
+            updateGlobalProgress();
+        };
+    </script>
+</body>
+</html>
