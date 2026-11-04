@@ -48,8 +48,8 @@ const dersIcerikleri = {
         aciklama: "Görsel düzenleme programlarını kullanarak dijital bir ürün tasarlayabileceksiniz..",
         kapakResmi: "images/5-10-kapak.jpg",
         // Google Slaytlar - Sayfa içinde doğrudan çalışan interaktif oynatıcı
-        sunuEmbed: "https://docs.google.com/presentation/d/14lhAx0tOhhZ_2nsZTSJrVZLZKELitZ6GMsaNFAzpHWQ/edit?usp=sharing",
-        sunuUrl: "https://docs.google.com/presentation/d/14lhAx0tOhhZ_2nsZTSJrVZLZKELitZ6GMsaNFAzpHWQ/edit",
+        sunuEmbed: "https://docs.google.com/presentation/d/14lhAx0tOhhZ_2nsZTSJrVZLZKELitZ6GMsaNFAzpHWQ/embed?start=false&loop=false&delayms=3000",
+        sunuUrl: "https://docs.google.com/presentation/d/14lhAx0tOhhZ_2nsZTSJrVZLZKELitZ6GMsaNFAzpHWQ/preview",
         // Google Dokümanlar - Doğrudan gömülü ve açılan ders notu
         dersNotuEmbed: "https://docs.google.com/document/d/12Tsb3T5YX44XnvB6QPKOvjX-8papGFbyjHhSoe0Gzxc/preview",
         dersNotuUrl: "https://docs.google.com/document/d/12Tsb3T5YX44XnvB6QPKOvjX-8papGFbyjHhSoe0Gzxc/preview",
