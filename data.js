@@ -129,7 +129,9 @@ const dersIcerikleri = {
             dersNotuUrl: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
             dersNotuPdf: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
                 
-           
+            dersNotuEmbed: "https://drive.google.com/file/d/1NyEMV7LEEaBy23btxMb68tQ2lj6spdpo/preview",
+            dersNotuUrl: "https://drive.google.com/file/d/1NyEMV7LEEaBy23btxMb68tQ2lj6spdpo/preview",
+            dersNotuPdf: "https://drive.google.com/file/d/1NyEMV7LEEaBy23btxMb68tQ2lj6spdpo/preview"
            
             etkinlikler: [
                 {
