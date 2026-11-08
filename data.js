@@ -129,9 +129,23 @@ const dersIcerikleri = {
             dersNotuEmbed: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
             dersNotuUrl: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
             dersNotuPdf: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
-              
-                 
-
+                      dosyalar: [
+                          {
+                              ad: "10 Kasım Canva Video Kurgu Çalışma Dosyaları (ZIP)",
+                              tur: "ZIP",
+url: "https://" + "drive." + "google" + ".com/uc?export=download&id=1NSr2Qzts4LiteVKjKW7O59U2Q1_EZ8K0",
+                              },
+                          {ad: "10 Kasım Canva Video Kurgu Görev Kartı (PDF)",
+                           tur: "PDF",
+                           url: "https://" + "drive." + "google" + ".com/file/d/13LTnHq0tK1A9OteU2M0isnwRU8vHOxWx/preview",
+                           },   },
+    url: "https://" + "drive." + "google" + ".com/file/d/1s1frmauuRKy3-d7O5EsA7RmLjaRaC4Dy/preview"
+                          tur: "MP4",
+                          ad: "10 Kasım Canva Video Kurgu Hedef Örnek Video (MP4)",
+                          {
+                              
+                          
+                              
             etkinlikler: [
                 {
                     baslik: "www.sinanakdemir.com.tr/ - Saat 09.05 ",
