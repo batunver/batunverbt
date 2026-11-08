@@ -121,7 +121,7 @@ const dersIcerikleri = {
             baslik: "Video Dosyası için Kurgu Oluşturma - Video Dosyası Geliştirme",
             kazanim: "BTY.6.2.8. Video düzenleme programlarından yararlanabilme BTY.6.2.9. Video dosyası için kurgu oluşturabilme BTY.6.2.10. Video dosyası geliştirebilme",
             aciklama: "Video düzenleme programlarının temel özelliklerini tanır.",
-            kapakResmi: "",
+            kapakResmi: "images/6-sinif-8-hafta-kapak.png",
             sunuEmbed: "https://docs.google.com/presentation/d/1AOm0gwID5QuGIqBd2y20p_8Uf5v8BHQT6p0X-9TVQDc/embed?start=false&loop=false&delayms=3000",
             sunuUrl: "https://docs.google.com/presentation/d/1AOm0gwID5QuGIqBd2y20p_8Uf5v8BHQT6p0X-9TVQDc/preview",
             // Google Dokümanlar - Doğrudan gömülü ve açılan ders notu
