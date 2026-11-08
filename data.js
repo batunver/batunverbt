@@ -125,9 +125,20 @@ const dersIcerikleri = {
             sunuEmbed: "https://docs.google.com/presentation/d/1AOm0gwID5QuGIqBd2y20p_8Uf5v8BHQT6p0X-9TVQDc/embed?start=false&loop=false&delayms=3000",
             sunuUrl: "https://docs.google.com/presentation/d/1AOm0gwID5QuGIqBd2y20p_8Uf5v8BHQT6p0X-9TVQDc/preview",
             // Google Dokümanlar - Doğrudan gömülü ve açılan ders notu
-            dersNotuEmbed: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
-            dersNotuUrl: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
-            dersNotuPdf: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
+            dersnotları:[
+                {
+                    dersNotuEmbed: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
+                    dersNotuUrl: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
+                    dersNotuPdf: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
+                },
+                 {
+                    dersNotuEmbed: "https://drive.google.com/file/d/1RML_y4wmgkL191WPuTl9wHu6TZ-dK_6k/preview",
+                    dersNotuUrl: "https://drive.google.com/file/d/1RML_y4wmgkL191WPuTl9wHu6TZ-dK_6k/preview",
+                    dersNotuPdf: "https://drive.google.com/file/d/1RML_y4wmgkL191WPuTl9wHu6TZ-dK_6k/preview",
+                }
+                
+            ]
+            
 
            
             etkinlikler: [
