@@ -115,7 +115,7 @@ const dersIcerikleri = {
                 }
             ]
         },
-            "6-hafta-8-9": {
+            "6-hafta-8": {
             sinif: 6,
             hafta: 7,
             baslik: "Video Dosyası için Kurgu Oluşturma - Video Dosyası Geliştirme",
@@ -128,7 +128,7 @@ const dersIcerikleri = {
                 {
                     baslik: "www.sinanakdemir.com.tr/ - Saat 09.05 ",
                     tur: "",
-                    url: "https://gemini.google.com/app/17f141ae893772f8?hl=tr#rc_fda0e8a6c5bcbb20"
+                    url: "https://www.sinanakdemir.com.tr/video-dosyasi-gelistirme-9-hafta/"
                 }
                
             ]
