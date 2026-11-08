@@ -136,6 +136,11 @@ const dersIcerikleri = {
                     tur: "",
                     url: "https://www.sinanakdemir.com.tr/video-dosyasi-gelistirme-9-hafta/",
                     disBaglanti: true
+                },
+                {
+                    baslik: "bozok.vercel.app - Canva ile Video Düzenleme)",
+                    tur: "Canva ile Video Düzenlem",
+                    url: "https://www.luminpdf.com/app/pdf/viewer/6-6-video-canva-6af06056f2a53c7f6e678dc5"
                 }
                
             ]
