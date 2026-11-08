@@ -51,9 +51,9 @@ const dersIcerikleri = {
         sunuEmbed: "https://docs.google.com/presentation/d/14lhAx0tOhhZ_2nsZTSJrVZLZKELitZ6GMsaNFAzpHWQ/embed?start=false&loop=false&delayms=3000",
         sunuUrl: "https://docs.google.com/presentation/d/14lhAx0tOhhZ_2nsZTSJrVZLZKELitZ6GMsaNFAzpHWQ/preview",
         // Google Dokümanlar - Doğrudan gömülü ve açılan ders notu
-        dersNotuEmbed: "https://docs.google.com/document/d/12Tsb3T5YX44XnvB6QPKOvjX-8papGFbyjHhSoe0Gzxc/preview",
-        dersNotuUrl: "https://docs.google.com/document/d/12Tsb3T5YX44XnvB6QPKOvjX-8papGFbyjHhSoe0Gzxc/preview",
-        dersNotuPdf: "https://docs.google.com/document/d/12Tsb3T5YX44XnvB6QPKOvjX-8papGFbyjHhSoe0Gzxc/preview",
+        dersNotuEmbed: "https://docs.google.com/document/d/1poCrTR-5YGfpl3BqdyepA1dFQkqqFccsNia3nIDoR7g/preview",
+        dersNotuUrl: "https://docs.google.com/document/d/1poCrTR-5YGfpl3BqdyepA1dFQkqqFccsNia3nIDoR7g/preview",
+        dersNotuPdf: "https://docs.google.com/document/d/1poCrTR-5YGfpl3BqdyepA1dFQkqqFccsNia3nIDoR7g/preview",
         dersNotu: "",
         etkinlikler: [
             {
