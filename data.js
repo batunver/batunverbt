@@ -127,7 +127,7 @@ const dersIcerikleri = {
             // Google Dokümanlar - Doğrudan gömülü ve açılan ders notu
            
             dersNotuEmbed: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
-            dersNotuUrl: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
+           dersNotuUrl: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
             dersNotuPdf: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
                       dosyalar: [
                           {
@@ -138,12 +138,7 @@ url: "https://" + "drive." + "google" + ".com/uc?export=download&id=1NSr2Qzts4Li
                           {ad: "10 Kasım Canva Video Kurgu Görev Kartı (PDF)",
                            tur: "PDF",
                            url: "https://" + "drive." + "google" + ".com/file/d/13LTnHq0tK1A9OteU2M0isnwRU8vHOxWx/review"preview",
-                           },   },
-    url: "https://" + "drive." + "google" + ".com/file/d/1s1frmauuRKy3-d7O5EsA7RmLjaRaC4Dy/preview"
-                          tur: "MP4",
-                          ad: "10 Kasım Canva Video Kurgu Hedef Örnek Video (MP4)",
-                          {
-                              
+                           }, ],
                           
                               
             etkinlikler: [
