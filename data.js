@@ -140,7 +140,7 @@ const dersIcerikleri = {
                 {
                     baslik: "bozok.vercel.app - Canva ile Video Düzenleme)",
                     tur: "Canva ile Video Düzenlem",
-                    url: "https://www.luminpdf.com/app/pdf/viewer/6-6-video-canva-6af06056f2a53c7f6e678dc5"
+                    url: "https://drive.google.com/file/d/1NyEMV7LEEaBy23btxMb68tQ2lj6spdpo/view"
                 }
                
             ]
