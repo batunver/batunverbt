@@ -85,7 +85,7 @@ const dersIcerikleri = {
     },
             "6-hafta-7": {
             sinif: 6,
-            hafta: 8-9,
+            hafta:7,
             baslik: "Ses Dosyası Geliştirme: Dedemin Tahta Radyosu",
             kazanim: "BTY.6.2.6. Kurgu oluşturma • BTY.6.2.7. Ses dosyası geliştirebilme",
             aciklama: "Web tabanlı mini ses stüdyosu ile 1923 Cumhuriyet Bayramı radyo anonsunu sıralayın, hatalı sesleri kesin ve efektlerle yayına hazırlayın.",
@@ -135,7 +135,8 @@ const dersIcerikleri = {
                 {
                     baslik: "www.sinanakdemir.com.tr/ - Saat 09.05 ",
                     tur: "",
-                    url: "https://www.sinanakdemir.com.tr/video-dosyasi-gelistirme-9-hafta/"
+                    url: "https://www.sinanakdemir.com.tr/video-dosyasi-gelistirme-9-hafta/",
+                    disBaglanti: true
                 }
                
             ]
