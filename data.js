@@ -137,7 +137,7 @@ url: "https://" + "drive." + "google" + ".com/uc?export=download&id=1NSr2Qzts4Li
                               },
                           {ad: "10 Kasım Canva Video Kurgu Görev Kartı (PDF)",
                            tur: "PDF",
-                           url: "https://" + "drive." + "google" + ".com/file/d/13LTnHq0tK1A9OteU2M0isnwRU8vHOxWx/preview",
+                           url: "https://" + "drive." + "google" + ".com/file/d/13LTnHq0tK1A9OteU2M0isnwRU8vHOxWx/review"preview",
                            },   },
     url: "https://" + "drive." + "google" + ".com/file/d/1s1frmauuRKy3-d7O5EsA7RmLjaRaC4Dy/preview"
                           tur: "MP4",
