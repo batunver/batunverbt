@@ -83,9 +83,9 @@ const dersIcerikleri = {
             }
         ]
     },
-    "6-hafta-7": {
+            "6-hafta-7": {
             sinif: 6,
-            hafta: 7,
+            hafta: 8-9,
             baslik: "Ses Dosyası Geliştirme: Dedemin Tahta Radyosu",
             kazanim: "BTY.6.2.6. Kurgu oluşturma • BTY.6.2.7. Ses dosyası geliştirebilme",
             aciklama: "Web tabanlı mini ses stüdyosu ile 1923 Cumhuriyet Bayramı radyo anonsunu sıralayın, hatalı sesleri kesin ve efektlerle yayına hazırlayın.",
@@ -114,5 +114,24 @@ const dersIcerikleri = {
                     url: "https://blockodlama.com/lesson/6/BTY.6.2/BTY.6.2.5_s13"
                 }
             ]
-        }
+        },
+            "6-hafta-8-9": {
+            sinif: 6,
+            hafta: 7,
+            baslik: "Video Dosyası için Kurgu Oluşturma - Video Dosyası Geliştirme",
+            kazanim: "BTY.6.2.8. Video düzenleme programlarından yararlanabilme BTY.6.2.9. Video dosyası için kurgu oluşturabilme BTY.6.2.10. Video dosyası geliştirebilme",
+            aciklama: "Video düzenleme programlarının temel özelliklerini tanır.",
+            kapakResmi: "",
+            sunuUrl: "",
+            dersNotuPdf: "",
+            etkinlikler: [
+                {
+                    baslik: "www.sinanakdemir.com.tr/ - Saat 09.05 ",
+                    tur: "",
+                    url: "https://gemini.google.com/app/17f141ae893772f8?hl=tr#rc_fda0e8a6c5bcbb20"
+                }
+               
+            ]
+        },
+    
 };
