@@ -138,9 +138,9 @@ const dersIcerikleri = {
                     disBaglanti: true
                 },
                 {
-                    baslik: "bozok.vercel.app - Canva ile Video Düzenleme)",
+                    baslik: "bozok.vercel.app - Canva ile Video Düzenleme",
                     tur: "Canva ile Video Düzenlem",
-                    url: "https://drive.google.com/file/d/1NyEMV7LEEaBy23btxMb68tQ2lj6spdpo/view"
+                    url: "https://drive.google.com/file/d/1RML_y4wmgkL191WPuTl9wHu6TZ-dK_6k/preview"
                 }
                
             ]
