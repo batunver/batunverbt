@@ -117,13 +117,20 @@ const dersIcerikleri = {
         },
             "6-hafta-8": {
             sinif: 6,
-            hafta: 7,
+            hafta: 8,
             baslik: "Video Dosyası için Kurgu Oluşturma - Video Dosyası Geliştirme",
             kazanim: "BTY.6.2.8. Video düzenleme programlarından yararlanabilme BTY.6.2.9. Video dosyası için kurgu oluşturabilme BTY.6.2.10. Video dosyası geliştirebilme",
             aciklama: "Video düzenleme programlarının temel özelliklerini tanır.",
             kapakResmi: "",
-            sunuUrl: "",
-            dersNotuPdf: "",
+            sunuEmbed: "https://docs.google.com/presentation/d/14lhAx0tOhhZ_2nsZTSJrVZLZKELitZ6GMsaNFAzpHWQ/embed?start=false&loop=false&delayms=3000",
+            sunuUrl: "https://docs.google.com/presentation/d/14lhAx0tOhhZ_2nsZTSJrVZLZKELitZ6GMsaNFAzpHWQ/preview",
+            // Google Dokümanlar - Doğrudan gömülü ve açılan ders notu
+            dersNotuEmbed: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
+            dersNotuUrl: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
+            dersNotuPdf: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
+                
+           
+           
             etkinlikler: [
                 {
                     baslik: "www.sinanakdemir.com.tr/ - Saat 09.05 ",
