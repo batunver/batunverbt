@@ -145,8 +145,8 @@ const dersIcerikleri = {
                 tur: "Video",
                 url: "https://drive.google.com/file/d/1RML_y4wmgkL191WPuTl9wHu6TZ-dK_6k/preview"
             }
-        ]
-    }
+        ],
+    }dosyalar: [{baslik: "Tüm Ödev Paketi ZIP (4 Görsel, 4 Kısa Video, 2 Müzik, 2 Efekt, Bitmiş Video)", url: "https://drive.google." + "com/file/d/1foXdn5eSnZ3C8zaxWStqYkHAm87lg_or/p{baslik: "Ara Tatil Canva Video Ödev Rehberi ve Hikaye Kurgusu PDF", url: "https://drive.google." + "com/file/d/1oiavID8fpzgjaS3Olpkf6Vt2r468oFIM/p{baslik: "Bitmiş Örnek Video (20 Saniye MP4)", url: "https://drive.google." + "com/file/d/1R4WkWL5AvUV8Fnjr_jU0Fx_Df-efVs3v/preview"}, {baslik: "Tüm Materyaller Google Drive Klasörü", url: "https://drive.google." + "com/drive/folders/1J2sJVBBMcqa5VUrB1y6SwSlr8eHEVbpk"}]review"}, review"}, 
 };
 
 // Diğer dosyalardan erişim için
