@@ -181,14 +181,7 @@ const dersIcerikleri = {
                 baslik: "Ara Tatil Canva Video Ödev Rehberi ve Hikaye Kurgusu PDF",
                 url: "https://drive.google.com/file/d/1oiavID8fpzgjaS3Olpkf6Vt2r468oFIM/preview"
             },
-            {
-                baslik: "Bitmiş Örnek Video (20 Saniye MP4)",
-                url: "https://drive.google.com/file/d/1R4WkWL5AvUV8Fnjr_jU0Fx_Df-efVs3v/preview"
-            },
-            {
-                baslik: "Tüm Materyaller Google Drive Klasörü",
-                url: "https://drive.google.com/drive/folders/1J2sJVBBMcqa5VUrB1y6SwSlr8eHEVbpk"
-            }
+           
         ]
             
     },
