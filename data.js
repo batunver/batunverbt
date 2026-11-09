@@ -161,16 +161,15 @@ const dersIcerikleri = {
         kazanim: "BTY.6.2.10. Video dosyası geliştirebilme",
         aciklama: "Ara tatil ödevi.",
         kapakResmi: "images/6-sinif-9-hafta-kapak.png",
-        sunuUrl: "
+        sunuUrl: "",
+        dersNotuPdf: "",
+        dersNotu: "",
+        etkinlikler: [
             {
             baslik: "Ödev Öncesi İzle: Bitmiş Örnek Video (20 Saniye)",
                 tur: "Video",
                 url: "https://drive.google.com/file/d/1R4WkWL5AvUV8Fnjr_jU0Fx_Df-efVs3v/preview"
-            },",
-        dersNotuPdf: "",
-        dersNotu: "",
-        etkinlikler: [
-           
+            },
         ],
          dosyalar: [
              
