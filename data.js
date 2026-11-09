@@ -136,7 +136,7 @@ const dersIcerikleri = {
         sinif: 6,
         hafta: 8,
         baslik: "Video Dosyası için Kurgu Oluşturma - Video Dosyası Geliştirme",
-        kazanim: "BTY.6.2.8. Video düzenleme programlarından yararlanabilme • BTY.6.2.9. Video dosyası için kurgu oluşturabilme • BTY.6.2.10. Video dosyası geliştirebilme",
+        kazanim: "BTY.6.2.8. Video düzenleme programlarından yararlanabilme • BTY.6.2.9. Video dosyası için kurgu oluşturabilme ",
         aciklama: "Video düzenleme programlarının temel özelliklerini tanır.",
         kapakResmi: "images/6-sinif-8-hafta-kapak.png",
         sunuEmbed: "https://docs.google.com/presentation/d/1AOm0gwID5QuGIqBd2y20p_8Uf5v8BHQT6p0X-9TVQDc/embed?start=false&loop=false&delayms=3000",
@@ -146,19 +146,26 @@ const dersIcerikleri = {
         dersNotuPdf: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
         dersNotu: "",
         etkinlikler: [
-            {
-                baslik: "www.sinanakdemir.com.tr - Saat 09.05",
-                tur: "Dış Bağlantı",
-                url: "https://www.sinanakdemir.com.tr/video-dosyasi-gelistirme-9-hafta/",
-                disBaglanti: true
-            },
-            {
+                       {
                 baslik: "Canva ile Video Düzenleme",
                 tur: "Video",
                 url: "https://drive.google.com/file/d/1RML_y4wmgkL191WPuTl9wHu6TZ-dK_6k/preview"
             }
         ],
-        dosyalar: [
+       
+    },
+    "6-hafta-9": {
+        sinif: 6,
+        hafta: 7,
+        baslik: "Canva ile Video Dosyası Oluşturuyoruz",
+        kazanim: "BTY.6.2.10. Video dosyası geliştirebilme",
+        aciklama: "Ara tatil ödevi.",
+        kapakResmi: "images/6-sinif-9-hafta-kapak.png",
+        sunuUrl: "",
+        dersNotuPdf: "",
+        dersNotu: "",
+        etkinlikler: [],
+         dosyalar: [
             {
                 baslik: "Tüm Ödev Paketi ZIP (4 Görsel, 4 Kısa Video, 2 Müzik, 2 Efekt, Bitmiş Video)",
                 url: "https://drive.google.com/file/d/1foXdn5eSnZ3C8zaxWStqYkHAm87lg_or/preview"
@@ -176,7 +183,8 @@ const dersIcerikleri = {
                 url: "https://drive.google.com/drive/folders/1J2sJVBBMcqa5VUrB1y6SwSlr8eHEVbpk"
             }
         ]
-    }
+            
+    },
 };
 
 // Diğer dosyalardan erişim için
