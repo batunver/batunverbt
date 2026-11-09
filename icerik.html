@@ -199,6 +199,26 @@
                 <iframe id="ders-notu-iframe" src="" class="w-full h-full border-0" allowfullscreen="true"></iframe>
             </div>
         </section>
+        <!-- 5. ÖDEV VE ÇALIŞMA DOSYALARI ALANI -->
+        <section id="dosyalar-alani" class="hidden bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm border border-amber-500/30">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-bold text-white">Ödev & Çalışma Dosyaları</h2>
+                        <p class="text-[11px] text-slate-400">Ödev rehberini, örnek bitmiş videoyu ve çalışma materyallerini aşağıdan inceleyip indirebilirsiniz.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- data.js içindeki dosyalar dizisi buraya otomatik dizilir -->
+            <div id="dosyalar-kartlari-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+
+            <!-- 6-hafta-8 için Ara Tatil Ödevi Hikaye Kurgusu, Bitmiş Video ve Tek Tek İndirme Alanı -->
+            <div id="odev-detay-container" class="space-y-6"></div>
+        </section>
 
     </main>
 
@@ -360,7 +380,121 @@
                         etkinlikContainer.appendChild(etkKart);
                     });
                 }
+                // 4. ÖDEV VE ÇALIŞMA DOSYALARI ALANI
+                const dosyalarAlani = document.getElementById('dosyalar-alani');
+                const dosyalarContainer = document.getElementById('dosyalar-kartlari-container');
+                const odevDetayContainer = document.getElementById('odev-detay-container');
 
+                if (veri.dosyalar && veri.dosyalar.length > 0 && dosyalarAlani && dosyalarContainer) {
+                    dosyalarAlani.classList.remove('hidden');
+
+                    // Üst hızlı erişim çubuğuna "Ödev & Dosyalar" butonu ekle
+                    const btnDosyalar = document.createElement('a');
+                    btnDosyalar.href = '#dosyalar-alani';
+                    btnDosyalar.className = "px-4 py-2.5 bg-amber-600/20 border border-amber-500/40 hover:bg-amber-600/40 text-amber-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm";
+                    btnDosyalar.innerHTML = `<i class="fa-solid fa-folder-open text-amber-400"></i> <span>Ödev & Dosyalar (${veri.dosyalar.length})</span>`;
+                    butonlarBar.appendChild(btnDosyalar);
+
+                    veri.dosyalar.forEach((dosya) => {
+                        const baslik = dosya.baslik || dosya.ad || 'Çalışma Dosyası';
+                        const rawUrl = dosya.url || '#';
+                        const idMatch = rawUrl.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+                        const driveId = idMatch ? idMatch[1] : null;
+                        const indirUrl = driveId ? `https://drive.google.com/uc?export=download&id=${driveId}` : rawUrl;
+                        const goruntuleUrl = driveId ? `https://drive.google.com/file/d/${driveId}/view` : rawUrl;
+
+                        let ikon = 'fa-file-arrow-down';
+                        if (baslik.toLowerCase().includes('zip') || baslik.toLowerCase().includes('paket')) ikon = 'fa-file-zipper';
+                        else if (baslik.toLowerCase().includes('pdf') || baslik.toLowerCase().includes('rehber')) ikon = 'fa-file-pdf';
+                        else if (baslik.toLowerCase().includes('video') || baslik.toLowerCase().includes('mp4')) ikon = 'fa-film';
+                        else if (baslik.toLowerCase().includes('klasör')) ikon = 'fa-folder-open';
+
+                        const kart = document.createElement('div');
+                        kart.className = "bg-slate-700/80 border border-slate-700/60 rounded-2xl p-4 flex flex-col justify-between gap-3";
+                        kart.innerHTML = `
+                            <div class="flex items-start space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/30">
+                                    <i class="fa-solid ${ikon}"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm font-bold text-white leading-snug">${baslik}</h3>
+                                    <p class="text-[11px] text-slate-400 mt-0.5">Canva Video Kurgu Materyali</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 pt-1">
+                                <a href="${goruntuleUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 text-center text-xs font-bold px-3 py-2 rounded-xl bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white border border-blue-500/30 transition">
+                                    <i class="fa-solid fa-eye mr-1"></i> Görüntüle / Aç
+                                </a>
+                                ${driveId ? `
+                                <a href="${indirUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 text-center text-xs font-bold px-3 py-2 rounded-xl bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white border border-emerald-500/30 transition">
+                                    <i class="fa-solid fa-download mr-1"></i> Doğrudan İndir
+                                </a>` : ''}
+                            </div>
+                        `;
+                        dosyalarContainer.appendChild(kart);
+                    });
+
+                    // 6-hafta-8 sayfasında Hikaye Kurgusu, Bitmiş Video Oynatıcısı ve 12 Materyali Tek Tek İndirme Listesi
+                    if (icerikId === '6-hafta-8' && odevDetayContainer) {
+                        odevDetayContainer.innerHTML = `
+                            <div class="border-t border-slate-700/60 pt-6 space-y-6">
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="text-base font-bold text-white"><i class="fa-solid fa-circle-play text-emerald-400 mr-2"></i>Bitmiş Örnek Hedef Video: "Ekranı Kapat, Hayatı Başlat!" (20 Sn)</h3>
+                                        <a href="https://drive.google.com/uc?export=download&id=1R4WkWL5AvUV8Fnjr_jU0Fx_Df-efVs3v" target="_blank" class="text-xs font-bold px-3 py-1.5 rounded-xl bg-emerald-600/20 text-emerald-300 border border-emerald-500/30">Örnek Videoyu İndir (MP4)</a>
+                                    </div>
+                                    <div class="relative aspect-[16/9] w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60 shadow-lg">
+                                        <iframe src="https://drive.google.com/file/d/1R4WkWL5AvUV8Fnjr_jU0Fx_Df-efVs3v/preview" class="w-full h-full border-0" allow="autoplay; fullscreen" allowfullscreen="true"></iframe>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <h3 class="text-base font-bold text-white"><i class="fa-solid fa-clapperboard text-blue-400 mr-2"></i>Ara Tatil Ödevi 4 Sahnelik Hikâye Kurgusu (Canva Uygulama Planı)</h3>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                                        <div class="bg-slate-700/80 border border-slate-700/60 rounded-2xl p-4 space-y-1.5">
+                                            <span class="font-extrabold text-blue-400">SAHNE 1 (00:00 - 00:05 | Genel Çekim)</span>
+                                            <p class="font-bold text-white">Metin (T): "Ara Tatilde Sadece Ekrana mı Bakacaksın?"</p>
+                                            <p class="text-slate-300">Karanlık odada ekran başında yorgun öğrenci. <b>Efekt 1</b> (Saat Tik-Tak & Bildirim) eklenir. Sahne sonu geçişi: <b>Çözünme (Dissolve)</b>.</p>
+                                        </div>
+                                        <div class="bg-slate-700/80 border border-slate-700/60 rounded-2xl p-4 space-y-1.5">
+                                            <span class="font-extrabold text-amber-400">SAHNE 2 (00:05 - 00:10 | Yakın/Detay Çekim)</span>
+                                            <p class="font-bold text-white">Metin (T): "Ekranı Kapat, Pencereyi Aç!"</p>
+                                            <p class="text-slate-300">Tableti kapatıp pencereyi açma, gün ışığı. <b>Efekt 2</b> (Tık Sesi & Kuş Cıvıltısı) eklenir. Sahne sonu geçişi: <b>Kaydırma (Slide)</b>.</p>
+                                        </div>
+                                        <div class="bg-slate-700/80 border border-slate-700/60 rounded-2xl p-4 space-y-1.5">
+                                            <span class="font-extrabold text-emerald-400">SAHNE 3 (00:10 - 00:15 | Orta Çekim)</span>
+                                            <p class="font-bold text-white">Metin (T): "Doğayı Keşfet, Arkadaşlarınla Paylaş!"</p>
+                                            <p class="text-slate-300">Parkta arkadaşlarla bisiklet ve top oyunu. Animasyon: <b>Solma (Fade)</b>. Sahne sonu geçişi: <b>Daire (Circle Wipe)</b>.</p>
+                                        </div>
+                                        <div class="bg-slate-700/80 border border-slate-700/60 rounded-2xl p-4 space-y-1.5">
+                                            <span class="font-extrabold text-purple-400">SAHNE 4 (00:15 - 00:20 | Kapanış & Slogan Kartı)</span>
+                                            <p class="font-bold text-white">Metin (T): "Teknolojiyi Dengeli Kullan, Hayatı Kaçırma! | İyi Tatiller"</p>
+                                            <p class="text-slate-300">Altına kaynakça (<i>BTY Telifsiz Ödev Paketi</i>) ve <b>Ad Soyad - Sınıf</b> yazılır; <b>1080p MP4</b> olarak indirilir.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <h3 class="text-base font-bold text-white"><i class="fa-solid fa-download text-purple-400 mr-2"></i>Materyalleri Tek Tek İndir (4 Görsel, 4 Kısa Video, 2 Müzik, 2 Ses Efekti)</h3>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 text-xs">
+                                        <a href="https://drive.google.com/uc?export=download&id=19zGCUjgpP3mFCBLN-WYaxyEFkzTfZ7PB" target="_blank" class="bg-slate-700/80 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between hover:border-blue-500 transition"><span>🖼️ Görsel 1: Ekran Başında (JPG)</span><i class="fa-solid fa-download text-blue-400"></i></a>
+                                        <a href="https://drive.google.com/uc?export=download&id=1bf6LzDHOl3ea55NK48T9FQ9pbfNc5JmP" target="_blank" class="bg-slate-700/80 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between hover:border-blue-500 transition"><span>🖼️ Görsel 2: Pencereyi Aç (JPG)</span><i class="fa-solid fa-download text-blue-400"></i></a>
+                                        <a href="https://drive.google.com/uc?export=download&id=1RKFpLL6S002wZURCR2WHx2ockslhXwau" target="_blank" class="bg-slate-700/80 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between hover:border-blue-500 transition"><span>🖼️ Görsel 3: Doğada Oyun (JPG)</span><i class="fa-solid fa-download text-blue-400"></i></a>
+                                        <a href="https://drive.google.com/uc?export=download&id=1HMKbpNySSofsREONIVrlERooegQsasWc" target="_blank" class="bg-slate-700/80 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between hover:border-blue-500 transition"><span>🖼️ Görsel 4: Kapanış Kartı (JPG)</span><i class="fa-solid fa-download text-blue-400"></i></a>
+                                        <a href="https://drive.google.com/uc?export=download&id=1W0O8RwUY2Xe4LIlzt3oQ1PB6RvO9eLzl" target="_blank" class="bg-slate-700/80 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between hover:border-emerald-500 transition"><span>🎬 Kısa Video 1 (5 sn MP4)</span><i class="fa-solid fa-download text-emerald-400"></i></a>
+                                        <a href="https://drive.google.com/uc?export=download&id=1f1FYKGNX6ePUqqwkdP9j2AIlRcDBQh2M" target="_blank" class="bg-slate-700/80 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between hover:border-emerald-500 transition"><span>🎬 Kısa Video 2 (5 sn MP4)</span><i class="fa-solid fa-download text-emerald-400"></i></a>
+                                        <a href="https://drive.google.com/uc?export=download&id=1rq2HfrSf5OQVYgml4wQwD_lVf0ruWivc" target="_blank" class="bg-slate-700/80 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between hover:border-emerald-500 transition"><span>🎬 Kısa Video 3 (5 sn MP4)</span><i class="fa-solid fa-download text-emerald-400"></i></a>
+                                        <a href="https://drive.google.com/uc?export=download&id=1YwZIqBsp4wWziJtztQKPe-kjNtPhuk6r" target="_blank" class="bg-slate-700/80 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between hover:border-emerald-500 transition"><span>🎬 Kısa Video 4 (5 sn MP4)</span><i class="fa-solid fa-download text-emerald-400"></i></a>
+                                        <a href="https://drive.google.com/uc?export=download&id=15b0MFZHK0NxG1KqfwTooCOouursu6Mqf" target="_blank" class="bg-slate-700/80 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between hover:border-purple-500 transition"><span>🎵 Müzik 1: Enerjik Akustik (MP3)</span><i class="fa-solid fa-download text-purple-400"></i></a>
+                                        <a href="https://drive.google.com/uc?export=download&id=1bQgs48EeGlbO8P8UD3YRCWMRY3kvc_8K" target="_blank" class="bg-slate-700/80 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between hover:border-purple-500 transition"><span>🎹 Müzik 2: Huzurlu Piyano (MP3)</span><i class="fa-solid fa-download text-purple-400"></i></a>
+                                        <a href="https://drive.google.com/uc?export=download&id=1rUlfvlhb24601VYiiMXDw61rI1ZfooNN" target="_blank" class="bg-slate-700/80 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between hover:border-amber-500 transition"><span>🔔 Efekt 1: Saat & Bildirim (MP3)</span><i class="fa-solid fa-download text-amber-400"></i></a>
+                                        <a href="https://drive.google.com/uc?export=download&id=1OfWltyW7TDXyCEImachMKji_9u3V_gsX" target="_blank" class="bg-slate-700/80 border border-slate-700/60 rounded-xl p-3 flex items-center justify-between hover:border-amber-500 transition"><span>🐦 Efekt 2: Pencere & Kuşlar (MP3)</span><i class="fa-solid fa-download text-amber-400"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
                 if (!sunuKaynak && !notKaynak && tumEtkinlikler.length === 0) {
                     document.getElementById('hizli-erisim-cizgi').style.display = 'none';
                     butonlarBar.style.display = 'none';
