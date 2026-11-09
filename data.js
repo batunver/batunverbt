@@ -164,7 +164,13 @@ const dersIcerikleri = {
         sunuUrl: "",
         dersNotuPdf: "",
         dersNotu: "",
-        etkinlikler: [],
+        etkinlikler: [
+            {
+                baslik: "Ödev Öncesi İzle: Bitmiş Örnek Video (20 Saniye)",
+                tur: "Video",
+                url: "https://drive.google.com/file/d/1R4WkWL5AvUV8Fnjr_jU0Fx_Df-efVs3v/preview"
+            }
+        ],
          dosyalar: [
             {
                 baslik: "Tüm Ödev Paketi ZIP (4 Görsel, 4 Kısa Video, 2 Müzik, 2 Efekt, Bitmiş Video)",
