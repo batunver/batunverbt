@@ -159,7 +159,7 @@ const dersIcerikleri = {
         hafta: 7,
         baslik: "Canva ile Video Dosyası Oluşturuyoruz",
         kazanim: "BTY.6.2.10. Video dosyası geliştirebilme",
-        aciklama: "Ara tatil ödevi.",
+        aciklama: "Ara tatil ödevi - Ödev rehberini, örnek bitmiş videoyu ve çalışma materyallerini aşağıdan inceleyip indirebilirsiniz.",
         kapakResmi: "images/6-sinif-9-hafta-kapak.png",
         sunuUrl: "",
         dersNotuPdf: "",
