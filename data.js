@@ -14,9 +14,21 @@ const dersIcerikleri = {
         dersNotuPdf: "folder/5/DersNotu/DosyaveKlasoryonetimi.pdf",
         dersNotu: "",
         etkinlikler: [
-            { baslik: "Etkinlik 1: Klasör Ağacı ve Düzenleme", tur: "Uygulama", url: "5.sinif/8-1.html" },
-            { baslik: "Etkinlik 2: Dosya Uzantıları Oyunu", tur: "Wordwall", url: "5.sinif/8-2.html" },
-            { baslik: "Etkinlik 3: Görsel Değerlendirme Testi", tur: "Test", url: "5.sinif/8-3.html" }
+            {
+                baslik: "Etkinlik 1: Klasör Ağacı ve Düzenleme",
+                tur: "Uygulama",
+                url: "5.sinif/8-1.html"
+            },
+            {
+                baslik: "Etkinlik 2: Dosya Uzantıları Oyunu",
+                tur: "Wordwall",
+                url: "5.sinif/8-2.html"
+            },
+            {
+                baslik: "Etkinlik 3: Görsel Değerlendirme Testi",
+                tur: "Test",
+                url: "5.sinif/8-3.html"
+            }
         ]
     },
 
@@ -146,7 +158,25 @@ const dersIcerikleri = {
                 url: "https://drive.google.com/file/d/1RML_y4wmgkL191WPuTl9wHu6TZ-dK_6k/preview"
             }
         ],
-    }dosyalar: [{baslik: "Tüm Ödev Paketi ZIP (4 Görsel, 4 Kısa Video, 2 Müzik, 2 Efekt, Bitmiş Video)", url: "https://drive.google." + "com/file/d/1foXdn5eSnZ3C8zaxWStqYkHAm87lg_or/p{baslik: "Ara Tatil Canva Video Ödev Rehberi ve Hikaye Kurgusu PDF", url: "https://drive.google." + "com/file/d/1oiavID8fpzgjaS3Olpkf6Vt2r468oFIM/p{baslik: "Bitmiş Örnek Video (20 Saniye MP4)", url: "https://drive.google." + "com/file/d/1R4WkWL5AvUV8Fnjr_jU0Fx_Df-efVs3v/preview"}, {baslik: "Tüm Materyaller Google Drive Klasörü", url: "https://drive.google." + "com/drive/folders/1J2sJVBBMcqa5VUrB1y6SwSlr8eHEVbpk"}]review"}, review"}, 
+        dosyalar: [
+            {
+                baslik: "Tüm Ödev Paketi ZIP (4 Görsel, 4 Kısa Video, 2 Müzik, 2 Efekt, Bitmiş Video)",
+                url: "https://drive.google.com/file/d/1foXdn5eSnZ3C8zaxWStqYkHAm87lg_or/preview"
+            },
+            {
+                baslik: "Ara Tatil Canva Video Ödev Rehberi ve Hikaye Kurgusu PDF",
+                url: "https://drive.google.com/file/d/1oiavID8fpzgjaS3Olpkf6Vt2r468oFIM/preview"
+            },
+            {
+                baslik: "Bitmiş Örnek Video (20 Saniye MP4)",
+                url: "https://drive.google.com/file/d/1R4WkWL5AvUV8Fnjr_jU0Fx_Df-efVs3v/preview"
+            },
+            {
+                baslik: "Tüm Materyaller Google Drive Klasörü",
+                url: "https://drive.google.com/drive/folders/1J2sJVBBMcqa5VUrB1y6SwSlr8eHEVbpk"
+            }
+        ]
+    }
 };
 
 // Diğer dosyalardan erişim için
