@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evrak Çantası - batunver - Bilgisayar ve Öğretim Teknolojileri</title>
+    <title>Evrak Çantası - batunver - Bilişim Teknolojileri ve Yazılım</title>
+    <meta name="description" content="5. ve 6. sınıf Bilişim Teknolojileri ve Yazılım dersi yıllık planları ve YEĞİTEK çalışma planları.">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome İkonlar -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="images/favicon.jpeg">
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -21,59 +24,30 @@
             }
         }
     </script>
-        <style>
+    <style>
         html, body { overflow-x: hidden; max-width: 100vw; }
         html:not(.dark) body { background-color: #f8fafc !important; color: #0f172a !important; }
         html:not(.dark) header, html:not(.dark) footer { background-color: rgba(255, 255, 255, 0.95) !important; border-color: #e2e8f0 !important; }
         html:not(.dark) header img { filter: none !important; mix-blend-mode: multiply !important; }
         html:not(.dark) .bg-slate-800, html:not(.dark) .bg-slate-800\/90, html:not(.dark) .bg-slate-800\/80, html:not(.dark) .bg-slate-800\/70, html:not(.dark) .bg-slate-800\/60, html:not(.dark) .bg-slate-800\/40 { background-color: #ffffff !important; border-color: #e2e8f0 !important; box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06) !important; }
-        html:not(.dark) .bg-slate-700\/80, html:not(.dark) .bg-slate-700 { background-color: #f1f5f9 !important; color: #1e293b !important; border-color: #cbd5e1 !important; }
-        html:not(.dark) .border-slate-700\/60, html:not(.dark) .border-slate-700\/70, html:not(.dark) .border-slate-700\/80, html:not(.dark) .border-slate-800 { border-color: #e2e8f0 !important; }
+        html:not(.dark) .bg-slate-700\/50 { background-color: #f1f5f9 !important; color: #1e293b !important; border-color: #cbd5e1 !important; }
+        html:not(.dark) .border-slate-700\/80, html:not(.dark) .border-slate-800 { border-color: #e2e8f0 !important; }
         html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3, html:not(.dark) .text-white { color: #0f172a !important; }
         html:not(.dark) p, html:not(.dark) .text-slate-400, html:not(.dark) .text-slate-300 { color: #475569 !important; }
-        html:not(.dark) .text-blue-300, html:not(.dark) .text-blue-400 { color: #1d4ed8 !important; }
-        html:not(.dark) .text-emerald-300, html:not(.dark) .text-emerald-400 { color: #047857 !important; }
-        html:not(.dark) .text-purple-300, html:not(.dark) .text-purple-400 { color: #6d28d9 !important; }
-        html:not(.dark) .bg-blue-600\/20, html:not(.dark) .bg-blue-500\/10, html:not(.dark) .bg-blue-500\/20 { background-color: #eff6ff !important; border-color: #bfdbfe !important; }
-        html:not(.dark) .bg-emerald-600\/20, html:not(.dark) .bg-emerald-500\/20 { background-color: #ecfdf5 !important; border-color: #a7f3d0 !important; }
-        html:not(.dark) .bg-purple-600\/20, html:not(.dark) .bg-purple-500\/10, html:not(.dark) .bg-purple-500\/20 { background-color: #f5f3ff !important; border-color: #ddd6fe !important; }
-        @media (max-width: 768px) {
-            header > div { height: auto !important; min-height: 4.5rem !important; padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; flex-direction: column !important; gap: 0.5rem !important; }
-            header nav, header > div > div { flex-wrap: wrap !important; justify-content: center !important; gap: 0.375rem !important; width: 100% !important; }
-            header a.group { height: 3.75rem !important; }
-            header a.group img { height: 6.5rem !important; transform: none !important; max-width: 80vw !important; }
-            #ders-sunusu-alani > div:first-child, #ders-notu-alani > div:first-child, #etkinlik-kartlari-container > div > div:first-child { flex-direction: column !important; align-items: flex-start !important; gap: 0.75rem !important; }
-            #sunu-pencere { min-height: 230px !important; }
-            #ders-notu-pencere { height: 480px !important; }
-        }
-    </style><style>
-        html:not(.dark) body { background-color: #f8fafc !important; color: #0f172a !important; }
-        html:not(.dark) header, html:not(.dark) footer { background-color: rgba(255, 255, 255, 0.95) !important; border-color: #cbd5e1 !important; }
-        html:not(.dark) .bg-slate-800\/80, html:not(.dark) .bg-slate-800\/90, html:not(.dark) .bg-slate-800\/40 { background-color: #ffffff !important; border-color: #cbd5e1 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important; }
-        html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3 { color: #0f172a !important; }
-        html:not(.dark) p, html:not(.dark) .text-slate-400, html:not(.dark) .text-slate-300 { color: #475569 !important; }
-        html:not(.dark) header img { filter: brightness(0.15); }
+        html:not(.dark) .text-blue-400 { color: #1d4ed8 !important; }
+        html:not(.dark) .text-emerald-300 { color: #047857 !important; }
+        html:not(.dark) .text-cyan-400, html:not(.dark) .text-cyan-300 { color: #0e7490 !important; }
+        html:not(.dark) .text-amber-400, html:not(.dark) .text-amber-300 { color: #b45309 !important; }
+        html:not(.dark) .bg-blue-500\/10 { background-color: #eff6ff !important; border-color: #bfdbfe !important; }
+        html:not(.dark) .bg-emerald-600\/20 { background-color: #ecfdf5 !important; border-color: #a7f3d0 !important; }
+        html:not(.dark) .bg-cyan-500\/10, html:not(.dark) .bg-cyan-600\/20 { background-color: #ecfeff !important; border-color: #a5f3fc !important; }
+        html:not(.dark) .bg-amber-500\/10, html:not(.dark) .bg-amber-500\/20, html:not(.dark) .bg-amber-600\/20 { background-color: #fffbeb !important; border-color: #fde68a !important; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800  min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
 
-    <!-- Üst Menü (Header) -->
-    <header class=bg-white/90 backdrop-blur border-b border-slate-200 shadow-sm sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-            <a href="index.html" class="flex items-center h-20 sm:h-24 overflow-hidden group">
-                <img src="images/logo3.jpg" class="h-40 sm:h-48 w-auto max-w-none object-contain scale-125 group-hover:scale-[1.32] transition-transform duration-300 mix-blend-multiply" alt="Batunver">
-            </a>
-            <nav class="flex items-center space-x-2 sm:space-x-3">
-                <a href="index.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100  transition flex items-center space-x-2"><i class="fa-solid fa-house"></i><span>Ana Sayfa</span></a>
-                
-                <a href="evrakcantasi.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-sky-600 bg-sky-50 font-semibold border border-sky-200  shadow-sm flex items-center space-x-2">
-                    <i class="fa-solid fa-briefcase"></i>
-                    <span>Evrak Çantası</span>
-                </a>
-
-            </nav>
-        </div>
-    </header>
+    <!-- ORTAK ÜST MENÜ -->
+    <div id="site-header"></div>
 
     <!-- Ana İçerik -->
     <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-8">
@@ -109,7 +83,6 @@
                         <p class="text-slate-400 text-xs mt-1">TYMM Müfredatına Uygun Yıllık Plan</p>
                     </div>
                 </div>
-
                 <div class="pt-4 flex items-center gap-3">
                     <a href="folder/2026-2027_Bilisim_5_Sinif_Yillik_Plan.pdf" target="_blank" class="flex-1 py-3 px-4 bg-slate-700/50 hover:bg-blue-600 text-slate-200 hover:text-white rounded-2xl text-xs font-semibold flex items-center justify-center space-x-2 border border-slate-600/50 hover:border-blue-500 transition shadow-sm">
                         <i class="fa-solid fa-eye"></i>
@@ -137,7 +110,6 @@
                         <p class="text-slate-400 text-xs mt-1">TYMM Müfredatına Uygun Yıllık Plan</p>
                     </div>
                 </div>
-
                 <div class="pt-4 flex items-center gap-3">
                     <a href="folder/2026-2027_Bilisim_6_Sinif_Yillik_Plan.pdf" target="_blank" class="flex-1 py-3 px-4 bg-slate-700/50 hover:bg-cyan-600 text-slate-200 hover:text-white rounded-2xl text-xs font-semibold flex items-center justify-center space-x-2 border border-slate-600/50 hover:border-cyan-500 transition shadow-sm">
                         <i class="fa-solid fa-eye"></i>
@@ -165,13 +137,12 @@
                         <p class="text-slate-400 text-xs mt-1">1. Dönem YEĞİTEK Görev, Sorumluluk ve Çalışma Takvimi</p>
                     </div>
                 </div>
-
                 <div class="pt-4 flex items-center gap-3">
-                    <a href="folder/yegitek_okul_sorumlusu_1_donem_calisma_plani_örnek.pdf" target="_blank" class="flex-1 py-3 px-4 bg-slate-700/50 hover:bg-amber-600 text-slate-200 hover:text-white rounded-2xl text-xs font-semibold flex items-center justify-center space-x-2 border border-slate-600/50 hover:border-amber-500 transition shadow-sm">
+                    <a href="folder/yegitek_okul_sorumlusu_1_donem_calisma_plani_ornek.pdf" target="_blank" class="flex-1 py-3 px-4 bg-slate-700/50 hover:bg-amber-600 text-slate-200 hover:text-white rounded-2xl text-xs font-semibold flex items-center justify-center space-x-2 border border-slate-600/50 hover:border-amber-500 transition shadow-sm">
                         <i class="fa-solid fa-eye"></i>
                         <span>Görüntüle (PDF)</span>
                     </a>
-                    <a href="folder/yegitek_okul_sorumlusu_1_donem_calisma_plani_örnek.docx" download class="flex-1 py-3 px-3 bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white rounded-2xl text-xs font-semibold flex items-center justify-center space-x-2 border border-amber-500/30 transition shadow-sm">
+                    <a href="folder/yegitek_okul_sorumlusu_1_donem_calisma_plani_ornek.docx" download class="flex-1 py-3 px-3 bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white rounded-2xl text-xs font-semibold flex items-center justify-center space-x-2 border border-amber-500/30 transition shadow-sm">
                         <i class="fa-solid fa-download"></i>
                         <span>İndir (DOCX)</span>
                     </a>
@@ -182,38 +153,12 @@
 
     </main>
 
-    <!-- Alt Bilgi (Footer) -->
-   <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-400">
-        <p>&copy;2026 batunver Tüm hakları saklıdır. - Bilişim Teknolojileri ve Yazılım Dersi Portalı
-    </footer>
+    <!-- ORTAK ALT BİLGİ -->
+    <div id="site-footer"></div>
 
-    <script>
-        function temaUygula(tema) {
-            const htmlEl = document.documentElement;
-            const ikon = document.getElementById('temaIkon');
-            const metin = document.getElementById('temaMetin');
-            if (tema === 'light') {
-                htmlEl.classList.remove('dark');
-                if (ikon) ikon.className = 'fa-solid fa-moon text-indigo-600';
-                if (metin) metin.innerText = 'Koyu Tema';
-            } else {
-                htmlEl.classList.add('dark');
-                if (ikon) ikon.className = 'fa-solid fa-sun text-amber-300';
-                if (metin) metin.innerText = 'Açık Tema';
-            }
-        }
-        function temaDegistir() {
-            const mevcut = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-            const yeni = mevcut === 'dark' ? 'light' : 'dark';
-            try { localStorage.setItem('batunver_tema', yeni); } catch(e) {}
-            temaUygula(yeni);
-        }
-        (function() {
-            try {
-                const kayitli = localStorage.getItem('batunver_tema') || 'dark';
-                temaUygula(kayitli);
-            } catch(e) {}
-        })();
-    </script>
+    <!-- VERİ DOSYASI VE ORTAK YERLEŞİM -->
+    <script src="data.js"></script>
+    <script src="layout.js"></script>
+
 </body>
 </html>
