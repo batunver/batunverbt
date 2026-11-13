@@ -110,6 +110,11 @@ function sinifModalAc(sinif) {
     if (!modal || !container) return;
 
     modalBaslik.innerText = `${sinif}. Sınıf Eklenen Ders İçerikleri`;
+    const tumLink = document.getElementById("modalTumSayfaLink");
+    if (tumLink) {
+        tumLink.href = `sinif.html?sinif=${sinif}`;
+        tumLink.querySelector("span").innerText = `${sinif}. Sınıfın Tüm İçerik Sayfasını Aç`;
+    }
     container.innerHTML = "";
 
     let eklenenSayisi = 0;
