@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>batunver-Bilişim Teknolojileri ve Yazılım</title>
+    <title>batunver - Bilişim Teknolojileri ve Yazılım</title>
+    <meta name="description" content="Ortaokul 5. ve 6. sınıf Bilişim Teknolojileri ve Yazılım dersi sunumları, ders notları, etkinlikler ve yazılı çalışma soruları.">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,68 +32,8 @@
 
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
 
-    <!-- ÜST MENÜ (HEADER) -->
-    <header class="bg-white/90 backdrop-blur border-b border-slate-200 shadow-sm sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[5rem] md:h-24 py-2 md:py-0 flex flex-col md:flex-row items-center justify-between gap-2">
-
-            <a href="index.html" class="flex items-center h-16 sm:h-20 shrink-0 overflow-hidden group">
-                <img
-                    src="images/logo3.jpg"
-                    alt="Batunver - Bilişim Teknolojileri ve Yazılım Öğretmeni"
-                    class="h-28 sm:h-36 w-auto object-contain group-hover:scale-105 transition-transform duration-300 mix-blend-multiply"
-                >
-            </a>
-
-            <nav class="flex flex-wrap items-center justify-center md:justify-end gap-1.5 sm:gap-2">
-
-                <a
-                    href="index.html"
-                    class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-blue-50 text-blue-700 transition-all shadow-sm"
-                >
-                    Ana Sayfa
-                </a>
-
-                <button
-                    type="button"
-                    onclick="sinifModalAc('5')"
-                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all cursor-pointer"
-                >
-                    5. Sınıf
-                </button>
-
-                <button
-                    type="button"
-                    onclick="sinifModalAc('6')"
-                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all cursor-pointer"
-                >
-                    6. Sınıf
-                </button>
-
-                <a
-                    href="calismasorulari.html"
-                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all"
-                >
-                    <i class="fa-solid fa-file-pen"></i>
-                    Yazılı Çalışma Soruları
-                </a>
-
-                <a
-                    href="evrakcantasi.html"
-                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all"
-                >
-                    <i class="fa-solid fa-briefcase"></i>
-                    <span>Evrak Çantası</span>
-                </a>
-                <a
-                    href="hakkimda.html"
-                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all"
-                >
-                    <i class="fa-solid fa-id-badge"></i>        <!-- kimlik rozeti -->
-                    Hakkımda
-                </a>
-            </nav>
-        </div>
-    </header>
+    <!-- ORTAK ÜST MENÜ -->
+    <div id="site-header"></div>
 
     <!-- ANA İÇERİK -->
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full space-y-12">
@@ -101,19 +42,15 @@
         <section class="space-y-6">
 
             <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-
                 <div class="flex items-center space-x-3">
                     <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-
                     <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-wide">
                         Son Eklenenler
                     </h2>
                 </div>
-
                 <span class="text-xs text-slate-600 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200 font-semibold">
                     Güncel İçerikler
                 </span>
-
             </div>
 
             <div class="grid md:grid-cols-2 gap-6">
@@ -124,62 +61,36 @@
                     href="#"
                     class="bg-gradient-to-br from-white to-blue-50 border border-slate-200 hover:border-blue-400 rounded-3xl p-6 shadow-lg hover:shadow-xl backdrop-blur-md transition-all duration-300 group flex flex-col justify-between"
                 >
-
                     <div>
-
                         <div class="flex justify-between items-center mb-4">
-
-                            <span
-                                id="label-5-son"
-                                class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full border border-blue-200"
-                            >
+                            <span id="label-5-son" class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full border border-blue-200">
                                 5. Sınıf • Son Eklenen
                             </span>
-
-                            <div
-                                id="num-5-son"
-                                class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs border border-blue-200"
-                            >
+                            <div id="num-5-son" class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs border border-blue-200">
                                 -
                             </div>
-
                         </div>
 
                         <div class="w-full aspect-[16/9] bg-slate-100 border border-slate-200 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-blue-400 transition-all">
-
                             <img
                                 id="img-5-son"
                                 src="5.sinif/8.jfif"
                                 alt="5. Sınıf Son Eklenen"
                                 class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                             >
-
                             <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
-
                                 <span class="px-4 py-2 bg-blue-600/90 text-white text-xs font-bold rounded-xl flex items-center space-x-1.5 shadow-lg">
-
                                     <i class="fa-solid fa-book-open"></i>
-
                                     <span>İçeriği İncele</span>
-
                                 </span>
-
                             </div>
-
                         </div>
 
                         <h3 class="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors flex items-center justify-between">
-
-                            <span id="baslik-5-son">
-                                Yükleniyor...
-                            </span>
-
+                            <span id="baslik-5-son">Yükleniyor...</span>
                             <i class="fa-solid fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
-
                         </h3>
-
                     </div>
-
                 </a>
 
                 <!-- 6. SINIF SON EKLENEN -->
@@ -188,66 +99,39 @@
                     href="#"
                     class="bg-gradient-to-br from-white to-cyan-50 border border-slate-200 hover:border-cyan-400 rounded-3xl p-6 shadow-lg hover:shadow-xl backdrop-blur-md transition-all duration-300 group flex flex-col justify-between"
                 >
-
                     <div>
-
                         <div class="flex justify-between items-center mb-4">
-
-                            <span
-                                id="label-6-son"
-                                class="bg-cyan-50 text-cyan-700 text-xs font-bold px-3 py-1 rounded-full border border-cyan-200"
-                            >
+                            <span id="label-6-son" class="bg-cyan-50 text-cyan-700 text-xs font-bold px-3 py-1 rounded-full border border-cyan-200">
                                 6. Sınıf • Son Eklenen
                             </span>
-
-                            <div
-                                id="num-6-son"
-                                class="w-8 h-8 rounded-xl bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold text-xs border border-cyan-200"
-                            >
+                            <div id="num-6-son" class="w-8 h-8 rounded-xl bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold text-xs border border-cyan-200">
                                 -
                             </div>
-
                         </div>
 
                         <div class="w-full aspect-[16/9] bg-slate-100 border border-slate-200 rounded-2xl mb-4 overflow-hidden flex items-center justify-center relative group-hover:border-cyan-400 transition-all">
-
                             <img
                                 id="img-6-son"
                                 src="6.sinif/6.jfif"
                                 alt="6. Sınıf Son Eklenen"
                                 class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                             >
-
                             <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
-
                                 <span class="px-4 py-2 bg-cyan-600/90 text-white text-xs font-bold rounded-xl flex items-center space-x-1.5 shadow-lg">
-
                                     <i class="fa-solid fa-book-open"></i>
-
                                     <span>İçeriği İncele</span>
-
                                 </span>
-
                             </div>
-
                         </div>
 
                         <h3 class="text-lg font-bold text-slate-900 group-hover:text-cyan-600 transition-colors flex items-center justify-between">
-
-                            <span id="baslik-6-son">
-                                Yükleniyor...
-                            </span>
-
+                            <span id="baslik-6-son">Yükleniyor...</span>
                             <i class="fa-solid fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
-
                         </h3>
-
                     </div>
-
                 </a>
 
             </div>
-
         </section>
 
         <!-- 2. BÖLÜM: SINIF GÖRSEL SEÇİM KARTLARI -->
@@ -255,406 +139,143 @@
 
             <!-- 5. SINIF KARTI -->
             <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden hover:border-blue-400 transition-all duration-300 group flex flex-col justify-between shadow-lg hover:shadow-xl">
-
                 <div>
-
                     <div class="relative w-full bg-[#f39c12]/10 flex items-center justify-center p-2 border-b border-slate-200">
-
                         <img
                             src="images/sinif_5_yeni_nesil_sinif.png"
                             alt="5. Sınıflar"
                             class="w-full h-auto max-h-64 object-contain rounded-2xl group-hover:scale-[1.02] transition-transform duration-300"
                         >
-
                         <span class="absolute top-4 right-4 bg-blue-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-blue-400/30 shadow-lg">
                             5. Sınıf
                         </span>
-
                     </div>
 
                     <div class="p-6">
-
                         <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
                             5. Sınıf Bilişim Teknolojileri
                         </h3>
-
                         <p class="text-slate-600 text-sm leading-relaxed">
                             Bilişim teknolojilerini tanır, güvenli ve etik kullanır, dosyalarını düzenler, görsel, belge ve sunum hazırlar, yapay zekâyı sorgular ve blok tabanlı kodlamayla ilk yazılımlarını geliştirir.
                         </p>
-
                     </div>
-
                 </div>
 
                 <div class="px-6 pb-6">
-
                     <button
                         type="button"
                         onclick="sinifModalAc('5')"
                         class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center space-x-2 cursor-pointer"
                     >
-
                         <span>5. Sınıf Eklenen İçerikleri Gör</span>
-
                         <i class="fa-solid fa-arrow-right text-xs"></i>
-
                     </button>
-
                 </div>
-
             </div>
 
             <!-- 6. SINIF KARTI -->
             <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden hover:border-cyan-400 transition-all duration-300 group flex flex-col justify-between shadow-lg hover:shadow-xl">
-
                 <div>
-
                     <div class="relative w-full bg-[#e74c3c]/10 flex items-center justify-center p-2 border-b border-slate-200">
-
                         <img
                             src="images/sinif_6_yeni_nesil_sinif.png"
                             alt="6. Sınıflar"
                             class="w-full h-auto max-h-64 object-contain rounded-2xl group-hover:scale-[1.02] transition-transform duration-300"
                         >
-
                         <span class="absolute top-4 right-4 bg-cyan-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-cyan-400/30 shadow-lg">
                             6. Sınıf
                         </span>
-
                     </div>
 
                     <div class="p-6">
-
                         <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">
                             6. Sınıf Bilişim Teknolojileri
                         </h3>
-
                         <p class="text-slate-600 text-sm leading-relaxed">
                             Verileri analiz eder, grafiğe döker, ses ve video kurgular, telif ve siber güvenliği öğrenir, yapay zekâ destekli yazılım ürünleri ortaya koyar ve blok tabanlı kodlama ile yazılım geliştirir.
                         </p>
-
                     </div>
-
                 </div>
 
                 <div class="px-6 pb-6">
-
                     <button
                         type="button"
                         onclick="sinifModalAc('6')"
                         class="w-full py-3.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-cyan-600/20 flex items-center justify-center space-x-2 cursor-pointer"
                     >
-
                         <span>6. Sınıf Eklenen İçerikleri Gör</span>
-
                         <i class="fa-solid fa-arrow-right text-xs"></i>
-
                     </button>
-
                 </div>
-
             </div>
 
         </section>
 
     </main>
 
-    <!-- SINIFLAR İÇİN DERS İÇERİK MODALI -->
-    <div
-        id="sinifModal"
-        class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
-    >
+    <!-- ORTAK ALT BİLGİ -->
+    <div id="site-footer"></div>
 
-        <div class="bg-white border border-slate-200 w-full max-w-4xl max-h-[90vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden">
-
-            <div class="px-6 py-5 border-b border-slate-200 flex items-center justify-between bg-white/90 sticky top-0 z-10">
-
-                <h3 id="modalBaslik" class="text-xl font-bold text-slate-900">
-                    Sınıf Planı
-                </h3>
-
-                <button
-                    type="button"
-                    onclick="modalKapat()"
-                    class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-all cursor-pointer"
-                >
-
-                    <i class="fa-solid fa-xmark text-lg"></i>
-
-                </button>
-
-            </div>
-
-            <div
-                id="modalIcerikContainer"
-                class="p-6 overflow-y-auto space-y-3 flex-grow"
-            >
-                <!-- Sadece yayinlananDersler listesindekiler buraya gelir -->
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- ALT BİLGİ -->
-    <footer class="bg-white border-t border-slate-200 mt-16 py-8 text-center text-xs text-slate-500">
-
-        <p>
-            &copy;2026 batunver Tüm hakları saklıdır. - Bilişim Teknolojileri ve Yazılım Dersi Portalı 
-        </p>
-
-    </footer>
-
-    <!-- VERİ DOSYASI VE MANTIK -->
+    <!-- VERİ DOSYASI VE ORTAK YERLEŞİM -->
     <script src="data.js"></script>
+    <script src="layout.js"></script>
 
     <script>
-
-        // YAYINLANAN DERSLER LİSTESİ
-        // 6. Hafta ve yeni eklenen 7. Hafta
-        const yayinlananDersler = [
-            "5-hafta-8",
-            "5-hafta-9",
-            "5-hafta-10",
-            "6-hafta-6",
-            "6-hafta-7",
-            "6-hafta-8",
-            "6-hafta-9"
-            
-        ];
-
         document.addEventListener("DOMContentLoaded", function() {
             sonEklenenleriGuncelle();
         });
 
         function sonEklenenleriGuncelle() {
-
-            if (typeof dersIcerikleri === 'undefined') return;
+            if (typeof dersIcerikleri === 'undefined' || typeof yayinlananDersler === 'undefined') return;
 
             let enSon5 = null;
             let enSon6 = null;
 
             yayinlananDersler.forEach(key => {
-
                 const veri = dersIcerikleri[key];
-
                 if (!veri) return;
 
                 if (String(veri.sinif) === '5' || key.startsWith('5-')) {
-
                     if (!enSon5 || Number(veri.hafta) >= Number(enSon5.hafta)) {
-                        enSon5 = {
-                            key,
-                            ...veri
-                        };
+                        enSon5 = { key, ...veri };
                     }
-
                 } else if (String(veri.sinif) === '6' || key.startsWith('6-')) {
-
                     if (!enSon6 || Number(veri.hafta) >= Number(enSon6.hafta)) {
-                        enSon6 = {
-                            key,
-                            ...veri
-                        };
+                        enSon6 = { key, ...veri };
                     }
-
                 }
-
             });
 
-            // 5. SINIF SON EKLENEN KARTI
             const btn5 = document.getElementById("btn-5-son");
             const num5 = document.getElementById("num-5-son");
             const baslik5 = document.getElementById("baslik-5-son");
             const img5 = document.getElementById("img-5-son");
 
             if (enSon5) {
-
                 if (btn5) btn5.href = `icerik.html?id=${enSon5.key}`;
-
                 if (num5) num5.innerText = enSon5.hafta;
-
                 if (baslik5) baslik5.innerText = enSon5.baslik;
-
-                if (img5) {
-                    img5.src = enSon5.kapakResmi || `5.sinif/${enSon5.hafta}.jfif`;
-                }
-
+                if (img5) img5.src = enSon5.kapakResmi || `5.sinif/${enSon5.hafta}.jfif`;
             } else {
-
-                if (btn5) {
-                    btn5.href = "#";
-                    btn5.style.opacity = "0.6";
-                }
-
-                if (baslik5) {
-                    baslik5.innerText = "Henüz içerik eklenmedi";
-                }
-
+                if (btn5) { btn5.href = "#"; btn5.style.opacity = "0.6"; }
+                if (baslik5) baslik5.innerText = "Henüz içerik eklenmedi";
             }
 
-            // 6. SINIF SON EKLENEN KARTI
-            // 7. Hafta otomatik gelecek
             const btn6 = document.getElementById("btn-6-son");
             const num6 = document.getElementById("num-6-son");
             const baslik6 = document.getElementById("baslik-6-son");
             const img6 = document.getElementById("img-6-son");
 
             if (enSon6) {
-
                 if (btn6) btn6.href = `icerik.html?id=${enSon6.key}`;
-
                 if (num6) num6.innerText = enSon6.hafta;
-
                 if (baslik6) baslik6.innerText = enSon6.baslik;
-
-                if (img6) {
-                    img6.src = enSon6.kapakResmi || `6.sinif/${enSon6.hafta}.jfif`;
-                }
-
+                if (img6) img6.src = enSon6.kapakResmi || `6.sinif/${enSon6.hafta}.jfif`;
             } else {
-
-                if (btn6) {
-                    btn6.href = "#";
-                    btn6.style.opacity = "0.6";
-                }
-
-                if (baslik6) {
-                    baslik6.innerText = "Henüz içerik eklenmedi";
-                }
-
+                if (btn6) { btn6.href = "#"; btn6.style.opacity = "0.6"; }
+                if (baslik6) baslik6.innerText = "Henüz içerik eklenmedi";
             }
-
         }
-
-        // SINIF MODALINI AÇ
-        function sinifModalAc(sinif) {
-
-            const modal = document.getElementById("sinifModal");
-            const modalBaslik = document.getElementById("modalBaslik");
-            const container = document.getElementById("modalIcerikContainer");
-
-            if (!modal || !container) return;
-
-            modalBaslik.innerText = `${sinif}. Sınıf Eklenen Ders İçerikleri`;
-
-            container.innerHTML = "";
-
-            let eklenenSayisi = 0;
-
-            if (typeof dersIcerikleri !== 'undefined') {
-
-                yayinlananDersler.forEach(key => {
-
-                    const veri = dersIcerikleri[key];
-
-                    if (!veri) return;
-
-                    const sinifEslesiyor =
-                        String(veri.sinif) === String(sinif) ||
-                        key.startsWith(sinif + "-");
-
-                    if (sinifEslesiyor) {
-
-                        eklenenSayisi++;
-
-                        const haftaNum = veri.hafta || key.split('-')[2] || '1';
-
-                        const baslik = veri.baslik;
-
-                        const kazanim = veri.kazanim || '';
-
-                        const item = document.createElement("a");
-
-                        item.href = `icerik.html?id=${key}`;
-
-                        item.className =
-                            "flex items-center justify-between p-4 bg-white hover:bg-slate-50 border border-slate-200 shadow-sm rounded-2xl transition-all group";
-
-                        item.innerHTML = `
-
-                            <div class="flex items-center space-x-4">
-
-                                <div class="w-10 h-10 rounded-xl ${
-                                    sinif === '5'
-                                        ? 'bg-blue-100 text-blue-700 border-blue-200'
-                                        : 'bg-cyan-100 text-cyan-700 border-cyan-200'
-                                } flex items-center justify-center font-bold text-sm border shrink-0">
-
-                                    ${haftaNum}
-
-                                </div>
-
-                                <div>
-
-                                    <h4 class="font-bold text-slate-900 text-sm sm:text-base group-hover:${
-                                        sinif === '5'
-                                            ? 'text-blue-600'
-                                            : 'text-cyan-600'
-                                    } transition-colors">
-
-                                        ${baslik}
-
-                                    </h4>
-
-                                    <p class="text-xs text-slate-500 line-clamp-1">
-                                        ${kazanim}
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                            <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-slate-700 transition-colors ml-2 shrink-0"></i>
-
-                        `;
-
-                        container.appendChild(item);
-
-                    }
-
-                });
-
-            }
-
-            if (eklenenSayisi === 0) {
-
-                container.innerHTML = `
-                    <p class="text-center text-slate-500 py-8 text-sm">
-                        Bu sınıfa ait henüz içerik eklenmemiştir.
-                    </p>
-                `;
-
-            }
-
-            modal.classList.remove("hidden");
-
-            document.body.style.overflow = "hidden";
-
-        }
-
-        // MODALI KAPAT
-        function modalKapat() {
-
-            const modal = document.getElementById("sinifModal");
-
-            if (modal) {
-                modal.classList.add("hidden");
-            }
-
-            document.body.style.overflow = "auto";
-
-        }
-
-        // ESC TUŞU İLE MODALI KAPAT
-        document.addEventListener("keydown", function(e) {
-
-            if (e.key === "Escape") {
-                modalKapat();
-            }
-
-        });
-
     </script>
 
 </body>
