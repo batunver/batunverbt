@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>batunver-Bilgisayar ve Öğretim Teknolojileri</title>
+    <title>Ders İçeriği - batunver - Bilişim Teknolojileri ve Yazılım</title>
+    <meta name="description" content="5. ve 6. sınıf Bilişim Teknolojileri ve Yazılım dersi sunumu, ders notu ve etkileşimli etkinlikleri.">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome İkonlar -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/png" href="images/favicon.jpeg">
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -21,7 +24,7 @@
             }
         }
     </script>
-        <style>
+    <style>
         html, body { overflow-x: hidden; max-width: 100vw; }
         html:not(.dark) body { background-color: #f8fafc !important; color: #0f172a !important; }
         html:not(.dark) header, html:not(.dark) footer { background-color: rgba(255, 255, 255, 0.95) !important; border-color: #e2e8f0 !important; }
@@ -38,78 +41,37 @@
         html:not(.dark) .bg-emerald-600\/20, html:not(.dark) .bg-emerald-500\/20 { background-color: #ecfdf5 !important; border-color: #a7f3d0 !important; }
         html:not(.dark) .bg-purple-600\/20, html:not(.dark) .bg-purple-500\/10, html:not(.dark) .bg-purple-500\/20 { background-color: #f5f3ff !important; border-color: #ddd6fe !important; }
         @media (max-width: 768px) {
-            header > div { height: auto !important; min-height: 4.5rem !important; padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; flex-direction: column !important; gap: 0.5rem !important; }
-            header nav, header > div > div { flex-wrap: wrap !important; justify-content: center !important; gap: 0.375rem !important; width: 100% !important; }
-            header a.group { height: 3.75rem !important; }
-            header a.group img { height: 6.5rem !important; transform: none !important; max-width: 80vw !important; }
             #ders-sunusu-alani > div:first-child, #ders-notu-alani > div:first-child, #etkinlik-kartlari-container > div > div:first-child { flex-direction: column !important; align-items: flex-start !important; gap: 0.75rem !important; }
             #sunu-pencere { min-height: 230px !important; }
             #ders-notu-pencere { height: 480px !important; }
         }
-    </style><style>
-        html:not(.dark) body { background-color: #f8fafc !important; color: #0f172a !important; }
-        html:not(.dark) header, html:not(.dark) footer { background-color: rgba(255, 255, 255, 0.95) !important; border-color: #cbd5e1 !important; }
-        html:not(.dark) .bg-slate-800\/80, html:not(.dark) .bg-slate-800\/90, html:not(.dark) .bg-slate-800\/40 { background-color: #ffffff !important; border-color: #cbd5e1 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important; }
-        html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3 { color: #0f172a !important; }
-        html:not(.dark) p, html:not(.dark) .text-slate-400, html:not(.dark) .text-slate-300 { color: #475569 !important; }
-        html:not(.dark) header img { filter: brightness(0.15); }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800  min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
 
-    <!-- Üst Menü (Header) -->
-    <header class=bg-white/90 backdrop-blur border-b border-slate-200 shadow-sm sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-            <a href="index.html" class="flex items-center h-20 sm:h-24 overflow-hidden group">
-                <img src="images/logo3.jpg" class="h-40 sm:h-48 w-auto max-w-none object-contain scale-125 group-hover:scale-[1.32] transition-transform duration-300 mix-blend-multiply" alt="Batunver">
-            </a>
-            <nav class="flex items-center space-x-2 sm:space-x-3">
-                <a href="index.html" class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100  transition flex items-center space-x-2"><i class="fa-solid fa-house"></i><span>Ana Sayfa</span></a>
-                <button
-                    type="button"
-                    onclick="sinifModalAc('5')"
-                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 ansition-all cursor-pointer"
-                >
-                    5. Sınıf
-                </button>
+    <!-- ORTAK ÜST MENÜ -->
+    <div id="site-header"></div>
 
-                <button
-                    type="button"
-                    onclick="sinifModalAc('6')"
-                    class="text-xs font-semibold px-3.5 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all cursor-pointer"
-                >
-                    6. Sınıf
-                </button>
-
-                
-
-            </nav>
-        </div>
-    </header>
-  <!-- Ana İçerik -->
+    <!-- Ana İçerik -->
     <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-8">
 
         <!-- 1. Ders Bilgi Kartı ve Hızlı Erişim -->
         <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md space-y-6">
             <div class="space-y-3">
-                <!-- Sınıf ve Hafta Rozeti -->
                 <div class="flex items-center space-x-2">
                     <span id="ders-sinif-hafta" class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20">
                         Yükleniyor...
                     </span>
                 </div>
 
-                <!-- Ders Başlığı -->
                 <h1 id="ders-baslik" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                     Ders Konusu Yükleniyor...
                 </h1>
 
-                <!-- Kazanım Rozeti -->
                 <div class="inline-block bg-purple-500/10 text-purple-300 text-xs font-semibold px-3 py-1.5 rounded-xl border border-purple-500/20">
                     <span id="ders-kazanim">Kazanım yükleniyor...</span>
                 </div>
 
-                <!-- Açıklama -->
                 <p id="ders-aciklama" class="text-slate-300 text-xs sm:text-sm leading-relaxed pt-2">
                     Ders içeriği hazırlanıyor...
                 </p>
@@ -129,10 +91,10 @@
             </div>
         </div>
 
-        <!-- ÖZEL UYGULAMA / YÖNERGE ALANI (Sunu ve Ders Notu Olmayan Haftalar İçin) -->
+        <!-- ÖZEL UYGULAMA / YÖNERGE ALANI -->
         <div id="ozel-icerik-alani" class="hidden space-y-6"></div>
 
-        <!-- 2. DERS SUNUSU ALANI (Etkileşimli Canlı Oynatıcı) -->
+        <!-- 2. DERS SUNUSU ALANI -->
         <section id="ders-sunusu-alani" class="bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 shadow-xl space-y-4">
             <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
                 <div class="flex items-center space-x-3">
@@ -156,7 +118,6 @@
                 </div>
             </div>
 
-            <!-- Etkileşimli Sunum Görüntüleyici Çerçevesi -->
             <div id="sunu-pencere" class="relative aspect-[16/9] w-full bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60 shadow-lg flex items-center justify-center">
                 <iframe id="sunu-iframe" src="" class="w-full h-full border-0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
             </div>
@@ -171,7 +132,7 @@
             <div id="etkinlik-kartlari-container" class="space-y-6"></div>
         </section>
 
-        <!-- 4. DERS NOTU / KONU ÖZETİ ALANI (Doğrudan Açılan & Gömülü Alan) -->
+        <!-- 4. DERS NOTU / KONU ÖZETİ ALANI -->
         <section id="ders-notu-alani" class="bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 sm:p-8 shadow-xl space-y-4">
             <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
                 <div class="flex items-center space-x-3">
@@ -195,11 +156,11 @@
                 </div>
             </div>
 
-            <!-- Doğrudan Gömülü Ders Notu Okuma Çerçevesi -->
             <div id="ders-notu-pencere" class="relative w-full h-[650px] sm:h-[750px] bg-slate-950 rounded-2xl overflow-hidden border border-slate-700/60 shadow-lg flex items-center justify-center">
                 <iframe id="ders-notu-iframe" src="" class="w-full h-full border-0" allowfullscreen="true"></iframe>
             </div>
         </section>
+
         <!-- 5. ÖDEV VE ÇALIŞMA DOSYALARI ALANI -->
         <section id="dosyalar-alani" class="hidden bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">
             <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
@@ -214,22 +175,18 @@
                 </div>
             </div>
 
-            <!-- data.js içindeki dosyalar dizisi buraya otomatik dizilir -->
             <div id="dosyalar-kartlari-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
-
-            <!-- 6-hafta-8 için Ara Tatil Ödevi Hikaye Kurgusu, Bitmiş Video ve Tek Tek İndirme Alanı -->
             <div id="odev-detay-container" class="space-y-6"></div>
         </section>
 
     </main>
 
-    <!-- Alt Bilgi -->
-    <footer class="bg-slate-800/40 border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-400">
-        <p>&copy;2026 batunver Tüm hakları saklıdır. - Bilişim Teknolojileri ve Yazılım Dersi Portalı
-    </footer>
+    <!-- ORTAK ALT BİLGİ -->
+    <div id="site-footer"></div>
 
     <!-- Scriptler -->
     <script src="data.js"></script>
+    <script src="layout.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const urlParams = new URLSearchParams(window.location.search);
@@ -238,7 +195,7 @@
             if (typeof dersIcerikleri !== 'undefined' && dersIcerikleri[icerikId]) {
                 const veri = dersIcerikleri[icerikId];
 
-                // Temel Bilgiler
+                document.title = `${veri.baslik} - batunver`;
                 document.getElementById('ders-sinif-hafta').innerText = `${veri.sinif}. Sınıf • ${veri.hafta}. Hafta`;
                 document.getElementById('ders-baslik').innerText = veri.baslik;
                 document.getElementById('ders-kazanim').innerText = `Kazanım: ${veri.kazanim}`;
@@ -246,14 +203,13 @@
                     document.getElementById('ders-aciklama').innerText = veri.aciklama;
                 }
 
-                // Özel İçerik Alanı
                 const ozelIcerikAlani = document.getElementById('ozel-icerik-alani');
                 if (veri.ozelIcerikHtml) {
                     ozelIcerikAlani.innerHTML = veri.ozelIcerikHtml;
                     ozelIcerikAlani.classList.remove('hidden');
                 }
 
-                // 1. DERS SUNUSU (İnteraktif Oynatıcı)
+                // 1. DERS SUNUSU
                 const sunuSection = document.getElementById('ders-sunusu-alani');
                 const sunuIframe = document.getElementById('sunu-iframe');
                 const sunuDisLink = document.getElementById('sunu-dis-link');
@@ -275,7 +231,7 @@
                     if (btnSunu) btnSunu.style.display = 'none';
                 }
 
-                // 2. DERS NOTU / KONU ÖZETİ (Gömülü Okuyucu)
+                // 2. DERS NOTU
                 const dersNotuSection = document.getElementById('ders-notu-alani');
                 const dersNotuIframe = document.getElementById('ders-notu-iframe');
                 const dersNotuDisLink = document.getElementById('ders-notu-dis-link');
@@ -297,7 +253,7 @@
                     if (btnDersNotu) btnDersNotu.style.display = 'none';
                 }
 
-                // 3. İNTERAKTİF ETKİNLİKLER ALANI (Akıllı Çerçeve ve Dış Bağlantı Desteği)
+                // 3. İNTERAKTİF ETKİNLİKLER
                 const butonlarBar = document.getElementById('hizli-erisim-butonlari');
                 const etkinlikContainer = document.getElementById('etkinlik-kartlari-container');
                 const etkinlikBaslik = document.getElementById('etkinlik-baslik-alani');
@@ -315,7 +271,6 @@
                         const etkId = `etkinlik-${etkNum}`;
                         const pencereId = `etk-pencere-${etkNum}`;
 
-                        // Hızlı erişim butonu
                         const btn = document.createElement('a');
                         btn.href = `#${etkId}`;
                         btn.className = "px-4 py-2.5 bg-purple-600/20 border border-purple-500/40 hover:bg-purple-600/40 text-purple-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm";
@@ -326,11 +281,9 @@
                         etkKart.id = etkId;
                         etkKart.className = "bg-slate-800/70 border border-slate-700/70 rounded-3xl p-6 shadow-xl space-y-4";
 
-                        // Çerçeve (iframe) engeli olan dış siteler (Örn: blockodlama.com) kontrolü
                         const iframeEngelli = etk.url.includes('blockodlama.com') || etk.url.includes('sinanakdemir') || etk.disBaglanti === true;
 
                         if (iframeEngelli) {
-                            // Dış site için şık başlatma kartı (Gri "bağlanmayı reddetti" hatasını önler)
                             etkKart.innerHTML = `
                                 <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
                                     <div class="flex items-center space-x-3">
@@ -354,7 +307,6 @@
                                 </div>
                             `;
                         } else {
-                            // Kendi yerel stüdyonuz için normal gömülü çerçeve (iframe)
                             etkKart.innerHTML = `
                                 <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
                                     <div class="flex items-center space-x-3">
@@ -381,6 +333,7 @@
                         etkinlikContainer.appendChild(etkKart);
                     });
                 }
+
                 // 4. ÖDEV VE ÇALIŞMA DOSYALARI ALANI
                 const dosyalarAlani = document.getElementById('dosyalar-alani');
                 const dosyalarContainer = document.getElementById('dosyalar-kartlari-container');
@@ -389,7 +342,6 @@
                 if (veri.dosyalar && veri.dosyalar.length > 0 && dosyalarAlani && dosyalarContainer) {
                     dosyalarAlani.classList.remove('hidden');
 
-                    // Üst hızlı erişim çubuğuna "Ödev & Dosyalar" butonu ekle
                     const btnDosyalar = document.createElement('a');
                     btnDosyalar.href = '#dosyalar-alani';
                     btnDosyalar.className = "px-4 py-2.5 bg-amber-600/20 border border-amber-500/40 hover:bg-amber-600/40 text-amber-300 text-xs font-bold rounded-xl transition-all flex items-center space-x-2 shadow-sm";
@@ -435,7 +387,6 @@
                         dosyalarContainer.appendChild(kart);
                     });
 
-                    // 6-hafta-8 sayfasında Hikaye Kurgusu, Bitmiş Video Oynatıcısı ve 12 Materyali Tek Tek İndirme Listesi
                     if (icerikId === '6-hafta-8' && odevDetayContainer) {
                         odevDetayContainer.innerHTML = `
                             <div class="border-t border-slate-700/60 pt-6 space-y-6">
@@ -500,47 +451,24 @@
                     document.getElementById('hizli-erisim-cizgi').style.display = 'none';
                     butonlarBar.style.display = 'none';
                 }
+            } else {
+                document.getElementById('ders-sinif-hafta').innerText = 'İçerik Bulunamadı';
+                document.getElementById('ders-baslik').innerText = 'Bu haftaya ait içerik henüz yayınlanmadı';
+                document.getElementById('ders-kazanim').innerText = 'Kazanım: -';
+                document.getElementById('ders-aciklama').innerHTML = 'Ana sayfaya dönüp yayınlanan haftalardan birini seçebilirsiniz. <a href="index.html" class="text-blue-600 underline font-semibold ml-1">Ana Sayfaya Dön</a>';
+                document.getElementById('ders-sunusu-alani').style.display = 'none';
+                document.getElementById('ders-notu-alani').style.display = 'none';
+                document.getElementById('hizli-erisim-cizgi').style.display = 'none';
+                document.getElementById('hizli-erisim-butonlari').style.display = 'none';
             }
         });
 
         function ogeTamEkranYap(elementId) {
             const elem = document.getElementById(elementId);
             if (!elem) return;
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) {
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) {
-                elem.msRequestFullscreen();
-            }
-        }
-        function temaUygula(dark) {
-            const html = document.documentElement;
-            const ikon = document.getElementById('temaIkon');
-            const metin = document.getElementById('temaMetin');
-            if (dark) {
-                html.classList.add('light');
-                if (ikon) ikon.className = 'fa-solid fa-sun';
-                if (metin) metin.textContent = 'Açık Tema';
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.classList.remove('light');
-                if (ikon) ikon.className = 'fa-solid fa-moon';
-                if (metin) metin.textContent = 'Karanlık Tema';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        function temaDegistir() {
-            const isDark = document.documentElement.classList.contains('light');
-            temaUygula(!isDark);
-        }
-
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            temaUygula(false);
-        } else {
-            temaUygula(true);
+            if (elem.requestFullscreen) elem.requestFullscreen();
+            else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+            else if (elem.msRequestFullscreen) elem.msRequestFullscreen();
         }
     </script>
 </body>
