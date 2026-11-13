@@ -169,6 +169,25 @@
 
             const is5 = aktifSinif === '5';
             liste.forEach(veri => {
+                const sunuVar = Boolean(veri.sunuEmbed || veri.sunuUrl);
+                const dersNotuVar = Boolean(veri.dersNotuEmbed || veri.dersNotuUrl || veri.dersNotuPdf);
+                const etkinlikSayisi = (veri.etkinlikler ? veri.etkinlikler.length : 0) + (veri.alternatifEtkinlikler ? veri.alternatifEtkinlikler.length : 0);
+                const dosyaSayisi = veri.dosyalar ? veri.dosyalar.length : 0;
+
+                const etiketler = [];
+                if (sunuVar) {
+                    etiketler.push(`<span><i class="fa-solid fa-file-powerpoint text-blue-500 mr-1"></i>Sunu</span>`);
+                }
+                if (dersNotuVar) {
+                    etiketler.push(`<span><i class="fa-solid fa-book-open text-emerald-600 mr-1"></i>Ders Notu</span>`);
+                }
+                if (etkinlikSayisi > 0) {
+                    etiketler.push(`<span><i class="fa-solid fa-gamepad text-purple-500 mr-1"></i>${etkinlikSayisi} Etkinlik</span>`);
+                }
+                if (dosyaSayisi > 0) {
+                    etiketler.push(`<span><i class="fa-solid fa-folder-open text-amber-500 mr-1"></i>${dosyaSayisi} Dosya</span>`);
+                }
+
                 const kart = document.createElement('a');
                 kart.href = `icerik.html?id=${veri.key}`;
                 kart.className = "bg-white border border-slate-200 hover:border-blue-400 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between gap-4 group";
@@ -185,9 +204,8 @@
                         </h3>
                         <p class="text-xs text-slate-500 line-clamp-2">${veri.kazanim || ''}</p>
                     </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-500">
-                        <span>${(veri.sunuEmbed || veri.sunuUrl) ? '<i class="fa-solid fa-file-powerpoint text-blue-500 mr-1"></i>Sunu' : ''}</span>
-                        <span>${(veri.etkinlikler && veri.etkinlikler.length) ? `<i class="fa-solid fa-gamepad text-purple-500 mr-1"></i>${veri.etkinlikler.length} Etkinlik` : ''}</span>
+                    <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] font-semibold text-slate-500">
+                        ${etiketler.join('')}
                     </div>
                 `;
                 grid.appendChild(kart);
