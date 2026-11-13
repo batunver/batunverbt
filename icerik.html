@@ -55,6 +55,18 @@
     <!-- Ana İçerik -->
     <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-8">
 
+        <!-- Ekmek Kırıntısı (Breadcrumb) -->
+        <nav aria-label="Sayfa Yolu" class="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+            <a href="index.html" class="hover:text-blue-600 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-house"></i>
+                <span>Ana Sayfa</span>
+            </a>
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            <a id="breadcrumb-sinif-link" href="sinif.html?sinif=5" class="hover:text-blue-600 font-medium">Sınıf</a>
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            <span id="breadcrumb-hafta" class="font-bold text-slate-800">Hafta</span>
+        </nav>
+
         <!-- 1. Ders Bilgi Kartı ve Hızlı Erişim -->
         <div class="bg-slate-800/80 border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md space-y-6">
             <div class="space-y-3">
@@ -179,6 +191,9 @@
             <div id="odev-detay-container" class="space-y-6"></div>
         </section>
 
+        <!-- ÖNCEKİ / SONRAKİ HAFTA GEÇİŞ ÇUBUĞU -->
+        <nav id="hafta-gecis-bar" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2"></nav>
+
     </main>
 
     <!-- ORTAK ALT BİLGİ -->
@@ -202,6 +217,20 @@
                 if (veri.aciklama) {
                     document.getElementById('ders-aciklama').innerText = veri.aciklama;
                 }
+
+                // Ekmek Kırıntısı Güncelle
+                const bcSinif = document.getElementById('breadcrumb-sinif-link');
+                const bcHafta = document.getElementById('breadcrumb-hafta');
+                if (bcSinif) {
+                    bcSinif.href = `sinif.html?sinif=${veri.sinif}`;
+                    bcSinif.innerText = `${veri.sinif}. Sınıf`;
+                }
+                if (bcHafta) {
+                    bcHafta.innerText = `${veri.hafta}. Hafta`;
+                }
+
+                // Önceki / Sonraki Hafta Butonları
+                haftaGecisButonlariniOlustur(icerikId, veri.sinif);
 
                 const ozelIcerikAlani = document.getElementById('ozel-icerik-alani');
                 if (veri.ozelIcerikHtml) {
@@ -462,6 +491,46 @@
                 document.getElementById('hizli-erisim-butonlari').style.display = 'none';
             }
         });
+
+        function haftaGecisButonlariniOlustur(mevcutId, sinif) {
+            const bar = document.getElementById('hafta-gecis-bar');
+            if (!bar || typeof yayinlananDersler === 'undefined' || typeof dersIcerikleri === 'undefined') return;
+
+            const liste = yayinlananDersler
+                .filter(k => dersIcerikleri[k] && (String(dersIcerikleri[k].sinif) === String(sinif) || k.startsWith(sinif + '-')))
+                .sort((a, b) => Number(dersIcerikleri[a].hafta) - Number(dersIcerikleri[b].hafta));
+
+            const idx = liste.indexOf(mevcutId);
+            if (idx === -1) return;
+
+            const oncekiKey = idx > 0 ? liste[idx - 1] : null;
+            const sonrakiKey = idx < liste.length - 1 ? liste[idx + 1] : null;
+            if (!oncekiKey && !sonrakiKey) return;
+
+            bar.classList.remove('hidden');
+            bar.innerHTML = `
+                <div>
+                    ${oncekiKey ? `
+                    <a href="icerik.html?id=${oncekiKey}" class="flex items-center gap-3 p-4 bg-white border border-slate-200 hover:border-blue-400 rounded-2xl shadow-sm transition group">
+                        <i class="fa-solid fa-arrow-left text-slate-400 group-hover:text-blue-600"></i>
+                        <div>
+                            <div class="text-[11px] font-semibold text-slate-400">Önceki Hafta (${dersIcerikleri[oncekiKey].hafta}. Hafta)</div>
+                            <div class="text-sm font-bold text-slate-800 group-hover:text-blue-600 line-clamp-1">${dersIcerikleri[oncekiKey].baslik}</div>
+                        </div>
+                    </a>` : ''}
+                </div>
+                <div>
+                    ${sonrakiKey ? `
+                    <a href="icerik.html?id=${sonrakiKey}" class="flex items-center justify-end text-right gap-3 p-4 bg-white border border-slate-200 hover:border-blue-400 rounded-2xl shadow-sm transition group">
+                        <div>
+                            <div class="text-[11px] font-semibold text-slate-400">Sonraki Hafta (${dersIcerikleri[sonrakiKey].hafta}. Hafta)</div>
+                            <div class="text-sm font-bold text-slate-800 group-hover:text-blue-600 line-clamp-1">${dersIcerikleri[sonrakiKey].baslik}</div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-slate-400 group-hover:text-blue-600"></i>
+                    </a>` : ''}
+                </div>
+            `;
+        }
 
         function ogeTamEkranYap(elementId) {
             const elem = document.getElementById(elementId);
