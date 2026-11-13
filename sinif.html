@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sınıf İçerikleri - batunver - Bilişim Teknolojileri ve Yazılım</title>
+    <meta name="description" content="5. ve 6. sınıf Bilişim Teknolojileri ve Yazılım dersi tüm haftalık konular, sunumlar ve etkinlikler.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome İkonlar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="images/favicon.jpeg">
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white">
+
+    <!-- ORTAK ÜST MENÜ -->
+    <div id="site-header"></div>
+
+    <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-8">
+
+        <!-- Ekmek Kırıntısı -->
+        <nav aria-label="Sayfa Yolu" class="flex items-center gap-2 text-xs text-slate-500">
+            <a href="index.html" class="hover:text-blue-600 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-house"></i>
+                <span>Ana Sayfa</span>
+            </a>
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            <span id="breadcrumb-sinif" class="font-bold text-slate-800">5. Sınıf</span>
+        </nav>
+
+        <!-- Üst Başlık ve Arama -->
+        <section class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="space-y-1.5">
+                <div class="flex items-center gap-2">
+                    <span id="sinif-rozet" class="text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">5. Sınıf</span>
+                    <span id="toplam-ders-rozet" class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-600">0 İçerik</span>
+                </div>
+                <h1 id="sinif-baslik" class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+                    5. Sınıf Bilişim Teknolojileri ve Yazılım
+                </h1>
+                <p class="text-xs sm:text-sm text-slate-500">
+                    Yayınlanan tüm haftalık ders sunumları, ders notları ve etkinlikler.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-2 w-full md:w-auto">
+                <div class="relative flex-1 md:w-64">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input
+                        id="konuArama"
+                        type="text"
+                        placeholder="Konu veya kazanım ara..."
+                        class="w-full pl-9 pr-4 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition"
+                    >
+                </div>
+                <a id="diger-sinif-link" href="sinif.html?sinif=6" class="px-3.5 py-2.5 text-xs font-bold rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition whitespace-nowrap">
+                    6. Sınıfa Geç
+                </a>
+            </div>
+        </section>
+
+        <!-- Güncel Hafta Vurgusu -->
+        <section id="guncel-hafta-alani" class="hidden"></section>
+
+        <!-- Tüm Haftalar Listesi -->
+        <section class="space-y-4">
+            <h2 class="text-base sm:text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-layer-group text-blue-600"></i>
+                <span>Eklenen Tüm Haftalar</span>
+            </h2>
+            <div id="haftalar-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+            <p id="arama-bos" class="hidden text-center text-sm text-slate-500 py-10 bg-white border border-slate-200 rounded-2xl">
+                Aradığınız ifadeyle eşleşen ders içeriği bulunamadı.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- ORTAK ALT BİLGİ -->
+    <div id="site-footer"></div>
+
+    <script src="data.js"></script>
+    <script src="layout.js"></script>
+    <script>
+        let aktifSinif = '5';
+        let sinifDersleri = [];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            aktifSinif = params.get('sinif') === '6' ? '6' : '5';
+
+            const digerSinif = aktifSinif === '5' ? '6' : '5';
+            document.title = `${aktifSinif}. Sınıf İçerikleri - batunver`;
+            document.getElementById('breadcrumb-sinif').innerText = `${aktifSinif}. Sınıf`;
+            document.getElementById('sinif-baslik').innerText = `${aktifSinif}. Sınıf Bilişim Teknolojileri ve Yazılım`;
+
+            const rozet = document.getElementById('sinif-rozet');
+            rozet.innerText = `${aktifSinif}. Sınıf`;
+            rozet.className = aktifSinif === '5'
+                ? 'text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200'
+                : 'text-xs font-bold px-3 py-1 rounded-full bg-cyan-50 text-cyan-700 border border-cyan-200';
+
+            const digerLink = document.getElementById('diger-sinif-link');
+            digerLink.href = `sinif.html?sinif=${digerSinif}`;
+            digerLink.innerText = `${digerSinif}. Sınıfa Geç`;
+
+            if (typeof dersIcerikleri !== 'undefined' && typeof yayinlananDersler !== 'undefined') {
+                sinifDersleri = yayinlananDersler
+                    .filter(key => dersIcerikleri[key] && (String(dersIcerikleri[key].sinif) === aktifSinif || key.startsWith(aktifSinif + '-')))
+                    .map(key => ({ key, ...dersIcerikleri[key] }))
+                    .sort((a, b) => Number(a.hafta) - Number(b.hafta));
+            }
+
+            document.getElementById('toplam-ders-rozet').innerText = `${sinifDersleri.length} İçerik`;
+            guncelHaftaBas();
+            listeyiBas(sinifDersleri);
+
+            document.getElementById('konuArama').addEventListener('input', (e) => {
+                const q = e.target.value.trim().toLocaleLowerCase('tr');
+                const filtreli = sinifDersleri.filter(d =>
+                    (d.baslik || '').toLocaleLowerCase('tr').includes(q) ||
+                    (d.kazanim || '').toLocaleLowerCase('tr').includes(q) ||
+                    String(d.hafta).includes(q)
+                );
+                listeyiBas(filtreli);
+            });
+        });
+
+        function guncelHaftaBas() {
+            const alan = document.getElementById('guncel-hafta-alani');
+            if (!alan || sinifDersleri.length === 0) return;
+
+            const son = sinifDersleri[sinifDersleri.length - 1];
+            const is5 = aktifSinif === '5';
+            alan.classList.remove('hidden');
+            alan.innerHTML = `
+                <a href="icerik.html?id=${son.key}" class="block bg-gradient-to-r ${is5 ? 'from-blue-50 to-white border-blue-200 hover:border-blue-400' : 'from-cyan-50 to-white border-cyan-200 hover:border-cyan-400'} border rounded-3xl p-6 shadow-sm hover:shadow-md transition group">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="space-y-1.5">
+                            <span class="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full ${is5 ? 'bg-blue-600 text-white' : 'bg-cyan-600 text-white'}">
+                                <i class="fa-solid fa-star text-[10px]"></i>
+                                Güncel Hafta • ${son.hafta}. Hafta
+                            </span>
+                            <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 group-hover:${is5 ? 'text-blue-700' : 'text-cyan-700'} transition">
+                                ${son.baslik}
+                            </h2>
+                            <p class="text-xs text-slate-500">${son.kazanim || ''}</p>
+                        </div>
+                        <span class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-white ${is5 ? 'bg-blue-600' : 'bg-cyan-600'} shrink-0 self-start sm:self-center">
+                            <span>Derse Gir</span>
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </span>
+                    </div>
+                </a>
+            `;
+        }
+
+        function listeyiBas(liste) {
+            const grid = document.getElementById('haftalar-grid');
+            const bos = document.getElementById('arama-bos');
+            grid.innerHTML = '';
+
+            if (liste.length === 0) {
+                bos.classList.remove('hidden');
+                return;
+            }
+            bos.classList.add('hidden');
+
+            const is5 = aktifSinif === '5';
+            liste.forEach(veri => {
+                const kart = document.createElement('a');
+                kart.href = `icerik.html?id=${veri.key}`;
+                kart.className = "bg-white border border-slate-200 hover:border-blue-400 rounded-2xl p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between gap-4 group";
+                kart.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-lg border ${is5 ? 'bg-blue-50 text-blue-700 border-blue-200' : 'bg-cyan-50 text-cyan-700 border-cyan-200'}">
+                                ${veri.hafta}. Hafta
+                            </span>
+                            <i class="fa-solid fa-arrow-right text-xs text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base leading-snug group-hover:text-blue-600 transition">
+                            ${veri.baslik}
+                        </h3>
+                        <p class="text-xs text-slate-500 line-clamp-2">${veri.kazanim || ''}</p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-500">
+                        <span>${(veri.sunuEmbed || veri.sunuUrl) ? '<i class="fa-solid fa-file-powerpoint text-blue-500 mr-1"></i>Sunu' : ''}</span>
+                        <span>${(veri.etkinlikler && veri.etkinlikler.length) ? `<i class="fa-solid fa-gamepad text-purple-500 mr-1"></i>${veri.etkinlikler.length} Etkinlik` : ''}</span>
+                    </div>
+                `;
+                grid.appendChild(kart);
+            });
+        }
+    </script>
+</body>
+</html>
