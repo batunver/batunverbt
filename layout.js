@@ -91,6 +91,12 @@ function ortakModalBas() {
                 </button>
             </div>
             <div id="modalIcerikContainer" class="p-6 overflow-y-auto space-y-3 flex-grow"></div>
+                <div class="px-6 py-3.5 border-t border-slate-200 bg-slate-50 flex items-center justify-end">
+                    <a id="modalTumSayfaLink" href="sinif.html?sinif=5" class="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1.5">
+                        <span>Sınıfın Tüm İçerik Sayfasını Aç</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
         </div>
     </div>`;
 
