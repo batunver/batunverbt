@@ -85,17 +85,17 @@ const dersIcerikleri = {
         sunuEmbed: "https://drive.google.com/file/d/1xkF-rFhhgcMeF0CS26v1WdlsMjJXd8Jv/preview",
         sunuUrl: "https://drive.google.com/file/d/1xkF-rFhhgcMeF0CS26v1WdlsMjJXd8Jv/view?usp=sharing",
         etkinlikler: [
-            {
-                baslik: "Başlangıç Menüsü ve Biçimlendirme Araçlarını Öğreniyorum",
-                tur: "İnteraktif Atölye",
-                url: "folder/5/Etkinlik/libreoffice-etkinlik-1-2.html"
-            },
-              {
-                baslik: "Kelime İşlemci Programlarının Şifrelerini Çözüyorum)",
-                tur: "Mini Test",
-                url: "folder/5/Etkinlik/libreoffice-etkinlik-3.html"
-            }
-        ]
+        {
+            baslik: "Başlangıç Menüsü ve Biçimlendirme Araçlarını Öğreniyorum",
+            tur: "İnteraktif Atölye",
+            url: "/folder/5/Etkinlik/libreoffice-etkinlik-1-2.html"
+        },
+        {
+            baslik: "Kelime İşlemci Programlarının Şifrelerini Çözüyorum",
+            tur: "Mini Test",
+            url: "/folder/5/Etkinlik/libreoffice-etkinlik-3.html"
+        }
+    ]
     },
 
     // ==================================================
