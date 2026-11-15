@@ -12,7 +12,7 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--slate-bg); color: var(--text); padding: 16px; line-height: 1.55; }
-    .container { max-width: 1020px; margin: 0 auto; }
+    .container { max-width: 1040px; margin: 0 auto; }
     .hero {
       background: var(--navy); color: #fff; padding: 18px 24px; border-radius: 16px;
       margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
@@ -21,14 +21,14 @@
     .hero span { background: var(--accent); padding: 4px 12px; border-radius: 999px; font-size: 0.82rem; font-weight: 700; }
     .tabs { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
     .tab-btn {
-      flex: 1; min-width: 240px; padding: 12px 16px; border: 2px solid var(--border);
-      background: var(--card); color: var(--text); border-radius: 12px; font-weight: 700; cursor: pointer;
+      flex: 1; min-width: 210px; padding: 12px 14px; border: 2px solid var(--border);
+      background: var(--card); color: var(--text); border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 0.9rem;
     }
     .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
     .panel { display: none; }
     .panel.active { display: block; }
     .split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
-    @media (max-width: 840px) { .split { grid-template-columns: 1fr; } }
+    @media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
     .box { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
     .box h2 { font-size: 1.05rem; color: var(--navy); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
     .badge { background: var(--accent-soft); color: #0369a1; font-size: 0.78rem; padding: 3px 10px; border-radius: 999px; font-weight: 700; }
@@ -41,49 +41,58 @@
       min-width: 24px; height: 24px; border-radius: 50%; background: var(--navy); color: #fff;
       font-size: 0.78rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; margin-top: 1px;
     }
-    /* Bitmiş Örnek A4 Sayfa Görünümü */
     .a4-preview {
       background: #fff; border: 1px solid #94a3b8; border-radius: 8px;
-      padding: 28px 30px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
-      font-family: Georgia, 'Times New Roman', serif;
-      position: relative;
+      padding: 28px 26px 22px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+      font-family: Georgia, 'Times New Roman', serif; position: relative;
     }
     .margin-note {
       position: absolute; top: 8px; right: 12px; font-family: 'Segoe UI', sans-serif;
       font-size: 0.72rem; color: #64748b; background: #f1f5f9; padding: 2px 8px; border-radius: 6px;
     }
+    .anthem-layout { display: grid; grid-template-columns: 1fr 125px; gap: 14px; align-items: start; }
+    @media (max-width: 520px) { .anthem-layout { grid-template-columns: 1fr; } }
     .anthem-title {
-      text-align: center; color: #dc2626; font-size: 1.25rem; font-weight: 800;
-      letter-spacing: 0.5px; margin-bottom: 14px;
+      text-align: center; color: #dc2626; font-size: 1.22rem; font-weight: 800;
+      letter-spacing: 0.5px; margin-bottom: 14px; margin-top: 6px;
     }
-    .anthem-stanza {
-      text-align: justify; font-size: 0.92rem; line-height: 1.75; margin-bottom: 14px; color: #0f172a;
+    .anthem-stanza { text-align: justify; font-size: 0.9rem; line-height: 1.7; margin-bottom: 12px; color: #0f172a; }
+    .anthem-visuals { display: flex; flex-direction: column; gap: 10px; align-items: center; margin-top: 6px; }
+    .visual-frame {
+      width: 118px; border: 1px solid #cbd5e1; border-radius: 8px; padding: 6px;
+      background: #f8fafc; text-align: center; font-family: 'Segoe UI', sans-serif;
     }
+    .visual-caption { font-size: 0.7rem; font-weight: 700; color: #334155; margin-top: 4px; }
     .file-pill {
       margin-top: 12px; display: inline-block; font-family: 'Segoe UI', sans-serif;
       font-size: 0.8rem; font-weight: 700; background: #dcfce7; color: #166534;
       padding: 4px 10px; border-radius: 8px;
     }
-    .city-title {
-      text-align: center; color: var(--navy); font-size: 1.2rem; font-weight: 800;
-      margin-bottom: 12px; font-family: 'Segoe UI', sans-serif;
+    .city-title, .hw-title {
+      text-align: center; color: var(--navy); font-size: 1.15rem; font-weight: 800;
+      margin-bottom: 12px; font-family: 'Segoe UI', sans-serif; margin-top: 6px;
     }
-    .city-p {
-      text-align: justify; font-size: 0.92rem; line-height: 1.65; margin-bottom: 10px;
-      font-family: 'Segoe UI', sans-serif; color: #1e293b;
-    }
+    .city-p { text-align: justify; font-size: 0.9rem; line-height: 1.65; margin-bottom: 10px; font-family: 'Segoe UI', sans-serif; color: #1e293b; }
+
+    /* 3. Etkinlik: Donanım Tablosu */
+    .hw-table { width: 100%; border-collapse: collapse; font-family: 'Segoe UI', sans-serif; font-size: 0.85rem; }
+    .hw-table th, .hw-table td { border: 1.5px solid #94a3b8; padding: 8px 10px; text-align: left; vertical-align: middle; }
+    .hw-table th { background: #e0f2fe; color: var(--navy); font-weight: 800; text-align: center; }
+    .hw-table td.img-cell { text-align: center; width: 76px; background: #f8fafc; }
+    .hw-table td.name-cell { font-weight: 700; color: var(--navy); width: 115px; }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="hero">
       <h1>Sıra Sizde — Bilişim Sınıfı Uygulamaları</h1>
-      <span>2 Uygulama Görevi + Bitmiş Örnekler</span>
+      <span>3 Uygulama Görevi + Bitmiş Örnekler</span>
     </div>
 
     <div class="tabs">
-      <button class="tab-btn active" onclick="showTab(1, this)">1. Etkinlik: İstiklal Marşı'nı Biçimlendir</button>
-      <button class="tab-btn" onclick="showTab(2, this)">2. Etkinlik: Yapay Zekâ ile Şehrini Tanıt</button>
+      <button class="tab-btn active" onclick="showTab(1, this)">1. İstiklal Marşı'nı Biçimlendir</button>
+      <button class="tab-btn" onclick="showTab(2, this)">2. Yapay Zekâ ile Şehrini Tanıt</button>
+      <button class="tab-btn" onclick="showTab(3, this)">3. Donanım Parçaları Tablosu</button>
     </div>
 
     <!-- 1. ETKİNLİK -->
@@ -95,11 +104,10 @@
             <li><span class="step-no">1</span><span>Yeni bir kelime işlemci dosyası (LibreOffice Writer) açınız.</span></li>
             <li><span class="step-no">2</span><span>İstiklal Marşı'nı yazım kurallarına uygun şekilde yazınız.</span></li>
             <li><span class="step-no">3</span><span>Başlığı <b>"İSTİKLAL MARŞI"</b> yazıp <b>büyük harf, ortalı ve kırmızı</b> yapınız.</span></li>
-            <li><span class="step-no">4</span><span>Metni <b>iki yana yasla</b> olarak hizalayınız.</span></li>
-            <li><span class="step-no">5</span><span>Dizeler arasında uygun <b>satır aralığı</b> (ör. 1,5) ayarlayınız.</span></li>
+            <li><span class="step-no">4</span><span>Metni <b>iki yana yasla</b> olarak hizalayınız ve uygun <b>satır aralığı</b> veriniz.</span></li>
+            <li><span class="step-no">5</span><span><b>Resim Ekle</b> aracıyla sayfanın sağ tarafına <b>Türk Bayrağı</b> ve <b>Atatürk</b> görseli ekleyiniz.</span></li>
             <li><span class="step-no">6</span><span>Sayfa düzenini <b>A4</b>, kenar boşluklarını <b>2,5 cm</b> yapınız.</span></li>
-            <li><span class="step-no">7</span><span>Okunaklı bir yazı tipi ve punto (ör. 12 pt) seçiniz.</span></li>
-            <li><span class="step-no">8</span><span>Dosyayı <b>istiklal_marsi.odt</b> (veya .docx) adıyla kaydediniz.</span></li>
+            <li><span class="step-no">7</span><span>Uygun bir yazı tipi ve punto seçip dosyayı <b>istiklal_marsi.odt</b> adıyla kaydediniz.</span></li>
           </ul>
         </div>
 
@@ -108,20 +116,44 @@
           <div class="a4-preview">
             <span class="margin-note">A4 • Kenar Boşluğu: 2,5 cm</span>
             <div class="anthem-title">İSTİKLAL MARŞI</div>
-            <div class="anthem-stanza">
-              Korkma, sönmez bu şafaklarda yüzen al sancak;<br>
-              Sönmeden yurdumun üstünde tüten en son ocak.<br>
-              O benim milletimin yıldızıdır, parlayacak;<br>
-              O benimdir, o benim milletimindir ancak.
-            </div>
-            <div class="anthem-stanza">
-              Çatma, kurban olayım, çehreni ey nazlı hilâl!<br>
-              Kahraman ırkıma bir gül! Ne bu şiddet, bu celâl?<br>
-              Sana olmaz dökülen kanlarımız sonra helâl...<br>
-              Hakkıdır, Hakk'a tapan, milletimin istiklâl!
-            </div>
-            <div class="anthem-stanza" style="margin-bottom:0;">
-              <b>Mehmet Akif ERSOY</b>
+            <div class="anthem-layout">
+              <div>
+                <div class="anthem-stanza">
+                  Korkma, sönmez bu şafaklarda yüzen al sancak;<br>
+                  Sönmeden yurdumun üstünde tüten en son ocak.<br>
+                  O benim milletimin yıldızıdır, parlayacak;<br>
+                  O benimdir, o benim milletimindir ancak.
+                </div>
+                <div class="anthem-stanza" style="margin-bottom:8px;">
+                  Çatma, kurban olayım, çehreni ey nazlı hilâl!<br>
+                  Kahraman ırkıma bir gül! Ne bu şiddet, bu celâl?<br>
+                  Sana olmaz dökülen kanlarımız sonra helâl...<br>
+                  Hakkıdır, Hakk'a tapan, milletimin istiklâl!
+                </div>
+                <div class="anthem-stanza" style="margin-bottom:0;"><b>Mehmet Akif ERSOY</b></div>
+              </div>
+
+              <div class="anthem-visuals">
+                <div class="visual-frame">
+                  <svg viewBox="0 0 120 80" width="96" height="64" aria-label="Türk Bayrağı">
+                    <rect width="120" height="80" rx="4" fill="#E30A17"/>
+                    <circle cx="48" cy="40" r="20" fill="#FFFFFF"/>
+                    <circle cx="53" cy="40" r="16" fill="#E30A17"/>
+                    <polygon points="78,40 69,43 72,34 66,28 75,28 78,20 81,28 90,28 84,34 87,43" fill="#FFFFFF" transform="rotate(-18 78 33) scale(0.75) translate(23,12)"/>
+                  </svg>
+                  <div class="visual-caption">Türk Bayrağı</div>
+                </div>
+                <div class="visual-frame">
+                  <svg viewBox="0 0 100 100" width="84" height="84" aria-label="Mustafa Kemal Atatürk">
+                    <rect width="100" height="100" rx="8" fill="#0f172a"/>
+                    <circle cx="50" cy="36" r="18" fill="#e2e8f0"/>
+                    <path d="M22,88 C22,64 78,64 78,88 Z" fill="#e2e8f0"/>
+                    <path d="M44,54 L50,68 L56,54 Z" fill="#dc2626"/>
+                    <text x="50" y="96" text-anchor="middle" fill="#94a3b8" font-size="8" font-weight="bold">M. K. ATATÜRK</text>
+                  </svg>
+                  <div class="visual-caption">Atatürk Portresi</div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="file-pill">💾 Kayıt Adı: istiklal_marsi.odt / .docx</div>
@@ -160,6 +192,79 @@
             </p>
           </div>
           <div class="file-pill">📄 Kayıt Adı: ankara_tanitimi.pdf</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. ETKİNLİK -->
+    <div id="tab-3" class="panel">
+      <div class="split">
+        <div class="box">
+          <h2>Yönergeler <span class="badge">Tablo + Resim Ekleme</span></h2>
+          <ul class="steps">
+            <li><span class="step-no">1</span><span>Yeni bir belge açıp başlığı <b>"BİLGİSAYAR DONANIM PARÇALARI"</b> yazarak ortalayınız.</span></li>
+            <li><span class="step-no">2</span><span><b>Tablo Ekle</b> aracını kullanarak <b>3 sütunlu</b> (başlık + 3 donanım satırı) bir tablo oluşturunuz.</span></li>
+            <li><span class="step-no">3</span><span>Sütun başlıklarını sırasıyla <b>Resmi</b>, <b>Donanım Adı</b> ve <b>Görevi</b> yapıp kalınlaştırınız.</span></li>
+            <li><span class="step-no">4</span><span>İlk sütuna <b>Resim Ekle</b> aracıyla seçtiğin 3 donanım parçasının görselini ekleyiniz.</span></li>
+            <li><span class="step-no">5</span><span>Diğer sütunlara parçaların adını ve ne işe yaradığını kısaca yazınız.</span></li>
+            <li><span class="step-no">6</span><span>Belgenizi <b>donanim_tablosu.odt</b> (veya .pdf) adıyla kaydediniz.</span></li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h2>Örnek Bitmiş Hâli <span class="badge">3×3 Donanım Tablosu</span></h2>
+          <div class="a4-preview">
+            <span class="margin-note">Tablo Uygulaması</span>
+            <div class="hw-title">BİLGİSAYAR DONANIM PARÇALARI</div>
+            <table class="hw-table">
+              <thead>
+                <tr>
+                  <th>Resmi</th>
+                  <th>Donanım Adı</th>
+                  <th>Görevi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="img-cell">
+                    <svg viewBox="0 0 48 48" width="40" height="40">
+                      <rect x="10" y="10" width="28" height="28" rx="4" fill="#0284c7"/>
+                      <rect x="16" y="16" width="16" height="16" rx="2" fill="#e0f2fe"/>
+                      <path d="M16 4v6M24 4v6M32 4v6M16 38v6M24 38v6M32 38v6M4 16h6M4 24h6M4 32h6M38 16h6M38 24h6M38 32h6" stroke="#0f172a" stroke-width="2"/>
+                    </svg>
+                  </td>
+                  <td class="name-cell">İşlemci (CPU)</td>
+                  <td>Bilgisayarın beynidir; tüm hesaplama ve komutları yürütür.</td>
+                </tr>
+                <tr>
+                  <td class="img-cell">
+                    <svg viewBox="0 0 48 48" width="40" height="40">
+                      <rect x="4" y="14" width="40" height="18" rx="3" fill="#16a34a"/>
+                      <rect x="9" y="18" width="7" height="10" fill="#0f172a"/>
+                      <rect x="20" y="18" width="7" height="10" fill="#0f172a"/>
+                      <rect x="31" y="18" width="7" height="10" fill="#0f172a"/>
+                      <path d="M8 32v4M16 32v4M24 32v4M32 32v4M40 32v4" stroke="#f59e0b" stroke-width="2"/>
+                    </svg>
+                  </td>
+                  <td class="name-cell">RAM Bellek</td>
+                  <td>Çalışan programların verilerini geçici olarak hızlıca tutar.</td>
+                </tr>
+                <tr>
+                  <td class="img-cell">
+                    <svg viewBox="0 0 48 48" width="40" height="40">
+                      <rect x="8" y="8" width="32" height="32" rx="4" fill="#334155"/>
+                      <circle cx="24" cy="22" r="9" fill="#cbd5e1"/>
+                      <circle cx="24" cy="22" r="3" fill="#0f172a"/>
+                      <rect x="14" y="34" width="20" height="3" rx="1" fill="#38bdf8"/>
+                    </svg>
+                  </td>
+                  <td class="name-cell">Sabit Disk / SSD</td>
+                  <td>Dosya, resim ve programları kalıcı olarak depolar.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="file-pill">💾 Kayıt Adı: donanim_tablosu.odt / .pdf</div>
         </div>
       </div>
     </div>
