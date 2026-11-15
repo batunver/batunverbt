@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3. Etkinlik — Dijital Çıkış Bileti</title>
+  <style>
+    :root {
+      --navy: #0f172a; --slate-bg: #f1f5f9; --card: #ffffff;
+      --border: #cbd5e1; --accent: #0284c7; --accent-soft: #e0f2fe;
+      --ok: #16a34a; --ok-bg: #dcfce7; --err: #dc2626; --err-bg: #fee2e2;
+      --text: #1e293b; --muted: #64748b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--slate-bg); color: var(--text); padding: 16px; }
+    .container { max-width: 780px; margin: 0 auto; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+    .toolbar-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+    .title { font-size: 1.1rem; font-weight: 700; color: var(--navy); }
+    .score-pill { background: var(--accent-soft); color: #0369a1; font-weight: 700; padding: 6px 14px; border-radius: 999px; font-size: 0.9rem; }
+    .q-box { border: 1px solid var(--border); background: #f8fafc; border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+    .q-text { font-weight: 700; margin-bottom: 10px; font-size: 0.96rem; }
+    .options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    @media (max-width: 600px) { .options { grid-template-columns: 1fr; } }
+    .opt-btn {
+      text-align: left; padding: 10px 12px; border: 1.5px solid var(--border); background: #fff;
+      border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: 0.15s;
+    }
+    .opt-btn:hover:not(:disabled) { border-color: var(--accent); background: #f0f9ff; }
+    .opt-btn.correct { border-color: var(--ok); background: var(--ok-bg); color: #166534; }
+    .opt-btn.wrong { border-color: var(--err); background: var(--err-bg); color: #991b1b; }
+    .feedback { margin-top: 8px; font-size: 0.84rem; font-weight: 600; display: none; padding: 6px 10px; border-radius: 8px; }
+    .feedback.show { display: block; }
+    .feedback.ok { background: var(--ok-bg); color: #166534; }
+    .feedback.err { background: var(--err-bg); color: #991b1b; }
+    .btn-reset { background: var(--navy); color: #fff; border: none; padding: 9px 18px; border-radius: 10px; font-weight: 600; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="toolbar-top">
+        <div class="title">3. Etkinlik: Dijital Çıkış Bileti (5 Soru)</div>
+        <div class="score-pill" id="quiz-score">Puan: 0 / 5</div>
+        <button class="btn-reset" onclick="renderQuiz()">Tekrar Çöz</button>
+      </div>
+      <div id="quiz-list"></div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        q: '1. Bir paragrafı eski yerinden silip sayfanın en altına taşımak için hangi adımları sırayla izlemelisin?',
+        opts: ['Kopyala → Yapıştır', 'Kes → Yapıştır', 'Kaydet → Yazdır', 'Yeni → Aç'],
+        ans: 1,
+        exp: 'Taşıma işlemi "Kes → Yapıştır" adımlarıyla yapılır; metin eski yerinden alınır.'
+      },
+      {
+        q: '2. Seçtiğin bir metni eski yerinde de bırakarak aynısından bir tane daha oluşturmak (çoğaltmak) için hangi kısayolları kullanırsın?',
+        opts: ['Ctrl+N ve Ctrl+S', 'Ctrl+X ve Ctrl+N', 'Ctrl+C ve Ctrl+V', 'Ctrl+S ve Ctrl+V'],
+        ans: 2,
+        exp: 'Çoğaltma için önce Kopyala (Ctrl+C), sonra Yapıştır (Ctrl+V) kullanılır.'
+      },
+      {
+        q: '3. Hazırladığın belgeyi hızlıca kaydetmek ve yeni bir boş belge açmak için kullanılan kısayollar hangisidir?',
+        opts: ['Kaydet: Ctrl+S • Yeni: Ctrl+N', 'Kaydet: Ctrl+N • Yeni: Ctrl+S', 'Kaydet: Ctrl+C • Yeni: Ctrl+V', 'Kaydet: Ctrl+V • Yeni: Ctrl+C'],
+        ans: 0,
+        exp: 'Ctrl+S belgeyi kaydeder, Ctrl+N ise yeni boş bir belge açar.'
+      },
+      {
+        q: '4. LibreOffice Writer programının kendi varsayılan dosya uzantısı aşağıdakilerden hangisidir?',
+        opts: ['.docx', '.pdf', '.odt', '.mp4'],
+        ans: 2,
+        exp: 'LibreOffice Writer belgeleri varsayılan olarak .odt (Açık Belge Metni) uzantısıyla kaydeder.'
+      },
+      {
+        q: '5. Ödevini gönderdiğin kişinin yazıların düzenini bozmadan sadece okuyabilmesi için Dosya menüsünden hangi formatta dışa aktarmalısın?',
+        opts: ['.odt', '.docx', '.txt', '.pdf'],
+        ans: 3,
+        exp: 'PDF (Dışa Aktar → PDF) formatı belgenin düzenini korur ve düzenlemeye kapalıdır.'
+      }
+    ];
+
+    function renderQuiz() {
+      const list = document.getElementById('quiz-list');
+      list.innerHTML = '';
+      let score = 0, answered = 0;
+      document.getElementById('quiz-score').textContent = `Puan: 0 / ${questions.length}`;
+
+      questions.forEach((item, qi) => {
+        const box = document.createElement('div');
+        box.className = 'q-box';
+        box.innerHTML = `<div class="q-text">${item.q}</div><div class="options"></div><div class="feedback"></div>`;
+        const optsDiv = box.querySelector('.options');
+        const fb = box.querySelector('.feedback');
+
+        item.opts.forEach((optText, oi) => {
+          const btn = document.createElement('button');
+          btn.className = 'opt-btn';
+          btn.textContent = optText;
+          btn.onclick = () => {
+            if (box.dataset.done) return;
+            box.dataset.done = '1';
+            answered++;
+            const allBtns = optsDiv.querySelectorAll('.opt-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (oi === item.ans) {
+              btn.classList.add('correct');
+              fb.className = 'feedback show ok';
+              fb.textContent = '✓ Doğru! ' + item.exp;
+              score++;
+            } else {
+              btn.classList.add('wrong');
+              allBtns[item.ans].classList.add('correct');
+              fb.className = 'feedback show err';
+              fb.textContent = '✗ Yanlış. ' + item.exp;
+            }
+            document.getElementById('quiz-score').textContent =
+              `Puan: ${score} / ${questions.length}` + (answered === questions.length ? ' (Tamamlandı!)' : '');
+          };
+          optsDiv.appendChild(btn);
+        });
+        list.appendChild(box);
+      });
+    }
+
+    renderQuiz();
+  </script>
+</body>
+</html>
