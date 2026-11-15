@@ -75,6 +75,28 @@ const dersIcerikleri = {
             }
         ]
     },
+     "5-hafta-11": {
+        sinif: 5,
+        hafta: 11,
+        baslik: "Kelime İşlemci Programları-Libreoffice Writer",
+        kazanim: "BTY.5.2.4 Kelime işlemci programlarından yararlanabilme, BTY.5.2.5 Kelime işlemci dosyası geliştirebilme",
+        aciklama: "Kelime işlemci programlarını tanıyacak, Libreoffice Writer ile yeni belgeler oluşturabileceksiniz.",
+        kapakResmi: "images/5-11-kapak.jpg",
+        sunuEmbed: "https://drive.google.com/file/d/1xkF-rFhhgcMeF0CS26v1WdlsMjJXd8Jv/embed?start=false&loop=false&delayms=3000",
+        sunuUrl: "https://drive.google.com/file/d/1xkF-rFhhgcMeF0CS26v1WdlsMjJXd8Jv/preview",
+        etkinlikler: [
+            {
+                baslik: "Başlangıç Menüsü ve Biçimlendirme Araçlarını Öğreniyorum",
+                tur: "İnteraktif Atölye",
+                url: "folder/5/Etkinlik/libreoffice-etkinlik-1-2.html"
+            }
+              {
+                baslik: "Kelime İşlemci Programlarının Şifrelerini Çözüyorum)",
+                tur: "Mini Test",
+                url: "folder/5/Etkinlik/libreoffice-etkinlik-3.html"
+            }
+        ]
+    },
 
     // ==================================================
     // 6. SINIF DERS İÇERİKLERİ
