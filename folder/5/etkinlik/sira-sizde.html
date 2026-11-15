@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sıra Sizde — Bilişim Sınıfı Etkinlikleri</title>
+  <style>
+    :root {
+      --navy: #0f172a; --slate-bg: #f1f5f9; --card: #ffffff;
+      --border: #cbd5e1; --accent: #0284c7; --accent-soft: #e0f2fe;
+      --text: #1e293b; --muted: #475569;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--slate-bg); color: var(--text); padding: 16px; line-height: 1.55; }
+    .container { max-width: 1020px; margin: 0 auto; }
+    .hero {
+      background: var(--navy); color: #fff; padding: 18px 24px; border-radius: 16px;
+      margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+    }
+    .hero h1 { font-size: 1.3rem; }
+    .hero span { background: var(--accent); padding: 4px 12px; border-radius: 999px; font-size: 0.82rem; font-weight: 700; }
+    .tabs { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+    .tab-btn {
+      flex: 1; min-width: 240px; padding: 12px 16px; border: 2px solid var(--border);
+      background: var(--card); color: var(--text); border-radius: 12px; font-weight: 700; cursor: pointer;
+    }
+    .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+    @media (max-width: 840px) { .split { grid-template-columns: 1fr; } }
+    .box { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+    .box h2 { font-size: 1.05rem; color: var(--navy); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .badge { background: var(--accent-soft); color: #0369a1; font-size: 0.78rem; padding: 3px 10px; border-radius: 999px; font-weight: 700; }
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .steps li {
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 9px 12px;
+      font-size: 0.9rem; display: flex; gap: 10px; align-items: flex-start;
+    }
+    .step-no {
+      min-width: 24px; height: 24px; border-radius: 50%; background: var(--navy); color: #fff;
+      font-size: 0.78rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; margin-top: 1px;
+    }
+    /* Bitmiş Örnek A4 Sayfa Görünümü */
+    .a4-preview {
+      background: #fff; border: 1px solid #94a3b8; border-radius: 8px;
+      padding: 28px 30px; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+      font-family: Georgia, 'Times New Roman', serif;
+      position: relative;
+    }
+    .margin-note {
+      position: absolute; top: 8px; right: 12px; font-family: 'Segoe UI', sans-serif;
+      font-size: 0.72rem; color: #64748b; background: #f1f5f9; padding: 2px 8px; border-radius: 6px;
+    }
+    .anthem-title {
+      text-align: center; color: #dc2626; font-size: 1.25rem; font-weight: 800;
+      letter-spacing: 0.5px; margin-bottom: 14px;
+    }
+    .anthem-stanza {
+      text-align: justify; font-size: 0.92rem; line-height: 1.75; margin-bottom: 14px; color: #0f172a;
+    }
+    .file-pill {
+      margin-top: 12px; display: inline-block; font-family: 'Segoe UI', sans-serif;
+      font-size: 0.8rem; font-weight: 700; background: #dcfce7; color: #166534;
+      padding: 4px 10px; border-radius: 8px;
+    }
+    .city-title {
+      text-align: center; color: var(--navy); font-size: 1.2rem; font-weight: 800;
+      margin-bottom: 12px; font-family: 'Segoe UI', sans-serif;
+    }
+    .city-p {
+      text-align: justify; font-size: 0.92rem; line-height: 1.65; margin-bottom: 10px;
+      font-family: 'Segoe UI', sans-serif; color: #1e293b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>Sıra Sizde — Bilişim Sınıfı Uygulamaları</h1>
+      <span>2 Uygulama Görevi + Bitmiş Örnekler</span>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab(1, this)">1. Etkinlik: İstiklal Marşı'nı Biçimlendir</button>
+      <button class="tab-btn" onclick="showTab(2, this)">2. Etkinlik: Yapay Zekâ ile Şehrini Tanıt</button>
+    </div>
+
+    <!-- 1. ETKİNLİK -->
+    <div id="tab-1" class="panel active">
+      <div class="split">
+        <div class="box">
+          <h2>Yönergeler <span class="badge">Bilgisayarda Uygula</span></h2>
+          <ul class="steps">
+            <li><span class="step-no">1</span><span>Yeni bir kelime işlemci dosyası (LibreOffice Writer) açınız.</span></li>
+            <li><span class="step-no">2</span><span>İstiklal Marşı'nı yazım kurallarına uygun şekilde yazınız.</span></li>
+            <li><span class="step-no">3</span><span>Başlığı <b>"İSTİKLAL MARŞI"</b> yazıp <b>büyük harf, ortalı ve kırmızı</b> yapınız.</span></li>
+            <li><span class="step-no">4</span><span>Metni <b>iki yana yasla</b> olarak hizalayınız.</span></li>
+            <li><span class="step-no">5</span><span>Dizeler arasında uygun <b>satır aralığı</b> (ör. 1,5) ayarlayınız.</span></li>
+            <li><span class="step-no">6</span><span>Sayfa düzenini <b>A4</b>, kenar boşluklarını <b>2,5 cm</b> yapınız.</span></li>
+            <li><span class="step-no">7</span><span>Okunaklı bir yazı tipi ve punto (ör. 12 pt) seçiniz.</span></li>
+            <li><span class="step-no">8</span><span>Dosyayı <b>istiklal_marsi.odt</b> (veya .docx) adıyla kaydediniz.</span></li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h2>Örnek Bitmiş Hâli <span class="badge">Hedef Çıktı</span></h2>
+          <div class="a4-preview">
+            <span class="margin-note">A4 • Kenar Boşluğu: 2,5 cm</span>
+            <div class="anthem-title">İSTİKLAL MARŞI</div>
+            <div class="anthem-stanza">
+              Korkma, sönmez bu şafaklarda yüzen al sancak;<br>
+              Sönmeden yurdumun üstünde tüten en son ocak.<br>
+              O benim milletimin yıldızıdır, parlayacak;<br>
+              O benimdir, o benim milletimindir ancak.
+            </div>
+            <div class="anthem-stanza">
+              Çatma, kurban olayım, çehreni ey nazlı hilâl!<br>
+              Kahraman ırkıma bir gül! Ne bu şiddet, bu celâl?<br>
+              Sana olmaz dökülen kanlarımız sonra helâl...<br>
+              Hakkıdır, Hakk'a tapan, milletimin istiklâl!
+            </div>
+            <div class="anthem-stanza" style="margin-bottom:0;">
+              <b>Mehmet Akif ERSOY</b>
+            </div>
+          </div>
+          <div class="file-pill">💾 Kayıt Adı: istiklal_marsi.odt / .docx</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. ETKİNLİK -->
+    <div id="tab-2" class="panel">
+      <div class="split">
+        <div class="box">
+          <h2>Yönergeler <span class="badge">Yapay Zekâ + Düzenleme</span></h2>
+          <ul class="steps">
+            <li><span class="step-no">1</span><span>Bir yapay zekâ aracına yaşadığın şehirle ilgili kısa bir tanıtım metni ürettiriniz.</span></li>
+            <li><span class="step-no">2</span><span>Oluşturulan metni dikkatlice okuyunuz.</span></li>
+            <li><span class="step-no">3</span><span>Bilgilerin <b>doğruluğunu</b>, açıklığını ve <b>Türkçe yazım kurallarını</b> kontrol edip düzeltiniz.</span></li>
+            <li><span class="step-no">4</span><span>Metninize uygun, dikkat çekici bir <b>başlık</b> belirleyiniz.</span></li>
+            <li><span class="step-no">5</span><span>Kelime işlemcide yazı tipi, hizalama ve boşlukları düzenleyerek son hâline getiriniz.</span></li>
+            <li><span class="step-no">6</span><span>Belgenizi <b>Dışa Aktar → PDF</b> seçeneğiyle kaydediniz.</span></li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h2>Örnek Bitmiş Hâli <span class="badge">Kontrol Edilmiş Metin</span></h2>
+          <div class="a4-preview">
+            <span class="margin-note">PDF Çıktısı • Kontrol Edildi</span>
+            <div class="city-title">BAŞKENTİMİZ ANKARA'YI TANIYALIM</div>
+            <p class="city-p">
+              Ankara, Türkiye Cumhuriyeti'nin başkenti ve İç Anadolu Bölgesi'nin en önemli kültür ve eğitim merkezlerinden biridir. 13 Ekim 1923 tarihinde başkent ilan edilen şehrimiz, köklü tarihi ve modern yapısıyla öne çıkar.
+            </p>
+            <p class="city-p">
+              Şehrin en önemli simgesi, Ulu Önder Mustafa Kemal Atatürk'ün ebedi istirahatgâhı olan Anıtkabir'dir. Bunun yanı sıra Ankara Kalesi, Anadolu Medeniyetleri Müzesi ve Kurtuluş Savaşı Müzesi her yıl binlerce ziyaretçiyi ağırlar.
+            </p>
+            <p class="city-p" style="margin-bottom:0;">
+              Ankara; üniversiteleri, parkları ve düzenli şehir yapısıyla hem öğrenciler hem de ziyaretçiler için yaşanabilir, tarihi değerleri koruyan özel bir şehirdir.
+            </p>
+          </div>
+          <div class="file-pill">📄 Kayıt Adı: ankara_tanitimi.pdf</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showTab(n, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + n).classList.add('active');
+    }
+  </script>
+</body>
+</html>
