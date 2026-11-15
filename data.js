@@ -82,8 +82,8 @@ const dersIcerikleri = {
         kazanim: "BTY.5.2.4 Kelime işlemci programlarından yararlanabilme, BTY.5.2.5 Kelime işlemci dosyası geliştirebilme",
         aciklama: "Kelime işlemci programlarını tanıyacak, Libreoffice Writer ile yeni belgeler oluşturabileceksiniz.",
         kapakResmi: "images/5-11-kapak.jpg",
-        sunuEmbed: "https://drive.google.com/file/d/1xkF-rFhhgcMeF0CS26v1WdlsMjJXd8Jv/embed?start=false&loop=false&delayms=3000",
-        sunuUrl: "https://drive.google.com/file/d/1xkF-rFhhgcMeF0CS26v1WdlsMjJXd8Jv/preview",
+        sunuEmbed: "https://drive.google.com/file/d/1xkF-rFhhgcMeF0CS26v1WdlsMjJXd8Jv/preview",
+        sunuUrl: "https://drive.google.com/file/d/1xkF-rFhhgcMeF0CS26v1WdlsMjJXd8Jv/view?usp=sharing",
         etkinlikler: [
             {
                 baslik: "Başlangıç Menüsü ve Biçimlendirme Araçlarını Öğreniyorum",
