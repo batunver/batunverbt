@@ -109,8 +109,8 @@ const dersIcerikleri = {
         kazanim: "BTY.5.2.6 Sunum programlarından yararlanabilme, BTY.5.2.7 Sunum dosyası geliştirebilme",
         aciklama: "Sunum programlarının temel özellikleri tanınarak ihtiyaca en uygun program belirlenir ve bu programın arayüz özellikleri etkin biçimde kullanılır.",
         kapakResmi: "images/5-12-kapak.jpg",
-        sunuEmbed: "https://drive.google.com/file/d/1ZAd25o-Dsg9QntV4ugJbZ26uPj0SGb_2/preview",
-        sunuUrl: "https://drive.google.com/file/d/1ZAd25o-Dsg9QntV4ugJbZ26uPj0SGb_2/view?usp=sharing",
+        sunuEmbed: "https://drive.google.com/file/d/1cKunhCVPAFLaEfBffTNK4Sp3jHJ85GTK/preview",
+        sunuUrl: "https://drive.google.com/file/d/1cKunhCVPAFLaEfBffTNK4Sp3jHJ85GTK/view?usp=sharing",
         etkinlikler: [
         {
             baslik: "Başlangıç Menüsü ve Biçimlendirme Araçlarını Öğreniyorum",
