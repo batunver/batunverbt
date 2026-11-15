@@ -102,6 +102,33 @@ const dersIcerikleri = {
         },
     ]
     },
+     "5-hafta-12": {
+        sinif: 5,
+        hafta: 12,
+        baslik: "Sunum Programları-Canva Sunumr",
+        kazanim: "BTY.5.2.6 Sunum programlarından yararlanabilme, BTY.5.2.7 Sunum dosyası geliştirebilme",
+        aciklama: "Sunum programlarının temel özellikleri tanınarak ihtiyaca en uygun program belirlenir ve bu programın arayüz özellikleri etkin biçimde kullanılır.",
+        kapakResmi: "images/5-12-kapak.jpg",
+        sunuEmbed: "https://drive.google.com/file/d/1ZAd25o-Dsg9QntV4ugJbZ26uPj0SGb_2/preview",
+        sunuUrl: "https://drive.google.com/file/d/1ZAd25o-Dsg9QntV4ugJbZ26uPj0SGb_2/view?usp=sharing",
+        etkinlikler: [
+        {
+            baslik: "Başlangıç Menüsü ve Biçimlendirme Araçlarını Öğreniyorum",
+            tur: "İnteraktif Atölye",
+            url: "/folder/5/etkinlik/canva-etkinlik-1-2.html"
+        },
+        {
+            baslik: "Kelime İşlemci Programlarının Şifrelerini Çözüyorum",
+            tur: "Mini Test",
+            url: "/folder/5/etkinlik/canva-etkinlik-3.html"
+        },
+        {
+            baslik: "Sıra Sizde: Bilişim Sınıfı Uygulamaları",
+            tur: "Uygulama Görevi",
+            url: "/folder/5/etkinlik/canva-sira-sizde.html"
+        },
+    ]
+    },
 
     // ==================================================
     // 6. SINIF DERS İÇERİKLERİ
