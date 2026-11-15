@@ -89,7 +89,7 @@ const dersIcerikleri = {
                 baslik: "Başlangıç Menüsü ve Biçimlendirme Araçlarını Öğreniyorum",
                 tur: "İnteraktif Atölye",
                 url: "folder/5/Etkinlik/libreoffice-etkinlik-1-2.html"
-            }
+            },
               {
                 baslik: "Kelime İşlemci Programlarının Şifrelerini Çözüyorum)",
                 tur: "Mini Test",
