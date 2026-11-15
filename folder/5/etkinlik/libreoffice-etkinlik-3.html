@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Etkinlik — Dijital Çıkış Bileti</title>
+  <title>3. Etkinlik — Dijital Çıkış Bileti (10 Soru)</title>
   <style>
     :root {
       --navy: #0f172a; --slate-bg: #f1f5f9; --card: #ffffff;
@@ -40,8 +40,8 @@
   <div class="container">
     <div class="card">
       <div class="toolbar-top">
-        <div class="title">3. Etkinlik: Dijital Çıkış Bileti (5 Soru)</div>
-        <div class="score-pill" id="quiz-score">Puan: 0 / 5</div>
+        <div class="title">3. Etkinlik: Dijital Çıkış Bileti (10 Soru)</div>
+        <div class="score-pill" id="quiz-score">Puan: 0 / 10</div>
         <button class="btn-reset" onclick="renderQuiz()">Tekrar Çöz</button>
       </div>
       <div id="quiz-list"></div>
@@ -79,6 +79,36 @@
         opts: ['.odt', '.docx', '.txt', '.pdf'],
         ans: 3,
         exp: 'PDF (Dışa Aktar → PDF) formatı belgenin düzenini korur ve düzenlemeye kapalıdır.'
+      },
+      {
+        q: '6. Sayfa içinde yazının nereye yazılacağını gösteren yanıp sönen dikey çizgiye ne ad verilir?',
+        opts: ['Cetvel', 'İmleç', 'Başlık Çubuğu', 'Durum Çubuğu'],
+        ans: 1,
+        exp: 'İmleç (|), metin yazarken harflerin ekleneceği konumu gösterir.'
+      },
+      {
+        q: '7. Belgede toplam kaç sayfa ve kaç sözcük olduğunu pencerenin en altında hangi bileşenden görürüz?',
+        opts: ['Durum Çubuğu', 'Şerit Menü Çubuğu', 'Hızlı İşlem Düğmeleri', 'Pencere Kontrol Düğmeleri'],
+        ans: 0,
+        exp: 'Durum Çubuğu sayfa sayısı, sözcük sayısı ve yakınlaştırma (%) bilgisini gösterir.'
+      },
+      {
+        q: '8. Fen bilimleri ödevinde suyun formülünü (H₂O) yazarken "2" rakamını aşağı indirmek için hangi aracı kullanmalısın?',
+        opts: ['Üst Simge', 'Altı Çizili', 'Alt Simge', 'Üstü Çizili'],
+        ans: 2,
+        exp: 'Alt Simge (H₂O) karakteri küçültüp satırın altına yazar; Üst Simge (Kitap¹) ise yukarı yazar.'
+      },
+      {
+        q: '9. İmlecin bulunduğu yerden itibaren hemen yeni bir sayfaya geçmek için Başlangıç menüsündeki hangi aracı kullanırız?',
+        opts: ['Tablo Ekle', 'Resim Ekle', 'Sayfa Sonu Ekle', 'Hazır Biçemler'],
+        ans: 2,
+        exp: 'Sayfa Sonu Ekle, mevcut sayfayı orada bitirip imleci yeni bir sayfaya geçirir.'
+      },
+      {
+        q: '10. Yapay zekâ araçlarından metin alırken veya internetten görsel kullanırken aşağıdakilerden hangisine dikkat etmeliyiz?',
+        opts: ['Hiçbir şeyi kontrol etmeden kopyalamalıyız', 'Bilginin doğruluğunu kontrol edip kaynak ve telif hakkına dikkat etmeliyiz', 'Sadece yazı tipini büyütmeliyiz', 'Dosyayı .txt olarak kaydetmeliyiz'],
+        ans: 1,
+        exp: 'Yapay zekâ metinlerinde hata riski vardır; hem doğruluk kontrolü yapılmalı hem de kaynak ve telif hakkına uyulmalıdır.'
       }
     ];
 
@@ -88,7 +118,7 @@
       let score = 0, answered = 0;
       document.getElementById('quiz-score').textContent = `Puan: 0 / ${questions.length}`;
 
-      questions.forEach((item, qi) => {
+      questions.forEach((item) => {
         const box = document.createElement('div');
         box.className = 'q-box';
         box.innerHTML = `<div class="q-text">${item.q}</div><div class="options"></div><div class="feedback"></div>`;
