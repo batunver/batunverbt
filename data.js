@@ -105,7 +105,7 @@ const dersIcerikleri = {
      "5-hafta-12": {
         sinif: 5,
         hafta: 12,
-        baslik: "Sunum Programları-Canva Sunumr",
+        baslik: "Sunum Programları-Canva ile Sunum Hazırlıyoruz",
         kazanim: "BTY.5.2.6 Sunum programlarından yararlanabilme, BTY.5.2.7 Sunum dosyası geliştirebilme",
         aciklama: "Sunum programlarının temel özellikleri tanınarak ihtiyaca en uygun program belirlenir ve bu programın arayüz özellikleri etkin biçimde kullanılır.",
         kapakResmi: "images/5-12-kapak.jpg",
