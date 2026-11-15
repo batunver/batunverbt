@@ -94,7 +94,12 @@ const dersIcerikleri = {
             baslik: "Kelime İşlemci Programlarının Şifrelerini Çözüyorum",
             tur: "Mini Test",
             url: "/folder/5/etkinlik/libreoffice-etkinlik-3.html"
-        }
+        },
+        {
+            baslik: "Sıra Sizde: Bilişim Sınıfı Uygulamaları",
+            tur: "Uygulama Görevi",
+            url: "/folder/5/etkinlik/sira-sizde.html"
+        },
     ]
     },
 
