@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3. Etkinlik — Canva ve Sunum Programları Mini Test (10 Soru)</title>
+  <style>
+    :root {
+      --navy: #0f172a; --slate-bg: #f1f5f9; --card: #ffffff;
+      --border: #cbd5e1; --accent: #0284c7; --accent-soft: #e0f2fe;
+      --ok: #16a34a; --ok-bg: #dcfce7; --err: #dc2626; --err-bg: #fee2e2;
+      --text: #1e293b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--slate-bg); color: var(--text); padding: 16px; }
+    .container { max-width: 780px; margin: 0 auto; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+    .toolbar-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+    .title { font-size: 1.1rem; font-weight: 700; color: var(--navy); }
+    .score-pill { background: var(--accent-soft); color: #0369a1; font-weight: 700; padding: 6px 14px; border-radius: 999px; font-size: 0.9rem; }
+    .q-box { border: 1px solid var(--border); background: #f8fafc; border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+    .q-text { font-weight: 700; margin-bottom: 10px; font-size: 0.96rem; }
+    .options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    @media (max-width: 600px) { .options { grid-template-columns: 1fr; } }
+    .opt-btn {
+      text-align: left; padding: 10px 12px; border: 1.5px solid var(--border); background: #fff;
+      border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: 0.15s;
+    }
+    .opt-btn:hover:not(:disabled) { border-color: var(--accent); background: #f0f9ff; }
+    .opt-btn.correct { border-color: var(--ok); background: var(--ok-bg); color: #166534; }
+    .opt-btn.wrong { border-color: var(--err); background: var(--err-bg); color: #991b1b; }
+    .feedback { margin-top: 8px; font-size: 0.84rem; font-weight: 600; display: none; padding: 6px 10px; border-radius: 8px; }
+    .feedback.show { display: block; }
+    .feedback.ok { background: var(--ok-bg); color: #166534; }
+    .feedback.err { background: var(--err-bg); color: #991b1b; }
+    .btn-reset { background: var(--navy); color: #fff; border: none; padding: 9px 18px; border-radius: 10px; font-weight: 600; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="toolbar-top">
+        <div class="title">3. Etkinlik: Dijital Çıkış Bileti (10 Soru)</div>
+        <div class="score-pill" id="quiz-score">Puan: 0 / 10</div>
+        <button class="btn-reset" onclick="renderQuiz()">Tekrar Çöz</button>
+      </div>
+      <div id="quiz-list"></div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        q: '1. Sunum programlarında metin, görsel ve grafiklerin yerleştirildiği her bir sayfaya ne ad verilir?',
+        opts: ['Hücre', 'Slayt', 'Klasör', 'Cetvel'],
+        ans: 1,
+        exp: 'Sunum programlarındaki her bir sayfaya slayt adı verilir.'
+      },
+      {
+        q: '2. Canva’da hazırladığın bir sunumdaki metin, görsel veya slaytı hızlıca çoğaltmak için hangi kısayolları kullanırsın?',
+        opts: ['Ctrl+Z veya Ctrl+Y', 'Ctrl+C → Ctrl+V (veya Ctrl+D)', 'Ctrl+S → Ctrl+N', 'Alt+F4'],
+        ans: 1,
+        exp: 'Ctrl+C → Ctrl+V (veya Canva’da tek tuşla Ctrl+D) seçili öğeyi çoğaltır.'
+      },
+      {
+        q: '3. Canva’da yanlışlıkla bir görseli sildiğinde işlemi tek tıkla geri almak için hangi kısayolu kullanırsın?',
+        opts: ['Ctrl+Z', 'Ctrl+D', 'Ctrl+P', 'Ctrl+N'],
+        ans: 0,
+        exp: 'Ctrl+Z son yapılan işlemi geri alır; Ctrl+Y ise ileri alır.'
+      },
+      {
+        q: '4. Canva bulut tabanlı çalıştığı için sunumundaki değişiklikler nasıl kaydedilir?',
+        opts: ['Her cümleden sonra Dosya → Farklı Kaydet yapılmalıdır', 'Değişiklikler anında otomatik olarak kaydedilir', 'Sadece USB belleğe kaydedilebilir', 'Çıkış yapınca hepsi silinir'],
+        ans: 1,
+        exp: 'Canva çevrimiçi ve bulutta çalıştığından tüm değişiklikler otomatik kaydedilir.'
+      },
+      {
+        q: '5. Hazırladığın Canva sunumunu akıllı tahtada veya projeksiyonda tam ekran göstermek için sağ üstteki hangi düğmeye basarsın?',
+        opts: ['Yüklemeler', 'Bileşenler', 'Sun (Tam Ekran)', 'Cetvel'],
+        ans: 2,
+        exp: 'Sağ üstteki "Sun" düğmesi sunumu tam ekran olarak başlatır.'
+      },
+      {
+        q: '6. Canva sunumunu başka bir bilgisayarda Microsoft PowerPoint ile açıp düzenlemeye devam etmek için hangi formatta indirmelisin?',
+        opts: ['.pptx', '.mp3', '.txt', '.odt'],
+        ans: 0,
+        exp: '.pptx formatı PowerPoint uyumlu, düzenlenebilir sunum dosyasıdır.'
+      },
+      {
+        q: '7. Sunumuna ikon, şekil, ok veya çizim eklemek için Canva sol araç panelindeki hangi sekmeyi kullanırsın?',
+        opts: ['Yüklemeler', 'Bileşenler', 'Yakınlaştırma', 'Durum Çubuğu'],
+        ans: 1,
+        exp: 'Bileşenler sekmesi sunuma ikon, şekil, grafik ve çizim eklemeyi sağlar.'
+      },
+      {
+        q: '8. Kendi bilgisayarındaki bir fotoğrafı veya okul logosunu Canva sunumuna eklemek için hangi sekmeyi kullanmalısın?',
+        opts: ['Yüklemeler', 'Şablonlar', 'Animasyon', 'Sayfa Yönetimi'],
+        ans: 0,
+        exp: 'Yüklemeler sekmesi bilgisayardan fotoğraf, logo ve medya dosyası yükler.'
+      },
+      {
+        q: '9. Slaytlar arasında geçiş efekti veya metinlere giriş hareketi eklemek için hangi araç kullanılır?',
+        opts: ['Animasyon & Geçişler', 'Harf Durumu (aA)', 'Arka Plan Rengi', 'İndir (PDF)'],
+        ans: 0,
+        exp: 'Animasyon ve Geçişler, nesnelere ve slaytlara hareketli efektler ekler.'
+      },
+      {
+        q: '10. Yapay zekâ destekli sunum araçlarından içerik veya internetten görsel alırken neye dikkat etmeliyiz?',
+        opts: ['Hiçbir kontrol yapmadan sunuma eklemeliyiz', 'Bilgilerin doğruluğunu kontrol edip kaynak ve telif hakkına dikkat etmeliyiz', 'Sadece yazı boyutunu büyütmeliyiz', 'Dosyayı mutlaka .txt indirmeliyiz'],
+        ans: 1,
+        exp: 'Bilginin doğruluğu kontrol edilmeli, kullanılan görsel ve alıntılarda kaynak ile telif hakkına uyulmalıdır.'
+      }
+    ];
+
+    function renderQuiz() {
+      const list = document.getElementById('quiz-list');
+      list.innerHTML = '';
+      let score = 0, answered = 0;
+      document.getElementById('quiz-score').textContent = `Puan: 0 / ${questions.length}`;
+
+      questions.forEach((item) => {
+        const box = document.createElement('div');
+        box.className = 'q-box';
+        box.innerHTML = `<div class="q-text">${item.q}</div><div class="options"></div><div class="feedback"></div>`;
+        const optsDiv = box.querySelector('.options');
+        const fb = box.querySelector('.feedback');
+
+        item.opts.forEach((optText, oi) => {
+          const btn = document.createElement('button');
+          btn.className = 'opt-btn';
+          btn.textContent = optText;
+          btn.onclick = () => {
+            if (box.dataset.done) return;
+            box.dataset.done = '1';
+            answered++;
+            const allBtns = optsDiv.querySelectorAll('.opt-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (oi === item.ans) {
+              btn.classList.add('correct');
+              fb.className = 'feedback show ok';
+              fb.textContent = '✓ Doğru! ' + item.exp;
+              score++;
+            } else {
+              btn.classList.add('wrong');
+              allBtns[item.ans].classList.add('correct');
+              fb.className = 'feedback show err';
+              fb.textContent = '✗ Yanlış. ' + item.exp;
+            }
+            document.getElementById('quiz-score').textContent =
+              `Puan: ${score} / ${questions.length}` + (answered === questions.length ? ' (Tamamlandı!)' : '');
+          };
+          optsDiv.appendChild(btn);
+        });
+        list.appendChild(box);
+      });
+    }
+
+    renderQuiz();
+  </script>
+</body>
+</html>
