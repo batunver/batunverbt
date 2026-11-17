@@ -296,6 +296,28 @@ const dersIcerikleri = {
             }
         ]
     },
+        "6-hafta-10": {
+        sinif: 6,
+        hafta: 10,
+        baslik: "Bilgisayar Ağları ve İletişim-Arama Motorları ve Web 2.0 Araçları",
+        kazanim: "BTY.6.3.1. İnternet ile amacına uygun olarak çalışabilme, BTY.6.3.2. İletişim teknolojilerini sınıflandırabilme, BTY.6.3.3. İletişim teknolojileri ile çalışabilme ",
+        aciklama: "Video düzenleme programlarının temel özelliklerini tanır.",
+        kapakResmi: "images/6-sinif-8-hafta-kapak.png",
+        sunuEmbed: "https://docs.google.com/presentation/d/1xEpFoAYoZ_yx3A0KcWaGjVbYbFjLjY--K-VPLYxUFRE/embed?start=false&loop=false&delayms=3000",
+        sunuUrl: "https://docs.google.com/presentation/d/1xEpFoAYoZ_yx3A0KcWaGjVbYbFjLjY--K-VPLYxUFRE/preview",
+        dersNotuEmbed: "https://docs.google.com/document/d/1M0idifKhIiZgDWw9ZJe4zJqB_5ZL7iy1/preview",
+        dersNotuUrl: "https://docs.google.com/document/d/1M0idifKhIiZgDWw9ZJe4zJqB_5ZL7iy1/preview",
+        dersNotuPdf: "https://docs.google.com/document/d/1M0idifKhIiZgDWw9ZJe4zJqB_5ZL7iy1/preview",
+        dersNotu: "",
+        etkinlikler: [
+                       {
+                baslik: "",
+                tur: "",
+                url: ""
+            }
+        ],
+       
+    },
 };
 
 // Diğer dosyalardan erişim için
