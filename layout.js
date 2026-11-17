@@ -9,7 +9,8 @@ const yayinlananDersler = [
     "6-hafta-6",
     "6-hafta-7",
     "6-hafta-8",
-    "6-hafta-9"
+    "6-hafta-9",
+    "6-hafta-10"
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
