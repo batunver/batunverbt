@@ -337,13 +337,9 @@ const dersIcerikleri = {
                 tur: "Etkileşimli Etkinlik ve Test",
                 url: "etkinlikler/batunver_6sinif_bilisim_etigi_siber_guvenlik_etkinlik.html"
             }
-        ]
-    }
-                           
-            }
         ],
-       
     },
+
 };
 
 // Diğer dosyalardan erişim için
