@@ -316,7 +316,7 @@ const dersIcerikleri = {
         dersNotu: "",
         etkinlikler: [
             {
-                baslik: "Bilişim Etiği ve Siber Güvenlik Etkileşimli Etkinlik & 20 Soruluk Konu Testi",
+                  baslik: "Bilgisayar Ağları ve İletişim-Arama Motorları ve Web 2.0 Araçları",
                 tur: "İnteraktif Atölye",
                 url: "6.sinif/6sinif_bilgisayar_aglari_iletisim_arama_motorları.html"
                 
@@ -338,7 +338,8 @@ const dersIcerikleri = {
         dersNotu: "",
         etkinlikler: [
             {
-                baslik: "Bilgisayar Ağları ve İletişim-Arama Motorları ve Web 2.0 Araçları",
+                baslik: "Bilişim Etiği ve Siber Güvenlik Etkileşimli Etkinlik & 20 Soruluk Konu Testi",
+                
                 tur: "İnteraktif Atölye",
                 url: "6.sinif/6sinif_bilisim_etigi_siber_guvenlik_etkinlik.html"
             }
