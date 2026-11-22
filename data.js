@@ -339,7 +339,7 @@ const dersIcerikleri = {
             }
         ],
        
-    }
+    },
 };
 
 // Diğer dosyalardan erişim için
