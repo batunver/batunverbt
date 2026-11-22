@@ -325,7 +325,7 @@ const dersIcerikleri = {
         kazanim: "BTY.6.4.1. Bilişim etiği kapsamında güvenlik önlemlerini yönetebilme, BTY.6.4.2.Telif hakkı kavramını sorgulayabilme BTY.6.4.3. Siber ortamda güvenlik önlemlerini yönetebilme, BTY.6.4.4.Kullanım haklarına göre lisans türlerini karşılaştırabilme ",
         aciklama: "Bilişim etiği ilkelerini, telif ve lisans türlerini, siber zorbalıkla mücadele yollarını, bilgi güvenliğini ve zararlı yazılımlardan korunmayı bilir.",
         kapakResmi: "images/6-sinif-11-kapak.png",
-        sunuEmbed: "https://drive.google.com/file/d/1tIumDTI1eDNghTXRQnu_qglT6lCy__6W/embed?start=false&loop=false&delayms=3000",
+        sunuEmbed: "https://drive.google.com/file/d/1tIumDTI1eDNghTXRQnu_qglT6lCy__6W/preview",
         sunuUrl: "https://drive.google.com/file/d/1tIumDTI1eDNghTXRQnu_qglT6lCy__6W/preview",
         dersNotuEmbed: "https://drive.google.com/file/d/1I48pT25QZNSgcon6rMAeqbGpqy2ZHIcl/preview",
         dersNotuUrl: "https://drive.google.com/file/d/1I48pT25QZNSgcon6rMAeqbGpqy2ZHIcl/preview",
