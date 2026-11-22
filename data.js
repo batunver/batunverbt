@@ -75,7 +75,8 @@ const dersIcerikleri = {
             }
         ]
     },
-     "5-hafta-11": {
+
+    "5-hafta-11": {
         sinif: 5,
         hafta: 11,
         baslik: "Kelime İşlemci Programları-Libreoffice Writer",
@@ -84,25 +85,27 @@ const dersIcerikleri = {
         kapakResmi: "images/5-11-kapak.jpg",
         sunuEmbed: "https://drive.google.com/file/d/1xkF-rFhhgcMeF0CS26v1WdlsMjJXd8Jv/preview",
         sunuUrl: "https://drive.google.com/file/d/1xkF-rFhhgcMeF0CS26v1WdlsMjJXd8Jv/view?usp=sharing",
+        dersNotu: "",
         etkinlikler: [
-        {
-            baslik: "Başlangıç Menüsü ve Biçimlendirme Araçlarını Öğreniyorum",
-            tur: "İnteraktif Atölye",
-            url: "/folder/5/etkinlik/libreoffice-etkinlik-1-2.html"
-        },
-        {
-            baslik: "Kelime İşlemci Programlarının Şifrelerini Çözüyorum",
-            tur: "Mini Test",
-            url: "/folder/5/etkinlik/libreoffice-etkinlik-3.html"
-        },
-        {
-            baslik: "Sıra Sizde: Bilişim Sınıfı Uygulamaları",
-            tur: "Uygulama Görevi",
-            url: "/folder/5/etkinlik/sira-sizde.html"
-        },
-    ]
+            {
+                baslik: "Başlangıç Menüsü ve Biçimlendirme Araçlarını Öğreniyorum",
+                tur: "İnteraktif Atölye",
+                url: "/folder/5/etkinlik/libreoffice-etkinlik-1-2.html"
+            },
+            {
+                baslik: "Kelime İşlemci Programlarının Şifrelerini Çözüyorum",
+                tur: "Mini Test",
+                url: "/folder/5/etkinlik/libreoffice-etkinlik-3.html"
+            },
+            {
+                baslik: "Sıra Sizde: Bilişim Sınıfı Uygulamaları",
+                tur: "Uygulama Görevi",
+                url: "/folder/5/etkinlik/sira-sizde.html"
+            }
+        ]
     },
-     "5-hafta-12": {
+
+    "5-hafta-12": {
         sinif: 5,
         hafta: 12,
         baslik: "Sunum Programları-Canva ile Sunum Hazırlıyoruz",
@@ -111,23 +114,24 @@ const dersIcerikleri = {
         kapakResmi: "images/5-12-kapak.jpg",
         sunuEmbed: "https://drive.google.com/file/d/1cKunhCVPAFLaEfBffTNK4Sp3jHJ85GTK/preview",
         sunuUrl: "https://drive.google.com/file/d/1cKunhCVPAFLaEfBffTNK4Sp3jHJ85GTK/view?usp=sharing",
+        dersNotu: "",
         etkinlikler: [
-        {
-            baslik: "Başlangıç Menüsü ve Biçimlendirme Araçlarını Öğreniyorum",
-            tur: "İnteraktif Atölye",
-            url: "/folder/5/etkinlik/canva-etkinlik-1-2.html"
-        },
-        {
-            baslik: "Kelime İşlemci Programlarının Şifrelerini Çözüyorum",
-            tur: "Mini Test",
-            url: "/folder/5/etkinlik/canva-etkinlik-3.html"
-        },
-        {
-            baslik: "Sıra Sizde: Bilişim Sınıfı Uygulamaları",
-            tur: "Uygulama Görevi",
-            url: "/folder/5/etkinlik/canva-sira-sizde.html"
-        },
-    ]
+            {
+                baslik: "Başlangıç Menüsü ve Biçimlendirme Araçlarını Öğreniyorum",
+                tur: "İnteraktif Atölye",
+                url: "/folder/5/etkinlik/canva-etkinlik-1-2.html"
+            },
+            {
+                baslik: "Kelime İşlemci Programlarının Şifrelerini Çözüyorum",
+                tur: "Mini Test",
+                url: "/folder/5/etkinlik/canva-etkinlik-3.html"
+            },
+            {
+                baslik: "Sıra Sizde: Bilişim Sınıfı Uygulamaları",
+                tur: "Uygulama Görevi",
+                url: "/folder/5/etkinlik/canva-sira-sizde.html"
+            }
+        ]
     },
 
     // ==================================================
@@ -200,14 +204,14 @@ const dersIcerikleri = {
         dersNotuPdf: "https://docs.google.com/document/d/1NnuQwKzIXR7GLhhMBtkgw6nF5mYFTlB36TDGUIWxf-Q/preview",
         dersNotu: "",
         etkinlikler: [
-                       {
+            {
                 baslik: "Canva ile Video Düzenleme",
                 tur: "Video",
                 url: "https://drive.google.com/file/d/1RML_y4wmgkL191WPuTl9wHu6TZ-dK_6k/preview"
             }
-        ],
-       
+        ]
     },
+
     "6-hafta-9": {
         sinif: 6,
         hafta: 9,
@@ -219,7 +223,7 @@ const dersIcerikleri = {
         dersNotuPdf: "https://drive.google.com/file/d/1oiavID8fpzgjaS3Olpkf6Vt2r468oFIM/preview",
         dersNotu: `
             <div class="odev-rehberi" style="line-height: 1.6; color: #1e293b;">
-                <h3 style="color: #2563eb; margin-bottom: 8px;">🎬 Ara Tatil Video Kurgu Проjesi: "Dijital Bağımlılığa Dur De: Ekranı Kapat, Hayatı Başlat!"</h3>
+                <h3 style="color: #2563eb; margin-bottom: 8px;">🎬 Ara Tatil Video Kurgu Projesi: "Dijital Bağımlılığa Dur De: Ekranı Kapat, Hayatı Başlat!"</h3>
                 <p><strong>Ödevin Amacı ve Hikâyesi:</strong> Güneşli bir günde odasında perdeler kapalı şekilde saatlerce tablet ekranına hapsolmuş (dijital bağımlılık döngüsüne girmiş) bir 6. sınıf öğrencisi, zamanın boşa akıp gittiğini ve gerçek hayatı kaçırdığını fark eder. İradesini kullanarak ekranı kapatır, pencereyi açarak gün ışığını içeri davet eder ve parkta arkadaşlarıyla buluşup gerçek oyunların, doğanın ve yüz yüze iletişimin tadını çıkarır.</p>
                 
                 <h4 style="color: #0f172a; margin-top: 16px;">📋 4 Sahnelik Video Kurgu Planı (Storyboard - Toplam 20 Saniye)</h4>
@@ -296,12 +300,13 @@ const dersIcerikleri = {
             }
         ]
     },
-        "6-hafta-10": {
+
+    "6-hafta-10": {
         sinif: 6,
         hafta: 10,
         baslik: "Bilgisayar Ağları ve İletişim-Arama Motorları ve Web 2.0 Araçları",
         kazanim: "BTY.6.3.1. İnternet ile amacına uygun olarak çalışabilme, BTY.6.3.2. İletişim teknolojilerini sınıflandırabilme, BTY.6.3.3. İletişim teknolojileri ile çalışabilme ",
-        aciklama: "Video düzenleme programlarının temel özelliklerini tanır.",
+        aciklama: "Arama motorlarını, ileri düzey arama operatörlerini, bilgi doğrulama adımlarını, iletişim teknolojilerini ve e-posta kullanımını öğrenir.",
         kapakResmi: "images/6-sinif-8-hafta-kapak.png",
         sunuEmbed: "https://docs.google.com/presentation/d/1xEpFoAYoZ_yx3A0KcWaGjVbYbFjLjY--K-VPLYxUFRE/embed?start=false&loop=false&delayms=3000",
         sunuUrl: "https://docs.google.com/presentation/d/1xEpFoAYoZ_yx3A0KcWaGjVbYbFjLjY--K-VPLYxUFRE/preview",
@@ -309,16 +314,10 @@ const dersIcerikleri = {
         dersNotuUrl: "https://docs.google.com/document/d/1M0idifKhIiZgDWw9ZJe4zJqB_5ZL7iy1/preview",
         dersNotuPdf: "https://docs.google.com/document/d/1M0idifKhIiZgDWw9ZJe4zJqB_5ZL7iy1/preview",
         dersNotu: "",
-        etkinlikler: [
-                       {
-                baslik: "",
-                tur: "",
-                url: ""
-            }
-        ],
-       
+        etkinlikler: []
     },
-        "6-hafta-11": {
+
+    "6-hafta-11": {
         sinif: 6,
         hafta: 11,
         baslik: "Bilişim Etiği ve Siber Zorbalık",
@@ -334,12 +333,11 @@ const dersIcerikleri = {
         etkinlikler: [
             {
                 baslik: "Bilişim Etiği ve Siber Güvenlik Etkileşimli Etkinlik & 20 Soruluk Konu Testi",
-                tur: "Etkileşimli Etkinlik ve Test",
-                url: "etkinlikler/batunver_6sinif_bilisim_etigi_siber_guvenlik_etkinlik.html"
+                tur: "İnteraktif Atölye",
+                url: "/folder/6/etkinlik/batunver_6sinif_bilisim_etigi_siber_guvenlik_etkinlik.html"
             }
-        ],
-    },
-
+        ]
+    }
 };
 
 // Diğer dosyalardan erişim için
