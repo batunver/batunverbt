@@ -1,0 +1,2367 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>batunver.com — 6. Sınıf 3. Tema: Bilgisayar Ağları ve İletişim Etkileşimli Etkinlikleri</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+/* batunver.com - 6. Sınıf 3. Tema Ortak Etkinlik Tasarım Sistemi */
+:root {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --border-soft: #e2e8f0;
+    --brand-blue: #2563eb;
+    --brand-purple: #7c3aed;
+    --brand-emerald: #059669;
+    --brand-amber: #d97706;
+    --brand-rose: #e11d48;
+}
+
+html, body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+.bty-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+}
+
+.bty-chip {
+    user-select: none;
+    touch-action: manipulation;
+    transition: all 0.15s ease;
+}
+
+.bty-chip:focus-visible,
+.bty-btn:focus-visible,
+.bty-dropzone:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+}
+
+.bty-chip.selected-chip {
+    background-color: #dbeafe !important;
+    border-color: #2563eb !important;
+    color: #1e40af !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    transform: translateY(-1px);
+}
+
+.bty-dropzone.active-drop {
+    border-color: #2563eb !important;
+    background-color: #eff6ff !important;
+}
+
+@media (max-width: 640px) {
+    .bty-card {
+        border-radius: 1.25rem;
+    }
+}
+
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col selection:bg-blue-500 selection:text-white">
+
+    <!-- Üst Menü (batunver.com Uyumlu Başlık ve İlerleme Özeti) -->
+    <header id="portal-header" class="bg-white/95 backdrop-blur border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-blue-600 text-white flex items-center justify-center font-extrabold text-base shadow-sm">
+                    B
+                </div>
+                <div>
+                    <div class="text-sm sm:text-base font-extrabold text-slate-900 leading-tight">
+                        batunver.com • 6. Sınıf BTY 3. Tema Etkinlik Stüdyosu
+                    </div>
+                    <div class="text-[11px] text-slate-500 font-medium">
+                        Bilgisayar Ağları ve İletişim (BTY.6.3.1 • BTY.6.3.2 • BTY.6.3.3)
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <div id="global-progress-pill" class="px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-extrabold flex items-center gap-1.5">
+                    <i class="fa-solid fa-trophy text-amber-500"></i>
+                    <span id="global-progress-text">Tamamlanan: 0 / 5 • Toplam Puan: 0</span>
+                </div>
+                <button type="button" id="btn-reset-all" class="bty-btn px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-rose-50 hover:text-rose-700 text-slate-600 border border-slate-200 text-xs font-bold transition" title="Tüm Etkinlik İlerlemesini Sıfırla">
+                    <i class="fa-solid fa-trash-can mr-1"></i>Tümünü Sıfırla
+                </button>
+            </div>
+        </div>
+
+        <!-- 5 Etkinlik Sekme Çubuğu -->
+        <div id="portal-tabs" class="max-w-5xl mx-auto px-4 sm:px-6 pb-2.5 pt-1 flex items-center gap-2 overflow-x-auto">
+            <button type="button" data-tab-id="1" class="bty-tab-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition shrink-0 flex items-center gap-2">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>1. Arama Dedektifleri</span>
+                <span id="tab-badge-1" class="hidden w-2 h-2 rounded-full bg-emerald-400"></span>
+            </button>
+            <button type="button" data-tab-id="2" class="bty-tab-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition shrink-0 flex items-center gap-2">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>2. Güvenilir Bilgi</span>
+                <span id="tab-badge-2" class="hidden w-2 h-2 rounded-full bg-emerald-400"></span>
+            </button>
+            <button type="button" data-tab-id="3" class="bty-tab-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition shrink-0 flex items-center gap-2">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>3. Arama Motoru / Web 2.0</span>
+                <span id="tab-badge-3" class="hidden w-2 h-2 rounded-full bg-emerald-400"></span>
+            </button>
+            <button type="button" data-tab-id="4" class="bty-tab-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition shrink-0 flex items-center gap-2">
+                <i class="fa-solid fa-tower-broadcast"></i>
+                <span>4. İletişim İstasyonu</span>
+                <span id="tab-badge-4" class="hidden w-2 h-2 rounded-full bg-emerald-400"></span>
+            </button>
+            <button type="button" data-tab-id="5" class="bty-tab-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition shrink-0 flex items-center gap-2">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>5. E-Posta Atölyesi</span>
+                <span id="tab-badge-5" class="hidden w-2 h-2 rounded-full bg-emerald-400"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Ana Etkinlik Sahnesi -->
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-6 w-full space-y-6">
+        <div id="active-activity-mount"></div>
+    </main>
+
+    <!-- Alt Bilgi -->
+    <footer class="border-t border-slate-200 bg-white py-5 text-center text-xs text-slate-500">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <span>&copy; 2026 batunver.com — 6. Sınıf Bilişim Teknolojileri ve Yazılım Dersi 3. Tema Etkileşimli Öğrenme Sistemi</span>
+            <span class="text-emerald-700 font-semibold"><i class="fa-solid fa-lock mr-1"></i>KVKK Uyumlu: Kişisel veri toplanmaz ve dış sunucuya gönderilmez.</span>
+        </div>
+    </footer>
+
+    <script>
+// batunver.com - 6. Sınıf BTY 3. Tema: Bilgisayar Ağları ve İletişim
+// Yeniden Kullanılabilir Ortak Etkinlik Motoru ve 5 Etkinlik Veri Modeli (BTY.6.3.1, BTY.6.3.2, BTY.6.3.3)
+
+const BTY_STORAGE_KEY = "batunver_6sinif_3tema_durum_v1";
+
+const BTY_ACTIVITIES_DATA = {
+    1: {
+        id: 1,
+        slug: "etkinlik-1-arama-dedektifleri",
+        title: "Arama Operatörü Dedektifleri",
+        subtitle: "Görev Tabanlı Arama Sorgusu ve Operatör Oyunu",
+        outcome: "BTY.6.3.1 — İnternet ile amacına uygun olarak çalışabilme",
+        themeColor: "blue",
+        icon: "fa-magnifying-glass",
+        badgeTitle: "Baş Dedektif",
+        intro: "Siber Dedektiflik Bürosuna hoş geldin! İnternette milyonlarca sayfa arasından doğru bilgiye en hızlı ulaşmak için arama operatörlerini (\" \", site:, filetype:, intitle:, -) amacına uygun seçmeli veya sorgu kutusunda birleştirmelisin. Dikkat: Güncel arama motorlarında iki nokta (:) işaretinden sonra boşluk bırakılmaz!",
+        tasks: [
+            {
+                id: "e1_g1",
+                type: "choice",
+                caseNo: "Görev Dosyası #1",
+                title: "Kelimeleri Tam Kalıp Olarak Arama",
+                scenario: "Bir ifadenin kelimelerini sırası bozulmadan, tam olarak birlikte aramak istiyorsun (örneğin yalnızca Bilişim Teknolojileri ifadesinin yan yana geçtiği sayfalar). Hangi arama yöntemini kullanırsın?",
+                hint: "Kelimeleri ayrılmaz bir bütün olarak aratmak için ifadenin başına ve sonuna noktalama işareti eklenir.",
+                points: 10,
+                options: [
+                    { id: "a", text: "\"bilişim teknolojileri\" (Çift tırnak içinde yazmak)", correct: true },
+                    { id: "b", text: "site:bilişim teknolojileri", correct: false, wrongReason: "site: operatörü kelime grubu aramak için değil, belirli bir web sitesi adresinde arama yapmak için kullanılır." },
+                    { id: "c", text: "filetype:bilişim teknolojileri", correct: false, wrongReason: "filetype: operatörü yalnızca PDF, DOCX gibi dosya uzantılarını filtrelemek için kullanılır." },
+                    { id: "d", text: "bilişim -teknolojileri", correct: false, wrongReason: "Eksi (-) işareti yanındaki kelimeyi sonuçlardan çıkarır; birlikte aratmaz." }
+                ],
+                explanation: "Doğru! Çift tırnak (\" \") operatörü, tırnak içindeki kelimelerin tam olarak aynı sırayla ve yan yana geçtiği sonuçları listeler."
+            },
+            {
+                id: "e1_g2",
+                type: "builder",
+                caseNo: "Görev Dosyası #2",
+                title: "Belirli Bir Web Sitesinde Arama Yapma",
+                scenario: "Siber güvenlik konusuyla ilgili yalnızca Millî Eğitim Bakanlığının resmî web sitesinde (meb.gov.tr) yer alan içerikleri bulmak istiyorsun. Doğru arama sorgusunu parçaları sırayla seçerek oluştur!",
+                hint: "Önce aranan konuyu, ardından site:meb.gov.tr operatörünü boşluksuz olarak eklemelisin.",
+                points: 10,
+                tokens: ["siber güvenlik", "site:meb.gov.tr", "filetype:meb.gov.tr", "intitle:meb", "-meb.gov.tr"],
+                acceptedOrders: [
+                    ["siber güvenlik", "site:meb.gov.tr"],
+                    ["site:meb.gov.tr", "siber güvenlik"]
+                ],
+                explanation: "Harika! site:meb.gov.tr operatörü aramayı yalnızca meb.gov.tr alan adıyla sınırlandırır. İki noktadan sonra boşluk bırakılmadığına dikkat et."
+            },
+            {
+                id: "e1_g3",
+                type: "choice",
+                caseNo: "Görev Dosyası #3",
+                title: "Yalnızca Belirli Dosya Türünü (PDF) Arama",
+                scenario: "Bilgisayar ağları konusuyla ilgili yalnızca PDF biçimindeki ders notlarını ve belgeleri listelemek istiyorsun. Hangi sorguyu kullanmalısın?",
+                hint: "Dosya biçimini (türünü) filtreleyen İngilizce 'file type' ifadesinden gelen operatörü hatırla.",
+                points: 10,
+                options: [
+                    { id: "a", text: "bilgisayar ağları filetype:pdf", correct: true },
+                    { id: "b", text: "bilgisayar ağları site:pdf", correct: false, wrongReason: "pdf bir web sitesi uzantısı değil, bir dosya türüdür; site: yerine filetype: kullanılmalıdır." },
+                    { id: "c", text: "bilgisayar ağları -pdf", correct: false, wrongReason: "-pdf yazmak, içinde pdf geçen sonuçları tamamen hariç tutar." },
+                    { id: "d", text: "intitle:pdf bilgisayar ağları", correct: false, wrongReason: "intitle:pdf yalnızca sayfa başlığında pdf yazan web sayfalarını arar, doğrudan PDF dosyalarını filtrelemez." }
+                ],
+                explanation: "Tebrikler! filetype:pdf operatörü yalnızca PDF uzantılı belgeleri listeler (müfredat ve güncel arama motorlarında ext:pdf da aynı işlevi görür)."
+            },
+            {
+                id: "e1_g4",
+                type: "builder",
+                caseNo: "Görev Dosyası #4",
+                title: "İstenmeyen Sonuçları Hariç Tutma (-)",
+                scenario: "Bilgisayar virüsleri hakkında araştırma yaparken sağlık ve biyoloji alanındaki virüs sonuçlarının çıkmasını istemiyorsun. Sorguyu doğru parçalarla kur!",
+                hint: "İstemediğimiz kelimenin hemen önüne boşluk bırakmadan eksi (-) işareti koyarız.",
+                points: 10,
+                tokens: ["virüs", "-biyoloji", "\"biyoloji\"", "site:biyoloji", "filetype:virüs"],
+                acceptedOrders: [
+                    ["virüs", "-biyoloji"]
+                ],
+                explanation: "Çok iyi! Eksi (-) operatörü, bitişik yazılan kelimenin geçtiği sayfaları arama sonuçlarından çıkarır."
+            },
+            {
+                id: "e1_g5",
+                type: "choice",
+                caseNo: "Görev Dosyası #5",
+                title: "Sayfa Başlığında Belirli Bir İfadeyi Arama",
+                scenario: "Web sayfasının yalnızca başlığında (title) 'e-posta' kelimesi geçen sayfaları bulmak istiyorsun. Hangi arama operatörünü seçmelisin?",
+                hint: "Başlık (title) içinde (in) arama anlamına gelen operatörü düşün.",
+                points: 10,
+                options: [
+                    { id: "a", text: "intitle:e-posta", correct: true },
+                    { id: "b", text: "site:e-posta", correct: false, wrongReason: "site: operatörü yalnızca alan adı/web sitesi adresi için kullanılır." },
+                    { id: "c", text: "filetype:e-posta", correct: false, wrongReason: "e-posta bir dosya uzantısı değildir." },
+                    { id: "d", text: "-e-posta", correct: false, wrongReason: "-e-posta ifadesi e-posta kelimesini sonuçlardan çıkarır." }
+                ],
+                explanation: "Doğru! intitle:e-posta operatörü, sayfa başlığında 'e-posta' geçen sonuçları filtreler."
+            },
+            {
+                id: "e1_g6",
+                type: "builder",
+                caseNo: "Görev Dosyası #6",
+                title: "Birleşik Görev: Alan Adı + Dosya Türü",
+                scenario: "Yalnızca meb.gov.tr alan adındaki bilgisayar konulu PDF dosyalarını bulmak istiyorsun. Nasıl bir arama yaparsın? Parçaları birleştir!",
+                hint: "Konu kelimesi + site:meb.gov.tr + filetype:pdf üçlüsünü bir araya getirmelisin.",
+                points: 10,
+                tokens: ["bilgisayar", "site:meb.gov.tr", "filetype:pdf", "-pdf", "intitle:meb"],
+                acceptedOrders: [
+                    ["bilgisayar", "site:meb.gov.tr", "filetype:pdf"],
+                    ["bilgisayar", "filetype:pdf", "site:meb.gov.tr"],
+                    ["site:meb.gov.tr", "bilgisayar", "filetype:pdf"],
+                    ["site:meb.gov.tr", "filetype:pdf", "bilgisayar"],
+                    ["filetype:pdf", "bilgisayar", "site:meb.gov.tr"],
+                    ["filetype:pdf", "site:meb.gov.tr", "bilgisayar"]
+                ],
+                explanation: "Mükemmel! Birden fazla arama operatörünü aynı sorguda birleştirerek hem siteyi (site:meb.gov.tr) hem de dosya türünü (filetype:pdf) aynı anda sınırlandırdın."
+            },
+            {
+                id: "e1_g7",
+                type: "builder",
+                caseNo: "Görev Dosyası #7",
+                title: "Birleşik Görev: EBA Üzerinde Tam İfade Arama",
+                scenario: "Yalnızca eba.gov.tr sitesi içinde \"bilim haftası\" ifadesinin kelimeleri ayrılmadan geçtiği sayfaları aramak istiyorsun. Sorguyu oluştur!",
+                hint: "Tam eşleşme için çift tırnaklı ifadeyi ve belirli site için site:eba.gov.tr parçasını birlikte kullan.",
+                points: 10,
+                tokens: ["\"bilim haftası\"", "site:eba.gov.tr", "-bilim", "filetype:eba", "bilim haftası"],
+                acceptedOrders: [
+                    ["\"bilim haftası\"", "site:eba.gov.tr"],
+                    ["site:eba.gov.tr", "\"bilim haftası\""]
+                ],
+                explanation: "Harika! \"bilim haftası\" site:eba.gov.tr sorgusu hem tam kelime grubunu korur hem de aramayı EBA platformuyla sınırlar."
+            },
+            {
+                id: "e1_g8",
+                type: "choice",
+                caseNo: "Görev Dosyası #8",
+                title: "Güncel Arama Motorlarında Yazım Kuralı",
+                scenario: "Arkadaşın arama motoruna 'bilişim site: gov.tr' yazdı ancak resmî siteler dışındaki sayfalar da listelendi. Arkadaşının yaptığı teknik hata nedir?",
+                hint: "Operatörlerde iki nokta üst üste (:) işaretinden hemen sonra ne gelmelidir?",
+                points: 10,
+                options: [
+                    { id: "a", text: "site: operatöründen sonra boşluk bırakmıştır; 'site:gov.tr' şeklinde bitişik yazılmalıdır.", correct: true },
+                    { id: "b", text: "site: operatörü yerine filetype:gov.tr yazmalıydı.", correct: false, wrongReason: "gov.tr bir dosya türü değil, devlet kurumlarına ait alan adı uzantısıdır." },
+                    { id: "c", text: "Kelimelerin tamamını büyük harfle yazmadığı için çalışmamıştır.", correct: false, wrongReason: "Arama motorları büyük/küçük harfe duyarlı değildir." },
+                    { id: "d", text: "Arama motorlarında artık hiçbir operatör çalışmamaktadır.", correct: false, wrongReason: "site:, filetype: ve çift tırnak güncel arama motorlarında aktif olarak çalışmaktadır." }
+                ],
+                explanation: "Çok önemli bir detayı yakaladın! Güncel arama motorlarında site:, filetype: veya intitle: yazarken iki noktadan sonra boşluk bırakılırsa operatör devre dışı kalır ve sıradan kelime gibi aranır."
+            },
+            {
+                id: "e1_g9",
+                type: "choice",
+                caseNo: "Görev Dosyası #9",
+                title: "Arama Motoru Sekmeleri ve Kullanım Hakları Filtresi",
+                scenario: "Okul afişinde kullanmak üzere telif hakkı sorunu olmayan (ücretsiz paylaşılabilir) bir fotoğraf arıyorsun. Arama motorunda hangi filtre yolunu izlemelisin?",
+                hint: "Görseller sekmesinin altındaki Araçlar menüsünde lisans/telif filtresi bulunur.",
+                points: 10,
+                options: [
+                    { id: "a", text: "Görseller > Araçlar > Kullanım Hakları (Creative Commons lisansları)", correct: true },
+                    { id: "b", text: "Alışveriş > En Düşük Fiyat filtresi", correct: false, wrongReason: "Alışveriş sekmesi ürün satın almak içindir, telifsiz afiş görseli filtrelemez." },
+                    { id: "c", text: "Haberler > Son 24 Saat filtresi", correct: false, wrongReason: "Haberler sekmesi güncel haber yazılarını listeler." },
+                    { id: "d", text: "Karşına çıkan ilk görseli izinsiz ve kaynaksız indirmek", correct: false, wrongReason: "Her görsel telifsiz değildir; kullanım hakları filtresi kontrol edilmelidir." }
+                ],
+                explanation: "Doğru! Arama motorlarının Görseller sekmesindeki 'Araçlar > Kullanım Hakları (Creative Commons)' filtresi, yeniden kullanıma izin verilen görselleri bulmamızı sağlar."
+            },
+            {
+                id: "e1_g10",
+                type: "builder",
+                caseNo: "Görev Dosyası #10 (Baş Dedektif Finali)",
+                title: "Üçlü Operatör Görevi",
+                scenario: "Final Görevi: Yalnızca resmî devlet sitelerinde (gov.tr) yer alan, içinde tam olarak \"dijital güvenlik\" ifadesi geçen PDF rehberlerini bulmak için 3 parçalı sorguyu oluştur!",
+                hint: "\"dijital güvenlik\" + site:gov.tr + filetype:pdf parçalarını bir araya getir.",
+                points: 10,
+                tokens: ["\"dijital güvenlik\"", "site:gov.tr", "filetype:pdf", "-güvenlik", "intitle:pdf"],
+                acceptedOrders: [
+                    ["\"dijital güvenlik\"", "site:gov.tr", "filetype:pdf"],
+                    ["\"dijital güvenlik\"", "filetype:pdf", "site:gov.tr"],
+                    ["site:gov.tr", "\"dijital güvenlik\"", "filetype:pdf"],
+                    ["site:gov.tr", "filetype:pdf", "\"dijital güvenlik\""],
+                    ["filetype:pdf", "\"dijital güvenlik\"", "site:gov.tr"],
+                    ["filetype:pdf", "site:gov.tr", "\"dijital güvenlik\""]
+                ],
+                explanation: "Tebrikler Baş Dedektif! Tam eşleşme (\" \"), alan adı sınırlama (site:gov.tr) ve dosya türü (filetype:pdf) operatörlerini birlikte kullanarak hedefe tam isabetle ulaştın!"
+            }
+        ]
+    },
+    2: {
+        id: 2,
+        slug: "etkinlik-2-guvenilir-bilgi",
+        title: "Güvenilir Bilginin Peşinde",
+        subtitle: "Kaynak Kartları İnceleme, Karşılaştırma ve Doğrulama",
+        outcome: "BTY.6.3.1 — İnternette ulaşılan bilgilerin doğruluğunu ve güvenilirliğini değerlendirme",
+        themeColor: "emerald",
+        icon: "fa-shield-halved",
+        badgeTitle: "Doğruluk Uzmanı",
+        intro: "İnternette karşılaştığımız her bilgi doğru değildir! Bu etkinlikte kurgusal kaynak kartlarını inceleyecek, hangi kaynağın veya yaklaşımın daha güvenilir olduğuna karar verecek ve kararını etkileyen kanıt ölçütlerini işaretleyeceksin. Unutma: Tek bir özelliğe (hatta yalnızca site uzantısına) bakmak yetmez; yazar, güncellik, kanıt ve çapraz doğrulama birlikte değerlendirilmelidir!",
+        scenarios: [
+            {
+                id: "e2_s1",
+                stepNo: "Senaryo 1 / 4",
+                title: "Bilimsel Araştırma: Yazar ve Kaynakça Kontrolü",
+                prompt: "Fen ve Bilişim ortak ödevin için 'Yapay Zekâ ve Enerji Tüketimi' hakkında bilimsel bir bilgi arıyorsun. Karşına iki farklı kaynak çıktı. Önce nasıl ilerleyeceğini seç, ardından bu kararını destekleyen 2 doğru ölçütü işaretle!",
+                hint: "Yazar bilgisi, yayın tarihi ve başvurulan kaynakçası açık olan içerikler kontrol edilebilir niteliktedir.",
+                points: 25,
+                cards: [
+                    {
+                        id: "k1",
+                        badge: "1. Kaynak",
+                        title: "GizemliTeknoBlog123.net",
+                        domain: "Kişisel Blog Sayfası (.net)",
+                        author: "Belirtilmemiş (Anonim)",
+                        date: "Tarih Yok",
+                        evidence: "Kaynakça ve veri bağlantısı yok; 'Şok Gerçekler!' başlığı kullanılmış.",
+                        crossCheck: "Başka hiçbir bilimsel sitede benzer veri yer almıyor."
+                    },
+                    {
+                        id: "k2",
+                        badge: "2. Kaynak",
+                        title: "Bilim ve Teknoloji Araştırma Dergisi",
+                        domain: "Kurumsal Eğitim/Bilim Yayını",
+                        author: "Doç. Dr. Elif Kaya (Bilişim Sistemleri Bölümü)",
+                        date: "Ekim 2026",
+                        evidence: "3 farklı akademik rapor ve enerji ölçüm tablosu kaynakçada listelenmiş.",
+                        crossCheck: "Üniversite ve kamu raporlarıyla tutarlı veriler içeriyor."
+                    }
+                ],
+                decisionQuestion: "Araştırmanı yaparken nasıl ilerlemelisin?",
+                decisions: [
+                    { id: "d1", text: "1. Kaynağı seçmeliyim çünkü başlığı daha heyecanlı ve kısa.", correct: false, wrongReason: "Abartılı başlıklar (tıklama tuzağı) güvenilirlik ölçütü değildir; yazar ve kaynakça eksikliği büyük risktir." },
+                    { id: "d2", text: "2. Kaynağı temel almalı ve içindeki kaynakçayı/verileri diğer güvenilir kaynaklarla karşılaştırmalıyım.", correct: true },
+                    { id: "d3", text: "İkisini de okumadan ilk çıkan görseli ödevime yapıştırmalıyım.", correct: false, wrongReason: "Kaynağı doğrulanmamış görseller yanlış bilgi içerebilir." }
+                ],
+                criteriaQuestion: "2. Kaynağı daha güvenilir kılan 2 temel özelliği işaretle:",
+                criteriaOptions: [
+                    { id: "c1", text: "Yazarın uzmanlık alanının ve kurumunun açıkça belirtilmiş olması", correct: true },
+                    { id: "c2", text: "Yayın tarihinin güncel olması ve başvurulan kaynakçanın gösterilmesi", correct: true },
+                    { id: "c3", text: "Sayfa arka plan renginin mavi olması", correct: false },
+                    { id: "c4", text: "Yazı boyutunun çok büyük olması", correct: false }
+                ],
+                explanation: "Harika analiz! Bilimsel bir araştırmada yazarın kimliği, yayın tarihi, kaynakça gösterimi ve başka güvenilir kaynaklarla tutarlılık birlikte değerlendirilir."
+            },
+            {
+                id: "e2_s2",
+                stepNo: "Senaryo 2 / 4",
+                title: "Güncellik ve Yayın Amacı (Reklam mı, Bilgilendirme mi?)",
+                prompt: "Bilgisayarını zararlı yazılımlardan korumak için güncel güvenlik yöntemlerini araştırıyorsun. Aşağıdaki iki kaynağı incele ve doğru karar ile gerekçeleri seç!",
+                hint: "Teknoloji hızla değişir; çok eski tarihli veya tek amacı ürün satmak olan sayfalara dikkat etmeliyiz.",
+                points: 25,
+                cards: [
+                    {
+                        id: "k1",
+                        badge: "1. Kaynak",
+                        title: "SüperHızlıAntivirüsSatış.com",
+                        domain: "Ticari Satış Sayfası (.com)",
+                        author: "Satış Ekibi",
+                        date: "2015 (11 Yıl Önce)",
+                        evidence: "'Hemen İndir %90 İndirim!' butonları var; yalnızca kendi ücretli programını övüyor.",
+                        crossCheck: "Modern işletim sistemlerindeki güncel güvenlik duvarı özelliklerinden hiç bahsetmiyor."
+                    },
+                    {
+                        id: "k2",
+                        badge: "2. Kaynak",
+                        title: "Siber Güvenlik Bilgilendirme Rehberi",
+                        domain: "Kamu & Eğitim Bilgilendirme Portalı",
+                        author: "Siber Güvenlik Uzmanları Kurulu",
+                        date: "Kasım 2026 (Güncel)",
+                        evidence: "Güçlü parola, iki aşamalı doğrulama ve işletim sistemi güncellemelerini tarafsızca açıklıyor.",
+                        crossCheck: "BTK ve MEB dijital güvenlik kılavuzlarıyla aynı ilkeleri paylaşıyor."
+                    }
+                ],
+                decisionQuestion: "Hangi kaynağı referans almalı ve nedenini nasıl açıklamalısın?",
+                decisions: [
+                    { id: "d1", text: "2. Kaynağı referans almalıyım; çünkü güncel (2026), amacı ticari reklam değil nesnel bilgilendirme ve diğer kılavuzlarla tutarlı.", correct: true },
+                    { id: "d2", text: "1. Kaynağı seçmeliyim; çünkü 2015 yılındaki bilgiler hiç değişmemiştir ve indirim sunuyor.", correct: false, wrongReason: "Bilişim teknolojilerinde 2015 yılına ait bilgiler güncelliğini yitirmiştir ve sayfanın amacı ürün satmaktır." }
+                ],
+                criteriaQuestion: "Bir kaynağın güvenilirliğini değerlendirirken burada hangi 2 ölçüt belirleyici oldu?",
+                criteriaOptions: [
+                    { id: "c1", text: "Bilginin güncelliği (yayın/güncellenme tarihi)", correct: true },
+                    { id: "c2", text: "Paylaşım amacı (reklam/satış yönlendirmesi yerine nesnel bilgilendirme olması)", correct: true },
+                    { id: "c3", text: "Sayfada yanıp sönen indirim butonlarının bulunması", correct: false },
+                    { id: "c4", text: "Adresinde çok fazla harf bulunması", correct: false }
+                ],
+                explanation: "Tebrikler! Özellikle bilişim ve bilim konularında bilginin güncelliği (yayın tarihi) ve sayfanın yazılış amacı (bilgilendirme mi, reklam mı?) mutlaka kontrol edilmelidir."
+            },
+            {
+                id: "e2_s3",
+                stepNo: "Senaryo 3 / 4",
+                title: "Anlamlı Güvenilirlik Ölçütünü Belirleme",
+                prompt: "Bir internet sayfasının güvenilirliğini değerlendirmek isteyen 6. sınıf öğrencisi Mert, kontrol listesi hazırlıyor. Aşağıdaki iki yaklaşımdan hangisi doğru ölçütlere dayanır?",
+                hint: "Sayfanın dış görünüşü (renk, resim sayısı, yazı boyutu) bilginin doğruluğunu kanıtlamaz.",
+                points: 25,
+                cards: [
+                    {
+                        id: "k1",
+                        badge: "Yaklaşım A",
+                        title: "Biçimsel / Görsel Ölçütler",
+                        domain: "Yalnızca Görünüş Odaklı",
+                        author: "Kontrol Edilmiyor",
+                        date: "Kontrol Edilmiyor",
+                        evidence: "Sayfanın renginin güzel olması, yazıların çok büyük olması ve sayfada çok fazla resim bulunması.",
+                        crossCheck: "Başka kaynaklarla karşılaştırma yapılmıyor."
+                    },
+                    {
+                        id: "k2",
+                        badge: "Yaklaşım B",
+                        title: "Kanıt ve Doğrulama Ölçütleri",
+                        domain: "İçerik ve Kaynak Odaklı",
+                        author: "Yazar ve kurum uzmanlığı inceleniyor",
+                        date: "Yayın ve güncellenme tarihi kontrol ediliyor",
+                        evidence: "Kaynağın, yazarın ve iddiaların kanıtlarla kontrol edilebilmesi.",
+                        crossCheck: "En az iki farklı güvenilir kaynakla çapraz doğrulama yapılıyor."
+                    }
+                ],
+                decisionQuestion: "Bir internet sayfasının güvenilirliğini değerlendirmek için hangisi anlamlı bir ölçüttür?",
+                decisions: [
+                    { id: "d1", text: "Sayfanın renginin güzel olması ve yazıların çok büyük olması.", correct: false, wrongReason: "Yanlış bilgi yayan bir site de çok renkli tasarıma veya büyük yazılara sahip olabilir." },
+                    { id: "d2", text: "Sayfada çok fazla resim ve animasyon bulunması.", correct: false, wrongReason: "Çok resim bulunması bilginin doğru olduğu anlamına gelmez." },
+                    { id: "d3", text: "Kaynağın, yazarın ve iddiaların kontrol edilebilmesi (Yaklaşım B).", correct: true }
+                ],
+                criteriaQuestion: "Yaklaşım B'yi doğru kılan 2 doğrulama adımını seç:",
+                criteriaOptions: [
+                    { id: "c1", text: "İddiaların kanıt ve kaynakçayla desteklenmesi", correct: true },
+                    { id: "c2", text: "Bilginin farklı ve bağımsız güvenilir kaynaklarla karşılaştırılması", correct: true },
+                    { id: "c3", text: "Sayfadaki resim sayısının 10'dan fazla olması", correct: false },
+                    { id: "c4", text: "Başlığın tamamının büyük harfle yazılması", correct: false }
+                ],
+                explanation: "Kesinlikle doğru! Bir web sayfasının tasarımı ne kadar şık olursa olsun, güvenilirliği belirleyen temel ölçüt; kaynağın, yazarın ve iddiaların kontrol edilebilir olmasıdır."
+            },
+            {
+                id: "e2_s4",
+                stepNo: "Senaryo 4 / 4 (Final Görevi)",
+                title: "Üç Kaynağı Karşılaştırma ve Çoklu Ölçüt Değerlendirmesi",
+                prompt: "Final Görevi: Okulda 'Bilişim Yarışması Başvuru Şartları' hakkında üç farklı sayfa buldun. Dikkat: Resmî bir sitede yer almak bile tek başına yeterli olmayabilir (örneğin eski yıllara ait bir duyuru olabilir). Üç kaynağı karşılaştır ve en doğru kararı gerekçeleriyle belirle!",
+                hint: "Hem kaynağın resmî/yetkili olmasına hem de duyuru tarihinin bu yıla (2026) ait olup başka duyurularla doğrulanmasına dikkat et!",
+                points: 25,
+                cards: [
+                    {
+                        id: "k1",
+                        badge: "Kaynak 1",
+                        title: "Sosyal Medya Yorumu",
+                        domain: "Sosyal Ağ Paylaşımı",
+                        author: "@oyuncu_kral99 (Anonim hesap)",
+                        date: "Kasım 2026",
+                        evidence: "'Yarışma iptal edildi diye duydum' şeklinde kanıtsız söylenti.",
+                        crossCheck: "Resmî açıklama bağlantısı yok."
+                    },
+                    {
+                        id: "k2",
+                        badge: "Kaynak 2",
+                        title: "Arşivlenmiş Eski Resmî Duyuru",
+                        domain: "Kurumsal Arşiv Sayfası (.gov.tr)",
+                        author: "Yarışma Düzenleme Kurulu",
+                        date: "Kasım 2019 (Eski Arşiv)",
+                        evidence: "2019 yılına ait eski başvuru takvimi ve geçmiş şartname.",
+                        crossCheck: "Resmî sitede yer alıyor ancak güncel yıl (2026) ile uyuşmuyor."
+                    },
+                    {
+                        id: "k3",
+                        badge: "Kaynak 3",
+                        title: "2026 Güncel Yarışma Kılavuzu",
+                        domain: "Resmî Eğitim Portalı (.gov.tr / .edu.tr)",
+                        author: "MEB & TÜBİTAK Yarışma Komisyonu",
+                        date: "Kasım 2026 (Güncel)",
+                        evidence: "2026-2027 eğitim öğretim yılı güncel başvuru kılavuzu PDF belgesi ve iletişim bilgileri.",
+                        crossCheck: "Okul müdürlüğüne gelen resmî yazı ve EBA duyurusuyla bire bir örtüşüyor."
+                    }
+                ],
+                decisionQuestion: "Üç kaynağı karşılaştırdığında hangi kaynağı seçmeli ve nasıl bir ilke izlemelisin?",
+                decisions: [
+                    { id: "d1", text: "Kaynak 2'yi seçmeliyim; çünkü uzantısı .gov.tr olduğu için tarihine bakmama gerek yoktur.", correct: false, wrongReason: "Resmî bir sitede yer alması tek başına güncel veya aradığımız duruma uygun olduğu anlamına gelmez; Kaynak 2, 2019 yılına ait eski bir arşiv belgesidir." },
+                    { id: "d2", text: "Kaynak 1'i seçmeliyim; çünkü sosyal medyada en son o paylaşılmış.", correct: false, wrongReason: "Anonim sosyal medya söylentileri kanıt ve resmî kaynak içermez." },
+                    { id: "d3", text: "Kaynak 3'ü seçmeliyim; çünkü hem yetkili kurum tarafından yayımlanmış hem tarihi güncel (2026) hem de EBA/okul duyurusuyla çapraz doğrulanabiliyor.", correct: true }
+                ],
+                criteriaQuestion: "Bu final karşılaştırmasından çıkardığımız 2 altın kuralı işaretle:",
+                criteriaOptions: [
+                    { id: "c1", text: "Resmî bir sitede yer alsa bile yayın tarihi (güncellik) ve içeriğin kapsamı mutlaka kontrol edilmelidir", correct: true },
+                    { id: "c2", text: "Kaynak, yazar, kanıt ve başka güvenilir kaynaklarla karşılaştırma birlikte değerlendirilmelidir", correct: true },
+                    { id: "c3", text: "Uzantısı .gov.tr olan her sayfa hangi yıldan kalırsa kalsın doğrudan kullanılmalıdır", correct: false },
+                    { id: "c4", text: "Sosyal medyadaki anonim yorumlar resmî kılavuzlardan daha güvenilirdir", correct: false }
+                ],
+                explanation: "Mükemmel! Tam bir Doğruluk Uzmanı gibi çalıştın: Resmî bir sitede yer almak bile tek başına mutlak garanti değildir; güncellik (2019 vs. 2026), kaynak, kanıt ve çapraz doğrulama her zaman birlikte değerlendirilmelidir."
+            }
+        ]
+    },
+    3: {
+        id: 3,
+        slug: "etkinlik-3-arama-motoru-web20",
+        title: "Arama Motoru mu, Web 2.0 Aracı mı?",
+        subtitle: "Araç Sınıflandırma ve Senaryo Tabanlı Araç Seçimi",
+        outcome: "BTY.6.3.1 — Arama motorlarını ve etkileşimli Web 2.0 araçlarını kullanım amaçlarına göre değerlendirme",
+        themeColor: "purple",
+        icon: "fa-layer-group",
+        badgeTitle: "Dijital Araç Ustası",
+        intro: "İnternette bilgi aramak için kullandığımız 'Arama Motorları' ile dijital içerik üretip iş birliği yaptığımız 'Web 2.0 Araçları' birbirinden farklı amaçlara hizmet eder. İlk bölümde araç kartlarını doğru kutulara yerleştir, ikinci bölümde ise günlük yaşam görevlerine en uygun araçları (bazı görevlerde birden fazla aracı birlikte!) seç!",
+        sortingItems: [
+            { id: "t_google", name: "Google", icon: "fa-brands fa-google", category: "search", desc: "Web sayfalarını indeksleyip anahtar kelimelere göre bilgi arayan arama motoru." },
+            { id: "t_bing", name: "Microsoft Bing", icon: "fa-brands fa-microsoft", category: "search", desc: "İnternet üzerindeki web sitelerini, görselleri ve haberleri bulan arama motoru." },
+            { id: "t_yandex", name: "Yandex", icon: "fa-solid fa-compass", category: "search", desc: "Web adreslerini, haritaları ve belgeleri tarayarak listeleyen arama motoru." },
+            { id: "t_canva", name: "Canva", icon: "fa-solid fa-palette", category: "web20", desc: "Afiş, sunum, infografik ve video hazırlamayı sağlayan Web 2.0 tasarım aracı." },
+            { id: "t_gdocs", name: "Google Dokümanlar / Word Online", icon: "fa-solid fa-file-word", category: "web20", desc: "Aynı belge üzerinde çevrim içi ortak yazı yazmayı sağlayan iş birliği aracı." },
+            { id: "t_padlet", name: "Padlet & Genially", icon: "fa-solid fa-chalkboard-user", category: "web20", desc: "Ortak dijital pano oluşturma ve etkileşimli sunum/içerik hazırlama Web 2.0 araçları." }
+        ],
+        scenarios: [
+            {
+                id: "e3_g2",
+                stepTitle: "Görev 2 / 9 — Bilgi Araştırması",
+                scenario: "“Bilişim dersindeki proje konum hakkında farklı internet kaynaklarına, makalelere ve haberlere ulaşmak istiyorum.”",
+                multiSelect: false,
+                hint: "Henüz içerik tasarlamıyoruz; internetteki mevcut kaynakları bulmak için hangi araç türünü kullanırız?",
+                points: 10,
+                options: [
+                    { id: "search", label: "Arama Motoru (Google, Bing, Yandex)", correct: true },
+                    { id: "canva", label: "Görsel Tasarım Aracı (Canva)", correct: false, wrongReason: "Canva afiş ve görsel tasarlamak içindir; web sitelerini tarayarak kaynak aramaz." },
+                    { id: "padlet", label: "Dijital Pano Aracı (Padlet)", correct: false, wrongReason: "Padlet fikir paylaşım panosudur; internetteki web sitelerini indekslemez." }
+                ],
+                explanation: "Doğru! Farklı internet kaynaklarına ulaşmak ve araştırma yapmak için Google, Bing veya Yandex gibi arama motorları kullanılır."
+            },
+            {
+                id: "e3_g3",
+                stepTitle: "Görev 3 / 9 — Görsel Afiş Hazırlama",
+                scenario: "“Okulda düzenlenecek Bilim ve Teknoloji Haftası için görsel açıdan zengin bir duyuru afişi hazırlamak istiyorum.”",
+                multiSelect: false,
+                hint: "Şablonlar, metinler ve grafik bileşenleriyle poster/afiş tasarlanan Web 2.0 aracını seçmelisin.",
+                points: 10,
+                options: [
+                    { id: "canva", label: "Canva (Dijital Tasarım ve Afiş Aracı)", correct: true },
+                    { id: "search", label: "Yalnızca Arama Motoru (Google / Yandex)", correct: false, wrongReason: "Arama motorları bilgi ve görsel bulur ancak üzerinde afiş tasarımı yapılmaz." },
+                    { id: "gdocs", label: "Klasik Hesap Makinesi", correct: false, wrongReason: "Hesap makinesi sayısal işlemler içindir." }
+                ],
+                explanation: "Harika! Canva gibi Web 2.0 tasarım araçlarıyla afiş, poster, infografik ve davetiyeler kolayca oluşturulabilir."
+            },
+            {
+                id: "e3_g4",
+                stepTitle: "Görev 4 / 9 — Ortak Belge Yazımı",
+                scenario: "“Grup ödevimiz için 3 arkadaşımla evlerimizden aynı metin belgesi üzerinde eş zamanlı (ortak) çalışarak rapor yazmak istiyoruz.”",
+                multiSelect: false,
+                hint: "Bulut tabanlı kelime işlemci ve ortak çalışma araçlarını düşün.",
+                points: 10,
+                options: [
+                    { id: "gdocs", label: "Google Dokümanlar veya Word Online", correct: true },
+                    { id: "bing", label: "Bing Arama Motoru", correct: false, wrongReason: "Bing bir arama motorudur; üzerinde ortak metin belgesi düzenlenemez." },
+                    { id: "media", label: "Medya Oynatıcı", correct: false, wrongReason: "Medya oynatıcı yalnızca ses ve video dosyalarını açar." }
+                ],
+                explanation: "Çok doğru! Google Dokümanlar ve Word Online, birden fazla öğrencinin aynı belge üzerinde aynı anda yazı yazmasına ve yorum eklemesine olanak tanıyan Web 2.0 iş birliği araçlarıdır."
+            },
+            {
+                id: "e3_g5",
+                stepTitle: "Görev 5 / 9 — Etkileşimli Sunum ve Dijital İçerik",
+                scenario: "“Tıklanabilir butonlar, açılır bilgi pencereleri ve animasyonlar içeren etkileşimli bir dijital sunum oluşturmak istiyorum.”",
+                multiSelect: false,
+                hint: "Etkileşimli sunum ve oyunlaştırılmış içerik üretimiyle öne çıkan Web 2.0 araçlarını seç.",
+                points: 10,
+                options: [
+                    { id: "genially", label: "Genially veya Canva Sunum Aracı", correct: true },
+                    { id: "yandex", label: "Yandex Arama Motoru", correct: false, wrongReason: "Yandex arama motorudur, etkileşimli sunum oluşturma aracı değildir." },
+                    { id: "notepad", label: "Basit Not Defteri (.txt)", correct: false, wrongReason: "Düz metin belgesi etkileşimli buton veya sunum desteklemez." }
+                ],
+                explanation: "Tebrikler! Genially ve Canva, öğrencilerin etkileşimli sunumlar ve dijital öğrenme materyalleri üretmesini sağlayan Web 2.0 araçlarıdır."
+            },
+            {
+                id: "e3_g6",
+                stepTitle: "Görev 6 / 9 — Ortak Dijital Duvar / Pano",
+                scenario: "“Sınıftaki tüm öğrencilerin 'Siber Zorbalığa Karşı Öneriler' başlığı altında kısa not kartları ve görseller asabileceği ortak bir dijital duvar oluşturmak istiyoruz.”",
+                multiSelect: false,
+                hint: "Dijital mantar pano / duvar denince akla gelen Web 2.0 aracını hatırla.",
+                points: 10,
+                options: [
+                    { id: "padlet", label: "Padlet (Ortak Dijital Pano Aracı)", correct: true },
+                    { id: "google", label: "Google Arama Motoru", correct: false, wrongReason: "Google arama motorudur; sınıfça üzerine not asılan ortak bir pano değildir." },
+                    { id: "calc", label: "Denetim Masası", correct: false, wrongReason: "Denetim Masası bilgisayar ayarlarını yönetir." }
+                ],
+                explanation: "Doğru! Padlet, öğretmen ve öğrencilerin ortak bir dijital duvar/pano üzerinde eş zamanlı not, görsel ve bağlantı paylaşmasını sağlayan bir Web 2.0 aracıdır."
+            },
+            {
+                id: "e3_g7",
+                stepTitle: "Görev 7 / 9 — Birlikte Kullanım (Araştırma + Afiş Tasarımı)",
+                scenario: "“Önce internetten 'İklim Değişikliği' hakkında güvenilir istatistikleri araştırmak, ardından bulduğum bilgilerle bir farkındalık afişi tasarlamak istiyorum.” (Uygun olan 2 aracı birlikte seç!)",
+                multiSelect: true,
+                hint: "Bu görev iki aşamalı! Araştırma aşaması için arama motorunu, afiş tasarımı için tasarım aracını birlikte işaretlemelisin.",
+                points: 15,
+                options: [
+                    { id: "search", label: "1. Aşama: Arama Motoru (Google / Bing / Yandex ile kaynak araştırma)", correct: true },
+                    { id: "canva", label: "2. Aşama: Tasarım Aracı (Canva ile afiş oluşturma)", correct: true },
+                    { id: "paint_offline", label: "İnternet bağlantısını tamamen kapatıp boş klasör açmak", correct: false }
+                ],
+                explanation: "Harika! Gerçek projelerde araçları birlikte kullanırız: Önce arama motoruyla güvenilir bilgiye ulaşır, ardından Web 2.0 tasarım aracıyla (Canva) ürünümüzü oluştururuz."
+            },
+            {
+                id: "e3_g8",
+                stepTitle: "Görev 8 / 9 — Birlikte Kullanım (Kaynak Tarama + Ortak Rapor)",
+                scenario: "“Grup arkadaşlarımla önce meb.gov.tr üzerindeki siber güvenlik rehberlerini bulmak, sonra bulduğumuz maddeleri çevrim içi ortak bir belgede birlikte yazmak istiyoruz.” (Uygun olan 2 aracı birlikte seç!)",
+                multiSelect: true,
+                hint: "Rehberleri bulmak için arama motorunu, ortak metin yazmak için çevrim içi belge aracını birlikte seç.",
+                points: 15,
+                options: [
+                    { id: "search", label: "Arama Motoru (site:meb.gov.tr ile rehberleri bulmak için)", correct: true },
+                    { id: "gdocs", label: "Google Dokümanlar / Word Online (Ortak raporu birlikte yazmak için)", correct: true },
+                    { id: "music", label: "Ses Kaydedici (Yalnızca müzik dinlemek için)", correct: false }
+                ],
+                explanation: "Süper! Arama motoru ile doğru kaynakları bulup Google Dokümanlar / Word Online ile ekipçe ortak belge hazırlamak dijital verimliliğin en güzel örneğidir."
+            },
+            {
+                id: "e3_g9",
+                stepTitle: "Görev 9 / 9 — EBA'da Paylaşım ve Akran Değerlendirmesi",
+                scenario: "“Web 2.0 aracıyla hazırladığım sunumu öğretmenimle ve sınıf arkadaşlarımla güvenli bir eğitim ortamında paylaşıp geri bildirim (yorum) almak istiyorum.”",
+                multiSelect: false,
+                hint: "Millî Eğitim Bakanlığının öğrenci ve öğretmenler için sunduğu etkileşimli sosyal eğitim platformunu seç.",
+                points: 10,
+                options: [
+                    { id: "eba", label: "EBA (Eğitim Bilişim Ağı) İleti ve Paylaşım Alanı", correct: true },
+                    { id: "search", label: "Yalnızca Arama Motoru Ana Sayfası", correct: false, wrongReason: "Arama motorunun ana sayfasına ödev yüklenip sınıf arkadaşlarından yorum alınamaz." },
+                    { id: "unknown", label: "Herkese açık güvensiz forum siteleri", correct: false, wrongReason: "Kişisel ve okul çalışmalarımızı güvenli eğitim platformlarında (EBA) paylaşmalıyız." }
+                ],
+                explanation: "Tebrikler! EBA (Eğitim Bilişim Ağı), hazırladığımız dijital ürünleri sınıf arkadaşlarımızla paylaşabildiğimiz ve akran değerlendirmesi yapabildiğimiz güvenli Web 2.0 eğitim ortamımızdır."
+            }
+        ]
+    },
+    4: {
+        id: 4,
+        slug: "etkinlik-4-iletisim-istasyonu",
+        title: "İletişim Araçları İstasyonu",
+        subtitle: "3 İstasyonda İletişim Süreci ve Sınıflandırma Oyunu",
+        outcome: "BTY.6.3.2 — İletişim teknolojilerini zamanına, biçimine ve kapsamına göre sınıflandırabilme",
+        themeColor: "amber",
+        icon: "fa-tower-broadcast",
+        badgeTitle: "İletişim Şefi",
+        intro: "İletişim Araçları İstasyonuna hoş geldin! Bu oyunda 3 ayrı istasyonda toplam 15 iletişim senaryosunu sınıflandıracak, ardından Final Görevinde tek bir senaryoyu tüm ölçütlere göre analiz edeceksin. Unutma: Bir aracı sınıflandırırken yalnızca adına değil, o senaryoda iletişimin nasıl gerçekleştiğine dikkat etmelisin!",
+        stations: [
+            {
+                id: "station_a",
+                code: "İstasyon A",
+                title: "Zamanına Göre: Eş Zamanlı mı, Farklı Zamanlı mı?",
+                desc: "Gönderen ve alıcının aynı anda iletişimde olduğu durumlar Eş Zamanlı (Senkron), mesajın daha sonra okunup yanıtlandığı durumlar Farklı Zamanlı (Asenkron) iletişimdir.",
+                categories: [
+                    { id: "senkron", label: "Eş Zamanlı (Senkron) İletişim", icon: "fa-bolt", color: "amber" },
+                    { id: "asenkron", label: "Farklı Zamanlı (Asenkron) İletişim", icon: "fa-clock", color: "blue" }
+                ],
+                items: [
+                    { id: "sa_1", title: "E-Posta ile Ödev Gönderimi", scenario: "Zeynep akşam hazırladığı proje sunumunu öğretmenine e-posta ile gönderdi; öğretmeni e-postayı ertesi sabah okulda açıp okudu.", target: "asenkron", explain: "E-postada gönderici ve alıcının aynı anda ekran başında olması gerekmez; farklı zamanlı (asenkron) iletişimdir." },
+                    { id: "sa_2", title: "Canlı Görüntülü Görüşme", scenario: "6-B sınıfı öğrencileri, kardeş okuldaki arkadaşlarıyla kamerayı açıp aynı anda karşılıklı konuşarak proje toplantısı yapıyor.", target: "senkron", explain: "Katılımcılar aynı anda çevrim içi olup anında birbirini görüp duyduğu için eş zamanlı (senkron) iletişimdir." },
+                    { id: "sa_3", title: "Çevrim İçi Anlık Sohbet", scenario: "Kerem ve Mert aynı anda bilgisayar başında açık olan mesajlaşma penceresinden saniyeler içinde karşılıklı yazışarak soru çözüyor.", target: "senkron", explain: "İki taraf da aynı anda hatta olup anlık yazıştığı için bu senaryo eş zamanlı (senkron) iletişimdir. (Not: Mesaj bırakılıp saatler sonra okunsaydı farklı zamanlı olurdu!)" },
+                    { id: "sa_4", title: "Mektup Gönderimi", scenario: "Elif, başka şehirdeki kuzenine zarfla mektup gönderdi; mektup üç gün sonra ulaştı.", target: "asenkron", explain: "Mektup yazıldığı anda okunamaz; iletilmesi ve yanıtlanması zaman aldığı için farklı zamanlı (asenkron) iletişimdir." },
+                    { id: "sa_5", title: "Canlı Telekonferans Toplantısı", scenario: "Farklı ilçelerdeki bilişim öğretmenleri aynı saatte sesli telekonferans bağlantısıyla canlı toplantı yapıyor.", target: "senkron", explain: "Katılımcılar aynı zaman diliminde canlı olarak konuştuğu için eş zamanlı (senkron) iletişimdir." }
+                ]
+            },
+            {
+                id: "station_b",
+                code: "İstasyon B",
+                title: "Biçimine (Türüne) Göre: Yazılı, Sesli, Görüntülü-Sesli",
+                desc: "İletişim araçlarını mesajın iletilme biçimine göre Yazılı-Basılı, Sesli veya Görüntülü-Sesli olarak doğru kutuya yerleştir!",
+                categories: [
+                    { id: "yazili", label: "Yazılı İletişim", icon: "fa-file-lines", color: "blue" },
+                    { id: "sesli", label: "Sesli İletişim", icon: "fa-microphone-lines", color: "emerald" },
+                    { id: "goruntulu_sesli", label: "Görüntülü ve Sesli İletişim", icon: "fa-video", color: "purple" }
+                ],
+                items: [
+                    { id: "sb_1", title: "Gazete ve Basılı Okul Dergisi", scenario: "Okul kütüphanesindeki basılı bilim dergisini ve günlük gazeteyi okumak.", target: "yazili", explain: "Gazete ve dergi metin/baskı temelli olduğu için yazılı-basılı iletişim aracıdır." },
+                    { id: "sb_2", title: "Mektup ve Sadece Metin İçeren E-Posta", scenario: "Arkadaşına yalnızca yazıdan oluşan bir elektronik posta veya mektup göndermek.", target: "yazili", explain: "Mektup ve metin e-postası yazılı iletişim kategorisinde yer alır." },
+                    { id: "sb_3", title: "Radyo Yayını", scenario: "Sabah okula giderken radyodan haberleri ve müzik yayınını dinlemek.", target: "sesli", explain: "Radyo yalnızca işitsel (ses) dalgalarıyla mesaj ilettiği için sesli iletişim aracıdır." },
+                    { id: "sb_4", title: "Sabit Telefon Görüşmesi", scenario: "Klasik sesli telefon hattı üzerinden anneanneyle sesli konuşmak.", target: "sesli", explain: "Görüntü olmadan yalnızca ses iletildiği için sesli iletişimdir." },
+                    { id: "sb_5", title: "Televizyon ve Görüntülü Görüşme", scenario: "Televizyondaki belgeseli izlemek veya bilgisayardan kameralı/mikrofonlu görüntülü görüşme yapmak.", target: "goruntulu_sesli", explain: "Hem görüntü hem de ses aynı anda iletildiği için görüntülü-sesli iletişimdir." }
+                ]
+            },
+            {
+                id: "station_c",
+                code: "İstasyon C",
+                title: "Kapsamına Göre: Kişisel İletişim mi, Kitle İletişimi mi?",
+                desc: "İletişim bireyler/küçük belirli kişiler arasında gerçekleşiyorsa Kişisel İletişim; geniş halk kitlelerine aynı anda ulaşıyorsa Kitle İletişimidir.",
+                categories: [
+                    { id: "kisisel", label: "Kişisel (Bireysel) İletişim", icon: "fa-user-group", color: "emerald" },
+                    { id: "kitle", label: "Kitle İletişimi", icon: "fa-globe", color: "purple" }
+                ],
+                items: [
+                    { id: "sc_1", title: "Arkadaşına Bire Bir Mesaj Gönderme", scenario: "Ali, sıra arkadaşı Burak'a yarınki ders programı hakkında bire bir kısa mesaj gönderdi.", target: "kisisel", explain: "İki kişi arasında özel olarak gerçekleştiği için kişisel (bireysel) iletişimdir." },
+                    { id: "sc_2", title: "Öğretmenle Bire Bir Görüntülü Görüşme", scenario: "Ayşe, proje ödevi için bilişim öğretmeniyle bire bir çevrim içi görüşme yaptı.", target: "kisisel", explain: "Belirli iki kişi arasında gerçekleştiği için kişisel iletişimdir." },
+                    { id: "sc_3", title: "Televizyon Haberinin Geniş Kitlelere Ulaşması", scenario: "Akşam ana haber bülteninde yayımlanan bilim haberinin milyonlarca evdeki izleyiciye aynı anda ulaşması.", target: "kitle", explain: "Geniş bir izleyici topluluğuna aynı anda ulaştığı için kitle iletişimidir." },
+                    { id: "sc_4", title: "Radyo Yayınını Çok Sayıda Kişinin Dinlemesi", scenario: "Ulusal bir radyo kanalındaki eğitim programını binlerce dinleyicinin aynı anda takip etmesi.", target: "kitle", explain: "Radyo yayını çok sayıda insana açık olarak iletildiği için kitle iletişimidir." },
+                    { id: "sc_5", title: "Okul Web Sitesinden Herkese Açık Duyuru", scenario: "Okulun resmî web sitesi ve EBA genel duyuru panosundan tüm öğrenci ve velilere açık Bilim Şenliği ilanı yayımlanması.", target: "kitle", explain: "Geniş bir hedef kitleye açık olarak yayımlandığı için kitle iletişimidir." }
+                ]
+            }
+        ],
+        finalChallenge: {
+            title: "Final Görevi: Çok Ölçütlü İletişim Analizi",
+            scenario: "Senaryo: “Bilişim Teknolojileri öğretmeni Batuhan Öğretmen, EBA Canlı Ders üzerinden 6-A sınıfındaki öğrencisi Deniz ile aynı anda kameralı ve mikrofonlu bire bir proje değerlendirme görüşmesi yapıyor. Bu sırada internet bağlantısındaki kopukluk nedeniyle ses zaman zaman cızırtılı geliyor.”",
+            questions: [
+                {
+                    id: "fc_1",
+                    label: "1. Zamanına göre bu iletişim hangisidir?",
+                    options: ["Eş Zamanlı (Senkron)", "Farklı Zamanlı (Asenkron)"],
+                    correctIndex: 0
+                },
+                {
+                    id: "fc_2",
+                    label: "2. Biçimine (türüne) göre hangisidir?",
+                    options: ["Yazılı İletişim", "Yalnızca Sesli İletişim", "Görüntülü ve Sesli İletişim"],
+                    correctIndex: 2
+                },
+                {
+                    id: "fc_3",
+                    label: "3. Kapsamına göre hangisidir?",
+                    options: ["Kişisel (Bireysel) İletişim", "Kitle İletişimi"],
+                    correctIndex: 0
+                },
+                {
+                    id: "fc_4",
+                    label: "4. İnternet kopukluğu ve ses cızırtısı iletişim sürecinin hangi bileşenidir?",
+                    options: ["Geri Bildirim (Dönüt)", "Gürültü (İletişim Engeli)", "Kaynak (Gönderen)"],
+                    correctIndex: 1
+                }
+            ],
+            explanation: "Tebrikler İletişim Şefi! Tek bir senaryoyu hem zaman (Eş zamanlı), hem biçim (Görüntülü-Sesli), hem kapsam (Kişisel) hem de iletişim süreci bileşenleri (Gürültü) açısından eksiksiz sınıflandırdın!"
+        }
+    },
+    5: {
+        id: 5,
+        slug: "etkinlik-5-eposta-atolyesi",
+        title: "E-Posta Atölyesi",
+        subtitle: "Güvenli E-Posta Simülasyonu, Adres Yapısı ve İletişim Kuralları",
+        outcome: "BTY.6.3.3 — Bir e-posta aracını amacına ve iletişim etiğine uygun olarak kullanabilme",
+        themeColor: "rose",
+        icon: "fa-envelope-open-text",
+        badgeTitle: "E-Posta Uzmanı",
+        intro: "E-Posta Atölyesine hoş geldin! Bu atölye tamamen site içinde çalışan güvenli bir eğitim simülasyonudur; gerçek e-posta göndermez ve senden hiçbir kişisel bilgi veya gerçek parola istemez. 5 bölümde toplam 9 görevi tamamlayarak e-posta adres yapısını, güçlü parola ilkelerini ve doğru e-posta hazırlama kurallarını uygulamalı olarak öğreneceksin!",
+        steps: [
+            {
+                id: "e5_b1",
+                sectionCode: "Bölüm A (Görev 1 / 9)",
+                title: "E-Posta Adresinin Bölümlerini Tanı",
+                type: "address_parts",
+                scenario: "Aşağıdaki örnek e-posta adresinin 3 temel bölümünü doğru görev açıklamalarıyla eşleştir:",
+                addressDisplay: "ogrenci123@gmail.com",
+                hint: "@ işaretinin solu kullanıcıyı, @ işareti ayracı, sağ tarafı ise e-posta hizmetinin bulunduğu alan adını gösterir.",
+                points: 10,
+                parts: [
+                    { id: "p_user", token: "ogrenci123", correctRole: "Kullanıcı Adı (Hesap sahibini tanıtan benzersiz ad)" },
+                    { id: "p_at", token: "@", correctRole: "Ayraç Sembolü ('at' işareti; kullanıcı adı ile alan adını ayırır)" },
+                    { id: "p_domain", token: "gmail.com", correctRole: "Alan Adı / Domain (E-posta sunucusunun ve hizmet sağlayıcısının adresi)" }
+                ],
+                roleOptions: [
+                    "Kullanıcı Adı (Hesap sahibini tanıtan benzersiz ad)",
+                    "Ayraç Sembolü ('at' işareti; kullanıcı adı ile alan adını ayırır)",
+                    "Alan Adı / Domain (E-posta sunucusunun ve hizmet sağlayıcısının adresi)"
+                ],
+                explanation: "Doğru! Bir e-posta adresi 'kullanıcı_adı' + '@' + 'alan_adı' olmak üzere üç temel bölümden oluşur."
+            },
+            {
+                id: "e5_b2",
+                sectionCode: "Bölüm A (Görev 2 / 9)",
+                title: "Kurumsal Eğitim E-Posta Adresini Çözümle",
+                type: "choice",
+                scenario: "Okul bilişim kulübünün örnek adresi 'bilisim.kulubu@okul.k12.tr' olarak verilmiştir. Bu adreste 'okul.k12.tr' bölümü neyi ifade eder?",
+                hint: "@ sembolünden sonra gelen ve kurumun/sunucunun adresini belirten bölümdür.",
+                points: 10,
+                options: [
+                    { id: "a", text: "Alan adını (e-posta hizmetinin bağlı olduğu okul sunucusu adresini)", correct: true },
+                    { id: "b", text: "Kullanıcının e-posta şifresini", correct: false, wrongReason: "E-posta adresinin içinde parola/şifre yer almaz." },
+                    { id: "c", text: "E-postanın konu başlığını", correct: false, wrongReason: "Konu başlığı e-posta yazarken Konu (Subject) satırına yazılır." }
+                ],
+                explanation: "Harika! E-posta adresleri yalnızca tek bir şirkete ait olmak zorunda değildir; okul.k12.tr veya meb.gov.tr gibi kurumsal alan adları da olabilir."
+            },
+            {
+                id: "e5_b3",
+                sectionCode: "Bölüm B (Görev 3 / 9)",
+                title: "Hatalı E-Posta Adreslerini Bul (Biçim Kontrolü)",
+                type: "multi_check",
+                scenario: "Aşağıdaki 4 örnek e-posta adresinden standart e-posta yazım kurallarına göre GEÇERSİZ (HATALI) olan 2 adresi işaretle! (Not: Değerlendirmeyi belirli bir şirkete göre değil, genel e-posta adresi kurallarına göre yap.)",
+                hint: "Standart e-posta adreslerinde kelimeler arasında boşluk bırakılamaz ve mutlaka '@' sembolü bulunmalıdır.",
+                points: 10,
+                options: [
+                    { id: "addr1", label: "ali.yilmaz2026@ornekposta.com", isInvalid: false },
+                    { id: "addr2", label: "ayse kaya@okulmail.org (Boşluk içeriyor)", isInvalid: true },
+                    { id: "addr3", label: "mehmet.demir.bilisim.net (@ sembolü yok)", isInvalid: true },
+                    { id: "addr4", label: "proje_ekibi6A@egitim.k12.tr", isInvalid: false }
+                ],
+                explanation: "Çok iyi! Hangi servis sağlayıcısı kullanılırsa kullanılsın, geçerli bir e-posta adresinde boşluk bulunamaz ve kullanıcı adı ile alan adını ayıran tek bir '@' sembolü bulunmak zorundadır."
+            },
+            {
+                id: "e5_b4",
+                sectionCode: "Bölüm B (Görev 4 / 9)",
+                title: "Türkçe Karakter ve Noktalama Kuralı",
+                type: "choice",
+                scenario: "Çağrı, kendisine örnek bir e-posta adresi oluştururken 'çağrı,öğrenci@örnek.com' yazdığında sistem hata veriyor. Bu adresi geçerli hâle getirmek için nasıl düzeltmelidir?",
+                hint: "Standart e-posta adreslerinde ç, ğ, ı, ö, ş, ü gibi Türkçe karakterler ve virgül (,) kullanılmaz.",
+                points: 10,
+                options: [
+                    { id: "a", text: "cagri.ogrenci@ornek.com (Türkçe karakterleri İngilizce karşılıklarıyla ve virgülü noktayla değiştirmeli)", correct: true },
+                    { id: "b", text: "çağrı öğrenci@örnek.com (Virgül yerine boşluk bırakmalı)", correct: false, wrongReason: "E-posta adreslerinde boşluk karakteri kullanılamaz." },
+                    { id: "c", text: "cagri.ogrenci.ornek.com (@ işaretini tamamen silmeli)", correct: false, wrongReason: "@ işareti silinirse e-posta adresi geçersiz olur." }
+                ],
+                explanation: "Doğru! Uluslararası e-posta standartlarında Türkçe karakterler (ç, ğ, ı, ö, ş, ü) ve virgül yerine c, g, i, o, s, u harfleri ile nokta (.), alt çizgi (_) veya tire (-) kullanılır."
+            },
+            {
+                id: "e5_b5",
+                sectionCode: "Bölüm C (Görev 5 / 9)",
+                title: "Güçlü Parola İlkeleri (Örnek Parola Analizi)",
+                type: "choice",
+                scenario: "E-posta hesabının güvenliği için güçlü bir parola seçilmelidir. Aşağıdaki КУRGUSAL örnek parolalardan hangisi güçlü parola ilkelerine (en az 8 karakter, büyük/küçük harf, rakam ve özel sembol) uygundur? (Kendi parolanı asla bir yere yazma!)",
+                hint: "Ardışık sayılar veya yalnızca doğum yılı içeren parolalar kolay tahmin edilir.",
+                points: 10,
+                options: [
+                    { id: "a", text: "12345678 (Ardışık rakamlar)", correct: false, wrongReason: "Ardışık sayılar en kolay tahmin edilen zayıf parolalardır." },
+                    { id: "b", text: "ankara2014 (Yalnızca şehir adı ve doğum yılı)", correct: false, wrongReason: "Kişisel bilgiler, büyük harf ve özel karakter içermediği için zayıftır." },
+                    { id: "c", text: "Bt!2026_Guvenli#9 (Büyük/küçük harf, rakam ve özel karakter içeriyor)", correct: true },
+                    { id: "d", text: "abcdef (Çok kısa ve tek tip harf)", correct: false, wrongReason: "8 karakterden kısa ve yalnızca küçük harflerden oluşuyor." }
+                ],
+                explanation: "Tebrikler! Güçlü bir parola kişisel bilgi (doğum tarihi, ad) içermemeli; en az 8 karakter uzunluğunda olmalı ve büyük harf, küçük harf, rakam ile özel sembol (!, #, _, ?) barındırmalıdır."
+            },
+            {
+                id: "e5_b6",
+                sectionCode: "Bölüm C (Görev 6 / 9)",
+                title: "Parola Güvenliği Davranışı",
+                type: "choice",
+                scenario: "Aşağıdaki davranışlardan hangisi e-posta ve parola güvenliği açısından DOĞRUDUR?",
+                hint: "Parolalarımızı her sitede aynı mı kullanmalıyız, yoksa farklı ve gizli mi tutmalıyız?",
+                points: 10,
+                options: [
+                    { id: "a", text: "Farklı hesaplarda farklı güçlü parolalar kullanmak ve ortak bilgisayarlarda işimiz bitince 'Çıkış Yap (Oturumu Kapat)' diyerek ayrılmak.", correct: true },
+                    { id: "b", text: "Unutmamak için parolamızı bilişim sınıfındaki ekranın kenarına kağıtla yapıştırmak.", correct: false, wrongReason: "Parolayı herkesin göreceği yere yazmak hesabımızı tehlikeye atar." },
+                    { id: "c", text: "En yakın arkadaşımıza parolamızı e-posta ile göndermek.", correct: false, wrongReason: "Parolalar kişiye özeldir ve kimseyle paylaşılmamalıdır." }
+                ],
+                explanation: "Harika! Bilişim sınıfı gibi ortak kullanılan bilgisayarlarda oturumu kapatmak ve parolamızı kimseyle paylaşmamak temel güvenlik kuralıdır."
+            },
+            {
+                id: "e5_b7",
+                sectionCode: "Bölüm D (Görev 7 / 9)",
+                title: "E-Postayı Oluştur: Teknoloji Haftası Duyurusu",
+                type: "compose_sim",
+                scenario: "Senaryo: “Okulda düzenlenecek Teknoloji Haftası etkinliğini arkadaşına duyuracaksın ve hazırladığın afiş dosyasını ekleyeceksin.” Simülasyon ekranındaki alanlara doğru parçaları seçerek yerleştir!",
+                hint: "Kime alanına alıcı e-posta adresi, Konu alanına kısa özet başlık, Mesaj alanına hitap ve nezaket içeren açıklama, Ek alanına ise afiş dosyası gelmelidir.",
+                points: 15,
+                fields: [
+                    {
+                        id: "f_to",
+                        label: "Kime (Alıcı Adresi):",
+                        options: [
+                            "proje.arkadasim@okul.k12.tr",
+                            "Teknoloji Haftası Daveti",
+                            "teknoloji_afisi.pdf"
+                        ],
+                        correct: "proje.arkadasim@okul.k12.tr"
+                    },
+                    {
+                        id: "f_subject",
+                        label: "Konu (Kısa ve Açık Başlık):",
+                        options: [
+                            "acil bak çabuk!!!",
+                            "Teknoloji Haftası Etkinlik Duyurusu ve Afişi",
+                            "proje.arkadasim@okul.k12.tr"
+                        ],
+                        correct: "Teknoloji Haftası Etkinlik Duyurusu ve Afişi"
+                    },
+                    {
+                        id: "f_body",
+                        label: "Mesaj Metni (Hitap + Açık İfade + Kapanış):",
+                        options: [
+                            "Merhaba Deniz, gelecek hafta okulumuzda düzenlenecek Teknoloji Haftası etkinliğinin programını ve hazırladığım duyuru afişini ekte seninle paylaşıyorum. İyi çalışmalar dilerim.",
+                            "YARIN HEMEN GEL YOKSA KÜSERİM!!!",
+                            "..."
+                        ],
+                        correct: "Merhaba Deniz, gelecek hafta okulumuzda düzenlenecek Teknoloji Haftası etkinliğinin programını ve hazırladığım duyuru afişini ekte seninle paylaşıyorum. İyi çalışmalar dilerim."
+                    },
+                    {
+                        id: "f_attach",
+                        label: "Ek (Attachment / Dosya):",
+                        options: [
+                            "teknoloji_haftasi_afisi.pdf (Afiş Dosyası Eklendi)",
+                            "Dosya eklemeden boş bırak",
+                            "gizli_parolam.txt"
+                        ],
+                        correct: "teknoloji_haftasi_afisi.pdf (Afiş Dosyası Eklendi)"
+                    }
+                ],
+                explanation: "Mükemmel bir e-posta taslağı oluşturdun! Alıcı adresi, net konu başlığı, nazik ve anlaşılır mesaj metni ile dosya eki yerli yerinde."
+            },
+            {
+                id: "e5_b8",
+                sectionCode: "Bölüm D (Görev 8 / 9)",
+                title: "CC (Bilgi) ve BCC (Gizli) Alanlarının Farkı",
+                type: "choice",
+                scenario: "Teknoloji Haftası duyurusunu 30 kişilik proje grubuna aynı anda gönderirken, alıcıların birbirinin e-posta adresini görmesini İSTEMİYORSAN (kişisel verileri korumak için) adresleri hangi alana yazmalısın?",
+                hint: "İngilizce 'Blind Carbon Copy' (Gizli Kopya) ifadesinin kısaltmasını düşün.",
+                points: 10,
+                options: [
+                    { id: "a", text: "BCC (Gizli Kopya) alanına", correct: true },
+                    { id: "b", text: "CC (Bilgi Karbon Kopya) alanına", correct: false, wrongReason: "CC alanına yazılan tüm e-posta adresleri diğer alıcılar tarafından açıkça görülür." },
+                    { id: "c", text: "Konu (Subject) satırına", correct: false, wrongReason: "Konu satırına alıcı adresleri değil, e-postanın başlığı yazılır." }
+                ],
+                explanation: "Doğru! Çok sayıda kişiye duyuru gönderirken e-posta adreslerinin gizliliğini korumak için BCC (Gizli) alanı kullanılır; CC ise bilgilendirme amaçlı açık kopyadır."
+            },
+            {
+                id: "e5_b9",
+                sectionCode: "Bölüm E (Görev 9 / 9 — Final)",
+                title: "Hatalı E-Postayı Düzelt",
+                type: "fix_email",
+                scenario: "Aşağıda hatalı hazırlanmış bir e-posta taslağı görüyorsun:\n• Konu: (Boş bırakılmış)\n• Mesaj: \"HEY! ÖDEV DOSYASINI EKTE YOLLADIM HEMEN BAK!!!\"\n• Ek: (Dosya eklenmemiş)\n\nBu e-postadaki 3 hatayı düzeltmek için en uygun seçeneği belirle!",
+                hint: "Dijital iletişimde tamamı büyük harfle yazmak bağırmak anlamına gelir, konu satırı boş bırakılmaz ve 'ekte yolladım' denilen dosya mutlaka eklenmelidir.",
+                points: 15,
+                options: [
+                    {
+                        id: "fix1",
+                        text: "Konu satırına 'Bilişim Projesi Sunum Dosyası' yazmalı, mesajı 'Merhaba, hazırladığım sunum dosyasını ekte gönderiyorum. İyi çalışmalar.' şeklinde saygılı ve normal harflerle düzenlemeli ve dosyayı 'Ek (Ataç)' bölümüne eklemeliyiz.",
+                        correct: true
+                    },
+                    {
+                        id: "fix2",
+                        text: "Konu satırını boş bırakmaya devam edip mesajın sonuna daha fazla ünlem işareti (!!!!!!) eklemeliyiz.",
+                        correct: false,
+                        wrongReason: "Konusuz e-postalar güvensiz/istenmeyen (spam) görünebilir ve tamamı büyük harf + çoklu ünlem iletişim etiğine aykırıdır."
+                    },
+                    {
+                        id: "fix3",
+                        text: "Mesajı tamamen silip sadece karşı tarafın e-posta parolasını sormalıyız.",
+                        correct: false,
+                        wrongReason: "Kimsenin parolası istenmez ve açıklamasız e-posta gönderilmez."
+                    }
+                ],
+                explanation: "Tebrikler E-Posta Uzmanı! Konu satırını açıkça yazmak, tamamı büyük harf kullanmaktan kaçınmak, nazik bir hitap/kapanış kullanmak ve bahsedilen eki kontrol etmek dijital iletişim etiğinin temel kurallarıdır."
+            }
+        ]
+    }
+};
+
+if (typeof window !== "undefined") {
+    window.BTY_ACTIVITIES_DATA = BTY_ACTIVITIES_DATA;
+    window.BTY_STORAGE_KEY = BTY_STORAGE_KEY;
+}
+if (typeof module !== "undefined" && module.exports) {
+    module.exports = { BTY_ACTIVITIES_DATA, BTY_STORAGE_KEY };
+}
+
+    </script>
+    <script>
+// batunver.com - 6. Sınıf BTY 3. Tema Yeniden Kullanılabilir Ortak Etkinlik Motoru
+// Tüm 5 etkinlik için ortak durum yönetimi, puanlama, ilerleme, ipucu, sürükle-bırak + dokun-yerleştir ve erişilebilirlik motoru.
+
+(function () {
+    function safeGetStorage() {
+        try {
+            const raw = localStorage.getItem(window.BTY_STORAGE_KEY || "batunver_6sinif_3tema_durum_v1");
+            return raw ? JSON.parse(raw) : { completed: {}, scores: {} };
+        } catch (e) {
+            return { completed: {}, scores: {} };
+        }
+    }
+
+    function safeSetStorage(data) {
+        try {
+            localStorage.setItem(window.BTY_STORAGE_KEY || "batunver_6sinif_3tema_durum_v1", JSON.stringify(data));
+        } catch (e) {
+            // Sandbox / gizli sekme durumunda bellekte devam et
+        }
+    }
+
+    const COLOR_MAP = {
+        blue: {
+            badgeBg: "bg-blue-50 text-blue-700 border-blue-200",
+            btnPrimary: "bg-blue-600 hover:bg-blue-500 text-white",
+            barFill: "bg-blue-600",
+            iconBox: "bg-blue-50 text-blue-600 border-blue-200",
+            accentText: "text-blue-600"
+        },
+        emerald: {
+            badgeBg: "bg-emerald-50 text-emerald-700 border-emerald-200",
+            btnPrimary: "bg-emerald-600 hover:bg-emerald-500 text-white",
+            barFill: "bg-emerald-600",
+            iconBox: "bg-emerald-50 text-emerald-600 border-emerald-200",
+            accentText: "text-emerald-600"
+        },
+        purple: {
+            badgeBg: "bg-purple-50 text-purple-700 border-purple-200",
+            btnPrimary: "bg-purple-600 hover:bg-purple-500 text-white",
+            barFill: "bg-purple-600",
+            iconBox: "bg-purple-50 text-purple-600 border-purple-200",
+            accentText: "text-purple-600"
+        },
+        amber: {
+            badgeBg: "bg-amber-50 text-amber-800 border-amber-200",
+            btnPrimary: "bg-amber-600 hover:bg-amber-500 text-white",
+            barFill: "bg-amber-500",
+            iconBox: "bg-amber-50 text-amber-600 border-amber-200",
+            accentText: "text-amber-600"
+        },
+        rose: {
+            badgeBg: "bg-rose-50 text-rose-700 border-rose-200",
+            btnPrimary: "bg-rose-600 hover:bg-rose-500 text-white",
+            barFill: "bg-rose-600",
+            iconBox: "bg-rose-50 text-rose-600 border-rose-200",
+            accentText: "text-rose-600"
+        }
+    };
+
+    class BTYActivityEngine {
+        constructor(containerEl, activityId, onStatusChange) {
+            this.container = containerEl;
+            this.activityId = Number(activityId);
+            this.data = window.BTY_ACTIVITIES_DATA[this.activityId];
+            this.onStatusChange = onStatusChange || function () {};
+            this.theme = COLOR_MAP[this.data.themeColor] || COLOR_MAP.blue;
+            this.resetState();
+        }
+
+        resetState() {
+            this.started = false;
+            this.finished = false;
+            this.stepIndex = 0;
+            this.score = 0;
+            this.stepSolved = false;
+            this.showHint = false;
+            this.feedback = null; // { type: 'success'|'error', message: '' }
+
+            // Etkinlik bazlı geçici seçimler
+            this.builderTokens = [];
+            this.selectedChoice = null;
+            this.selectedMulti = [];
+            this.selectedDecision = null;
+            this.selectedCriteria = [];
+            this.sortingPlacements = {}; // itemId -> categoryId
+            this.activeTapItem = null;
+            this.finalAnswers = {};
+            this.addressMatches = {};
+            this.composeSelections = {};
+        }
+
+        getTotalSteps() {
+            if (this.activityId === 1) return this.data.tasks.length; // 10
+            if (this.activityId === 2) return this.data.scenarios.length; // 4
+            if (this.activityId === 3) return 1 + this.data.scenarios.length; // 1 + 8 = 9
+            if (this.activityId === 4) return this.data.stations.length + 1; // 3 + 1 = 4
+            if (this.activityId === 5) return this.data.steps.length; // 9
+            return 1;
+        }
+
+        getMaxScore() {
+            if (this.activityId === 1) return 100;
+            if (this.activityId === 2) return 100;
+            if (this.activityId === 3) return 110;
+            if (this.activityId === 4) return 100;
+            if (this.activityId === 5) return 100;
+            return 100;
+        }
+
+        startActivity() {
+            this.started = true;
+            this.stepIndex = 0;
+            this.score = 0;
+            this.clearStepState();
+            this.render();
+        }
+
+        restartActivity() {
+            this.resetState();
+            this.started = true;
+            this.render();
+        }
+
+        clearStepState() {
+            this.stepSolved = false;
+            this.showHint = false;
+            this.feedback = null;
+            this.builderTokens = [];
+            this.selectedChoice = null;
+            this.selectedMulti = [];
+            this.selectedDecision = null;
+            this.selectedCriteria = [];
+            this.sortingPlacements = {};
+            this.activeTapItem = null;
+            this.finalAnswers = {};
+            this.addressMatches = {};
+            this.composeSelections = {};
+        }
+
+        nextStep() {
+            const total = this.getTotalSteps();
+            if (this.stepIndex + 1 < total) {
+                this.stepIndex += 1;
+                this.clearStepState();
+                this.render();
+            } else {
+                this.finished = true;
+                const st = safeGetStorage();
+                st.completed[this.activityId] = true;
+                st.scores[this.activityId] = Math.max(st.scores[this.activityId] || 0, this.score);
+                safeSetStorage(st);
+                this.onStatusChange(this.activityId, this.score);
+                this.render();
+            }
+        }
+
+        retryCurrentStep() {
+            this.stepSolved = false;
+            this.feedback = null;
+            this.render();
+        }
+
+        toggleHint() {
+            this.showHint = !this.showHint;
+            this.render();
+        }
+
+        render() {
+            if (!this.container || !this.data) return;
+            if (!this.started) {
+                this.renderIntro();
+                return;
+            }
+            if (this.finished) {
+                this.renderCompletion();
+                return;
+            }
+
+            const totalSteps = this.getTotalSteps();
+            const currentNum = this.stepIndex + 1;
+            const pct = Math.round((currentNum / totalSteps) * 100);
+
+            let bodyHtml = "";
+            if (this.activityId === 1) bodyHtml = this.renderActivity1Step();
+            else if (this.activityId === 2) bodyHtml = this.renderActivity2Step();
+            else if (this.activityId === 3) bodyHtml = this.renderActivity3Step();
+            else if (this.activityId === 4) bodyHtml = this.renderActivity4Step();
+            else if (this.activityId === 5) bodyHtml = this.renderActivity5Step();
+
+            const currentHint = this.getCurrentHintText();
+
+            this.container.innerHTML = `
+                <div class="bty-card p-5 sm:p-7 space-y-5">
+                    <!-- Üst Durum Çubuğu -->
+                    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-2xl border flex items-center justify-center text-base font-bold ${this.theme.iconBox}">
+                                <i class="fa-solid ${this.data.icon}"></i>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="text-xs font-extrabold px-2.5 py-0.5 rounded-full border ${this.theme.badgeBg}">
+                                        Etkinlik ${this.data.id}
+                                    </span>
+                                    <span class="text-xs font-semibold text-slate-500">${this.data.outcome}</span>
+                                </div>
+                                <h2 class="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">${this.data.title}</h2>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-2 sm:gap-3">
+                            <div class="px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs font-extrabold flex items-center gap-1.5" aria-live="polite">
+                                <i class="fa-solid fa-star text-amber-500"></i>
+                                <span>Puan: <span id="bty-live-score">${this.score}</span> / ${this.getMaxScore()}</span>
+                            </div>
+                            <div class="px-3 py-1.5 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 text-xs font-extrabold">
+                                Adım ${currentNum} / ${totalSteps}
+                            </div>
+                            <button type="button" data-action="restart-activity" class="bty-btn px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-rose-50 hover:text-rose-700 text-slate-600 border border-slate-200 text-xs font-bold transition" title="Etkinliği Baştan Başlat">
+                                <i class="fa-solid fa-rotate-left mr-1"></i>Sıfırla
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- İlerleme Çubuğu -->
+                    <div class="space-y-1">
+                        <div class="flex justify-between text-[11px] font-bold text-slate-500">
+                            <span>İlerleme Durumu</span>
+                            <span>%${pct}</span>
+                        </div>
+                        <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200">
+                            <div class="h-full ${this.theme.barFill} transition-all duration-300" style="width: ${pct}%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Görev İçeriği -->
+                    <div class="space-y-4">
+                        ${bodyHtml}
+                    </div>
+
+                    <!-- İpucu Kutusu -->
+                    ${this.showHint && currentHint ? `
+                        <div class="rounded-2xl p-4 bg-amber-50 border border-amber-200 text-amber-900 text-xs sm:text-sm flex items-start gap-3" role="region" aria-label="İpucu">
+                            <i class="fa-solid fa-lightbulb text-amber-500 text-base mt-0.5"></i>
+                            <div>
+                                <div class="font-extrabold">İpucu:</div>
+                                <p class="mt-0.5 leading-relaxed">${currentHint}</p>
+                            </div>
+                        </div>
+                    ` : ""}
+
+                    <!-- Geri Bildirim Kutusu -->
+                    ${this.feedback ? `
+                        <div class="rounded-2xl p-4 border text-xs sm:text-sm flex items-start gap-3 ${
+                            this.feedback.type === "success"
+                                ? "bg-emerald-50 border-emerald-300 text-emerald-950"
+                                : "bg-rose-50 border-rose-300 text-rose-950"
+                        }" role="alert" aria-live="assertive">
+                            <i class="fa-solid ${
+                                this.feedback.type === "success" ? "fa-circle-check text-emerald-600" : "fa-circle-exclamation text-rose-600"
+                            } text-lg mt-0.5 shrink-0"></i>
+                            <div class="flex-1 space-y-1">
+                                <div class="font-extrabold">
+                                    ${this.feedback.type === "success" ? "Doğru Çözüm!" : "Tekrar Düşünelim (İpucu & Açıklama)"}
+                                </div>
+                                <p class="leading-relaxed">${this.feedback.message}</p>
+                            </div>
+                        </div>
+                    ` : ""}
+
+                    <!-- Alt Kontrol Butonları -->
+                    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-100">
+                        <button type="button" data-action="toggle-hint" class="bty-btn px-3.5 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-lightbulb text-amber-500"></i>
+                            <span>${this.showHint ? "İpucunu Gizle" : "İpucu Göster"}</span>
+                        </button>
+
+                        <div class="flex flex-wrap items-center gap-2">
+                            ${!this.stepSolved && this.feedback && this.feedback.type === "error" ? `
+                                <button type="button" data-action="retry-step" class="bty-btn px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 text-xs font-bold transition flex items-center gap-1.5">
+                                    <i class="fa-solid fa-rotate-right"></i>
+                                    <span>Tekrar Dene</span>
+                                </button>
+                            ` : ""}
+
+                            ${!this.stepSolved ? `
+                                <button type="button" data-action="check-answer" class="bty-btn px-5 py-2.5 rounded-xl ${this.theme.btnPrimary} text-xs sm:text-sm font-extrabold shadow-sm transition flex items-center gap-2">
+                                    <i class="fa-solid fa-check-double"></i>
+                                    <span>Cevabı Kontrol Et</span>
+                                </button>
+                            ` : `
+                                <button type="button" data-action="next-step" class="bty-btn px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-extrabold shadow-sm transition flex items-center gap-2">
+                                    <span>${currentNum < totalSteps ? "Sonraki Göreve Geç" : "Etkinliği Tamamla ve Sonucu Gör"}</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            this.bindEvents();
+        }
+
+        renderIntro() {
+            const totalSteps = this.getTotalSteps();
+            this.container.innerHTML = `
+                <div class="bty-card p-6 sm:p-8 space-y-6">
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <span class="text-xs font-extrabold px-3 py-1 rounded-full border ${this.theme.badgeBg}">
+                            6. Sınıf • 3. Tema • Etkinlik ${this.data.id}
+                        </span>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-slate-100 text-slate-700 border border-slate-200">
+                            ${this.data.outcome}
+                        </span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                        <div class="w-16 h-16 rounded-2xl border flex items-center justify-center text-2xl shrink-0 ${this.theme.iconBox}">
+                            <i class="fa-solid ${this.data.icon}"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">${this.data.title}</h2>
+                            <p class="text-xs sm:text-sm font-semibold ${this.theme.accentText}">${this.data.subtitle}</p>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-slate-600 leading-relaxed bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                        ${this.data.intro}
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-3">
+                            <i class="fa-solid fa-list-check text-blue-600 text-base"></i>
+                            <div>
+                                <div class="text-slate-500 font-semibold">Görev Aşaması</div>
+                                <div class="text-slate-900 font-extrabold">${totalSteps} Etkileşimli Aşama</div>
+                            </div>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-3">
+                            <i class="fa-solid fa-hand-pointer text-purple-600 text-base"></i>
+                            <div>
+                                <div class="text-slate-500 font-semibold">Erişilebilir Kullanım</div>
+                                <div class="text-slate-900 font-extrabold">Fare, Dokunmatik ve Klavye</div>
+                            </div>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-3">
+                            <i class="fa-solid fa-user-shield text-emerald-600 text-base"></i>
+                            <div>
+                                <div class="text-slate-500 font-semibold">KVKK & Güvenlik</div>
+                                <div class="text-slate-900 font-extrabold">Kişisel Veri İstenmez</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2">
+                        <div class="text-xs text-slate-500 font-medium">
+                            <i class="fa-solid fa-award text-amber-500 mr-1"></i>Hedef Rozet: <strong class="text-slate-800">${this.data.badgeTitle}</strong>
+                        </div>
+                        <button type="button" data-action="start-activity" class="bty-btn px-6 py-3 rounded-2xl ${this.theme.btnPrimary} text-sm font-extrabold shadow-md transition flex items-center gap-2">
+                            <span>Göreve Başla</span>
+                            <i class="fa-solid fa-play text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            this.bindEvents();
+        }
+
+        renderCompletion() {
+            const maxScore = this.getMaxScore();
+            const pct = Math.min(100, Math.round((this.score / maxScore) * 100));
+            this.container.innerHTML = `
+                <div class="bty-card p-6 sm:p-8 text-center space-y-6">
+                    <div class="w-20 h-20 mx-auto rounded-3xl bg-emerald-50 border-2 border-emerald-200 text-emerald-600 flex items-center justify-center text-4xl shadow-sm">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+
+                    <div class="space-y-2">
+                        <span class="inline-block text-xs font-extrabold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800">
+                            Rozet Kazanıldı: ${this.data.badgeTitle}
+                        </span>
+                        <h2 class="text-2xl font-extrabold text-slate-900">Tebrikler! ${this.data.title} Tamamlandı!</h2>
+                        <p class="text-sm text-slate-600 max-w-xl mx-auto">
+                            ${this.data.outcome} kazanımına ait tüm görevleri başarıyla uyguladın ve geri bildirimleri inceledin.
+                        </p>
+                    </div>
+
+                    <div class="max-w-md mx-auto grid grid-cols-2 gap-3 text-left">
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                            <div class="text-xs font-bold text-slate-500">Toplam Puanın</div>
+                            <div class="text-xl font-extrabold text-slate-900 mt-0.5">${this.score} / ${maxScore}</div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                            <div class="text-xs font-bold text-slate-500">Başarı Oranı</div>
+                            <div class="text-xl font-extrabold text-emerald-600 mt-0.5">%${pct}</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                        <button type="button" data-action="restart-activity" class="bty-btn px-6 py-3 rounded-2xl ${this.theme.btnPrimary} text-sm font-extrabold shadow-sm transition flex items-center gap-2">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span>Etkinliği Tekrar Çöz</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            this.bindEvents();
+        }
+
+        getCurrentHintText() {
+            if (this.activityId === 1) return this.data.tasks[this.stepIndex].hint;
+            if (this.activityId === 2) return this.data.scenarios[this.stepIndex].hint;
+            if (this.activityId === 3) {
+                if (this.stepIndex === 0) return "Google, Bing ve Yandex bilgi arayan arama motorlarıdır; Canva, Google Dokümanlar, Padlet ve Genially ise içerik üretilen ve iş birliği yapılan Web 2.0 araçlarıdır.";
+                return this.data.scenarios[this.stepIndex - 1].hint;
+            }
+            if (this.activityId === 4) {
+                if (this.stepIndex < 3) return "Kartın üzerine tıklayıp ardından hedef kategori kutusuna tıklayabilir veya kartı doğrudan kutuya sürükleyebilirsin.";
+                return "Canlı ders aynı anda olduğu için eş zamanlı, hem kamera hem ses olduğu için görüntülü-sesli, iki kişi arasında olduğu için kişisel iletişimdir; cızırtı ise gürültüdür.";
+            }
+            if (this.activityId === 5) return this.data.steps[this.stepIndex].hint;
+            return "";
+        }
+
+        // -------------------------------------------------------------------------
+        // ETKİNLİK 1 RENDER & CHECK
+        // -------------------------------------------------------------------------
+        renderActivity1Step() {
+            const task = this.data.tasks[this.stepIndex];
+            if (task.type === "choice") {
+                return `
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5">
+                        <div class="text-xs font-extrabold text-blue-600 uppercase tracking-wide">
+                            <i class="fa-solid fa-folder-open mr-1"></i>${task.caseNo} — ${task.title}
+                        </div>
+                        <p class="text-sm sm:text-base font-bold text-slate-900 leading-snug">${task.scenario}</p>
+                    </div>
+                    <div class="grid gap-2.5" role="radiogroup" aria-label="${task.title}">
+                        ${task.options.map(opt => {
+                            const selected = this.selectedChoice === opt.id;
+                            return `
+                                <button type="button" data-action="select-choice" data-id="${opt.id}"
+                                    class="bty-btn w-full text-left p-3.5 rounded-2xl border transition flex items-center justify-between gap-3 ${
+                                        selected
+                                            ? "bg-blue-50 border-blue-600 text-blue-950 font-bold shadow-sm"
+                                            : "bg-white hover:bg-slate-50 border-slate-200 text-slate-800 font-medium"
+                                    }">
+                                    <span class="text-xs sm:text-sm font-mono">${opt.text}</span>
+                                    <span class="w-6 h-6 rounded-full border flex items-center justify-center text-xs shrink-0 ${
+                                        selected ? "bg-blue-600 border-blue-600 text-white" : "border-slate-300 text-transparent"
+                                    }">
+                                        <i class="fa-solid fa-check"></i>
+                                    </span>
+                                </button>
+                            `;
+                        }).join("")}
+                    </div>
+                `;
+            }
+
+            // Builder mode
+            const queryPreview = this.builderTokens.length > 0 ? this.builderTokens.join(" ") : "Parçaları seçerek arama sorgusunu burada oluştur...";
+            return `
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5">
+                    <div class="text-xs font-extrabold text-blue-600 uppercase tracking-wide">
+                        <i class="fa-solid fa-magnifying-glass-plus mr-1"></i>${task.caseNo} — ${task.title}
+                    </div>
+                    <p class="text-sm sm:text-base font-bold text-slate-900 leading-snug">${task.scenario}</p>
+                </div>
+
+                <!-- Arama Çubuğu Önizlemesi -->
+                <div class="p-3.5 rounded-2xl bg-slate-900 text-white border border-slate-700 flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-2.5 overflow-x-auto">
+                        <i class="fa-solid fa-magnifying-glass text-blue-400"></i>
+                        <code class="text-xs sm:text-sm font-mono text-emerald-300">${queryPreview}</code>
+                    </div>
+                    <button type="button" data-action="clear-builder" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold shrink-0">
+                        Temizle
+                    </button>
+                </div>
+
+                <!-- Sorgu Parçaları -->
+                <div class="space-y-2">
+                    <div class="text-xs font-bold text-slate-600">Sorgu Parçaları (Eklemek veya çıkarmak için tıkla):</div>
+                    <div class="flex flex-wrap gap-2">
+                        ${task.tokens.map((tok, idx) => {
+                            const used = this.builderTokens.includes(tok);
+                            return `
+                                <button type="button" data-action="toggle-token" data-token-idx="${idx}"
+                                    class="bty-chip px-3.5 py-2 rounded-xl border text-xs sm:text-sm font-mono font-bold ${
+                                        used
+                                            ? "selected-chip"
+                                            : "bg-white hover:bg-slate-50 border-slate-300 text-slate-800"
+                                    }">
+                                    ${used ? '<i class="fa-solid fa-check mr-1.5"></i>' : '<i class="fa-solid fa-plus mr-1.5 text-slate-400"></i>'}${tok}
+                                </button>
+                            `;
+                        }).join("")}
+                    </div>
+                </div>
+            `;
+        }
+
+        checkActivity1() {
+            const task = this.data.tasks[this.stepIndex];
+            if (task.type === "choice") {
+                if (!this.selectedChoice) {
+                    this.feedback = { type: "error", message: "Lütfen kontrol etmeden önce seçeneklerden birini işaretle." };
+                    return;
+                }
+                const chosen = task.options.find(o => o.id === this.selectedChoice);
+                if (chosen && chosen.correct) {
+                    this.stepSolved = true;
+                    this.score += task.points;
+                    this.feedback = { type: "success", message: task.explanation };
+                } else {
+                    this.feedback = {
+                        type: "error",
+                        message: (chosen && chosen.wrongReason ? chosen.wrongReason + " " : "") + "İpucu: " + task.hint
+                    };
+                }
+                return;
+            }
+
+            // Builder check
+            if (this.builderTokens.length === 0) {
+                this.feedback = { type: "error", message: "Henüz sorgu kutusuna hiçbir parça eklemedin. Aşağıdaki kutucuklara tıklayarak sorguyu oluştur." };
+                return;
+            }
+            const userStr = this.builderTokens.join(" ").trim();
+            const isMatch = task.acceptedOrders.some(arr => arr.join(" ").trim() === userStr);
+            if (isMatch) {
+                this.stepSolved = true;
+                this.score += task.points;
+                this.feedback = { type: "success", message: task.explanation };
+            } else {
+                this.feedback = {
+                    type: "error",
+                    message: `Oluşturduğun sorgu ("${userStr}") bu görev için tam doğru değil. Gereksiz veya yanlış operatör eklemediğinden emin ol. İpucu: ${task.hint}`
+                };
+            }
+        }
+
+        // -------------------------------------------------------------------------
+        // ETKİNLİK 2 RENDER & CHECK
+        // -------------------------------------------------------------------------
+        renderActivity2Step() {
+            const sc = this.data.scenarios[this.stepIndex];
+            return `
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                    <div class="text-xs font-extrabold text-emerald-700 uppercase tracking-wide">${sc.stepNo} — ${sc.title}</div>
+                    <p class="text-sm font-bold text-slate-900 leading-relaxed">${sc.prompt}</p>
+                </div>
+
+                <!-- Kaynak Kartları -->
+                <div class="grid grid-cols-1 md:grid-cols-${sc.cards.length} gap-3">
+                    ${sc.cards.map(c => `
+                        <div class="p-4 rounded-2xl bg-white border-2 border-slate-200 space-y-2.5 shadow-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-800 border border-slate-300">${c.badge}</span>
+                                <span class="text-[11px] font-semibold text-slate-500">${c.domain}</span>
+                            </div>
+                            <h3 class="text-sm font-extrabold text-slate-900">${c.title}</h3>
+                            <div class="space-y-1.5 text-xs text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <div><strong class="text-slate-900"><i class="fa-solid fa-user-pen mr-1 text-blue-600"></i>Yazar/Kurum:</strong> ${c.author}</div>
+                                <div><strong class="text-slate-900"><i class="fa-solid fa-calendar-days mr-1 text-amber-600"></i>Yayın Tarihi:</strong> ${c.date}</div>
+                                <div><strong class="text-slate-900"><i class="fa-solid fa-book-bookmark mr-1 text-purple-600"></i>Kanıt/Kaynakça:</strong> ${c.evidence}</div>
+                                <div><strong class="text-slate-900"><i class="fa-solid fa-scale-balanced mr-1 text-emerald-600"></i>Karşılaştırma:</strong> ${c.crossCheck}</div>
+                            </div>
+                        </div>
+                    `).join("")}
+                </div>
+
+                <!-- 1. Karar Noktası -->
+                <div class="space-y-2 pt-1">
+                    <div class="text-xs sm:text-sm font-extrabold text-slate-900">1. Adım: ${sc.decisionQuestion}</div>
+                    <div class="grid gap-2">
+                        ${sc.decisions.map(d => {
+                            const sel = this.selectedDecision === d.id;
+                            return `
+                                <button type="button" data-action="select-decision" data-id="${d.id}"
+                                    class="bty-btn w-full text-left p-3 rounded-xl border text-xs sm:text-sm transition flex items-center justify-between gap-3 ${
+                                        sel ? "bg-emerald-50 border-emerald-600 text-emerald-950 font-bold" : "bg-white hover:bg-slate-50 border-slate-200 text-slate-800"
+                                    }">
+                                    <span>${d.text}</span>
+                                    <i class="fa-solid ${sel ? "fa-circle-dot text-emerald-600" : "fa-circle text-slate-200"}"></i>
+                                </button>
+                            `;
+                        }).join("")}
+                    </div>
+                </div>
+
+                <!-- 2. Gerekçe Seçimi -->
+                <div class="space-y-2 pt-1">
+                    <div class="text-xs sm:text-sm font-extrabold text-slate-900">2. Adım: ${sc.criteriaQuestion}</div>
+                    <div class="grid sm:grid-cols-2 gap-2">
+                        ${sc.criteriaOptions.map(co => {
+                            const checked = this.selectedCriteria.includes(co.id);
+                            return `
+                                <button type="button" data-action="toggle-criteria" data-id="${co.id}"
+                                    class="bty-btn text-left p-3 rounded-xl border text-xs transition flex items-start gap-2.5 ${
+                                        checked ? "bg-blue-50 border-blue-600 text-blue-950 font-bold" : "bg-white hover:bg-slate-50 border-slate-200 text-slate-700"
+                                    }">
+                                    <i class="fa-solid ${checked ? "fa-square-check text-blue-600" : "fa-square text-slate-300"} mt-0.5 text-sm"></i>
+                                    <span>${co.text}</span>
+                                </button>
+                            `;
+                        }).join("")}
+                    </div>
+                </div>
+            `;
+        }
+
+        checkActivity2() {
+            const sc = this.data.scenarios[this.stepIndex];
+            if (!this.selectedDecision) {
+                this.feedback = { type: "error", message: "Lütfen önce 1. Adımda nasıl ilerleyeceğini seç." };
+                return;
+            }
+            const dec = sc.decisions.find(d => d.id === this.selectedDecision);
+            if (!dec || !dec.correct) {
+                this.feedback = {
+                    type: "error",
+                    message: (dec && dec.wrongReason ? dec.wrongReason + " " : "") + "İpucu: " + sc.hint
+                };
+                return;
+            }
+
+            const correctCriteriaIds = sc.criteriaOptions.filter(c => c.correct).map(c => c.id);
+            const isCritMatch =
+                this.selectedCriteria.length === correctCriteriaIds.length &&
+                correctCriteriaIds.every(id => this.selectedCriteria.includes(id));
+
+            if (!isCritMatch) {
+                this.feedback = {
+                    type: "error",
+                    message: "1. Adımdaki kaynak seçimin doğru! Ancak 2. Adımda bu seçimi destekleyen 2 doğru kanıt ölçütünü eksiksiz işaretlemelisin."
+                };
+                return;
+            }
+
+            this.stepSolved = true;
+            this.score += sc.points;
+            this.feedback = { type: "success", message: sc.explanation };
+        }
+
+        // -------------------------------------------------------------------------
+        // ETKİNLİK 3 RENDER & CHECK
+        // -------------------------------------------------------------------------
+        renderActivity3Step() {
+            if (this.stepIndex === 0) {
+                const items = this.data.sortingItems;
+                const unplaced = items.filter(it => !this.sortingPlacements[it.id]);
+                const searchPlaced = items.filter(it => this.sortingPlacements[it.id] === "search");
+                const web20Placed = items.filter(it => this.sortingPlacements[it.id] === "web20");
+
+                return `
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                        <div class="text-xs font-extrabold text-purple-700 uppercase">Görev 1 / 9 — Araç Kartlarını Sınıflandır</div>
+                        <p class="text-xs sm:text-sm font-bold text-slate-800">
+                            Aşağıdaki 6 internet aracını kullanım amacına göre <strong>Arama Motorları</strong> veya <strong>Web 2.0 İçerik & İş Birliği Araçları</strong> kutusuna yerleştir. (Kartı sürükleyip bırakabilir veya önce karta, sonra hedef kutuya tıklayabilirsin!)
+                        </p>
+                    </div>
+
+                    <!-- Havuz -->
+                    <div class="p-3.5 rounded-2xl bg-slate-50 border border-dashed border-slate-300 space-y-2">
+                        <div class="text-xs font-bold text-slate-500">Yerleştirilecek Araç Kartları (${unplaced.length} kaldı):</div>
+                        <div class="flex flex-wrap gap-2">
+                            ${unplaced.length === 0 ? `<span class="text-xs text-emerald-700 font-bold">Tüm kartlar kutulara yerleştirildi! Şimdi 'Cevabı Kontrol Et' butonuna تıkla.</span>` : ""}
+                            ${unplaced.map(it => {
+                                const isTap = this.activeTapItem === it.id;
+                                return `
+                                    <button type="button" draggable="true" data-action="tap-item" data-item-id="${it.id}"
+                                        class="bty-chip px-3.5 py-2 rounded-xl border bg-white hover:bg-slate-50 border-slate-300 text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-2 shadow-sm ${isTap ? "selected-chip" : ""}">
+                                        <i class="${it.icon} text-purple-600"></i>
+                                        <span>${it.name}</span>
+                                    </button>
+                                `;
+                            }).join("")}
+                        </div>
+                    </div>
+
+                    <!-- Hedef Kutular -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div data-action="drop-zone" data-zone="search" tabindex="0" role="button" aria-label="Arama Motorları Kutusu"
+                            class="bty-dropzone p-4 rounded-2xl border-2 border-dashed border-blue-300 bg-blue-50/40 min-h-[150px] space-y-2.5 cursor-pointer ${this.activeTapItem ? "active-drop" : ""}">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs sm:text-sm font-extrabold text-blue-900"><i class="fa-solid fa-magnifying-glass mr-1.5 text-blue-600"></i>Arama Motorları</span>
+                                <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">${searchPlaced.length}</span>
+                            </div>
+                            <p class="text-[11px] text-slate-600">Anahtar kelimelerle web sitelerini tarayıp bilgi kaynaklarını listeleyen araçlar (Yerleştirmek için buraya tıkla veya bırak)</p>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                ${searchPlaced.map(it => `
+                                    <button type="button" data-action="remove-placed" data-item-id="${it.id}"
+                                        class="px-3 py-1.5 rounded-xl bg-white border border-blue-300 text-xs font-bold text-blue-900 flex items-center gap-1.5 shadow-sm" title="Kaldırmak için tıkla">
+                                        <i class="${it.icon}"></i><span>${it.name}</span><i class="fa-solid fa-xmark text-slate-400 ml-1"></i>
+                                    </button>
+                                `).join("")}
+                            </div>
+                        </div>
+
+                        <div data-action="drop-zone" data-zone="web20" tabindex="0" role="button" aria-label="Web 2.0 Araçları Kutusu"
+                            class="bty-dropzone p-4 rounded-2xl border-2 border-dashed border-purple-300 bg-purple-50/40 min-h-[150px] space-y-2.5 cursor-pointer ${this.activeTapItem ? "active-drop" : ""}">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs sm:text-sm font-extrabold text-purple-900"><i class="fa-solid fa-wand-magic-sparkles mr-1.5 text-purple-600"></i>Web 2.0 İçerik & İş Birliği Araçları</span>
+                                <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-800">${web20Placed.length}</span>
+                            </div>
+                            <p class="text-[11px] text-slate-600">Afiş, sunum, ortak belge ve etkileşimli pano oluşturup paylaşmayı sağlayan araçlar (Yerleştirmek için buraya tıkla veya bırak)</p>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                ${web20Placed.map(it => `
+                                    <button type="button" data-action="remove-placed" data-item-id="${it.id}"
+                                        class="px-3 py-1.5 rounded-xl bg-white border border-purple-300 text-xs font-bold text-purple-900 flex items-center gap-1.5 shadow-sm" title="Kaldırmak için tıkla">
+                                        <i class="${it.icon}"></i><span>${it.name}</span><i class="fa-solid fa-xmark text-slate-400 ml-1"></i>
+                                    </button>
+                                `).join("")}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            const sc = this.data.scenarios[this.stepIndex - 1];
+            return `
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-extrabold text-purple-700 uppercase">${sc.stepTitle}</span>
+                        <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full ${sc.multiSelect ? "bg-amber-100 text-amber-800" : "bg-purple-100 text-purple-800"}">
+                            ${sc.multiSelect ? "Çoklu Seçim Görevi (2 Araç Seç)" : "Tek Seçim Görevi"}
+                        </span>
+                    </div>
+                    <p class="text-sm sm:text-base font-bold text-slate-900 leading-snug">${sc.scenario}</p>
+                </div>
+
+                <div class="grid gap-2.5">
+                    ${sc.options.map(opt => {
+                        const isSel = sc.multiSelect
+                            ? this.selectedMulti.includes(opt.id)
+                            : this.selectedChoice === opt.id;
+                        return `
+                            <button type="button" data-action="${sc.multiSelect ? "toggle-multi" : "select-choice"}" data-id="${opt.id}"
+                                class="bty-btn w-full text-left p-3.5 rounded-2xl border transition flex items-center justify-between gap-3 ${
+                                    isSel ? "bg-purple-50 border-purple-600 text-purple-950 font-bold shadow-sm" : "bg-white hover:bg-slate-50 border-slate-200 text-slate-800"
+                                }">
+                                <span class="text-xs sm:text-sm">${opt.label}</span>
+                                <i class="fa-solid ${
+                                    sc.multiSelect
+                                        ? (isSel ? "fa-square-check text-purple-600" : "fa-square text-slate-300")
+                                        : (isSel ? "fa-circle-check text-purple-600" : "fa-circle text-slate-200")
+                                } text-base"></i>
+                            </button>
+                        `;
+                    }).join("")}
+                </div>
+            `;
+        }
+
+        checkActivity3() {
+            if (this.stepIndex === 0) {
+                const items = this.data.sortingItems;
+                if (Object.keys(this.sortingPlacements).length < items.length) {
+                    this.feedback = { type: "error", message: "Lütfen 6 araç kartının tamamını kutulara yerleştir, ardından kontrol et." };
+                    return;
+                }
+                const wrongItems = items.filter(it => this.sortingPlacements[it.id] !== it.category);
+                if (wrongItems.length === 0) {
+                    this.stepSolved = true;
+                    this.score += 20;
+                    this.feedback = {
+                        type: "success",
+                        message: "Harika sınıflandırma! Google, Bing ve Yandex bilgi aradığımız Arama Motorlarıdır; Canva, Google Dokümanlar/Word Online, Padlet ve Genially ise içerik üretip iş birliği yaptığımız Web 2.0 araçlarıdır."
+                    };
+                } else {
+                    const names = wrongItems.map(w => w.name).join(", ");
+                    this.feedback = {
+                        type: "error",
+                        message: `Şu araçların kutusu hatalı oldu: ${names}. Unutma: Web sitelerini tarayanlar Arama Motoru, içerik/afiş/ortak belge üretenler Web 2.0 aracıdır.`
+                    };
+                }
+                return;
+            }
+
+            const sc = this.data.scenarios[this.stepIndex - 1];
+            if (sc.multiSelect) {
+                const correctIds = sc.options.filter(o => o.correct).map(o => o.id);
+                const ok =
+                    this.selectedMulti.length === correctIds.length &&
+                    correctIds.every(id => this.selectedMulti.includes(id));
+                if (ok) {
+                    this.stepSolved = true;
+                    this.score += sc.points;
+                    this.feedback = { type: "success", message: sc.explanation };
+                } else {
+                    this.feedback = {
+                        type: "error",
+                        message: "Bu görevde hem araştırma hem de üretim/iş birliği yapıldığı için doğru olan 2 aracı birlikte seçmelisin. İpucu: " + sc.hint
+                    };
+                }
+            } else {
+                if (!this.selectedChoice) {
+                    this.feedback = { type: "error", message: "Lütfen bir araç seç." };
+                    return;
+                }
+                const opt = sc.options.find(o => o.id === this.selectedChoice);
+                if (opt && opt.correct) {
+                    this.stepSolved = true;
+                    this.score += sc.points;
+                    this.feedback = { type: "success", message: sc.explanation };
+                } else {
+                    this.feedback = {
+                        type: "error",
+                        message: (opt && opt.wrongReason ? opt.wrongReason + " " : "") + "İpucu: " + sc.hint
+                    };
+                }
+            }
+        }
+
+        // -------------------------------------------------------------------------
+        // ETKİNLİK 4 RENDER & CHECK
+        // -------------------------------------------------------------------------
+        renderActivity4Step() {
+            if (this.stepIndex < 3) {
+                const st = this.data.stations[this.stepIndex];
+                const unplaced = st.items.filter(it => !this.sortingPlacements[it.id]);
+
+                return `
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                        <div class="text-xs font-extrabold text-amber-700 uppercase">${st.code} — ${st.title}</div>
+                        <p class="text-xs sm:text-sm text-slate-700 font-medium">${st.desc}</p>
+                    </div>
+
+                    <!-- Senaryo Kartları Havuzu -->
+                    <div class="p-3.5 rounded-2xl bg-slate-50 border border-dashed border-slate-300 space-y-2.5">
+                        <div class="text-xs font-bold text-slate-600">
+                            Sınıflandırılacak İletişim Senaryoları (${unplaced.length} kaldı — Önce karta tıkla veya sürükle, sonra kategori kutusuna bırak):
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            ${unplaced.map(it => {
+                                const isTap = this.activeTapItem === it.id;
+                                return `
+                                    <button type="button" draggable="true" data-action="tap-item" data-item-id="${it.id}"
+                                        class="bty-chip text-left p-3 rounded-xl border bg-white hover:bg-slate-50 border-slate-300 space-y-1 shadow-sm ${isTap ? "selected-chip" : ""}">
+                                        <div class="text-xs font-extrabold text-slate-900 flex items-center justify-between">
+                                            <span>${it.title}</span>
+                                            <i class="fa-solid fa-up-down-left-right text-slate-400 text-[11px]"></i>
+                                        </div>
+                                        <p class="text-[11px] text-slate-600 leading-snug">${it.scenario}</p>
+                                    </button>
+                                `;
+                            }).join("")}
+                        </div>
+                    </div>
+
+                    <!-- Kategori Kutuları -->
+                    <div class="grid grid-cols-1 sm:grid-cols-${st.categories.length} gap-3">
+                        ${st.categories.map(cat => {
+                            const placed = st.items.filter(it => this.sortingPlacements[it.id] === cat.id);
+                            return `
+                                <div data-action="drop-zone" data-zone="${cat.id}" tabindex="0" role="button" aria-label="${cat.label}"
+                                    class="bty-dropzone p-3.5 rounded-2xl border-2 border-dashed border-slate-300 bg-white min-h-[150px] space-y-2 cursor-pointer ${this.activeTapItem ? "active-drop" : ""}">
+                                    <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                                        <span class="text-xs font-extrabold text-slate-900">
+                                            <i class="fa-solid ${cat.icon} mr-1.5 text-amber-600"></i>${cat.label}
+                                        </span>
+                                        <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-800">${placed.length}</span>
+                                    </div>
+                                    <div class="space-y-1.5">
+                                        ${placed.map(it => `
+                                            <button type="button" data-action="remove-placed" data-item-id="${it.id}"
+                                                class="w-full text-left px-2.5 py-1.5 rounded-xl bg-amber-50/70 border border-amber-200 text-xs font-bold text-slate-900 flex items-center justify-between gap-2" title="Kaldırmak için tıkla">
+                                                <span class="truncate">${it.title}</span>
+                                                <i class="fa-solid fa-xmark text-slate-400 shrink-0"></i>
+                                            </button>
+                                        `).join("")}
+                                    </div>
+                                </div>
+                            `;
+                        }).join("")}
+                    </div>
+                `;
+            }
+
+            // Final Görevi
+            const fc = this.data.finalChallenge;
+            return `
+                <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 space-y-1.5">
+                    <div class="text-xs font-extrabold text-amber-800 uppercase">${fc.title}</div>
+                    <p class="text-xs sm:text-sm font-bold text-slate-900 leading-relaxed">${fc.scenario}</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    ${fc.questions.map(q => `
+                        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 space-y-2">
+                            <div class="text-xs font-extrabold text-slate-900">${q.label}</div>
+                            <div class="space-y-1.5">
+                                ${q.options.map((optText, idx) => {
+                                    const chosen = this.finalAnswers[q.id] === idx;
+                                    return `
+                                        <button type="button" data-action="select-final" data-qid="${q.id}" data-idx="${idx}"
+                                            class="bty-btn w-full text-left px-3 py-2 rounded-xl border text-xs transition flex items-center justify-between ${
+                                                chosen ? "bg-amber-50 border-amber-600 text-amber-950 font-bold" : "bg-slate-50 hover:bg-slate-100 border-slate-200 text-slate-700"
+                                            }">
+                                            <span>${optText}</span>
+                                            <i class="fa-solid ${chosen ? "fa-circle-check text-amber-600" : "fa-circle text-slate-300"}"></i>
+                                        </button>
+                                    `;
+                                }).join("")}
+                            </div>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        checkActivity4() {
+            if (this.stepIndex < 3) {
+                const st = this.data.stations[this.stepIndex];
+                if (Object.keys(this.sortingPlacements).length < st.items.length) {
+                    this.feedback = { type: "error", message: "Lütfen bu istasyondaki 5 iletişim senaryosunun tamamını uygun kutulara yerleştir." };
+                    return;
+                }
+                const wrong = st.items.filter(it => this.sortingPlacements[it.id] !== it.target);
+                if (wrong.length === 0) {
+                    this.stepSolved = true;
+                    this.score += 25;
+                    const details = st.items.map(it => `• ${it.title}: ${it.explain}`).join(" ");
+                    this.feedback = {
+                        type: "success",
+                        message: `${st.code} tamamlandı! ${details}`
+                    };
+                } else {
+                    const firstWrong = wrong[0];
+                    this.feedback = {
+                        type: "error",
+                        message: `"${firstWrong.title}" senaryosunun kategorisi hatalı oldu. İpucu: ${firstWrong.explain}`
+                    };
+                }
+                return;
+            }
+
+            const fc = this.data.finalChallenge;
+            if (Object.keys(this.finalAnswers).length < fc.questions.length) {
+                this.feedback = { type: "error", message: "Lütfen Final Görevindeki 4 sorunun tamamını yanıtla." };
+                return;
+            }
+            const wrongQ = fc.questions.filter(q => this.finalAnswers[q.id] !== q.correctIndex);
+            if (wrongQ.length === 0) {
+                this.stepSolved = true;
+                this.score += 25;
+                this.feedback = { type: "success", message: fc.explanation };
+            } else {
+                this.feedback = {
+                    type: "error",
+                    message: `"${wrongQ[0].label}" ölçütünü tekrar kontrol et. Canlı görüntülü ders aynı anda (eş zamanlı), hem kameralı hem mikrofonlu (görüntülü-sesli) ve iki kişi arasında (kişisel) gerçekleşir; cızırtı ise gürültüdür.`
+                };
+            }
+        }
+
+        // -------------------------------------------------------------------------
+        // ETKİNLİK 5 RENDER & CHECK
+        // -------------------------------------------------------------------------
+        renderActivity5Step() {
+            const st = this.data.steps[this.stepIndex];
+
+            if (st.type === "address_parts") {
+                return `
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                        <div class="text-xs font-extrabold text-rose-700 uppercase">${st.sectionCode} — ${st.title}</div>
+                        <p class="text-xs sm:text-sm font-bold text-slate-800">${st.scenario}</p>
+                        <div class="p-3 rounded-xl bg-slate-900 text-center font-mono text-base sm:text-lg font-extrabold tracking-wide">
+                            <span class="text-amber-300">ogrenci123</span><span class="text-rose-400 px-1">@</span><span class="text-emerald-300">gmail.com</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        ${st.parts.map(part => `
+                            <div class="p-3.5 rounded-2xl bg-white border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                                <div class="font-mono text-sm font-extrabold px-3 py-1.5 rounded-xl bg-slate-100 text-slate-900 border border-slate-300 shrink-0">
+                                    Parça: "${part.token}"
+                                </div>
+                                <select data-action="select-addr-part" data-part-id="${part.id}" aria-label="${part.token} görevi"
+                                    class="w-full sm:w-2/3 p-2.5 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800">
+                                    <option value="">— Görevini Seçin —</option>
+                                    ${st.roleOptions.map(r => `
+                                        <option value="${r}" ${this.addressMatches[part.id] === r ? "selected" : ""}>${r}</option>
+                                    `).join("")}
+                                </select>
+                            </div>
+                        `).join("")}
+                    </div>
+                `;
+            }
+
+            if (st.type === "multi_check") {
+                return `
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                        <div class="text-xs font-extrabold text-rose-700 uppercase">${st.sectionCode} — ${st.title}</div>
+                        <p class="text-xs sm:text-sm font-bold text-slate-900">${st.scenario}</p>
+                    </div>
+                    <div class="grid gap-2.5">
+                        ${st.options.map(o => {
+                            const checked = this.selectedMulti.includes(o.id);
+                            return `
+                                <button type="button" data-action="toggle-multi" data-id="${o.id}"
+                                    class="bty-btn w-full text-left p-3.5 rounded-2xl border text-xs sm:text-sm font-mono transition flex items-center justify-between ${
+                                        checked ? "bg-rose-50 border-rose-600 text-rose-950 font-bold" : "bg-white hover:bg-slate-50 border-slate-200 text-slate-800"
+                                    }">
+                                    <span>${o.label}</span>
+                                    <i class="fa-solid ${checked ? "fa-square-check text-rose-600" : "fa-square text-slate-300"} text-base"></i>
+                                </button>
+                            `;
+                        }).join("")}
+                    </div>
+                `;
+            }
+
+            if (st.type === "compose_sim") {
+                return `
+                    <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold text-rose-700 uppercase">${st.sectionCode} — ${st.title}</span>
+                            <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                                <i class="fa-solid fa-shield-check mr-1"></i>Güvenli Simülasyon (Gerçek E-Posta Göndermez)
+                            </span>
+                        </div>
+                        <p class="text-xs sm:text-sm font-bold text-slate-900">${st.scenario}</p>
+                    </div>
+
+                    <!-- Simüle Edilmiş E-Posta Penceresi -->
+                    <div class="rounded-2xl border-2 border-slate-300 bg-white overflow-hidden shadow-sm">
+                        <div class="bg-slate-800 text-white px-4 py-2.5 flex items-center justify-between text-xs font-bold">
+                            <span><i class="fa-solid fa-pen-to-square mr-1.5 text-rose-400"></i>Yeni İleti — E-Posta Atölyesi Simülasyonu</span>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                            </div>
+                        </div>
+                        <div class="p-4 space-y-3">
+                            ${st.fields.map(f => `
+                                <div class="space-y-1">
+                                    <label class="block text-xs font-extrabold text-slate-700">${f.label}</label>
+                                    <select data-action="select-compose" data-field-id="${f.id}" aria-label="${f.label}"
+                                        class="w-full p-2.5 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-medium text-slate-900">
+                                        <option value="">— Uygun İçeriği Seçin —</option>
+                                        ${f.options.map(opt => `
+                                            <option value="${opt}" ${this.composeSelections[f.id] === opt ? "selected" : ""}>${opt}</option>
+                                        `).join("")}
+                                    </select>
+                                </div>
+                            `).join("")}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // choice or fix_email
+            return `
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5">
+                    <div class="text-xs font-extrabold text-rose-700 uppercase">${st.sectionCode} — ${st.title}</div>
+                    <p class="text-xs sm:text-sm font-bold text-slate-900 whitespace-pre-line leading-relaxed">${st.scenario}</p>
+                </div>
+                <div class="grid gap-2.5">
+                    ${st.options.map(opt => {
+                        const sel = this.selectedChoice === opt.id;
+                        return `
+                            <button type="button" data-action="select-choice" data-id="${opt.id}"
+                                class="bty-btn w-full text-left p-3.5 rounded-2xl border text-xs sm:text-sm transition flex items-center justify-between gap-3 ${
+                                    sel ? "bg-rose-50 border-rose-600 text-rose-950 font-bold shadow-sm" : "bg-white hover:bg-slate-50 border-slate-200 text-slate-800"
+                                }">
+                                <span>${opt.text}</span>
+                                <i class="fa-solid ${sel ? "fa-circle-check text-rose-600" : "fa-circle text-slate-200"} text-base shrink-0"></i>
+                            </button>
+                        `;
+                    }).join("")}
+                </div>
+            `;
+        }
+
+        checkActivity5() {
+            const st = this.data.steps[this.stepIndex];
+
+            if (st.type === "address_parts") {
+                if (Object.keys(this.addressMatches).length < st.parts.length) {
+                    this.feedback = { type: "error", message: "Lütfen e-posta adresinin 3 parçasının da görevini listeden seç." };
+                    return;
+                }
+                const wrong = st.parts.filter(p => this.addressMatches[p.id] !== p.correctRole);
+                if (wrong.length === 0) {
+                    this.stepSolved = true;
+                    this.score += st.points;
+                    this.feedback = { type: "success", message: st.explanation };
+                } else {
+                    this.feedback = {
+                        type: "error",
+                        message: `"${wrong[0].token}" parçasının eşleştirmesi hatalı oldu. İpucu: ${st.hint}`
+                    };
+                }
+                return;
+            }
+
+            if (st.type === "multi_check") {
+                const invalidIds = st.options.filter(o => o.isInvalid).map(o => o.id);
+                const ok =
+                    this.selectedMulti.length === invalidIds.length &&
+                    invalidIds.every(id => this.selectedMulti.includes(id));
+                if (ok) {
+                    this.stepSolved = true;
+                    this.score += st.points;
+                    this.feedback = { type: "success", message: st.explanation };
+                } else {
+                    this.feedback = {
+                        type: "error",
+                        message: "Lütfen yalnızca yazım kuralı hatalı (geçersiz) olan 2 adresi işaretle. İpucu: " + st.hint
+                    };
+                }
+                return;
+            }
+
+            if (st.type === "compose_sim") {
+                if (Object.keys(this.composeSelections).length < st.fields.length) {
+                    this.feedback = { type: "error", message: "Lütfen Kime, Konu, Mesaj ve Ek alanlarının tamamını doldur." };
+                    return;
+                }
+                const wrongF = st.fields.filter(f => this.composeSelections[f.id] !== f.correct);
+                if (wrongF.length === 0) {
+                    this.stepSolved = true;
+                    this.score += st.points;
+                    this.feedback = { type: "success", message: st.explanation };
+                } else {
+                    this.feedback = {
+                        type: "error",
+                        message: `"${wrongF[0].label}" alanında seçtiğin ifade uygun değil. İpucu: ${st.hint}`
+                    };
+                }
+                return;
+            }
+
+            // choice or fix_email
+            if (!this.selectedChoice) {
+                this.feedback = { type: "error", message: "Lütfen bir seçenek işaretle." };
+                return;
+            }
+            const chosen = st.options.find(o => o.id === this.selectedChoice);
+            if (chosen && chosen.correct) {
+                this.stepSolved = true;
+                this.score += st.points;
+                this.feedback = { type: "success", message: st.explanation };
+            } else {
+                this.feedback = {
+                    type: "error",
+                    message: (chosen && chosen.wrongReason ? chosen.wrongReason + " " : "") + "İpucu: " + st.hint
+                };
+            }
+        }
+
+        checkCurrentAnswer() {
+            if (this.activityId === 1) this.checkActivity1();
+            else if (this.activityId === 2) this.checkActivity2();
+            else if (this.activityId === 3) this.checkActivity3();
+            else if (this.activityId === 4) this.checkActivity4();
+            else if (this.activityId === 5) this.checkActivity5();
+            this.render();
+        }
+
+        bindEvents() {
+            // Buton aksiyonları
+            this.container.querySelectorAll("[data-action]").forEach(el => {
+                const action = el.getAttribute("data-action");
+
+                if (action === "start-activity") {
+                    el.addEventListener("click", () => this.startActivity());
+                } else if (action === "restart-activity") {
+                    el.addEventListener("click", () => this.restartActivity());
+                } else if (action === "toggle-hint") {
+                    el.addEventListener("click", () => this.toggleHint());
+                } else if (action === "retry-step") {
+                    el.addEventListener("click", () => this.retryCurrentStep());
+                } else if (action === "check-answer") {
+                    el.addEventListener("click", () => this.checkCurrentAnswer());
+                } else if (action === "next-step") {
+                    el.addEventListener("click", () => this.nextStep());
+                } else if (action === "select-choice") {
+                    el.addEventListener("click", () => {
+                        if (this.stepSolved) return;
+                        this.selectedChoice = el.getAttribute("data-id");
+                        this.render();
+                    });
+                } else if (action === "toggle-token") {
+                    el.addEventListener("click", () => {
+                        if (this.stepSolved) return;
+                        const task = this.data.tasks[this.stepIndex];
+                        const tok = task.tokens[Number(el.getAttribute("data-token-idx"))];
+                        const idx = this.builderTokens.indexOf(tok);
+                        if (idx >= 0) this.builderTokens.splice(idx, 1);
+                        else this.builderTokens.push(tok);
+                        this.render();
+                    });
+                } else if (action === "clear-builder") {
+                    el.addEventListener("click", () => {
+                        if (this.stepSolved) return;
+                        this.builderTokens = [];
+                        this.render();
+                    });
+                } else if (action === "select-decision") {
+                    el.addEventListener("click", () => {
+                        if (this.stepSolved) return;
+                        this.selectedDecision = el.getAttribute("data-id");
+                        this.render();
+                    });
+                } else if (action === "toggle-criteria") {
+                    el.addEventListener("click", () => {
+                        if (this.stepSolved) return;
+                        const id = el.getAttribute("data-id");
+                        const idx = this.selectedCriteria.indexOf(id);
+                        if (idx >= 0) this.selectedCriteria.splice(idx, 1);
+                        else this.selectedCriteria.push(id);
+                        this.render();
+                    });
+                } else if (action === "toggle-multi") {
+                    el.addEventListener("click", () => {
+                        if (this.stepSolved) return;
+                        const id = el.getAttribute("data-id");
+                        const idx = this.selectedMulti.indexOf(id);
+                        if (idx >= 0) this.selectedMulti.splice(idx, 1);
+                        else this.selectedMulti.push(id);
+                        this.render();
+                    });
+                } else if (action === "tap-item") {
+                    const itemId = el.getAttribute("data-item-id");
+                    el.addEventListener("click", () => {
+                        if (this.stepSolved) return;
+                        this.activeTapItem = this.activeTapItem === itemId ? null : itemId;
+                        this.render();
+                    });
+                    el.addEventListener("dragstart", ev => {
+                        if (this.stepSolved) return;
+                        this.activeTapItem = itemId;
+                        if (ev.dataTransfer) ev.dataTransfer.setData("text/plain", itemId);
+                    });
+                } else if (action === "drop-zone") {
+                    const zoneId = el.getAttribute("data-zone");
+                    el.addEventListener("click", () => {
+                        if (this.stepSolved || !this.activeTapItem) return;
+                        this.sortingPlacements[this.activeTapItem] = zoneId;
+                        this.activeTapItem = null;
+                        this.render();
+                    });
+                    el.addEventListener("keydown", ev => {
+                        if ((ev.key === "Enter" || ev.key === " ") && this.activeTapItem && !this.stepSolved) {
+                            ev.preventDefault();
+                            this.sortingPlacements[this.activeTapItem] = zoneId;
+                            this.activeTapItem = null;
+                            this.render();
+                        }
+                    });
+                    el.addEventListener("dragover", ev => {
+                        ev.preventDefault();
+                        el.classList.add("active-drop");
+                    });
+                    el.addEventListener("dragleave", () => {
+                        el.classList.remove("active-drop");
+                    });
+                    el.addEventListener("drop", ev => {
+                        ev.preventDefault();
+                        if (this.stepSolved) return;
+                        const itemId = (ev.dataTransfer && ev.dataTransfer.getData("text/plain")) || this.activeTapItem;
+                        if (itemId) {
+                            this.sortingPlacements[itemId] = zoneId;
+                            this.activeTapItem = null;
+                            this.render();
+                        }
+                    });
+                } else if (action === "remove-placed") {
+                    el.addEventListener("click", ev => {
+                        ev.stopPropagation();
+                        if (this.stepSolved) return;
+                        const itemId = el.getAttribute("data-item-id");
+                        delete this.sortingPlacements[itemId];
+                        this.render();
+                    });
+                } else if (action === "select-final") {
+                    el.addEventListener("click", () => {
+                        if (this.stepSolved) return;
+                        const qid = el.getAttribute("data-qid");
+                        const idx = Number(el.getAttribute("data-idx"));
+                        this.finalAnswers[qid] = idx;
+                        this.render();
+                    });
+                } else if (action === "select-addr-part") {
+                    el.addEventListener("change", () => {
+                        if (this.stepSolved) return;
+                        const pid = el.getAttribute("data-part-id");
+                        this.addressMatches[pid] = el.value;
+                    });
+                } else if (action === "select-compose") {
+                    el.addEventListener("change", () => {
+                        if (this.stepSolved) return;
+                        const fid = el.getAttribute("data-field-id");
+                        this.composeSelections[fid] = el.value;
+                    });
+                }
+            });
+        }
+    }
+
+    window.BTYActivityEngine = BTYActivityEngine;
+    window.btySafeGetStorage = safeGetStorage;
+    window.btySafeSetStorage = safeSetStorage;
+})();
+
+    </script>
+    <script>
+        (function () {
+            let currentTab = 1;
+            const engines = {};
+
+            function updateGlobalHeader() {
+                const st = window.btySafeGetStorage();
+                let completedCount = 0;
+                let totalScore = 0;
+                for (let i = 1; i <= 5; i++) {
+                    const isDone = Boolean(st.completed && st.completed[i]);
+                    if (isDone) completedCount++;
+                    totalScore += Number((st.scores && st.scores[i]) || 0);
+                    const dot = document.getElementById("tab-badge-" + i);
+                    if (dot) {
+                        if (isDone) dot.classList.remove("hidden");
+                        else dot.classList.add("hidden");
+                    }
+                }
+                const txt = document.getElementById("global-progress-text");
+                if (txt) {
+                    txt.textContent = `Tamamlanan: ${completedCount} / 5 • En Yüksek Puan: ${totalScore}`;
+                }
+            }
+
+            function switchTab(actId) {
+                currentTab = Number(actId);
+                document.querySelectorAll(".bty-tab-btn").forEach(btn => {
+                    const id = Number(btn.getAttribute("data-tab-id"));
+                    if (id === currentTab) {
+                        btn.className = "bty-tab-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition shrink-0 flex items-center gap-2 bg-blue-600 text-white shadow-sm";
+                    } else {
+                        btn.className = "bty-tab-btn px-3.5 py-2 rounded-xl text-xs font-extrabold transition shrink-0 flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700";
+                    }
+                });
+
+                const mount = document.getElementById("active-activity-mount");
+                if (!engines[currentTab]) {
+                    engines[currentTab] = new window.BTYActivityEngine(mount, currentTab, function () {
+                        updateGlobalHeader();
+                    });
+                } else {
+                    engines[currentTab].container = mount;
+                }
+                engines[currentTab].render();
+                updateGlobalHeader();
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const params = new URLSearchParams(window.location.search);
+                const requestedAct = Number(params.get("etkinlik") || 1);
+                const embedMode = params.get("embed") === "1";
+
+                if (embedMode) {
+                    const hdr = document.getElementById("portal-header");
+                    if (hdr) hdr.style.display = "none";
+                }
+
+                document.querySelectorAll(".bty-tab-btn").forEach(btn => {
+                    btn.addEventListener("click", function () {
+                        switchTab(Number(btn.getAttribute("data-tab-id")));
+                    });
+                });
+
+                const resetAllBtn = document.getElementById("btn-reset-all");
+                if (resetAllBtn) {
+                    resetAllBtn.addEventListener("click", function () {
+                        window.btySafeSetStorage({ completed: {}, scores: {} });
+                        for (let i = 1; i <= 5; i++) {
+                            if (engines[i]) engines[i].resetState();
+                        }
+                        switchTab(currentTab);
+                    });
+                }
+
+                const validTab = requestedAct >= 1 && requestedAct <= 5 ? requestedAct : 1;
+                switchTab(validTab);
+            });
+        })();
+    </script>
+</body>
+</html>
