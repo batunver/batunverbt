@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>batunver.com | 6. Sınıf BTY 4. Tema: Bilişim Etiği ve Siber Güvenlik Etkinlik Sistemi</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: #F8FAFC;
+      color: #0F172A;
+    }
+    .navy-gradient {
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #0F766E 100%);
+    }
+    .card-transition {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-transition:hover {
+      transform: translateY(-2px);
+    }
+    .shake {
+      animation: shakeAnim 0.4s ease-in-out;
+    }
+    @keyframes shakeAnim {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      50% { transform: translateX(6px); }
+      75% { transform: translateX(-4px); }
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #FFFFFF; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- ÜST BAR: batunver.com Portalı Başlığı -->
+  <header class="navy-gradient text-white shadow-lg sticky top-0 z-30 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-teal-500 flex items-center justify-center font-extrabold text-xl shadow-inner border border-teal-300/40">
+          B
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold tracking-tight text-lg">batunver.com</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-orange-500/90 text-white font-semibold">11. Hafta • 6. Sınıf</span>
+            <span class="hidden md:inline-block text-xs px-2 py-0.5 rounded-full bg-blue-500/30 border border-blue-400/40 text-blue-100">MEB TYMM 4. Tema</span>
+          </div>
+          <p class="text-xs text-slate-300">Bilişim Etiği ve Siber Güvenlik Etkileşimli Etkinlik &amp; Değerlendirme Sistemi</p>
+        </div>
+      </div>
+
+      <!-- Öğrenci Bilgisi & Kontrol Düğmeleri -->
+      <div class="flex flex-wrap items-center gap-2">
+        <div class="hidden sm:flex items-center bg-slate-800/80 border border-slate-700 rounded-lg px-2.5 py-1 text-xs gap-2">
+          <i data-lucide="user" class="w-3.5 h-3.5 text-teal-400"></i>
+          <input id="studentNameInput" type="text" placeholder="Adın Soyadın" class="bg-transparent text-white placeholder-slate-400 focus:outline-none w-28" />
+          <span class="text-slate-600">|</span>
+          <input id="studentClassInput" type="text" placeholder="6/A" class="bg-transparent text-white placeholder-slate-400 focus:outline-none w-10 text-center" />
+        </div>
+
+        <div class="flex items-center bg-slate-800/90 border border-teal-500/40 rounded-lg px-3 py-1.5 text-xs font-bold text-teal-300 gap-1.5">
+          <i data-lucide="award" class="w-4 h-4 text-orange-400"></i>
+          <span>Toplam Puan:</span>
+          <span id="globalScoreBadge" class="text-white text-sm">0</span>
+        </div>
+
+        <button id="soundToggleBtn" type="button" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 transition" title="Ses Efektlerini Aç/Kapat">
+          <i id="soundIcon" data-lucide="volume-2" class="w-4 h-4"></i>
+        </button>
+
+        <button id="openEmbedModalBtn" type="button" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold shadow transition">
+          <i data-lucide="code-2" class="w-4 h-4"></i>
+          <span>Siteye Göm</span>
+        </button>
+
+        <button id="resetAllBtn" type="button" class="p-2 rounded-lg bg-slate-800 hover:bg-red-900/60 border border-slate-700 text-slate-300 hover:text-red-200 transition" title="Tüm Etkinliği Sıfırla">
+          <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- MODÜL SEKMELERİ -->
+    <div class="bg-slate-900/90 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 flex overflow-x-auto no-scrollbar gap-1 py-1.5">
+        <button data-tab="matching" class="nav-tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold whitespace-nowrap transition bg-blue-600 text-white shadow">
+          <i data-lucide="git-compare" class="w-4 h-4"></i>
+          <span>1. Kavram Eşleştirme (25)</span>
+        </button>
+        <button data-tab="truefalse" class="nav-tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold whitespace-nowrap transition text-slate-300 hover:bg-slate-800">
+          <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+          <span>2. Doğru / Yanlış (20)</span>
+        </button>
+        <button data-tab="stories" class="nav-tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold whitespace-nowrap transition text-slate-300 hover:bg-slate-800">
+          <i data-lucide="book-open-check" class="w-4 h-4"></i>
+          <span>3. Hikâye İçinden Sorular (15)</span>
+        </button>
+        <button data-tab="quiz20" class="nav-tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold whitespace-nowrap transition text-slate-300 hover:bg-slate-800">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+          <span>4. 20 Soruluk Konu Testi</span>
+        </button>
+        <button data-tab="report" class="nav-tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold whitespace-nowrap transition text-slate-300 hover:bg-slate-800">
+          <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+          <span>5. Başarı Karnesi &amp; Gömme Rehberi</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- GENEL İLERLEME ÇUBUĞU (5 Alan Özeti) -->
+  <section class="bg-white border-b border-slate-200 shadow-sm no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="font-bold text-slate-700">5 Öğrenme Alanı:</span>
+        <span class="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-800 border border-blue-200 font-semibold">1. Bilişim Etiği ve İlkeleri (BTY.6.4.1)</span>
+        <span class="px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200 font-semibold">2. Telif Hakkı (BTY.6.4.2)</span>
+        <span class="px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-800 border border-indigo-200 font-semibold">3. Güvenli Siber Ortam (BTY.6.4.3)</span>
+        <span class="px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-800 border border-orange-200 font-semibold">4. Zararlı Yazılımlar (BTY.6.4.3)</span>
+        <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold">5. Lisans Türleri (BTY.6.4.4)</span>
+      </div>
+      <div class="flex items-center gap-2 w-full sm:w-auto">
+        <span class="text-slate-500 font-medium">Genel Tamamlama:</span>
+        <div class="w-32 h-2.5 bg-slate-200 rounded-full overflow-hidden">
+          <div id="overallProgressBar" class="h-full bg-gradient-to-r from-blue-600 via-teal-500 to-orange-500 transition-all duration-300" style="width: 0%"></div>
+        </div>
+        <span id="overallProgressText" class="font-bold text-slate-800">0%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANA İÇERİK ALANI -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
+
+    <!-- ==================== MODÜL 1: KAVRAM EŞLEŞTİRME ==================== -->
+    <section id="tab-matching" class="tab-panel space-y-6">
+      <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-blue-600">1. Aşama • 5 Alan × 5 Eşleştirme = 25 Kavram</span>
+          <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Kavram – Açıklama Eşleştirme Laboratuvarı</h1>
+          <p class="text-sm text-slate-600 mt-1">Önce sol sütundan bir <strong>Kavram / Sembol</strong> kartına, ardından sağ sütundan ona uygun <strong>Açıklama</strong> kartına tıklayarak eşleştir.</p>
+        </div>
+        <div class="flex items-center gap-3 self-start md:self-center">
+          <div class="px-3.5 py-2 rounded-xl bg-blue-50 border border-blue-200 text-center">
+            <div class="text-[11px] text-blue-600 font-semibold">Eşleşen</div>
+            <div id="matchCountText" class="text-lg font-extrabold text-blue-950">0 / 25</div>
+          </div>
+          <div class="px-3.5 py-2 rounded-xl bg-teal-50 border border-teal-200 text-center">
+            <div class="text-[11px] text-teal-700 font-semibold">Modül Puanı</div>
+            <div id="matchScoreText" class="text-lg font-extrabold text-teal-950">0</div>
+          </div>
+          <button id="resetCurrentMatchBtn" type="button" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Bu Alanı Sıfırla
+          </button>
+        </div>
+      </div>
+
+      <!-- 5 Alan Seçici Butonlar -->
+      <div id="matchingCategoryBar" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5"></div>
+
+      <!-- Eşleştirme Durum Bildirimi -->
+      <div id="matchingFeedbackBanner" class="hidden rounded-xl px-4 py-3 text-sm font-semibold flex items-center justify-between"></div>
+
+      <!-- Sol ve Sağ Eşleştirme Sütunları -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
+            <h2 class="font-extrabold text-slate-900 flex items-center gap-2 text-sm sm:text-base">
+              <span class="w-6 h-6 rounded-lg bg-blue-600 text-white text-xs flex items-center justify-center font-bold">A</span>
+              <span>Kavramlar ve Semboller</span>
+            </h2>
+            <span class="text-xs text-slate-500">1. Adım: Kavram seç</span>
+          </div>
+          <div id="matchingLeftColumn" class="space-y-2.5"></div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
+            <h2 class="font-extrabold text-slate-900 flex items-center gap-2 text-sm sm:text-base">
+              <span class="w-6 h-6 rounded-lg bg-teal-600 text-white text-xs flex items-center justify-center font-bold">B</span>
+              <span>Görev ve Açıklamalar</span>
+            </h2>
+            <span class="text-xs text-slate-500">2. Adım: Açıklama eşleştir</span>
+          </div>
+          <div id="matchingRightColumn" class="space-y-2.5"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== MODÜL 2: DOĞRU / YANLIŞ ==================== -->
+    <section id="tab-truefalse" class="tab-panel hidden space-y-6">
+      <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-teal-600">2. Aşama • 5 Alan × 4 Soru = 20 İfade</span>
+          <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Doğru / Yanlış Bilgi Doğrulama Arenası</h1>
+          <p class="text-sm text-slate-600 mt-1">Aşağıdaki ifadeleri oku, <strong>Doğru</strong> ya da <strong>Yanlış</strong> olduğuna karar ver ve öğretmen açıklamasını incele.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="px-3.5 py-2 rounded-xl bg-teal-50 border border-teal-200 text-center">
+            <div class="text-[11px] text-teal-700 font-semibold">Cevaplanan</div>
+            <div id="tfCountText" class="text-lg font-extrabold text-teal-950">0 / 20</div>
+          </div>
+          <div class="px-3.5 py-2 rounded-xl bg-orange-50 border border-orange-200 text-center">
+            <div class="text-[11px] text-orange-700 font-semibold">Doğru Sayısı</div>
+            <div id="tfCorrectText" class="text-lg font-extrabold text-orange-950">0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alan Filtresi -->
+      <div id="tfFilterBar" class="flex flex-wrap gap-2"></div>
+
+      <!-- Doğru / Yanlış Kart Listesi -->
+      <div id="tfCardsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </section>
+
+    <!-- ==================== MODÜL 3: HİKÂYE İÇİNDEN SORULAR ==================== -->
+    <section id="tab-stories" class="tab-panel hidden space-y-6">
+      <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-orange-600">3. Aşama • 5 Örnek Olay Hikâyesi × 3 Soru = 15 Analiz Sorusu</span>
+          <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Hikâye İçinden Sorular: Örnek Olay Laboratuvarı</h1>
+          <p class="text-sm text-slate-600 mt-1">Kılavuz kitap ve ders kitaplarımızdaki gerçek hayat senaryolarını oku, karakterlerin karşılaştığı sorunları bilişim etiği ve siber güvenlik ilkelerine göre çöz!</p>
+        </div>
+        <div class="px-4 py-2 rounded-xl bg-orange-50 border border-orange-200 text-center">
+          <div class="text-[11px] text-orange-700 font-semibold">Tamamlanan Soru</div>
+          <div id="storyProgressText" class="text-lg font-extrabold text-orange-950">0 / 15</div>
+        </div>
+      </div>
+
+      <!-- Hikâye Seçici Sekmeler -->
+      <div id="storySelectorBar" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5"></div>
+
+      <!-- Aktif Hikâye ve Soruları -->
+      <div id="activeStoryContainer" class="grid grid-cols-1 lg:grid-cols-12 gap-6"></div>
+    </section>
+
+    <!-- ==================== MODÜL 4: 20 SORULUK KONU TESTİ ==================== -->
+    <section id="tab-quiz20" class="tab-panel hidden space-y-6">
+      <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-indigo-600">4. Aşama • 20 Soruluk Kapsamlı Değerlendirme Testi (100 Puan)</span>
+          <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Bilişim Etiği ve Siber Güvenlik 20 Soruluk Konu Testi</h1>
+          <p class="text-sm text-slate-600 mt-1">5 alanın her birinden 4'er soru (toplam 20 soru, her soru 5 puan) içerir. İster anlık geri bildirimle çöz, ister tümünü işaretleyip sınav sonunda karneni gör.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <label class="flex items-center gap-2 text-xs font-bold text-slate-700 bg-slate-100 px-3 py-2 rounded-xl cursor-pointer">
+            <input id="instantQuizToggle" type="checkbox" class="rounded text-blue-600 focus:ring-0" checked />
+            <span>Anlık Çözüm Göster</span>
+          </label>
+          <button id="finishQuizBtn" type="button" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-extrabold shadow transition">
+            Testi Bitir &amp; Karnemi Gör
+          </button>
+        </div>
+      </div>
+
+      <!-- Soru Numarası Gezgini (1-20) -->
+      <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
+        <div class="flex items-center justify-between mb-2 text-xs font-bold text-slate-500">
+          <span>Soru Gezgini (1 – 20)</span>
+          <span id="quizAnsweredCounter">İşaretlenen: 0 / 20</span>
+        </div>
+        <div id="quizNavigatorGrid" class="grid grid-cols-10 sm:grid-cols-20 gap-1.5"></div>
+      </div>
+
+      <!-- Tek Soru Görünümü & Önceki/Sonraki veya Tüm Liste -->
+      <div id="quizQuestionCard" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm"></div>
+
+      <!-- Test Sonuç Özeti Kutusu (Test Bitirildiğinde Açılır) -->
+      <div id="quizResultSummaryBox" class="hidden bg-white rounded-2xl p-6 border-2 border-blue-600 shadow-lg space-y-5"></div>
+    </section>
+
+    <!-- ==================== MODÜL 5: BAŞARI KARNESİ & SİTEYE GÖMME REHBERİ ==================== -->
+    <section id="tab-report" class="tab-panel hidden space-y-6">
+      <!-- Öğrenci Başarı Karnesi -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-teal-600">batunver.com • 6. Sınıf 4. Tema Değerlendirme Raporu</span>
+            <h1 class="text-2xl font-extrabold text-slate-900 mt-0.5">Öğrenci Dijital Etik ve Siber Güvenlik Karnesi</h1>
+            <p id="reportStudentMeta" class="text-sm text-slate-600 mt-1">Öğrenci: Belirtilmedi • Sınıf: 6. Sınıf</p>
+          </div>
+          <div class="flex items-center gap-2 no-print">
+            <button id="printReportBtn" type="button" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold shadow transition">
+              <i data-lucide="printer" class="w-4 h-4"></i>
+              <span>Karneyi Yazdır / PDF Kaydet</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Modül Özet Kartları -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-4 rounded-xl bg-blue-50 border border-blue-200">
+            <div class="text-xs font-bold text-blue-700">1. Kavram Eşleştirme</div>
+            <div id="repMatchStat" class="text-2xl font-extrabold text-blue-950 mt-1">0 / 25</div>
+            <div class="text-xs text-blue-600 mt-0.5">5 Alan Kavram Eşleşmesi</div>
+          </div>
+          <div class="p-4 rounded-xl bg-teal-50 border border-teal-200">
+            <div class="text-xs font-bold text-teal-700">2. Doğru / Yanlış</div>
+            <div id="repTfStat" class="text-2xl font-extrabold text-teal-950 mt-1">0 / 20</div>
+            <div class="text-xs text-teal-600 mt-0.5">Bilgi Doğrulama İfadesi</div>
+          </div>
+          <div class="p-4 rounded-xl bg-orange-50 border border-orange-200">
+            <div class="text-xs font-bold text-orange-700">3. Hikâye Soruları</div>
+            <div id="repStoryStat" class="text-2xl font-extrabold text-orange-950 mt-1">0 / 15</div>
+            <div class="text-xs text-orange-600 mt-0.5">5 Örnek Olay Senaryosu</div>
+          </div>
+          <div class="p-4 rounded-xl bg-indigo-50 border border-indigo-200">
+            <div class="text-xs font-bold text-indigo-700">4. 20 Soruluk Konu Testi</div>
+            <div id="repQuizStat" class="text-2xl font-extrabold text-indigo-950 mt-1">0 / 100 Puan</div>
+            <div id="repQuizSub" class="text-xs text-indigo-600 mt-0.5">0 / 20 Doğru</div>
+          </div>
+        </div>
+
+        <!-- 5 Alan Bazlı Ustalık Çubukları -->
+        <div>
+          <h2 class="text-base font-extrabold text-slate-900 mb-3">5 Öğrenme Alanına Göre Başarı Analizi</h2>
+          <div id="domainMasteryBars" class="space-y-3"></div>
+        </div>
+      </div>
+
+      <!-- batunver.com Siteye Gömme (Embed) Teknik Rehberi -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4 no-print">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-orange-600">Web Yöneticisi Rehberi • batunver.com (Vercel / Next.js / HTML)</span>
+            <h2 class="text-xl font-extrabold text-slate-900 mt-0.5">Bu Etkinliği batunver.com Sitesine Nasıl Gömersiniz?</h2>
+          </div>
+          <button id="copyIframeCodeBtn" type="button" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow transition">
+            <i data-lucide="copy" class="w-4 h-4"></i>
+            <span id="copyIframeBtnText">Iframe Kodunu Kopyala</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-xs sm:text-sm">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+            <div class="font-extrabold text-slate-900 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center font-bold">1</span>
+              <span>Yöntem 1: Vercel / Next.js (public Klasörü)</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed">
+              İndirdiğiniz <code>batunver_6sinif_bilisim_etigi_siber_guvenlik_etkinlik.html</code> dosyasını projenizin <code>public/etkinlikler/</code> klasörüne <code>6-sinif-bilisim-etigi.html</code> adıyla atın. Böylece doğrudan <code>https://batunver.com/etkinlikler/6-sinif-bilisim-etigi.html</code> adresinden tam ekran çalışır.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+            <div class="font-extrabold text-slate-900 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-teal-600 text-white text-xs flex items-center justify-center font-bold">2</span>
+              <span>Yöntem 2: Ders Sayfası İçine Iframe ile Gömme</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed">
+              <code>batunver.com</code> üzerindeki 6. Sınıf 11. Hafta ders sayfasının içine aşağıdaki duyarlı (responsive) <code>&lt;iframe&gt;</code> kodunu yapıştırarak sayfa düzeninizi bozmadan etkinliği ders notunun hemen altında çalıştırabilirsiniz.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+            <div class="font-extrabold text-slate-900 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-orange-500 text-white text-xs flex items-center justify-center font-bold">3</span>
+              <span>Yöntem 3: Akıllı Tahta &amp; Çevrimdışı Kullanım</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed">
+              Bu HTML dosyası tek parçadır (veritabanı veya sunucu gerektirmez). Okulda internet kesilse bile USB belleğinizden doğrudan çift tıklayarak akıllı tahtada çalıştırabilirsiniz.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 text-slate-100 rounded-xl p-4 font-mono text-xs overflow-x-auto">
+<pre id="iframeSnippetPre">&lt;!-- batunver.com - 6. Sınıf 4. Tema Bilişim Etiği ve Siber Güvenlik Etkinliği --&gt;
+&lt;div style="width: 100%; max-width: 1280px; margin: 24px auto; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15); border: 1px solid #E2E8F0;"&gt;
+  &lt;iframe
+    src="/etkinlikler/batunver_6sinif_bilisim_etigi_siber_guvenlik_etkinlik.html"
+    title="6. Sınıf Bilişim Etiği ve Siber Güvenlik Etkileşimli Etkinlik Sistemi"
+    style="width: 100%; height: 860px; border: 0; display: block;"
+    loading="lazy"
+    allowfullscreen&gt;
+  &lt;/iframe&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SİTEYE GÖM (EMBED) MODAL PENCERESİ -->
+  <div id="embedModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4 no-print">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-orange-500 text-white flex items-center justify-center font-bold">
+            <i data-lucide="code-2" class="w-4 h-4"></i>
+          </div>
+          <h3 class="text-lg font-extrabold text-slate-900">batunver.com Siteye Gömme (Embed) Kodu</h3>
+        </div>
+        <button id="closeEmbedModalBtn" type="button" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+        Bu tek dosyalık HTML etkinliğini <strong>batunver.com</strong> (Vercel) projenizde <code>public/etkinlikler/</code> dizinine yükledikten sonra aşağıdaki kodu istediğiniz ders sayfasına ekleyebilirsiniz:
+      </p>
+      <div class="bg-slate-900 text-teal-300 rounded-xl p-3.5 font-mono text-xs overflow-x-auto">
+<pre id="modalIframePre">&lt;div style="width:100%;max-width:1280px;margin:20px auto;border-radius:16px;overflow:hidden;border:1px solid #cbd5e1;"&gt;
+  &lt;iframe src="/etkinlikler/batunver_6sinif_bilisim_etigi_siber_guvenlik_etkinlik.html" width="100%" height="860" style="border:0;" allowfullscreen loading="lazy"&gt;&lt;/iframe&gt;
+&lt;/div&gt;</pre>
+      </div>
+      <div class="flex items-center justify-end gap-2 pt-2">
+        <button id="modalCopyBtn" type="button" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow transition">
+          Kodu Panoya Kopyala
+        </button>
+        <button id="modalCloseBtn2" type="button" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+          Kapat
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALTBİLGİ -->
+  <footer class="bg-slate-900 text-slate-400 text-xs py-4 border-t border-slate-800 mt-10 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>© 2026 <strong class="text-white">batunver.com</strong> — Bilişim Teknolojileri ve Yazılım Dersi Portalı (6. Sınıf 4. Tema: Bilişim Etiği ve Siber Güvenlik)</div>
+      <div>Kazanımlar: BTY.6.4.1 • BTY.6.4.2 • BTY.6.4.3 • BTY.6.4.4 (MEB Türkiye Yüzyılı Maarif Modeli)</div>
+    </div>
+  </footer>
+
+  <!-- UYGULAMA VERİLERİ VE ETKİLEŞİM MANTIĞI -->
+  <script>
+    // ==================== 5 ÖĞRENME ALANI TANIMI ====================
+    const DOMAINS = [
+      { id: 'etigi', code: 'BTY.6.4.1', title: '1. Bilişim Etiği ve İlkeleri', shortTitle: 'Bilişim Etiği', color: 'blue', badgeBg: 'bg-blue-100 text-blue-800 border-blue-300' },
+      { id: 'telif', code: 'BTY.6.4.2', title: '2. Telif Hakkı', shortTitle: 'Telif Hakkı', color: 'teal', badgeBg: 'bg-teal-100 text-teal-800 border-teal-300' },
+      { id: 'siber', code: 'BTY.6.4.3', title: '3. Güvenli Siber Ortam', shortTitle: 'Güvenli Siber Ortam', color: 'indigo', badgeBg: 'bg-indigo-100 text-indigo-800 border-indigo-300' },
+      { id: 'zararli', code: 'BTY.6.4.3', title: '4. Zararlı Yazılımlar', shortTitle: 'Zararlı Yazılımlar', color: 'orange', badgeBg: 'bg-orange-100 text-orange-800 border-orange-300' },
+      { id: 'lisans', code: 'BTY.6.4.4', title: '5. Lisans Türleri', shortTitle: 'Lisans Türleri', color: 'emerald', badgeBg: 'bg-emerald-100 text-emerald-800 border-emerald-300' }
+    ];
+
+    // ==================== MODÜL 1: 25 EŞLEŞTİRME VERİSİ (5 ALAN × 5 ÇİFT) ====================
+    const MATCHING_DATA = {
+      etigi: [
+        { id: 'e1', term: 'Bilişim Etiği', def: 'Bilişim teknolojileri kullanılırken her alanda uyulması ve kaçınılması gereken ahlaki kuralların tamamıdır.' },
+        { id: 'e2', term: 'Siber Zorbalık', def: 'Dijital araçlar, sosyal medya veya oyunlar üzerinden bir kişiyi tehdit etme, aşağılama, dışlama ve utandırma davranışıdır.' },
+        { id: 'e3', term: 'ihbarweb.org.tr (BTK)', def: 'İnternette karşılaşılan siber zorbalık ve yasa dışı içeriklerin resmî olarak ihbar edildiği Bilgi Teknolojileri Kurumu merkezidir.' },
+        { id: 'e4', term: 'Kimlik Sahteciliği', def: 'Bir başkasının adı, fotoğrafı veya unvanı ile izinsiz sahte sosyal medya hesabı açarak insanları yanıltma suçudur.' },
+        { id: 'e5', term: 'CEI 10 Temel İlke', def: 'Bilgisayar Etik Enstitüsü tarafından belirlenen; bilgisayarı başkasına zarar vermek ve suç işlemek için kullanmama kurallarıdır.' }
+      ],
+      telif: [
+        { id: 't1', term: '© Telif Hakkı (Copyright)', def: 'Kişinin emeğiyle ürettiği kitap, müzik, film ve yazılım gibi fikir-sanat eserlerini koruyan, eser üretildiği anda doğan yasal haktır.' },
+        { id: 't2', term: '™ Ticari Marka (Trademark)', def: 'Henüz resmî tescili tamamlanmamış ancak bir ürün veya hizmeti diğerlerinden ayırmak için kullanılan marka işaretidir.' },
+        { id: 't3', term: '® Tescilli Marka (Registered)', def: 'Türkiye’de TÜRKPATENT gibi resmî kurumlarca onaylanarak tescil süreci tamamlanmış ve tam koruma altına alınmış marka sembolüdür.' },
+        { id: 't4', term: 'İntihal (Akademik Hırsızlık)', def: 'Başkasına ait bir fikri, yazıyı, görseli veya projeyi kaynak göstermeden (atıf yapmadan) kendine aitmiş gibi sunmaktır.' },
+        { id: 't5', term: 'Bandrol ve Barkod', def: 'Orijinal kitap, müzik ve sinema ürünlerinin üzerinde bulunan, ürünün korsan olmadığını ve vergisinin ödendiğini gösteren koruma araçlarıdır.' }
+      ],
+      siber: [
+        { id: 's1', term: 'Gizlilik (Confidentiality)', def: 'Bilgi güvenliğinin 3 bileşeninden biridir; bilgiye yalnızca izin verilen ve yetkilendirilmiş kişilerin erişebilmesini sağlar.' },
+        { id: 's2', term: 'Bütünlük (Integrity)', def: 'Bilginin kaynağından hedefe ulaşana kadar izinsiz olarak değiştirilmeden, silinmeden ve bozulmadan korunmasıdır.' },
+        { id: 's3', term: 'Erişilebilirlik (Availability)', def: 'Yetkili kişilerin ihtiyaç duyduğu her an (7/24) bilgiye ve bilişim sistemlerine kesintisiz ulaşabilmesidir.' },
+        { id: 's4', term: 'İki Faktörlü Doğrulama (2FA)', def: 'Hesap girişlerinde parolaya ek olarak SMS kodu, e-posta onayı veya doğrulama uygulamasıyla sağlanan çift kilitli güvenlik katmanıdır.' },
+        { id: 's5', term: 'Kimlik Avı (Phishing)', def: 'Banka veya e-Devlet gibi güvenilir kurumları taklit eden sahte mesaj ve sitelerle kullanıcıların şifrelerini ele geçirme saldırısıdır.' }
+      ],
+      zararli: [
+        { id: 'z1', term: 'Bilgisayar Virüsü', def: 'Diğer dosyalara gizlenerek bulaşan, çoğalarak dosyaları silen ve işletim sisteminin çalışmasını bozan zararlı yazılımdır.' },
+        { id: 'z2', term: 'Solucan (Worm)', def: 'Kullanıcı müdahalesine veya başka bir dosyaya ihtiyaç duymadan ağ ve internet üzerinden kendi kendine kopyalanarak yayılan zararlıdır.' },
+        { id: 'z3', term: 'Truva Atı (Trojan)', def: 'Faydalı bir oyun veya uygulama gibi görünerek kullanıcıyı kandıran, arka planda güvenlik açığı oluşturup saldırgana kapı açan yazılımdır.' },
+        { id: 'z4', term: 'Fidye Yazılımı (Ransomware)', def: 'Bilgisayardaki tüm dosyaları şifreleyerek erişilmez hale getiren ve şifreyi açmak için kullanıcıdan para talep eden zararlı yazılımdır.' },
+        { id: 'z5', term: 'Keylogger (Casus Yazılım)', def: 'Klavyede basılan her tuşu gizlice kaydederek şifreleri ve kişisel yazışmaları uzaktaki saldırgana gönderen casus yazılımdır.' }
+      ],
+      lisans: [
+        { id: 'l1', term: 'Ücretsiz Yazılım (Freeware)', def: 'Süre sınırlaması olmadan tamamen ücretsiz kullanılabilen ancak kaynak kodu kapalı olduğu için değiştirilemeyen yazılımlardır.' },
+        { id: 'l2', term: 'Deneme Sürümü (Trial)', def: 'Ücretli bir yazılımın tüm özelliklerinin 7, 15 veya 30 gün gibi belirli bir süre boyunca ücretsiz deneyimlenmesini sağlayan lisanstır.' },
+        { id: 'l3', term: 'Tanıtım Sürümü (Demo)', def: 'Yazılımı tanıtmak amacıyla yalnızca temel özelliklerinin veya bir oyunun sadece 1. bölümünün ücretsiz sunulduğu kısıtlı sürümdür.' },
+        { id: 'l4', term: 'Açık Kaynak (Open Source)', def: 'Kaynak koduna erişilebilen, lisans koşulları çerçevesinde incelenebilen, değiştirilebilen ve geliştirilebilen yazılımlardır (LibreOffice, GIMP).' },
+        { id: 'l5', term: 'Creative Commons (CC BY-NC)', def: 'Eser sahibine atıf yapılması (BY) ve ticari kâr amacı güdülmemesi (NC) şartıyla dijital eserlerin paylaşılmasına izin veren lisanstır.' }
+      ]
+    };
+
+    // ==================== MODÜL 2: 20 DOĞRU / YANLIŞ VERİSİ (5 ALAN × 4 SORU) ====================
+    const TF_QUESTIONS = [
+      // 1. Bilişim Etiği ve İlkeleri
+      { id: 1, domain: 'etigi', text: 'Gerçek hayatta suç sayılan hakaret, tehdit, şantaj ve dolandırıcılık gibi davranışlar internet ortamında yapıldığında da bilişim suçudur.', answer: true, exp: 'Doğru! TCK 125/2 (Hakaret), TCK 106/1 (Tehdit), TCK 107/1 (Şantaj) ve TCK 158/1-f (Dolandırıcılık) kapsamında dijital ortamdaki bu eylemler bilişim suçudur.' },
+      { id: 2, domain: 'etigi', text: 'Siber zorbalığa maruz kaldığımızda biz de aynı şekilde hakaret ederek karşılık vermeli ve mesajları hemen silmeliyiz.', answer: false, exp: 'Yanlış! Zorbalığa asla karşılık verilmemeli; mesajların tarih-saatli ekran görüntüsü kanıt olarak saklanmalı, kişi engellenmeli ve aile/öğretmen/ihbarweb.org.tr bilgilendirilmelidir.' },
+      { id: 3, domain: 'etigi', text: 'Bilgisayar Etik Enstitüsü (CEI) ilkelerine göre başkalarına ait bilgisayar dosyalarını ve çalışmalarını izinsiz karıştırmak etik dışıdır.', answer: true, exp: 'Doğru! CEI 10 temel ilkesine göre başkalarının bilgisayar çalışmalarına ve dosyalarına izinsiz dokunulmamalıdır.' },
+      { id: 4, domain: 'etigi', text: 'En yakın arkadaşımız sosyal medya hesabının şifresini bizimle paylaşırsa onun hesabına girip paylaşım yapmamızda hiçbir sakınca yoktur.', answer: false, exp: 'Yanlış! Parolalar kişiye özeldir; en yakın arkadaşımızla bile şifre paylaşılmamalı ve başkasının hesabına izinsiz girilmemelidir.' },
+
+      // 2. Telif Hakkı
+      { id: 5, domain: 'telif', text: 'Bir fikir veya sanat eserinin telif hakkı koruması kazanması için mutlaka resmî bir kuruma kayıt ve tescil ettirilmesi zorunludur.', answer: false, exp: 'Yanlış! Telif hakkının doğması için tescile gerek yoktur; fikir sahibi eserini ürettiği (hayata geçirdiği) anda telif hakkı kendiliğinden doğar.' },
+      { id: 6, domain: 'telif', text: 'Ödevimizde kullandığımız bir makale veya görselin sahibini ve kaynağını açıkça belirtmeye "Atıf Yapmak" denir.', answer: true, exp: 'Doğru! Eser sahibinin adını ve kaynağını belirtmek atıf yapmaktır; kaynak göstermeden kendi eserimiz gibi sunmak ise intihaldir.' },
+      { id: 7, domain: 'telif', text: 'Üzerinde ® (Registered) sembolü bulunan bir marka, Türkiye’de TÜRKPATENT gibi resmî kurumlarca tescil edilmiş ve yasal korumaya alınmıştır.', answer: true, exp: 'Doğru! ® sembolü tescilli markayı, ™ sembolü ise henüz tescil süreci tamamlanmamış ticari markayı gösterir.' },
+      { id: 8, domain: 'telif', text: 'Yapay zekâ araçlarının sanatçıların telifli müzik ve görsellerini izinsiz olarak eğitim verisi şeklinde kullanması hiçbir telif sorunu oluşturmaz.', answer: false, exp: 'Yanlış! Sanatçıların (örneğin Paul McCartney ve Coldplay) vurguladığı gibi telifli eserlerin yapay zekâ eğitiminde izinsiz kullanılması önemli bir telif ve şeffaflık sorunudur.' },
+
+      // 3. Güvenli Siber Ortam
+      { id: 9, domain: 'siber', text: 'Bilgi güvenliğinin üç temel bileşeni (sacayağı): Gizlilik, Bütünlük ve Erişilebilirliktir.', answer: true, exp: 'Doğru! Bilgi güvenliği; verinin yetkisiz kişilerden korunması (Gizlilik), değiştirilmemesi (Bütünlük) ve yetkili kişilerce her an ulaşılabilir olması (Erişilebilirlik) üzerine kuruludur.' },
+      { id: 10, domain: 'siber', text: 'Doğum tarihimiz veya "123456" gibi kolay hatırlanan bir şifreyi tüm sosyal medya hesaplarımızda ortak kullanmak güvenliğimizi artırır.', answer: false, exp: 'Yanlış! Kolay tahmin edilen ve her hesapta aynı olan şifreler hesapların ele geçirilmesini kolaylaştırır. En az 8 karakterli, büyük/küçük harf, rakam ve sembol içeren farklı şifreler kullanılmalıdır.' },
+      { id: 11, domain: 'siber', text: 'Alışveriş veya e-okul gibi sitelere girerken tarayıcı adres çubuğunda "https://" protokolünü ve kilit simgesini kontrol etmeliyiz.', answer: true, exp: 'Doğru! HTTPS protokolü ve kilit simgesi, cihazımız ile web sitesi arasındaki veri aktarımının şifrelenerek korunduğunu gösterir.' },
+      { id: 12, domain: 'siber', text: 'Kafelerde ve alışveriş merkezlerinde bulunan şifresiz halka açık ücretsiz Wi-Fi ağları, internet bankacılığı işlemleri için en güvenli ağlardır.', answer: false, exp: 'Yanlış! Güvenli olmayan ortak Wi-Fi ağlarında şifre ve bankacılık bilgileri kolayca dinlenebilir; ortak ağlarda hassas işlemler yapılmamalıdır.' },
+
+      // 4. Zararlı Yazılımlar
+      { id: 13, domain: 'zararli', text: 'Truva Atı (Trojan), kendisini faydalı bir oyun veya program gibi gösterip arka planda bilgisayarda güvenlik açığı oluşturan zararlı yazılımdır.', answer: true, exp: 'Doğru! Adını Çanakkale’deki Truva Atı hikayesinden alır; masum görünür ancak sisteme gizlice arka kapı açar.' },
+      { id: 14, domain: 'zararli', text: 'Solucan (Worm) zararlı yazılımının yayılabilmesi için mutlaka kullanıcının bir dosyaya tıklaması veya USB bellek takması gerekir.', answer: false, exp: 'Yanlış! Solucanlar (Worm) kullanıcı müdahalesine gerek duymadan ağ ve internet bağlantılarını kullanarak kendi kendine çoğalıp yayılır.' },
+      { id: 15, domain: 'zararli', text: 'Bilgisayarımızın aniden çok yavaşlaması, dosyaların açılmaması ve kendiliğinden reklam/internet sayfalarının açılması virüs bulaşma belirtilerindendir.', answer: true, exp: 'Doğru! Sistem yavaşlaması, bilgi kaybı, dosyaların açılmaması ve istenmeyen pencereler virüs bulaşmasının 6 temel belirtisi arasındadır.' },
+      { id: 16, domain: 'zararli', text: 'Güvenlik Duvarı (Firewall) ve güncel Antivirüs yazılımları, cihazımızı zararlı yazılımlara ve izinsiz ağ girişlerine karşı koruyan güvenlik yazılımlarıdır.', answer: true, exp: 'Doğru! Antivirüs zararlıları tarayıp temizler, Güvenlik Duvarı (Firewall) ise ağ trafiğini denetleyerek izinsiz erişimleri engeller.' },
+
+      // 5. Lisans Türleri
+      { id: 17, domain: 'lisans', text: 'Deneme (Trial) lisansında yazılımın özellikleri kısıtlıdır ve süre sınırı yoktur; Tanıtım (Demo) lisansında ise tüm özellikler 30 gün açıktır.', answer: false, exp: 'Yanlış! Tam tersidir: Deneme (Trial) sürümünde süre kısıtlıdır (15-30 gün) ve tüm özellikler açıktır; Tanıtım (Demo) sürümünde ise özellikler/bölümler kısıtlıdır.' },
+      { id: 18, domain: 'lisans', text: 'Açık Kaynak (Open Source) yazılımların kaynak kodları açıktır; lisans koşullarına uyularak incelenebilir, değiştirilebilir ve geliştirilebilir.', answer: true, exp: 'Doğru! LibreOffice, GIMP, Blender ve VLC Media Player açık kaynaklı yazılımlara örnektir.' },
+      { id: 19, domain: 'lisans', text: 'Telif süresi dolduğu için herkes tarafından hiçbir ücret veya izin gerekmeksizin serbestçe kullanılabilen eserlere "Kamu Malı" denir.', answer: true, exp: 'Doğru! Kamu malı (Public Domain) eserlerin koruma süresi bitmiştir ve topluma açıktır.' },
+      { id: 20, domain: 'lisans', text: 'İnternetten indirilen lisanssız (korsan/crackli) oyun ve programlar hem telif suçudur hem de içlerine gizlenmiş virüs ve casus yazılım riski taşır.', answer: true, exp: 'Doğru! Korsan yazılımlar 5846 sayılı kanuna göre suçtur ve kurulum dosyaları değiştirildiği için cihazımıza zararlı yazılım bulaştırır.' }
+    ];
+
+    // ==================== MODÜL 3: 5 HİKÂYE VE 15 SORU (5 ALAN × 3 SORU) ====================
+    const STORIES_DATA = [
+      {
+        id: 'story_etigi',
+        domain: 'etigi',
+        badge: '1. Alan: Bilişim Etiği ve İlkeleri (BTY.6.4.1)',
+        title: 'Sınıf Grubu ve Ortak Şifre İkilemi',
+        icon: 'shield-alert',
+        storyHtml: `
+          <p class="mb-3">6. sınıf öğrencisi <strong>Mert</strong>, akşam sınıf mesajlaşma grubuna girdiğinde bazı öğrencilerin sınıf arkadaşları <strong>Can</strong>'ın izinsiz çekilmiş bir fotoğrafını paylaştıklarını ve altına alaycı mesajlar yazdıklarını gördü. Can bu mesajlar yüzünden çok üzülmüş, öz güveni sarsılmış ve ertesi gün okula gelmek istememişti.</p>
+          <p>Aynı akşam Mert'in en yakın arkadaşı <strong>Burak</strong>, Mert'e özelden mesaj atarak: <em>"Mertçiğim, sosyal medya hesabımın şifresini sana gönderiyorum. Sen sakla, bana bir şey olursa veya şifremi unutursam benim yerime hesabıma girersin."</em> dedi.</p>
+        `,
+        questions: [
+          {
+            qId: 's1_q1',
+            q: '1. Sınıf grubunda Can’ın izinsiz fotoğrafının paylaşılıp alay edilmesi hangi kavramla açıklanır ve Can üzerinde nasıl bir etki bırakmıştır?',
+            options: [
+              'Siber Zorbalık — Öz güven kaybı ve sosyal izolasyon (okuldan uzaklaşma)',
+              'Açık Kaynak Paylaşımı — Akademik başarı artışı',
+              'İki Faktörlü Doğrulama — Veri bütünlüğü',
+              'Ticari Marka İhlali — Sistem yavaşlaması'
+            ],
+            correct: 0,
+            exp: 'Dijital araçlarla bir kişiyi utandırmak, dışlamak ve alay etmek Siber Zorbalıktır; mağdurda öz güven kaybı, sosyal izolasyon ve başarı düşüşüne yol açar.'
+          },
+          {
+            qId: 's1_q2',
+            q: '2. Can ve Mert, sınıf grubundaki bu siber zorbalık karşısında aşağıdaki adımlardan hangisini yapmamalıdır?',
+            options: [
+              'Zorbalık mesajlarının tarih ve saat görünecek şekilde ekran görüntüsünü (kanıt) almak',
+              'Zorbalık yapanlara daha ağır hakaret mesajlarıyla karşılık verip tartışmayı büyütmek',
+              'Okul rehberlik servisine, öğretmenlerine ve ailelerine durumu anlatmak',
+              'Zorbalık yapan hesapları engelleyip gerekirse BTK İnternet Bilgi İhbar Merkezi (ihbarweb.org.tr) üzerinden bildirmek'
+            ],
+            correct: 1,
+            exp: 'Siber zorbalıkla karşılaşıldığında asla karşılık verilmemeli ve tartışmaya girilmemelidir; kanıt alınmalı, engellenmeli ve yetkililere bildirilmelidir.'
+          },
+          {
+            qId: 's1_q3',
+            q: '3. Arkadaşı Burak’ın sosyal medya şifresini Mert’e vermesi durumunda Mert’in bilişim etiği ve güvenliği açısından doğru tavrı ne olmalıdır?',
+            options: [
+              'Şifreyi hemen kabul edip Burak’ın hesabından gizlice paylaşım yapmak',
+              'Şifreyi sınıf grubunda paylaşıp herkesin bilmesini sağlamak',
+              'Parolaların kişiye özel olduğunu belirterek şifreyi kabul etmemek ve Burak’a şifresini hemen değiştirmesini söylemek',
+              'Burak’ın şifresini kendi hesabında da aynı şifre olarak kullanmak'
+            ],
+            correct: 2,
+            exp: 'MEB Kılavuz Kitabı senaryosunda vurgulandığı gibi parolalar kişisel mahremiyet kapsamındadır; en yakın arkadaşla bile paylaşılmamalıdır.'
+          }
+        ]
+      },
+      {
+        id: 'story_telif',
+        domain: 'telif',
+        badge: '2. Alan: Telif Hakkı (BTY.6.4.2)',
+        title: 'Efe’nin Bilim Şenliği Sunumu ve Yapay Zekâ Tartışması',
+        icon: 'copyright',
+        storyHtml: `
+          <p class="mb-3"><strong>Efe</strong>, okulundaki Bilim Şenliği için bir sunum hazırlarken internetten bir bilim dergisindeki makaleyi ve üzerinde <strong>©</strong> işareti bulunan bir illüstrasyonu beğendi. Arkadaşı Efe'ye: <em>"Kaynak yazmana gerek yok, doğrudan kendi yazınmış gibi sunuma yapıştır!"</em> dedi. Efe ise bunun etik olmayacağını düşünerek makalenin yazarını, derginin adını ve sayısını kaynakçada belirtti.</p>
+          <p>Sunumun sonunda Efe, 2025 yılında <strong>Paul McCartney ve Coldplay</strong> gibi sanatçıların yapay zekâ şirketlerine karşı başlattığı telif mücadelesini ve Türkiye'de markaların <strong>™</strong> ile <strong>®</strong> sembolleriyle nasıl korunduğunu anlattı.</p>
+        `,
+        questions: [
+          {
+            qId: 's2_q1',
+            q: '1. Efe arkadaşının yanlış önerisini dinleyip başkasının makalesini kaynak göstermeden kendi yazısıymış gibi kullansaydı hangi etik ihlali yapmış olurdu, Efe kaynak belirterek ne yapmıştır?',
+            options: [
+              'İntihal (Akademik Hırsızlık) yapmış olurdu — Kaynak belirterek Atıf Yapmıştır',
+              'Solucan yaymış olurdu — Güvenlik duvarı kurmuştur',
+              'Demo yazılım kullanmış olurdu — Beta testi yapmıştır',
+              'Kimlik avı yapmış olurdu — Şifreleme yapmıştır'
+            ],
+            correct: 0,
+            exp: 'Başkasının eserini kaynak göstermeden kendine aitmiş gibi sunmak İntihaldir (akademik hırsızlık); eser sahibini ve kaynağı belirtmek ise Atıf Yapmaktır.'
+          },
+          {
+            qId: 's2_q2',
+            q: '2. Efe’nin sunumunda bahsettiği ©, ™ ve ® sembollerinin anlamları hangi seçenekte doğru eşleştirilmiştir?',
+            options: [
+              '© Açık Kaynak — ™ Kamu Malı — ® Ücretsiz Yazılım',
+              '© Telif Hakkı (Copyright) — ™ Tescili tamamlanmamış Ticari Marka — ® TÜRKPATENT onaylı Tescilli Marka',
+              '© Virüs Kalkanı — ™ Güvenlik Duvarı — ® Şifreli Ağ',
+              '© Deneme Sürümü — ™ Tanıtım Sürümü — ® Beta Sürümü'
+            ],
+            correct: 1,
+            exp: '© fikir ve sanat eserlerini koruyan Telif Hakkı; ™ henüz tescillenmemiş Ticari Marka; ® ise TÜRKPATENT gibi resmî kurumlarca onaylanmış Tescilli Markadır.'
+          },
+          {
+            qId: 's2_q3',
+            q: '3. Ders kitabımızdaki Paul McCartney ve Coldplay hikayesine göre sanatçıların yapay zekâ şirketlerinden temel talebi nedir?',
+            options: [
+              'Tüm bilgisayarların kapatılması',
+              'Yapay zekâ sistemlerinin hangi telifli eserleri eğitim verisi olarak kullandığını şeffafça açıklaması ve telif haklarına saygı gösterilmesi',
+              'İnternetteki tüm müziklerin silinmesi',
+              'Barkod ve bandrol uygulamasının kaldırılması'
+            ],
+            correct: 1,
+            exp: 'Sanatçılar, yapay zekâ şirketlerinin telifli müzik, senaryo ve görselleri izinsiz eğitim verisi olarak kullanmasına karşı şeffaflık ve telif haklarının korunmasını talep etmektedir.'
+          }
+        ]
+      },
+      {
+        id: 'story_siber',
+        domain: 'siber',
+        badge: '3. Alan: Güvenli Siber Ortam (BTY.6.4.3)',
+        title: 'Kafedeki Ücretsiz Wi-Fi ve Sahte Banka Mesajı',
+        icon: 'lock',
+        storyHtml: `
+          <p class="mb-3"><strong>Zeynep Hanım</strong> ve 6. sınıfa giden kızı <strong>Elif</strong>, hafta sonu bir alışveriş merkezindeki kafede otururken şifresiz <em>"Ucretsiz_AVM_WiFi"</em> ağına bağlandılar. Bu sırada Zeynep Hanım'ın telefonuna <em>"Bankanızdan Acil Uyarı: Hesabınız askıya alındı, hemen http://guvenli-banka-giris-tr.xyz adresine tıklayıp şifrenizi girin"</em> yazılı bir mesaj geldi.</p>
+          <p>Elif hemen BTY dersinde öğrendiği <strong>Bilgi Güvenliğinin 3 Bileşeni</strong> ve <strong>Siber Güvenlik Kalkanı</strong> kurallarını hatırlayarak annesini uyardı: <em>"Anneciğim dur! Hem şifresiz ortak ağdayız hem de bu bağlantı güvenli değil!"</em></p>
+        `,
+        questions: [
+          {
+            qId: 's3_q1',
+            q: '1. Zeynep Hanım’a gelen sahte banka mesajı hangi siber saldırı türüdür ve Elif adres çubuğundaki hangi detaya bakarak sitenin güvensiz olduğunu anlamıştır?',
+            options: [
+              'Kimlik Avı (Phishing) saldırısıdır — Adresin "https://" ve kilit simgesi yerine sahte bir "http://" uzantısına sahip olmasından anlamıştır',
+              'Donanım arızasıdır — Ekran parlaklığından anlamıştır',
+              'Açık kaynak güncellemesidir — Dosya boyutundan anlamıştır',
+              'Creative Commons lisansıdır — Sembollerden anlamıştır'
+            ],
+            correct: 0,
+            exp: 'Banka veya resmî kurum taklidi yapan sahte mesajlarla şifre çalma girişimine Kimlik Avı (Phishing) denir. Güvenli sitelerde HTTPS protokolü ve kilit simgesi bulunur.'
+          },
+          {
+            qId: 's3_q2',
+            q: '2. Elif annesine güçlü bir parola oluşturmasını ve 2FA açmasını önermiştir. Aşağıdakilerden hangisi tüm kurallara uyan en güçlü paroladır?',
+            options: [
+              '12345678',
+              'elif2014',
+              'Frt2025_Teknoloji*',
+              'zeynephanim'
+            ],
+            correct: 2,
+            exp: 'Güçlü parola en az 8 karakter olmalı; büyük harf, küçük harf, rakam ve özel sembol (_*!@#) içermeli, kişisel bilgi (isim, doğum tarihi) barındırmamalıdır.'
+          },
+          {
+            qId: 's3_q3',
+            q: '3. Bankadaki hesap bilgilerinin yalnızca hesap sahibi olan Zeynep Hanım tarafından görülebilmesi ve saldırganlarca değiştirilememesi Bilgi Güvenliğinin hangi iki bileşenini ifade eder?',
+            options: [
+              'Paylaşımcılık ve Hız',
+              'Gizlilik ve Bütünlük',
+              'Reklamcılık ve Tanıtım',
+              'Korsanlık ve İntihal'
+            ],
+            correct: 1,
+            exp: 'Veriye yalnız yetkili kişinin erişmesi Gizlilik, verinin izinsiz değiştirilmeden korunması ise Bütünlük bileşenidir (üçüncü bileşen ise Erişilebilirliktir).'
+          }
+        ]
+      },
+      {
+        id: 'story_zararli',
+        domain: 'zararli',
+        badge: '4. Alan: Zararlı Yazılımlar (BTY.6.4.3)',
+        title: 'Şüpheli E-Posta Eki ve Çanakkale Truva Atı Analojisi',
+        icon: 'bug',
+        storyHtml: `
+          <p class="mb-3">BTY Öğretmeni <strong>Batuhan Öğretmen</strong>, derste öğrencilerine Çanakkale'deki <strong>Truva Atı</strong> heykelinin hikayesini anlattıktan sonra şöyle bir örnek olay paylaştı:</p>
+          <p><em>"Kerem, internette 'Ücretsiz Tam Sürüm Oyun Hilesi' adlı bir programı güvenli olmayan bir siteden indirdi. Ayrıca kendisine gelen 'Tebrikler, 1 Milyon Oyun Parası Kazandınız! Fatura_Eki.exe' adlı e-posta ekini açtı. Birkaç dakika sonra bilgisayarının çok yavaşladığını, kendi kendine reklam pencereleri açıldığını ve ödev dosyalarının şifrelenerek ekranda 'Dosyalarınızı açmak için 500 Dolar ödeyin' uyarısı çıktığını gördü."</em></p>
+        `,
+        questions: [
+          {
+            qId: 's4_q1',
+            q: '1. Kerem’in indirdiği "Oyun Hilesi" programının faydalı görünüp arka planda bilgisayara gizlice sızması hangi zararlı yazılımdır?',
+            options: [
+              'Truva Atı (Trojan)',
+              'Güvenlik Duvarı (Firewall)',
+              'Açık Kaynak (Open Source)',
+              'Ücretsiz Yazılım (Freeware)'
+            ],
+            correct: 0,
+            exp: 'Tıpkı Çanakkale Truva Atı hikayesinde olduğu gibi hediye veya faydalı bir oyun/program kılığında gizlenip arka kapı açan zararlı yazılıma Truva Atı (Trojan) denir.'
+          },
+          {
+            qId: 's4_q2',
+            q: '2. Kerem’in e-posta ekini açtıktan sonra bilgisayardaki tüm dosyalarının şifrelenip açılması için para istenmesi hangi zararlı yazılım türüdür?',
+            options: [
+              'Reklam Yazılımı (Adware)',
+              'Fidye Yazılımı (Ransomware)',
+              'Tarayıcı Eklentisi',
+              'Antivirüs Taraması'
+            ],
+            correct: 1,
+            exp: 'Cihazdaki dosyaları şifreleyerek erişilmez hale getiren ve şifreyi çözmek için para (fidye) talep eden zararlı yazılım Fidye Yazılımıdır (Ransomware).'
+          },
+          {
+            qId: 's4_q3',
+            q: '3. Kerem’in bilgisayarını bu zararlı yazılımlardan korumak için aşağıdakilerden hangisini yapması doğru bir önlemdir?',
+            options: [
+              'Tanımadığı kişilerden gelen e-posta eklerini ve korsan yazılımları indirmemek, güncel Antivirüs ve Güvenlik Duvarı kullanmak',
+              'Güvenlik güncellemelerini tamamen kapatmak',
+              'Bulduğu her USB belleği taratmadan bilgisayara takmak',
+              'Reklam pencerelerindeki tüm bağlantılara tıklamak'
+            ],
+            correct: 0,
+            exp: 'Zararlı yazılımlardan korunmak için şüpheli e-posta ekleri açılmamalı, korsan yazılımdan uzak durulmalı, işletim sistemi, Antivirüs ve Güvenlik Duvarı güncel tutulmalıdır.'
+          }
+        ]
+      },
+      {
+        id: 'story_lisans',
+        domain: 'lisans',
+        badge: '5. Alan: Lisans Türleri (BTY.6.4.4)',
+        title: 'Ayşe’nin Dergi Ekindeki Oyunu ve Dijital İçerik Havuzu',
+        icon: 'file-check-2',
+        storyHtml: `
+          <p class="mb-3"><strong>Ayşe</strong>, bir teknoloji dergisinin ekinden çıkan uzay oyununu bilgisayarına kurdu. Oyunun sadece <strong>1. seviyesini</strong> büyük bir keyifle tamamladı; ancak 2. seviyeye geçmek istediğinde ekranda <em>"Oyunun tüm bölümlerini oynamak için resmî sitemizden tam sürümü satın alabilirsiniz"</em> uyarısıyla karşılaştı.</p>
+          <p>Aynı gün Ayşe, BTY dersi 2. temadaki video düzenleme ödevi için Dijital İçerik Havuzu'ndan <strong>CC BY-NC</strong> lisanslı bir fon müziği indirdi ve ofis ödevlerini hazırlamak için kaynak kodu herkese açık olan <strong>LibreOffice</strong> programını kurdu.</p>
+        `,
+        questions: [
+          {
+            qId: 's5_q1',
+            q: '1. Ayşe’nin kurduğu oyunun süre sınırı olmaksızın yalnızca 1. seviyesinin açık olması hangi lisans türüne örnektir ve Deneme (Trial) lisansından farkı nedir?',
+            options: [
+              'Tanıtım Sürümü (Demo) — Demo’da özellikler/bölümler kısıtlıdır; Trial (Deneme) sürümünde ise tüm özellikler belirli bir süre (15-30 gün) açıktır',
+              'Açık Kaynak Lisansı — Kaynak kodu değiştirilebilir',
+              'Kamu Malı Lisansı — Telif süresi bitmiştir',
+              'Geliştirme Aşaması (Beta) — Henüz yapım aşamasındaki hatalı sürümdür'
+            ],
+            correct: 0,
+            exp: 'Kılavuz kitaptaki Ayşe senaryosunun yanıtı Tanıtım (Demo) lisansıdır. Demo’da özellikler/seviyeler kısıtlıdır; Trial (Deneme) lisansında ise süre (ör. 30 gün) kısıtlıdır.'
+          },
+          {
+            qId: 's5_q2',
+            q: '2. Ayşe’nin video projesinde kullandığı "CC BY-NC" lisanslı müzik için uyması gereken iki temel koşul nedir?',
+            options: [
+              'Eser sahibine atıf yapmak (BY) ve videoyu ticari kazanç amacıyla kullanmamak (NC)',
+              'Müziğe para ödemek ve kaynak göstermemek',
+              'Müziği kendi bestesiymiş gibi paylaşmak',
+              'Müziği şifreleyip satmak'
+            ],
+            correct: 0,
+            exp: 'Creative Commons lisanslarında BY (Attribution) eser sahibinin adının belirtilmesini (atıf), NC (Non-Commercial) ise ticari amaçla kullanılmamasını şart koşar.'
+          },
+          {
+            qId: 's5_q3',
+            q: '3. Ayşe’nin ödevinde kullandığı LibreOffice (veya GIMP, Blender, VLC) hangi yazılım lisans türüne örnektir?',
+            options: [
+              'Korsan Yazılım',
+              'Açık Kaynak Lisansı (Open Source)',
+              'Geçici Kullanım (Trial)',
+              'Kapalı Ticari Lisans'
+            ],
+            correct: 1,
+            exp: 'LibreOffice, GIMP, Blender ve VLC Media Player kaynak koduna erişilebilen, geliştirilebilen ve ücretsiz kullanılabilen Açık Kaynak (Open Source) yazılımlardır.'
+          }
+        ]
+      }
+    ];
+
+    // ==================== MODÜL 4: 20 SORULUK BÜYÜK KONU TESTİ (5 ALAN × 4 SORU) ====================
+    const QUIZ_20_DATA = [
+      // 1-4: Bilişim Etiği ve İlkeleri (BTY.6.4.1)
+      {
+        id: 1,
+        domain: 'etigi',
+        q: 'Bilişim teknolojileri kullanılırken her alanda uyulması ve kaçınılması gereken ahlaki kuralların tamamına ne ad verilir?',
+        options: ['Donanım Mimarisi', 'Bilişim Etiği', 'Veri Sıkıştırma', 'Ağ Topolojisi'],
+        correct: 1,
+        exp: 'Güvenilir, dürüst ve saygılı bir dijital ortam için uyulması gereken kuralların bütününe Bilişim Etiği denir.'
+      },
+      {
+        id: 2,
+        domain: 'etigi',
+        q: 'Aşağıdakilerden hangisi Bilgisayar Etik Enstitüsü (Computer Ethics Institute) tarafından belirlenen 10 temel ilkeden biri değildir?',
+        options: [
+          'Bilgisayar başkalarına zarar vermek için kullanılmamalıdır.',
+          'Bilgisayar, yalan bilgiyi yaymak için kullanılmamalıdır.',
+          'Ücreti ödenmeyen lisanslı yazılımlar kopyalanıp arkadaşlarla paylaşılmalıdır.',
+          'Başka insanların kişisel bilgileri izin alınmadan kullanılmamalıdır.'
+        ],
+        correct: 2,
+        exp: 'CEI 3. ilkesine göre "Ücreti ödenmeyen lisanslı yazılım kopyalanmamalı ve kullanılmamalıdır."'
+      },
+      {
+        id: 3,
+        domain: 'etigi',
+        q: 'Türk Ceza Kanunu’na (TCK) göre başkalarının kişisel verilerini izinsiz kaydetmek (TCK 135), bilişim sistemine izinsiz girmek (TCK 243) ve lisanssız yazılım dağıtmak (5846 FSEK) hangi kapsamda değerlendirilir?',
+        options: ['Bilişim Suçu', 'Ücretsiz Güncelleme', 'Açık Kaynak Katkısı', 'Dijital Nezaket'],
+        correct: 0,
+        exp: 'Bilişim teknolojileri kullanılarak işlenen tüm bu yasa dışı davranışlar Bilişim Suçudur ve kanuni cezası vardır.'
+      },
+      {
+        id: 4,
+        domain: 'etigi',
+        q: 'Siber zorbalığa maruz kalan bir 6. sınıf öğrencisinin izlemesi gereken en doğru sıralama aşağıdakilerden hangisidir?',
+        options: [
+          'Zorbaya hakaret etmek → Mesajları silmek → Şifresini herkese vermek',
+          'Karşılık vermemek → Ekran görüntüsü (kanıt) almak → Kişiyi engellemek → Aile/öğretmen ve ihbarweb.org.tr’ye bildirmek',
+          'Bilgisayarı kırmak → Okulu bırakmak → Kimseye söylememek',
+          'Sahte hesap açıp zorbayı tehdit etmek'
+        ],
+        correct: 1,
+        exp: 'Siber zorbalıkta 5 güvenli adım: Fark et/karşılık verme, kanıt (ekran görüntüsü) al, engelle/şikâyet et, güvendiğin yetişkine anlat ve ihbarweb.org.tr’ye bildir.'
+      },
+
+      // 5-8: Telif Hakkı (BTY.6.4.2)
+      {
+        id: 5,
+        domain: 'telif',
+        q: 'Bir kişinin kendi fikri ve emeğiyle meydana getirdiği bilgi, düşünce, sanat eseri ve yazılımların izinsiz kullanılmasını engelleyen hukuki hakka ve sembolüne ne denir?',
+        options: ['Telif Hakkı (©)', 'Açık Ağ (Wi-Fi)', 'Güvenlik Duvarı (🛡️)', 'Barkod Okuyucu'],
+        correct: 0,
+        exp: 'Eser sahibinin haklarını koruyan yasal güvenceye Telif Hakkı (Copyright) denir ve © sembolü ile gösterilir.'
+      },
+      {
+        id: 6,
+        domain: 'telif',
+        q: 'Henüz resmî tescil süreci tamamlanmamış bir ticari markayı gösteren sembol ile TÜRKPATENT tarafından resmen tescillenmiş markayı gösteren sembol sırasıyla hangisidir?',
+        options: ['© ve @', '™ ve ®', '® ve ©', 'CC ve BY'],
+        correct: 1,
+        exp: '™ (Trademark) tescil süreci tamamlanmamış ticari markayı, ® (Registered) ise resmî kurumlarca tescillenmiş markayı gösterir.'
+      },
+      {
+        id: 7,
+        domain: 'telif',
+        q: 'Başkasına ait bir araştırma, görsel veya fikri kaynak göstermeden (atıf yapmadan) kendi eserimizmiş gibi sunmaya ne ad verilir?',
+        options: ['Atıf Yapma', 'İntihal (Akademik Hırsızlık)', 'Lisanslama', 'Şifreleme'],
+        correct: 1,
+        exp: 'Kaynak belirtmeden başkasının eserini kendine ait göstermeye İntihal (akademik hırsızlık) denir.'
+      },
+      {
+        id: 8,
+        domain: 'telif',
+        q: 'Orijinal kitap, müzik albümü ve yazılım ürünlerinin üzerinde bulunan; ürünün korsan olmadığını, stok/üretim bilgisini ve telif güvencesini gösteren iki unsur nedir?',
+        options: ['Virüs ve Solucan', 'Barkod ve Bandrol', 'Spam ve Phishing', 'Trial ve Demo'],
+        correct: 1,
+        exp: 'Orijinal fikir ve sanat ürünlerinde Barkod ve Bandrol bulunur; bandrolsüz çoğaltılan ürünler korsan üründür.'
+      },
+
+      // 9-12: Güvenli Siber Ortam (BTY.6.4.3)
+      {
+        id: 9,
+        domain: 'siber',
+        q: 'Bilgi güvenliğinin 3 temel bileşeninden (sacayağından) biri olan ve "bilginin izinsiz olarak değiştirilmeden, bozulmadan doğruluğunun korunması" anlamına gelen kavram hangisidir?',
+        options: ['Bütünlük', 'Gizlilik', 'Erişilebilirlik', 'Tanıtım'],
+        correct: 0,
+        exp: 'Bilginin izinsiz değiştirilmeden korunması Bütünlük (Integrity), sadece yetkililerin görmesi Gizlilik, her an ulaşılabilmesi Erişilebilirliktir.'
+      },
+      {
+        id: 10,
+        domain: 'siber',
+        q: 'Kullanıcıları kandırarak şifre, T.C. kimlik veya banka bilgilerini çalmak amacıyla resmî kurum ya da banka gibi gönderilen sahte e-posta ve mesaj saldırılarına ne denir?',
+        options: ['Yedekleme (Backup)', 'Kimlik Avı (Phishing / Oltalama)', 'Açık Kaynak Kodlama', 'İki Faktörlü Doğrulama'],
+        correct: 1,
+        exp: 'Sahte e-posta, SMS ve web siteleriyle kullanıcı bilgilerini ele geçirme saldırısına Kimlik Avı (Phishing) denir.'
+      },
+      {
+        id: 11,
+        domain: 'siber',
+        q: 'Aşağıdakilerden hangisi güçlü bir parola oluşturma ve hesap güvenliği kurallarına uygundur?',
+        options: [
+          'Şifre olarak doğum yılımızı ve adımızı kullanmak',
+          'En az 8 karakterli; büyük/küçük harf, rakam ve özel sembol (!@#$) içeren şifre belirleyip İki Faktörlü Doğrulamayı (2FA) açmak',
+          'Aynı şifreyi tüm oyun ve sosyal medya hesaplarında kullanmak',
+          'Şifremizi unutmayalım diye bilgisayar ekranına yapıştırmak'
+        ],
+        correct: 1,
+        exp: 'Güçlü şifre en az 8 karakter, büyük-küçük harf, rakam ve sembol içermeli; ayrıca SMS/uygulama kodlu 2FA aktif edilmelidir.'
+      },
+      {
+        id: 12,
+        domain: 'siber',
+        q: 'Bir web sitesinin güvenli bağlantı kullandığını ve verilerin şifrelenerek aktarıldığını adres çubuğundaki hangi işaretlerden anlarız?',
+        options: [
+          'HTTPS protokolü ve Kilit simgesi',
+          'Yanıp sönen kırmızı ünlem ve reklam pencereleri',
+          'Sitenin arka plan renginin mavi olması',
+          'Sayfada çok sayıda indirme butonu bulunması'
+        ],
+        correct: 0,
+        exp: 'Adres çubuğundaki "https://" ifadesi ve Kilit simgesi güvenli, şifrelenmiş veri iletişimini gösterir.'
+      },
+
+      // 13-16: Zararlı Yazılımlar (BTY.6.4.3)
+      {
+        id: 13,
+        domain: 'zararli',
+        q: 'Kullanıcı müdahalesine veya eklenecek bir dosyaya ihtiyaç duymadan ağ ve internet üzerinden kendi kendine kopyalanarak yayılan ve sistemi yavaşlatan zararlı yazılım hangisidir?',
+        options: ['Solucan (Worm)', 'Antivirüs', 'Güvenlik Duvarı', 'Bandrol'],
+        correct: 0,
+        exp: 'Ağ üzerinden kendi kendini sürekli kopyalayarak çoğalan zararlı yazılım Solucandır (Worm).'
+      },
+      {
+        id: 14,
+        domain: 'zararli',
+        q: 'Bilgisayardaki dosyaları şifreleyerek kilitli hale getiren ve dosyaları tekrar açmak için kullanıcıdan para isteyen zararlı yazılım türü hangisidir?',
+        options: ['Reklam Yazılımı (Adware)', 'Fidye Yazılımı (Ransomware)', 'Spam İleti', 'Ücretsiz Yazılım (Freeware)'],
+        correct: 1,
+        exp: 'Dosyaları şifreleyip erişimi engelleyen ve şifre çözümü için para isteyen zararlıya Fidye Yazılımı (Ransomware) denir.'
+      },
+      {
+        id: 15,
+        domain: 'zararli',
+        q: 'Klavyede yapılan her tıklamayı gizlice izleyip kaydederek şifreleri uzaktaki kötü niyetli kişilere gönderen casus yazılım (Spyware) türü hangisidir?',
+        options: ['Keylogger', 'Firewall', 'LibreOffice', 'Creative Commons'],
+        correct: 0,
+        exp: 'Klavye tuş vuruşlarını gizlice kaydedip şifreleri sızdıran casus yazılıma Keylogger denir.'
+      },
+      {
+        id: 16,
+        domain: 'zararli',
+        q: 'Aşağıdakilerden hangisi bilgisayara virüs veya zararlı yazılım bulaştığının belirtilerinden biri değildir?',
+        options: [
+          'Bilgisayarın normalden çok daha yavaş çalışması ve komutları yerine getirmemesi',
+          'İstenmeyen programların ve internet sayfalarının kendiliğinden açılması',
+          'Bazı dosyaların açılmaması veya bilgilerin kaybolması',
+          'İşletim sisteminin düzenli güvenlik güncellemesi yapması'
+        ],
+        correct: 3,
+        exp: 'Düzenli güvenlik güncellemesi yapmak bir virüs belirtisi değil, sistem açıklarını kapatan en önemli güvenlik önlemidir.'
+      },
+
+      // 17-20: Lisans Türleri (BTY.6.4.4)
+      {
+        id: 17,
+        domain: 'lisans',
+        q: 'Ücretli bir yazılımın tüm özelliklerinin 15 veya 30 gün gibi belirli bir süre boyunca ücretsiz denenmesini sağlayan, süre bitince satın alınması gereken lisans türü hangisidir?',
+        options: ['Deneme Sürümü (Trial / Geçici Kullanım)', 'Kamu Malı (Public Domain)', 'Açık Kaynak (Open Source)', 'Ücretsiz Yazılım (Freeware)'],
+        correct: 0,
+        exp: 'Belirli bir süre (7, 15, 30 gün) boyunca tam özellikli deneme sunan lisans türü Deneme (Trial) lisansıdır.'
+      },
+      {
+        id: 18,
+        domain: 'lisans',
+        q: 'Deneme (Trial) lisansı ile Tanıtım (Demo) lisansı arasındaki temel fark aşağıdakilerden hangisidir?',
+        options: [
+          'İkisi de kaynak kodunu herkese açar.',
+          'Trial sürümünde süre kısıtlıdır ve tüm özellikler açıktır; Demo sürümünde ise özellikler/bölümler kısıtlıdır ve amaç ürünü tanıtmaktır.',
+          'Demo sürümü yalnızca işletim sistemlerinde kullanılır.',
+          'Trial sürümünde hiçbir özellik çalışmaz.'
+        ],
+        correct: 1,
+        exp: 'Akıllı Defter s. 90 tablosunda vurgulandığı gibi Trial süre kısıtlı tam deneyim sunar; Demo ise özellik/bölüm kısıtlı tanıtım sürümüdür.'
+      },
+      {
+        id: 19,
+        domain: 'lisans',
+        q: 'Creative Commons (CC) lisans sisteminde yer alan "BY", "NC", "ND" ve "SA" kısaltmalarının anlamları hangi seçenekte doğru verilmiştir?',
+        options: [
+          'BY: Atıf Yap — NC: Ticari Olmayan Kullanım — ND: Türetilemez/Değiştirilemez — SA: Aynı Lisansla Paylaş',
+          'BY: Satın Al — NC: Kopyala — ND: Sil — SA: Şifrele',
+          'BY: Virüs — NC: Solucan — ND: Truva Atı — SA: Casus',
+          'BY: Gizlilik — NC: Bütünlük — ND: Erişilebilirlik — SA: Güvenlik'
+        ],
+        correct: 0,
+        exp: 'CC sisteminde BY (Atıf), NC (Ticari Olmayan), ND (Değişiklik/Türetme Yok) ve SA (Aynı Lisansla Paylaş) anlamına gelir.'
+      },
+      {
+        id: 20,
+        domain: 'lisans',
+        q: 'Yapay zekâ sistemlerinin etik kullanımı ve yeni geliştirilen yazılımların test süreciyle ilgili aşağıdaki ifadelerden hangisi doğrudur?',
+        options: [
+          'Yeni geliştirilen bir yazılımın hatalarını bulmak için kullanıcılara sunulan test sürümüne Beta sürümü denir; yapay zekâ sistemlerinde ise şeffaflık, önyargısızlık ve veri mahremiyeti gözetilmelidir.',
+          'Yapay zekâ her zaman %100 hatasız ve tarafsız karar verir, doğrulamaya gerek yoktur.',
+          'Beta yazılımlar telif süresi bitmiş kamu malı eserlerdir.',
+          'Korsan yazılım kullanmak yapay zekâ güvenliğini artırır.'
+        ],
+        correct: 0,
+        exp: 'Geliştirme/test aşamasındaki yazılımlara Beta denir; yapay zekâ etiğinde ise şeffaflık, önyargısızlık, mahremiyet ve sorumluluk temel ilkelerdir.'
+      }
+    ];
+
+    // ==================== UYGULAMA DURUMU (STATE) ====================
+    const state = {
+      activeTab: 'matching',
+      soundEnabled: true,
+      studentName: '',
+      studentClass: '6/A',
+      matching: {
+        activeDomain: 'etigi',
+        selectedLeftId: null,
+        matchedByDomain: { etigi: [], telif: [], siber: [], zararli: [], lisans: [] },
+        shuffledRightByDomain: {},
+        score: 0
+      },
+      tf: {
+        filter: 'all',
+        answers: {} // qId -> boolean
+      },
+      stories: {
+        activeStoryIdx: 0,
+        answers: {} // qId -> optionIndex
+      },
+      quiz20: {
+        currentIdx: 0,
+        answers: {}, // qIndex (0..19) -> optionIndex
+        instantFeedback: true,
+        submitted: false
+      }
+    };
+
+    // ==================== WEB AUDIO API SES EFEKTLERİ ====================
+    let audioCtx = null;
+    function playTone(type) {
+      if (!state.soundEnabled) return;
+      try {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) audioCtx = new AudioContextClass();
+        }
+        if (!audioCtx) return;
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        if (type === 'correct') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.setValueAtTime(659.25, now + 0.08);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+          osc.start(now);
+          osc.stop(now + 0.24);
+        } else if (type === 'wrong') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.setValueAtTime(180, now + 0.1);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+          osc.start(now);
+          osc.stop(now + 0.25);
+        } else if (type === 'celebrate') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.setValueAtTime(659.25, now + 0.09);
+          osc.frequency.setValueAtTime(783.99, now + 0.18);
+          osc.frequency.setValueAtTime(1046.5, now + 0.27);
+          gain.gain.setValueAtTime(0.14, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+          osc.start(now);
+          osc.stop(now + 0.45);
+        }
+      } catch (e) {
+        // Ignore audio errors
+      }
+    }
+
+    function triggerConfetti() {
+      if (typeof confetti === 'function') {
+        try {
+          confetti({ particleCount: 70, spread: 65, origin: { y: 0.6 } });
+        } catch (e) {}
+      }
+    }
+
+    // ==================== YARDIMCI FONKSİYONLAR ====================
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function initShuffledMatching() {
+      DOMAINS.forEach(d => {
+        state.matching.shuffledRightByDomain[d.id] = shuffleArray(MATCHING_DATA[d.id]);
+      });
+    }
+
+    function getDomainMeta(domainId) {
+      return DOMAINS.find(d => d.id === domainId) || DOMAINS[0];
+    }
+
+    // ==================== GENEL PUAN VE İLERLEME HESAPLAMA ====================
+    function updateGlobalStats() {
+      // 1. Eşleştirme: 25 çift * 4 puan = 100
+      let totalMatched = 0;
+      DOMAINS.forEach(d => {
+        totalMatched += state.matching.matchedByDomain[d.id].length;
+      });
+      const matchPoints = totalMatched * 4;
+
+      // 2. Doğru/Yanlış: 20 soru * 5 puan = 100
+      let tfAnswered = 0;
+      let tfCorrect = 0;
+      TF_QUESTIONS.forEach(q => {
+        if (state.tf.answers[q.id] !== undefined) {
+          tfAnswered++;
+          if (state.tf.answers[q.id] === q.answer) tfCorrect++;
+        }
+      });
+      const tfPoints = tfCorrect * 5;
+
+      // 3. Hikâye Soruları: 15 soru * 6 puan = 90
+      let storyAnswered = 0;
+      let storyCorrect = 0;
+      STORIES_DATA.forEach(st => {
+        st.questions.forEach(q => {
+          if (state.stories.answers[q.qId] !== undefined) {
+            storyAnswered++;
+            if (state.stories.answers[q.qId] === q.correct) storyCorrect++;
+          }
+        });
+      });
+      const storyPoints = storyCorrect * 6;
+
+      // 4. 20 Soruluk Test: 20 soru * 5 puan = 100
+      let quizAnswered = 0;
+      let quizCorrect = 0;
+      QUIZ_20_DATA.forEach((q, idx) => {
+        if (state.quiz20.answers[idx] !== undefined) {
+          quizAnswered++;
+          if (state.quiz20.answers[idx] === q.correct) quizCorrect++;
+        }
+      });
+      const quizPoints = quizCorrect * 5;
+
+      const totalScore = matchPoints + tfPoints + storyPoints + quizPoints;
+      document.getElementById('globalScoreBadge').textContent = totalScore;
+
+      const totalItems = 25 + 20 + 15 + 20; // 80 etkileşim adımı
+      const doneItems = totalMatched + tfAnswered + storyAnswered + quizAnswered;
+      const pct = Math.round((doneItems / totalItems) * 100);
+      document.getElementById('overallProgressBar').style.width = pct + '%';
+      document.getElementById('overallProgressText').textContent = pct + '%';
+
+      // Modül sayaçları
+      document.getElementById('matchCountText').textContent = `${totalMatched} / 25`;
+      document.getElementById('matchScoreText').textContent = matchPoints;
+      document.getElementById('tfCountText').textContent = `${tfAnswered} / 20`;
+      document.getElementById('tfCorrectText').textContent = tfCorrect;
+      document.getElementById('storyProgressText').textContent = `${storyAnswered} / 15`;
+
+      // Rapor sekmesi güncellemesi
+      document.getElementById('repMatchStat').textContent = `${totalMatched} / 25`;
+      document.getElementById('repTfStat').textContent = `${tfCorrect} / 20 Doğru`;
+      document.getElementById('repStoryStat').textContent = `${storyCorrect} / 15 Doğru`;
+      document.getElementById('repQuizStat').textContent = `${quizPoints} / 100 Puan`;
+      document.getElementById('repQuizSub').textContent = `${quizCorrect} / 20 Doğru (${quizAnswered} İşaretlenen)`;
+
+      const sName = document.getElementById('studentNameInput').value.trim() || 'Öğrenci';
+      const sClass = document.getElementById('studentClassInput').value.trim() || '6. Sınıf';
+      document.getElementById('reportStudentMeta').textContent = `Öğrenci: ${sName} • Sınıf: ${sClass} • Toplam Etkinlik Puanı: ${totalScore}`;
+
+      renderDomainMasteryBars();
+    }
+
+    function renderDomainMasteryBars() {
+      const container = document.getElementById('domainMasteryBars');
+      if (!container) return;
+
+      const html = DOMAINS.map(d => {
+        // Her alanda: 5 eşleştirme + 4 D/Y + 3 Hikaye + 4 Test = 16 madde
+        const matched = state.matching.matchedByDomain[d.id].length;
+        const tfCorr = TF_QUESTIONS.filter(q => q.domain === d.id && state.tf.answers[q.id] === q.answer).length;
+        const stObj = STORIES_DATA.find(s => s.domain === d.id);
+        const stCorr = stObj ? stObj.questions.filter(q => state.stories.answers[q.qId] === q.correct).length : 0;
+        let qzCorr = 0;
+        QUIZ_20_DATA.forEach((q, idx) => {
+          if (q.domain === d.id && state.quiz20.answers[idx] === q.correct) qzCorr++;
+        });
+
+        const totalCorrect = matched + tfCorr + stCorr + qzCorr;
+        const pct = Math.round((totalCorrect / 16) * 100);
+
+        return `
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+            <div class="flex items-center justify-between text-xs sm:text-sm font-bold mb-1.5">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded-md text-xs border ${d.badgeBg}">${d.code}</span>
+                <span class="text-slate-900">${d.title}</span>
+              </div>
+              <span class="text-slate-700">${totalCorrect} / 16 Doğru (%${pct})</span>
+            </div>
+            <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+              <div class="h-full bg-blue-600 transition-all duration-300" style="width: ${pct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      container.innerHTML = html;
+    }
+
+    // ==================== MODÜL 1 RENDER: KAVRAM EŞLEŞTİRME ====================
+    function renderMatchingModule() {
+      const catBar = document.getElementById('matchingCategoryBar');
+      catBar.innerHTML = DOMAINS.map(d => {
+        const isActive = state.matching.activeDomain === d.id;
+        const doneCount = state.matching.matchedByDomain[d.id].length;
+        return `
+          <button type="button" data-match-domain="${d.id}" class="match-domain-btn p-3 rounded-xl border text-left transition flex flex-col justify-between ${
+            isActive
+              ? 'bg-slate-900 text-white border-slate-900 shadow-md'
+              : 'bg-white text-slate-800 border-slate-200 hover:border-blue-400'
+          }">
+            <div class="flex items-center justify-between gap-1">
+              <span class="text-[11px] font-bold ${isActive ? 'text-teal-300' : 'text-slate-500'}">${d.code}</span>
+              <span class="text-[11px] px-2 py-0.5 rounded-full font-extrabold ${
+                doneCount === 5
+                  ? 'bg-emerald-500 text-white'
+                  : isActive ? 'bg-slate-700 text-slate-200' : 'bg-slate-100 text-slate-700'
+              }">${doneCount}/5</span>
+            </div>
+            <div class="font-extrabold text-xs sm:text-sm mt-1">${d.title}</div>
+          </button>
+        `;
+      }).join('');
+
+      catBar.querySelectorAll('.match-domain-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.matching.activeDomain = btn.getAttribute('data-match-domain');
+          state.matching.selectedLeftId = null;
+          hideMatchBanner();
+          renderMatchingModule();
+        });
+      });
+
+      const activeDom = state.matching.activeDomain;
+      const items = MATCHING_DATA[activeDom];
+      const rightItems = state.matching.shuffledRightByDomain[activeDom] || items;
+      const matchedList = state.matching.matchedByDomain[activeDom];
+
+      const leftCol = document.getElementById('matchingLeftColumn');
+      leftCol.innerHTML = items.map(item => {
+        const isMatched = matchedList.includes(item.id);
+        const isSelected = state.matching.selectedLeftId === item.id;
+        return `
+          <button type="button" data-left-id="${item.id}" ${isMatched ? 'disabled' : ''} class="match-left-card w-full p-3.5 rounded-xl border text-left font-bold text-sm transition flex items-center justify-between gap-2 ${
+            isMatched
+              ? 'bg-emerald-50 border-emerald-300 text-emerald-900 opacity-75 cursor-default'
+              : isSelected
+              ? 'bg-blue-600 border-blue-600 text-white shadow-md ring-2 ring-blue-300'
+              : 'bg-slate-50 hover:bg-blue-50/60 border-slate-200 text-slate-900'
+          }">
+            <span>${item.term}</span>
+            <span class="text-xs px-2 py-0.5 rounded-md font-extrabold ${
+              isMatched
+                ? 'bg-emerald-200 text-emerald-900'
+                : isSelected
+                ? 'bg-blue-800 text-blue-100'
+                : 'bg-slate-200 text-slate-600'
+            }">${isMatched ? '✓ Eşleşti' : isSelected ? 'Seçildi' : 'Seç'}</span>
+          </button>
+        `;
+      }).join('');
+
+      const rightCol = document.getElementById('matchingRightColumn');
+      rightCol.innerHTML = rightItems.map(item => {
+        const isMatched = matchedList.includes(item.id);
+        const matchedTerm = isMatched ? items.find(x => x.id === item.id)?.term : '';
+        return `
+          <button type="button" data-right-id="${item.id}" ${isMatched ? 'disabled' : ''} class="match-right-card w-full p-3.5 rounded-xl border text-left text-xs sm:text-sm transition flex flex-col gap-1.5 ${
+            isMatched
+              ? 'bg-emerald-50 border-emerald-300 text-emerald-950 opacity-85 cursor-default'
+              : 'bg-slate-50 hover:bg-teal-50/70 border-slate-200 text-slate-700 hover:border-teal-400'
+          }">
+            ${isMatched ? `<span class="inline-block self-start text-[11px] font-extrabold px-2 py-0.5 rounded bg-emerald-600 text-white">✓ ${matchedTerm}</span>` : ''}
+            <span class="leading-relaxed font-medium">${item.def}</span>
+          </button>
+        `;
+      }).join('');
+
+      leftCol.querySelectorAll('.match-left-card').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-left-id');
+          if (matchedList.includes(id)) return;
+          state.matching.selectedLeftId = state.matching.selectedLeftId === id ? null : id;
+          renderMatchingModule();
+        });
+      });
+
+      rightCol.querySelectorAll('.match-right-card').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const rightId = btn.getAttribute('data-right-id');
+          if (matchedList.includes(rightId)) return;
+          const leftId = state.matching.selectedLeftId;
+          if (!leftId) {
+            showMatchBanner('Önce sol sütundan (A) bir kavram kartı seçmelisin!', 'warn');
+            return;
+          }
+          if (leftId === rightId) {
+            matchedList.push(rightId);
+            state.matching.selectedLeftId = null;
+            playTone('correct');
+            const termObj = items.find(x => x.id === rightId);
+            if (matchedList.length === 5) {
+              playTone('celebrate');
+              triggerConfetti();
+              showMatchBanner(`Tebrikler! "${getDomainMeta(activeDom).title}" alanındaki 5 kavramın tamamını doğru eşleştirdin!`, 'success');
+            } else {
+              showMatchBanner(`Harika! "${termObj.term}" kavramını doğru eşleştirdin.`, 'success');
+            }
+            updateGlobalStats();
+            renderMatchingModule();
+          } else {
+            playTone('wrong');
+            btn.classList.add('shake', 'border-red-500', 'bg-red-50');
+            showMatchBanner('Bu açıklama seçtiğin kavrama ait değil. İpuçlarına dikkat ederek tekrar dene!', 'error');
+            setTimeout(() => {
+              btn.classList.remove('shake', 'border-red-500', 'bg-red-50');
+            }, 500);
+          }
+        });
+      });
+    }
+
+    function showMatchBanner(msg, type) {
+      const banner = document.getElementById('matchingFeedbackBanner');
+      banner.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'border-emerald-300', 'bg-red-100', 'text-red-900', 'border-red-300', 'bg-amber-100', 'text-amber-900', 'border-amber-300');
+      banner.classList.add('border');
+      if (type === 'success') {
+        banner.classList.add('bg-emerald-100', 'text-emerald-900', 'border-emerald-300');
+      } else if (type === 'error') {
+        banner.classList.add('bg-red-100', 'text-red-900', 'border-red-300');
+      } else {
+        banner.classList.add('bg-amber-100', 'text-amber-900', 'border-amber-300');
+      }
+      banner.innerHTML = `<span>${msg}</span>`;
+    }
+
+    function hideMatchBanner() {
+      const banner = document.getElementById('matchingFeedbackBanner');
+      if (banner) banner.classList.add('hidden');
+    }
+
+    // ==================== MODÜL 2 RENDER: DOĞRU / YANLIŞ ====================
+    function renderTfModule() {
+      const filterBar = document.getElementById('tfFilterBar');
+      const filters = [{ id: 'all', title: 'Tüm Alanlar (20)' }, ...DOMAINS.map(d => ({ id: d.id, title: `${d.shortTitle} (4)` }))];
+      filterBar.innerHTML = filters.map(f => {
+        const active = state.tf.filter === f.id;
+        return `
+          <button type="button" data-tf-filter="${f.id}" class="tf-filter-btn px-3.5 py-2 rounded-xl text-xs font-extrabold border transition ${
+            active ? 'bg-slate-900 text-white border-slate-900 shadow' : 'bg-white text-slate-700 border-slate-200 hover:border-teal-400'
+          }">
+            ${f.title}
+          </button>
+        `;
+      }).join('');
+
+      filterBar.querySelectorAll('.tf-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.tf.filter = btn.getAttribute('data-tf-filter');
+          renderTfModule();
+        });
+      });
+
+      const list = state.tf.filter === 'all' ? TF_QUESTIONS : TF_QUESTIONS.filter(q => q.domain === state.tf.filter);
+      const container = document.getElementById('tfCardsContainer');
+      container.innerHTML = list.map(q => {
+        const dom = getDomainMeta(q.domain);
+        const userAns = state.tf.answers[q.id];
+        const answered = userAns !== undefined;
+        const isCorrect = answered && userAns === q.answer;
+
+        return `
+          <div class="bg-white rounded-2xl p-5 border shadow-xs flex flex-col justify-between gap-4 ${
+            !answered ? 'border-slate-200' : isCorrect ? 'border-emerald-400 bg-emerald-50/20' : 'border-red-400 bg-red-50/20'
+          }">
+            <div class="space-y-2.5">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full border ${dom.badgeBg}">${dom.title}</span>
+                <span class="text-xs font-bold text-slate-400">Soru #${q.id}</span>
+              </div>
+              <p class="text-sm sm:text-base font-bold text-slate-900 leading-snug">${q.text}</p>
+            </div>
+
+            <div class="space-y-3">
+              <div class="grid grid-cols-2 gap-2.5">
+                <button type="button" data-tf-id="${q.id}" data-tf-val="true" class="tf-ans-btn py-2.5 px-4 rounded-xl font-extrabold text-xs sm:text-sm border transition flex items-center justify-center gap-1.5 ${
+                  answered && userAns === true
+                    ? isCorrect
+                      ? 'bg-emerald-600 text-white border-emerald-600'
+                      : 'bg-red-600 text-white border-red-600'
+                    : 'bg-slate-50 hover:bg-emerald-50 text-slate-800 border-slate-200'
+                }">
+                  <span>✓ DOĞRU</span>
+                </button>
+                <button type="button" data-tf-id="${q.id}" data-tf-val="false" class="tf-ans-btn py-2.5 px-4 rounded-xl font-extrabold text-xs sm:text-sm border transition flex items-center justify-center gap-1.5 ${
+                  answered && userAns === false
+                    ? isCorrect
+                      ? 'bg-emerald-600 text-white border-emerald-600'
+                      : 'bg-red-600 text-white border-red-600'
+                    : 'bg-slate-50 hover:bg-red-50 text-slate-800 border-slate-200'
+                }">
+                  <span>✕ YANLIŞ</span>
+                </button>
+              </div>
+
+              ${
+                answered
+                  ? `<div class="p-3 rounded-xl text-xs leading-relaxed font-medium border ${
+                      isCorrect ? 'bg-emerald-50 border-emerald-200 text-emerald-950' : 'bg-red-50 border-red-200 text-red-950'
+                    }">
+                      <strong class="block mb-0.5">${isCorrect ? '🎉 Harika! Doğru Cevap.' : '💡 Öğretmen Notu:'}</strong>
+                      ${q.exp}
+                    </div>`
+                  : ''
+              }
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      container.querySelectorAll('.tf-ans-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const qId = parseInt(btn.getAttribute('data-tf-id'), 10);
+          const val = btn.getAttribute('data-tf-val') === 'true';
+          const qObj = TF_QUESTIONS.find(x => x.id === qId);
+          state.tf.answers[qId] = val;
+          if (val === qObj.answer) {
+            playTone('correct');
+          } else {
+            playTone('wrong');
+          }
+          updateGlobalStats();
+          renderTfModule();
+        });
+      });
+    }
+
+    // ==================== MODÜL 3 RENDER: HİKÂYE İÇİNDEN SORULAR ====================
+    function renderStoriesModule() {
+      const bar = document.getElementById('storySelectorBar');
+      bar.innerHTML = STORIES_DATA.map((st, idx) => {
+        const isActive = state.stories.activeStoryIdx === idx;
+        const doneCount = st.questions.filter(q => state.stories.answers[q.qId] !== undefined).length;
+        return `
+          <button type="button" data-story-idx="${idx}" class="story-tab-btn p-3 rounded-xl border text-left transition flex flex-col justify-between ${
+            isActive ? 'bg-slate-900 text-white border-slate-900 shadow-md' : 'bg-white text-slate-800 border-slate-200 hover:border-orange-400'
+          }">
+            <div class="flex items-center justify-between text-[11px] font-bold">
+              <span class="${isActive ? 'text-orange-300' : 'text-orange-600'}">Hikâye ${idx + 1}</span>
+              <span class="px-2 py-0.5 rounded-full ${
+                doneCount === 3 ? 'bg-emerald-500 text-white' : isActive ? 'bg-slate-700 text-slate-200' : 'bg-slate-100 text-slate-600'
+              }">${doneCount}/3</span>
+            </div>
+            <div class="font-extrabold text-xs sm:text-sm mt-1 line-clamp-2">${st.title}</div>
+          </button>
+        `;
+      }).join('');
+
+      bar.querySelectorAll('.story-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.stories.activeStoryIdx = parseInt(btn.getAttribute('data-story-idx'), 10);
+          renderStoriesModule();
+        });
+      });
+
+      const activeStory = STORIES_DATA[state.stories.activeStoryIdx];
+      const container = document.getElementById('activeStoryContainer');
+
+      const questionsHtml = activeStory.questions.map(q => {
+        const userAns = state.stories.answers[q.qId];
+        const answered = userAns !== undefined;
+        const isCorrect = answered && userAns === q.correct;
+
+        const optsHtml = q.options.map((opt, oIdx) => {
+          let btnCls = 'bg-slate-50 hover:bg-blue-50 text-slate-800 border-slate-200';
+          if (answered) {
+            if (oIdx === q.correct) {
+              btnCls = 'bg-emerald-600 text-white border-emerald-600 font-bold';
+            } else if (oIdx === userAns) {
+              btnCls = 'bg-red-600 text-white border-red-600 font-bold';
+            } else {
+              btnCls = 'bg-slate-50 text-slate-400 border-slate-200 opacity-75';
+            }
+          }
+          const letters = ['A', 'B', 'C', 'D'];
+          return `
+            <button type="button" data-story-qid="${q.qId}" data-story-opt="${oIdx}" class="story-opt-btn w-full p-3 rounded-xl border text-left text-xs sm:text-sm transition flex items-start gap-2.5 ${btnCls}">
+              <span class="w-6 h-6 rounded-lg bg-black/10 flex items-center justify-center font-extrabold text-xs shrink-0">${letters[oIdx]}</span>
+              <span class="leading-snug">${opt}</span>
+            </button>
+          `;
+        }).join('');
+
+        return `
+          <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs space-y-3">
+            <h3 class="font-extrabold text-slate-900 text-sm sm:text-base">${q.q}</h3>
+            <div class="space-y-2">${optsHtml}</div>
+            ${
+              answered
+                ? `<div class="p-3 rounded-xl text-xs leading-relaxed border ${
+                    isCorrect ? 'bg-emerald-50 border-emerald-200 text-emerald-950' : 'bg-amber-50 border-amber-200 text-amber-950'
+                  }">
+                    <strong>${isCorrect ? '✓ Doğru Analiz:' : '💡 Doğru Çözüm:'}</strong> ${q.exp}
+                  </div>`
+                : ''
+            }
+          </div>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <div class="lg:col-span-5">
+          <div class="bg-white rounded-2xl p-6 border-2 border-orange-200 shadow-sm sticky top-28 space-y-4">
+            <div class="inline-block text-xs font-extrabold px-3 py-1 rounded-full bg-orange-100 text-orange-800 border border-orange-300">
+              ${activeStory.badge}
+            </div>
+            <h2 class="text-xl font-extrabold text-slate-900">${activeStory.title}</h2>
+            <div class="text-sm text-slate-700 leading-relaxed bg-orange-50/50 p-4 rounded-xl border border-orange-100">
+              ${activeStory.storyHtml}
+            </div>
+            <div class="flex items-center justify-between pt-2">
+              <button type="button" id="prevStoryBtn" ${state.stories.activeStoryIdx === 0 ? 'disabled' : ''} class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 disabled:opacity-40 text-xs font-bold text-slate-700">
+                ← Önceki Hikâye
+              </button>
+              <button type="button" id="nextStoryBtn" ${state.stories.activeStoryIdx === STORIES_DATA.length - 1 ? 'disabled' : ''} class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 disabled:opacity-40 text-xs font-bold text-white">
+                Sonraki Hikâye →
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-7 space-y-4">
+          ${questionsHtml}
+        </div>
+      `;
+
+      const prevBtn = document.getElementById('prevStoryBtn');
+      const nextBtn = document.getElementById('nextStoryBtn');
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          if (state.stories.activeStoryIdx > 0) {
+            state.stories.activeStoryIdx--;
+            renderStoriesModule();
+          }
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          if (state.stories.activeStoryIdx < STORIES_DATA.length - 1) {
+            state.stories.activeStoryIdx++;
+            renderStoriesModule();
+          }
+        });
+      }
+
+      container.querySelectorAll('.story-opt-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const qId = btn.getAttribute('data-story-qid');
+          const optIdx = parseInt(btn.getAttribute('data-story-opt'), 10);
+          const qObj = activeStory.questions.find(x => x.qId === qId);
+          state.stories.answers[qId] = optIdx;
+          if (optIdx === qObj.correct) {
+            playTone('correct');
+          } else {
+            playTone('wrong');
+          }
+          updateGlobalStats();
+          renderStoriesModule();
+        });
+      });
+    }
+
+    // ==================== MODÜL 4 RENDER: 20 SORULUK KONU TESTİ ====================
+    function renderQuiz20Module() {
+      const navGrid = document.getElementById('quizNavigatorGrid');
+      const answeredCount = Object.keys(state.quiz20.answers).length;
+      document.getElementById('quizAnsweredCounter').textContent = `İşaretlenen: ${answeredCount} / 20`;
+
+      navGrid.innerHTML = QUIZ_20_DATA.map((q, idx) => {
+        const isCurrent = state.quiz20.currentIdx === idx;
+        const userAns = state.quiz20.answers[idx];
+        const answered = userAns !== undefined;
+        const showEval = state.quiz20.submitted || (state.quiz20.instantFeedback && answered);
+
+        let cls = 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200';
+        if (showEval && answered) {
+          cls = userAns === q.correct ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-red-600 text-white border-red-600';
+        } else if (answered) {
+          cls = 'bg-blue-600 text-white border-blue-600';
+        }
+        if (isCurrent) {
+          cls += ' ring-2 ring-offset-1 ring-slate-900 font-extrabold';
+        }
+
+        return `
+          <button type="button" data-qnav-idx="${idx}" class="qnav-btn h-9 rounded-lg border text-xs font-bold transition ${cls}">
+            ${idx + 1}
+          </button>
+        `;
+      }).join('');
+
+      navGrid.querySelectorAll('.qnav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.quiz20.currentIdx = parseInt(btn.getAttribute('data-qnav-idx'), 10);
+          renderQuiz20Module();
+        });
+      });
+
+      const curIdx = state.quiz20.currentIdx;
+      const qObj = QUIZ_20_DATA[curIdx];
+      const dom = getDomainMeta(qObj.domain);
+      const userAns = state.quiz20.answers[curIdx];
+      const answered = userAns !== undefined;
+      const showEval = state.quiz20.submitted || (state.quiz20.instantFeedback && answered);
+      const letters = ['A', 'B', 'C', 'D'];
+
+      const optsHtml = qObj.options.map((opt, oIdx) => {
+        let cls = 'bg-slate-50 hover:bg-blue-50/70 text-slate-800 border-slate-200';
+        if (showEval && answered) {
+          if (oIdx === qObj.correct) {
+            cls = 'bg-emerald-600 text-white border-emerald-600 font-bold shadow-xs';
+          } else if (oIdx === userAns) {
+            cls = 'bg-red-600 text-white border-red-600 font-bold';
+          } else {
+            cls = 'bg-slate-50 text-slate-400 border-slate-200 opacity-75';
+          }
+        } else if (answered && userAns === oIdx) {
+          cls = 'bg-blue-600 text-white border-blue-600 font-bold shadow-xs';
+        }
+
+        return `
+          <button type="button" data-qopt-idx="${oIdx}" class="quiz-opt-btn w-full p-4 rounded-xl border text-left text-sm sm:text-base transition flex items-start gap-3 ${cls}">
+            <span class="w-7 h-7 rounded-lg bg-black/10 flex items-center justify-center font-extrabold text-xs shrink-0">${letters[oIdx]}</span>
+            <span class="leading-snug">${opt}</span>
+          </button>
+        `;
+      }).join('');
+
+      const qCard = document.getElementById('quizQuestionCard');
+      qCard.innerHTML = `
+        <div class="space-y-5">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="px-3 py-1 rounded-lg bg-slate-900 text-white font-extrabold text-xs">Soru ${curIdx + 1} / 20</span>
+              <span class="px-3 py-1 rounded-lg border text-xs font-extrabold ${dom.badgeBg}">${dom.title} (${dom.code})</span>
+            </div>
+            <span class="text-xs font-bold text-slate-500">Değer: 5 Puan</span>
+          </div>
+
+          <h2 class="text-base sm:text-lg font-extrabold text-slate-900 leading-relaxed">${qObj.q}</h2>
+
+          <div class="space-y-2.5">${optsHtml}</div>
+
+          ${
+            showEval && answered
+              ? `<div class="p-4 rounded-xl border text-xs sm:text-sm leading-relaxed ${
+                  userAns === qObj.correct ? 'bg-emerald-50 border-emerald-200 text-emerald-950' : 'bg-red-50 border-red-200 text-red-950'
+                }">
+                  <strong class="block mb-1">${userAns === qObj.correct ? '🎉 Doğru Cevap! (+5 Puan)' : `✕ Yanlış Cevap. Doğru Seçenek: ${letters[qObj.correct]}`}</strong>
+                  ${qObj.exp}
+                </div>`
+              : ''
+          }
+
+          <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+            <button type="button" id="quizPrevBtn" ${curIdx === 0 ? 'disabled' : ''} class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 disabled:opacity-40 text-xs sm:text-sm font-bold text-slate-700 transition">
+              ← Önceki Soru
+            </button>
+            <div class="text-xs text-slate-500 font-medium">Soru ${curIdx + 1} / 20</div>
+            <button type="button" id="quizNextBtn" ${curIdx === QUIZ_20_DATA.length - 1 ? 'disabled' : ''} class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 disabled:opacity-40 text-xs sm:text-sm font-bold text-white transition">
+              Sonraki Soru →
+            </button>
+          </div>
+        </div>
+      `;
+
+      qCard.querySelectorAll('.quiz-opt-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const optIdx = parseInt(btn.getAttribute('data-qopt-idx'), 10);
+          state.quiz20.answers[curIdx] = optIdx;
+          if (state.quiz20.instantFeedback) {
+            if (optIdx === qObj.correct) playTone('correct');
+            else playTone('wrong');
+          }
+          updateGlobalStats();
+          renderQuiz20Module();
+        });
+      });
+
+      document.getElementById('quizPrevBtn').addEventListener('click', () => {
+        if (state.quiz20.currentIdx > 0) {
+          state.quiz20.currentIdx--;
+          renderQuiz20Module();
+        }
+      });
+      document.getElementById('quizNextBtn').addEventListener('click', () => {
+        if (state.quiz20.currentIdx < QUIZ_20_DATA.length - 1) {
+          state.quiz20.currentIdx++;
+          renderQuiz20Module();
+        }
+      });
+
+      const summaryBox = document.getElementById('quizResultSummaryBox');
+      if (state.quiz20.submitted) {
+        let correctCount = 0;
+        let wrongCount = 0;
+        let emptyCount = 0;
+        QUIZ_20_DATA.forEach((q, idx) => {
+          if (state.quiz20.answers[idx] === undefined) emptyCount++;
+          else if (state.quiz20.answers[idx] === q.correct) correctCount++;
+          else wrongCount++;
+        });
+        const totalScore = correctCount * 5;
+        summaryBox.classList.remove('hidden');
+        summaryBox.innerHTML = `
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+            <div>
+              <span class="text-xs font-extrabold uppercase tracking-wider text-blue-600">20 Soruluk Konu Testi Sonucu</span>
+              <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">Test Puanın: ${totalScore} / 100</h3>
+              <p class="text-sm text-slate-600 mt-0.5">Doğru: <strong>${correctCount}</strong> • Yanlış: <strong>${wrongCount}</strong> • Boş: <strong>${emptyCount}</strong></p>
+            </div>
+            <button type="button" id="goToReportFromQuizBtn" class="px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs sm:text-sm font-extrabold shadow transition">
+              Detaylı Başarı Karnesine Git →
+            </button>
+          </div>
+        `;
+        const goBtn = document.getElementById('goToReportFromQuizBtn');
+        if (goBtn) {
+          goBtn.addEventListener('click', () => switchTab('report'));
+        }
+      } else {
+        summaryBox.classList.add('hidden');
+      }
+    }
+
+    // ==================== SEKME GEÇİŞLERİ VE ETKİNLİK DİNLEYİCİLERİ ====================
+    function switchTab(tabId) {
+      state.activeTab = tabId;
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+      const target = document.getElementById(`tab-${tabId}`);
+      if (target) target.classList.remove('hidden');
+
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+        const bTab = btn.getAttribute('data-tab');
+        if (bTab === tabId) {
+          btn.className = 'nav-tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold whitespace-nowrap transition bg-blue-600 text-white shadow';
+        } else {
+          btn.className = 'nav-tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold whitespace-nowrap transition text-slate-300 hover:bg-slate-800';
+        }
+      });
+
+      updateGlobalStats();
+    }
+
+    function copyTextToClipboard(text, btnElement, labelElement) {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        const targetEl = labelElement || btnElement;
+        const orig = targetEl.textContent;
+        targetEl.textContent = '✓ Kopyalandı!';
+        setTimeout(() => { targetEl.textContent = orig; }, 2000);
+      } catch (e) {}
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initShuffledMatching();
+      renderMatchingModule();
+      renderTfModule();
+      renderStoriesModule();
+      renderQuiz20Module();
+      updateGlobalStats();
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+
+      // Sekme butonları
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          switchTab(btn.getAttribute('data-tab'));
+        });
+      });
+
+      // Öğrenci adı/sınıfı
+      document.getElementById('studentNameInput').addEventListener('input', updateGlobalStats);
+      document.getElementById('studentClassInput').addEventListener('input', updateGlobalStats);
+
+      // Ses aç/kapat
+      document.getElementById('soundToggleBtn').addEventListener('click', () => {
+        state.soundEnabled = !state.soundEnabled;
+        const btn = document.getElementById('soundToggleBtn');
+        btn.classList.toggle('opacity-50', !state.soundEnabled);
+      });
+
+      // Aktif eşleştirme alanını sıfırla
+      document.getElementById('resetCurrentMatchBtn').addEventListener('click', () => {
+        const dom = state.matching.activeDomain;
+        state.matching.matchedByDomain[dom] = [];
+        state.matching.selectedLeftId = null;
+        state.matching.shuffledRightByDomain[dom] = shuffleArray(MATCHING_DATA[dom]);
+        hideMatchBanner();
+        updateGlobalStats();
+        renderMatchingModule();
+      });
+
+      // Tüm etkinliği sıfırla
+      document.getElementById('resetAllBtn').addEventListener('click', () => {
+        DOMAINS.forEach(d => { state.matching.matchedByDomain[d.id] = []; });
+        state.matching.selectedLeftId = null;
+        initShuffledMatching();
+        state.tf.answers = {};
+        state.stories.answers = {};
+        state.quiz20.answers = {};
+        state.quiz20.currentIdx = 0;
+        state.quiz20.submitted = false;
+        hideMatchBanner();
+        renderMatchingModule();
+        renderTfModule();
+        renderStoriesModule();
+        renderQuiz20Module();
+        updateGlobalStats();
+      });
+
+      // Anlık çözüm toggle
+      document.getElementById('instantQuizToggle').addEventListener('change', (e) => {
+        state.quiz20.instantFeedback = e.target.checked;
+        renderQuiz20Module();
+      });
+
+      // Testi Bitir butonu
+      document.getElementById('finishQuizBtn').addEventListener('click', () => {
+        state.quiz20.submitted = true;
+        playTone('celebrate');
+        triggerConfetti();
+        updateGlobalStats();
+        renderQuiz20Module();
+      });
+
+      // Yazdır butonu
+      document.getElementById('printReportBtn').addEventListener('click', () => {
+        window.print();
+      });
+
+      // Iframe kopyalama
+      document.getElementById('copyIframeCodeBtn').addEventListener('click', () => {
+        const code = document.getElementById('iframeSnippetPre').textContent;
+        copyTextToClipboard(code, document.getElementById('copyIframeCodeBtn'), document.getElementById('copyIframeBtnText'));
+      });
+
+      // Embed Modal
+      const embedModal = document.getElementById('embedModal');
+      document.getElementById('openEmbedModalBtn').addEventListener('click', () => {
+        embedModal.classList.remove('hidden');
+        embedModal.classList.add('flex');
+      });
+      const closeModal = () => {
+        embedModal.classList.add('hidden');
+        embedModal.classList.remove('flex');
+      };
+      document.getElementById('closeEmbedModalBtn').addEventListener('click', closeModal);
+      document.getElementById('modalCloseBtn2').addEventListener('click', closeModal);
+      document.getElementById('modalCopyBtn').addEventListener('click', () => {
+        const code = document.getElementById('modalIframePre').textContent;
+        copyTextToClipboard(code, document.getElementById('modalCopyBtn'));
+      });
+    });
+  </script>
+</body>
+</html>
