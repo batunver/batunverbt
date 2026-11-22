@@ -10,7 +10,7 @@ const yayinlananDersler = [
     "6-hafta-7",
     "6-hafta-8",
     "6-hafta-9",
-    "6-hafta-10",
+    //"6-hafta-10",
     //"6-hafta-11"
 ];
 
