@@ -334,7 +334,7 @@ const dersIcerikleri = {
             {
                 baslik: "Bilişim Etiği ve Siber Güvenlik Etkileşimli Etkinlik & 20 Soruluk Konu Testi",
                 tur: "İnteraktif Atölye",
-                url: "/6/batunver_6sinif_bilisim_etigi_siber_guvenlik_etkinlik.html"
+                url: "/6.sinif/batunver_6sinif_bilisim_etigi_siber_guvenlik_etkinlik.html"
             }
         ]
     }
