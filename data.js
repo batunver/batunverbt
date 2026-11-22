@@ -318,7 +318,7 @@ const dersIcerikleri = {
         ],
        
     },
-     "6-hafta-11": {
+        "6-hafta-11": {
         sinif: 6,
         hafta: 11,
         baslik: "Bilişim Etiği ve Siber Zorbalık",
@@ -332,10 +332,14 @@ const dersIcerikleri = {
         dersNotuPdf: "https://drive.google.com/file/d/1I48pT25QZNSgcon6rMAeqbGpqy2ZHIcl/preview",
         dersNotu: "",
         etkinlikler: [
-                       {
-                baslik: "",
-                tur: "",
-                url: ""
+            {
+                baslik: "Bilişim Etiği ve Siber Güvenlik Etkileşimli Etkinlik & 20 Soruluk Konu Testi",
+                tur: "Etkileşimli Etkinlik ve Test",
+                url: "etkinlikler/batunver_6sinif_bilisim_etigi_siber_guvenlik_etkinlik.html"
+            }
+        ]
+    }
+                           
             }
         ],
        
