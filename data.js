@@ -314,7 +314,12 @@ const dersIcerikleri = {
         dersNotuUrl: "https://docs.google.com/document/d/1M0idifKhIiZgDWw9ZJe4zJqB_5ZL7iy1/preview",
         dersNotuPdf: "https://docs.google.com/document/d/1M0idifKhIiZgDWw9ZJe4zJqB_5ZL7iy1/preview",
         dersNotu: "",
-        etkinlikler: []
+        etkinlikler: [
+            {
+                baslik: "Bilişim Etiği ve Siber Güvenlik Etkileşimli Etkinlik & 20 Soruluk Konu Testi",
+                tur: "İnteraktif Atölye",
+                url: "6.sinif/6sinif_bilisim_etigi_siber_guvenlik_etkinlik.html"
+            }]
     },
 
     "6-hafta-11": {
@@ -332,9 +337,9 @@ const dersIcerikleri = {
         dersNotu: "",
         etkinlikler: [
             {
-                baslik: "Bilişim Etiği ve Siber Güvenlik Etkileşimli Etkinlik & 20 Soruluk Konu Testi",
+                baslik: "Bilgisayar Ağları ve İletişim-Arama Motorları ve Web 2.0 Araçları",
                 tur: "İnteraktif Atölye",
-                url: "6.sinif/6sinif_bilisim_etigi_siber_guvenlik_etkinlik.html"
+                url: "6.sinif/6sinif_bilgisayar_aglari_iletisim_arama_motorları.html"
             }
         ]
     }
